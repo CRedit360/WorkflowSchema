@@ -442,7 +442,7 @@
         
         WFSLabel *thirdLabel = views[2];
         WSTAssert([thirdLabel.textColor isEqual:[UIColor blueColor]]);
-        WSTAssert([thirdLabel.font.fontName hasSuffix:@"-Italic"]);
+        WSTAssert([thirdLabel.font.fontName hasSuffix:@"-Italic"] || [thirdLabel.font.fontName hasSuffix:@"-Oblique"]);
         
         return KIFTestStepResultSuccess;
         
