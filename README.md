@@ -169,4 +169,4 @@ This won't work either:
 },
 ```
 
-...because you've created two classes called `WFSButton.big` and `WFSLabel.big`, neither of which inherit from `.big`, which doens't exist.
+...because you've created two classes called `WFSButton.big` and `WFSLabel.big`, neither of which inherit from `.big`, which doesn't exist.
