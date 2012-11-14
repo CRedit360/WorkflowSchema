@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'WorkflowSchema' target in the 'WorkflowSchema' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

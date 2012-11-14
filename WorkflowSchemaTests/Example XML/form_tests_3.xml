@@ -1,0 +1,26 @@
+<workflow>
+    <screen>
+        <title>Results</title>
+        <navigationItem>
+            <hidesBackButton>YES</hidesBackButton>
+            <rightBarButtonItem>
+                <barButtonItem>
+                    <title>Done</title>
+                    <actionName>doneButtonTapped</actionName>
+                </barButtonItem>
+            </rightBarButtonItem>
+        </navigationItem>
+        <container>
+            <label>Animal:</label>
+            <label><string keyPath="input1" /></label>
+            <label>Snack:</label>
+            <label><string keyPath="input2" /></label>
+            <label>Fruit:</label>
+            <label><string keyPath="input3" /></label>
+        </container>
+        <sendMessage name="doneButtonTapped">
+            <messageType>screen</messageType>
+            <messageName>form3done</messageName>
+        </sendMessage>
+    </screen>
+</workflow>

@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "tintColor" : "blue",
+        "backgroundColor" : "white"
+    },
+    
+    "UINavigationBar" : {
+        "tintColor" : "$tintColor"
+    },
+    
+    "WFSScreenView" : {
+        "backgroundColor" : "$backgroundColor"
+    },
+            
+    "WFSTextField" : {
+        "backgroundImage" : [["text_field_bg", 8, 8, 21, 8]],
+    },
+    
+    "WFSButton" : {
+        "backgroundImage" : [["button_bg", 11, 4, 12, 4], "normal"],
+        "contentEdgeInsets" : [[12, 4, 12, 4]],
+    },
+    
+    "WFSLabel.red" : {
+        "textAttributes" : {
+            "font": 24,
+            "textColor": "red"
+        }
+    },
+    
+    "WFSLabel.green" : {
+        "textAttributes" : {
+            "font": ["bold", 12],
+            "textColor": "green"
+        }
+    },
+    
+    "WFSLabel.blue" : {
+        "textAttributes" : {
+            "font": ["italic", 12],
+            "textColor": "blue"
+        }
+    },
+    
+    "WFSContainerView" : {
+        "WFSContainerView" : {
+            "contentEdgeInsets" : [[0, 0, 0, 0]]
+        }
+    }
+}

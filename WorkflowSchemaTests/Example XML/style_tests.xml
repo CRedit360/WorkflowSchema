@@ -1,0 +1,9 @@
+<workflow>
+    <screen>
+        <container>
+            <label class="red">Red big text</label>
+            <label class="green">Green bold text</label>
+            <label class="blue">Blue italic text</label>
+        </container>
+    </screen>
+</workflow>

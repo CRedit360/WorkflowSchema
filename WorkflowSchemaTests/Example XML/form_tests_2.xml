@@ -1,0 +1,44 @@
+<workflow>
+    <screen>
+        <title><string keyPath="screenTitle" /></title>
+        <form>
+            <container>
+                <label>Animal</label>
+                <textField name="input1">
+                    <placeholder>Enter an animal</placeholder>
+                    <doesMatchRegularExpression>.</doesMatchRegularExpression>
+                </textField>
+                <label>Snack</label>
+                <textField name="input2">
+                    <placeholder>Enter a snack</placeholder>
+                    <doesMatchRegularExpression>.</doesMatchRegularExpression>
+                </textField>
+                <label>Fruit</label>
+                <textField name="input3">
+                    <placeholder>Enter a fruit</placeholder>
+                    <doesMatchRegularExpression>.</doesMatchRegularExpression>
+                </textField>
+                <button>
+                    <title>Submit</title>
+                    <actionName>submit</actionName>
+                </button>
+            </container>
+            <actions>
+                <loadSchema name="didSubmit">
+                    <path>form_tests_3.xml</path>
+                    <pushController>
+                        <screen keyPath="schema" />
+                    </pushController>
+                    <showAlert>Failed to load screen 3</showAlert>
+                </loadSchema>
+                <showAlert name="didNotSubmit">
+                    <message>All fields must be filled</message>
+                </showAlert>
+            </actions>
+        </form>
+        <sendMessage name="form3done">
+            <messageType>screen</messageType>
+            <messageName>form2done</messageName>
+        </sendMessage>
+    </screen>
+</workflow>

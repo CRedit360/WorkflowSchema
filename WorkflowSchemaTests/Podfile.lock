@@ -1,0 +1,16 @@
+
+PODS:
+- KIF (0.0.2)
+- MBProgressHUD (0.5)
+- UISS (1.0.0)
+
+DEPENDENCIES:
+- KIF (defined in Podfile)
+- MBProgressHUD (~> 0.5)
+- UISS (~> 1.0)
+
+SPEC CHECKSUMS:
+  MBProgressHUD: b23ee11c42253d6d804e8e0bfabdc334e8b2571f
+  UISS: 591b2eec5cbbc13ea1698a2879a3d314dc23e43e
+
+COCOAPODS: 0.15.1

@@ -1,0 +1,46 @@
+<workflow>
+    <navigation>
+        <screen>
+            <title>Form test</title>
+            <form>
+                <container>
+                    <label>Screen title</label>
+                    <textField name="screenTitle">
+                        <accessibilityLabel>screenTitle</accessibilityLabel>
+                        <doesMatchRegularExpression>
+                            <pattern>.</pattern>
+                            <failureMessage>Enter a screen title</failureMessage>
+                        </doesMatchRegularExpression>
+                    </textField>
+                    <label>Confirm title</label>
+                    <textField name="confirmScreenTitle">
+                        <accessibilityLabel>confirmScreenTitle</accessibilityLabel>
+                        <isEqualToInput>
+                            <otherInputName>screenTitle</otherInputName>
+                            <failureMessage>Titles must match</failureMessage>
+                        </isEqualToInput>
+                    </textField>
+                    <button>
+                        <title>Submit</title>
+                        <actionName>submit</actionName>
+                    </button>
+                </container>
+                <actions>
+                    <loadSchema name="didSubmit">
+                        <path>form_tests_2.xml</path>
+                        <presentController>
+                            <navigation>
+                                <screen keyPath="schema" />
+                            </navigation>
+                        </presentController>
+                        <showAlert>Failed to load screen 2</showAlert>
+                    </loadSchema>
+                    <showAlert name="didNotSubmit">
+                        <message><string keyPath="failureMessage" /></message>
+                    </showAlert>
+                </actions>
+            </form>
+            <dismissController name="form2done" />
+        </screen>
+    </navigation>
+</workflow>

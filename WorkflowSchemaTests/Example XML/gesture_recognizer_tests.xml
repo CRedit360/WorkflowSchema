@@ -1,0 +1,42 @@
+<workflow>
+    <screen>
+        <container>
+            <layout>fill</layout>
+            <label>
+                <text>Test</text>
+                <longPressGesture>
+                    <minimumPressDuration>2.0</minimumPressDuration>
+                    <endActionName>showLongPressAlert</endActionName>
+                </longPressGesture>
+                <tapGesture>
+                    <numberOfTapsRequired>3</numberOfTapsRequired>
+                    <actionName>show3TapsAlert</actionName>
+                </tapGesture>
+                <tapGesture>
+                    <numberOfTapsRequired>2</numberOfTapsRequired>
+                    <actionName>show2TapsAlert</actionName>
+                </tapGesture>
+                <tapGesture>
+                    <numberOfTapsRequired>4</numberOfTapsRequired>
+                    <actionName>show4TapsAlert</actionName>
+                </tapGesture>
+                <swipeGesture>
+                    <direction>left</direction>
+                    <actionName>showLeftSwipeAlert</actionName>
+                </swipeGesture>
+                <swipeGesture>
+                    <direction>right</direction>
+                    <actionName>showRightSwipeAlert</actionName>
+                </swipeGesture>
+            </label>
+        </container>
+        <actions>
+            <showAlert name="showLongPressAlert">Long press</showAlert>
+            <showAlert name="show2TapsAlert">2 taps</showAlert>
+            <showAlert name="show3TapsAlert">3 taps</showAlert>
+            <showAlert name="show4TapsAlert">4 taps</showAlert>
+            <showAlert name="showLeftSwipeAlert">Left swipe</showAlert>
+            <showAlert name="showRightSwipeAlert">Right swipe</showAlert>
+        </actions>
+    </screen>
+</workflow>

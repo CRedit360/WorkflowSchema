@@ -1,0 +1,9 @@
+<workflow>
+    <screen>
+        <title>Screen 2 title</title>
+        <container>
+            <layout>center</layout>
+            <label>Screen 2 contents</label>
+        </container>
+    </screen>
+</workflow>

@@ -1,0 +1,41 @@
+<workflow>
+    <navigation>
+        <screen>
+            <title>Screen 1 title</title>
+            <container>
+                <label>Screen 1 contents</label>
+                <button>
+                    <title>Push screen 2</title>
+                    <actionName>pushScreen2</actionName>
+                </button>
+            </container>
+            <pushController name="pushScreen2">
+                <screen>
+                    <navigationItem>
+                        <title>Screen 2 NI title</title>
+                        <backBarButtonItem>S2</backBarButtonItem>
+                        <prompt>Screen 2 NI prompt</prompt>
+                    </navigationItem>
+                    <container>
+                        <label>Screen 2 contents</label>
+                        <button>
+                            <title>Push screen 3</title>
+                            <actionName>pushScreen3</actionName>
+                        </button>
+                    </container>
+                    <pushController name="pushScreen3">
+                        <screen>
+                            <title>Screen 3 title</title>
+                            <navigationItem>
+                                <title>Screen 3 NI title</title>
+                            </navigationItem>
+                            <container>
+                                <label>Screen 3 contents</label>
+                            </container>
+                        </screen>
+                    </pushController>
+                </screen>
+            </pushController>
+        </screen>
+    </navigation>
+</workflow>

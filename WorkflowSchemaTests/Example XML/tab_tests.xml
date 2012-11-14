@@ -1,0 +1,28 @@
+<workflow>
+    <tabs>
+        <screen>
+            <container>
+                <layout>center</layout>
+                <label>Screen 1 contents</label>
+            </container>
+        </screen>
+        <screen>
+            <title>Screen 2 title</title>
+            <container>
+                <layout>center</layout>
+                <label>Screen 2 contents</label>
+            </container>
+        </screen>
+        <screen>
+            <tabBarItem>
+                <title>Screen 3 tabItem title</title>
+                <image>first</image>
+            </tabBarItem>
+            <title>Screen 3 title</title>
+            <container>
+                <layout>center</layout>
+                <label>Screen 3 contents</label>
+            </container>
+        </screen>
+    </tabs>
+</workflow>

@@ -1,0 +1,74 @@
+<workflow>
+    <navigation>
+        <screen>
+            <title>Grouped</title>
+            <table>
+                <style>grouped</style>
+                <tableSection>
+                    <headerTitle>Group 1</headerTitle>
+                    <tableCell>
+                        <style>subtitle</style>
+                        <text>text 1</text>
+                        <detailText>detailText 1</detailText>
+                        <actionName>didSelectCell1</actionName>
+                    </tableCell>
+                </tableSection>
+                <tableSection>
+                    <headerTitle>Group 2</headerTitle>
+                    <tableCell>
+                        <style>value1</style>
+                        <text>text 2a</text>
+                        <detailText>detailText 2a</detailText>
+                        <accessoryType>disclosureIndicator</accessoryType>
+                        <actionName>didSelectCell2a</actionName>
+                    </tableCell>
+                    <tableCell>
+                        <style>value2</style>
+                        <text>text 2b</text>
+                        <detailText>detailText 2b</detailText>
+                        <accessoryType>detailDisclosureIndicatorButton</accessoryType>
+                        <actionName>didSelectCell2b</actionName>
+                        <detailDisclosureActionName>didSelectCell2bDetail</detailDisclosureActionName>
+                    </tableCell>
+                    <footerTitle>No more groups.</footerTitle>
+                </tableSection>
+                <actions>
+                    <showAlert name="didSelectCell1">
+                        <message>Alert 1</message>
+                    </showAlert>
+                    <showAlert name="didSelectCell2a">
+                        <message>Alert 2a</message>
+                    </showAlert>
+                    <showAlert name="didSelectCell2b">
+                        <message>Alert 2b</message>
+                    </showAlert>
+                    <pushController name="didSelectCell2bDetail">
+                        <screen>
+                            <title>Plain</title>
+                            <table>
+                                <tableSection>
+                                    <tableCell>Row 1</tableCell>
+                                    <tableCell>Row 2</tableCell>
+                                    <tableCell>
+                                        <actionName>correct</actionName>
+                                        <text>Row 3</text>
+                                    </tableCell>
+                                    <tableCell>Row 4</tableCell>
+                                    <tableCell>Row 5</tableCell>
+                                    <tableCell>Row 6</tableCell>
+                                    <tableCell>Row 7</tableCell>
+                                </tableSection>
+                                <showAlert name="correct">
+                                    <message>Correct!</message>
+                                </showAlert>
+                                <showAlert>
+                                    <message>Incorrect!</message>
+                                </showAlert>
+                            </table>
+                        </screen>
+                    </pushController>
+                </actions>
+            </table>
+        </screen>
+    </navigation>
+</workflow>

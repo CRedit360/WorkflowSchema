@@ -1,0 +1,47 @@
+<workflow>
+    <table>
+        <style>grouped</style>
+        <sections>
+            <tableSection>
+                <tableCell>This goes at the top</tableCell>
+            </tableSection>
+            <tableSection keyPath="sections">
+                <default>
+                    <tableSection>
+                        <tableCell>
+                            <text>Push me!</text>
+                            <actionName>performNextStep</actionName>
+                        </tableCell>
+                    </tableSection>
+                </default>
+                <template>
+                    <tableSection>
+                        <tableCell keyPath="cells">
+                            <template>
+                                <tableCell>
+                                    <text><string keyPath="text" /></text>
+                                    <actionName>
+                                        <string keyPath="actionName"><default>noSuchAction</default></string>
+                                    </actionName>
+                                </tableCell>
+                            </template>
+                        </tableCell>
+                    </tableSection>
+                </template>
+            </tableSection>
+            <tableSection>
+                <tableCell>This goes at the bottom</tableCell>
+            </tableSection>
+        </sections>
+        <actions>
+            <sendMessage name="performNextStep">
+                <messageType>scenarioFunctionalTestStoredValues</messageType>
+                <messageName>performNextStep</messageName>
+                <multipleActions>
+                    <storeValues />
+                    <reloadData />
+                </multipleActions>
+            </sendMessage>
+        </actions>
+    </table>
+</workflow>

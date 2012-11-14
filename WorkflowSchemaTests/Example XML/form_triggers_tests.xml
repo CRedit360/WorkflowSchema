@@ -1,0 +1,75 @@
+<workflow>
+    <navigation>
+        <screen>
+            <title>Form triggers test</title>
+            <form>
+                <container>
+                    <label>Thing 1</label>
+                    <textField name="thing1">
+                        <accessibilityLabel>thing1</accessibilityLabel>
+                    </textField>
+                    
+                    <container name="things1A">
+                        <label>Subthing A1</label>
+                        <textField name="subthingA1">
+                            <accessibilityLabel>subthingA1</accessibilityLabel>
+                        </textField>
+                        <label>Subthing A2</label>
+                        <textField name="subthingA2">
+                            <accessibilityLabel>subthingA2</accessibilityLabel>
+                        </textField>
+                    </container>
+                    
+                    <container name="things1B">
+                        <label>Subthing B1</label>
+                        <textField name="subthingB1">
+                            <accessibilityLabel>subthingB1</accessibilityLabel>
+                        </textField>
+                        <label>Subthing B2</label>
+                        <textField name="subthingB2">
+                            <accessibilityLabel>subthingB2</accessibilityLabel>
+                        </textField>
+                    </container>
+                    
+                    <label>Thing 2</label>
+                    <textField name="thing2">
+                        <accessibilityLabel>thing2</accessibilityLabel>
+                    </textField>
+                    
+                    <button>
+                        <title>Submit</title>
+                        <actionName>submit</actionName>
+                    </button>
+                </container>
+                
+                <triggers>
+                    <trigger>
+                        <doesMatchRegularExpression>
+                            <pattern>A</pattern>
+                            <value><string keyPath="thing1" /></value>
+                        </doesMatchRegularExpression>
+                        <successActionName>showThings1A</successActionName>
+                        <failureActionName>hideThings1A</failureActionName>
+                    </trigger>
+                    
+                    <trigger>
+                        <doesMatchRegularExpression>
+                            <pattern>B</pattern>
+                            <value><string keyPath="thing1" /></value>
+                        </doesMatchRegularExpression>
+                        <successActionName>showThings1B</successActionName>
+                        <failureActionName>hideThings1B</failureActionName>
+                    </trigger>
+                </triggers>
+                
+                <actions>
+                    <showViews name="showThings1A">things1A</showViews>
+                    <hideViews name="hideThings1A">things1A</hideViews>
+                    <showViews name="showThings1B">things1B</showViews>
+                    <hideViews name="hideThings1B">things1B</hideViews>
+                </actions>
+                
+            </form>
+        </screen>
+    </navigation>
+</workflow>

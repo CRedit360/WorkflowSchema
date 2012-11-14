@@ -1,0 +1,234 @@
+<workflow>
+    <navigation>
+        <screen>
+            <container>
+                <button>
+                    <title>Test hidesBackButton</title>
+                    <actionName>testHidesBackButton</actionName>
+                </button>
+                <button>
+                    <title>Test leftBarButtonItem</title>
+                    <actionName>testLeftBarButtonItem</actionName>
+                </button>
+                <button>
+                    <title>Test leftBarButtonItem w/o supplement</title>
+                    <actionName>testLeftBarButtonItemWithoutSupplement</actionName>
+                </button>
+                <button>
+                    <title>Test leftBarButtonItems</title>
+                    <actionName>testLeftBarButtonItems</actionName>
+                </button>
+                <button>
+                    <title>Test leftBarButtonItems w/o supplement</title>
+                    <actionName>testLeftBarButtonItemsWithoutSupplement</actionName>
+                </button>
+                <button>
+                    <title>Test rightBarButtonItem</title>
+                    <actionName>testRightBarButtonItem</actionName>
+                </button>
+                <button>
+                    <title>Test rightBarButtonItem w/ image</title>
+                    <actionName>testRightBarButtonItemWithImage</actionName>
+                </button>
+                <button>
+                    <title>Test rightBarButtonItems</title>
+                    <actionName>testRightBarButtonItems</actionName>
+                </button>
+            </container>
+            <actions>
+                <pushController name="testHidesBackButton">
+                    <screen>
+                        <title>hidesBackButton test</title>
+                        <navigationItem>
+                            <hidesBackButton>YES</hidesBackButton>
+                        </navigationItem>
+                        <container>
+                            <button>
+                                <title>Pop me</title>
+                                <actionName>screenShouldPop</actionName>
+                            </button>
+                        </container>
+                        <sendMessage name="screenShouldPop">
+                            <messageType>screen</messageType>
+                            <messageName>pop</messageName>
+                        </sendMessage>
+                    </screen>
+                </pushController>
+                <pushController name="testLeftBarButtonItem">
+                    <screen>
+                        <title>leftBarButtonItem test</title>
+                        <navigationItem>
+                            <leftBarButtonItem>
+                                <barButtonItem>
+                                    <title>Left</title>
+                                    <actionName>showLeftAlert</actionName>
+                                </barButtonItem>
+                            </leftBarButtonItem>
+                            <leftItemsSupplementBackButton>YES</leftItemsSupplementBackButton>
+                        </navigationItem>
+                        <container>
+                            <label>leftBarButtonItem test</label>
+                        </container>
+                        <showAlert name="showLeftAlert">
+                            <message>Left!</message>
+                        </showAlert>
+                    </screen>
+                </pushController>
+                <pushController name="testLeftBarButtonItemWithoutSupplement">
+                    <screen>
+                        <title>leftBarButtonItem test w/o supplement</title>
+                        <navigationItem>
+                            <leftBarButtonItem>
+                                <barButtonItem>
+                                    <title>Left</title>
+                                    <actionName>showLeftAlert</actionName>
+                                </barButtonItem>
+                            </leftBarButtonItem>
+                        </navigationItem>
+                        <container>
+                            <label>leftBarButtonItem test w/o supplement</label>
+                            <button>
+                                <title>Pop me</title>
+                                <actionName>screenShouldPop</actionName>
+                            </button>
+                        </container>
+                        <showAlert name="showLeftAlert">
+                            <message>Left!</message>
+                        </showAlert>
+                        <sendMessage name="screenShouldPop">
+                            <messageType>screen</messageType>
+                            <messageName>pop</messageName>
+                        </sendMessage>
+                    </screen>
+                </pushController>
+                <pushController name="testLeftBarButtonItems">
+                    <screen>
+                        <title>leftBarButtonItems test</title>
+                        <navigationItem>
+                            <leftBarButtonItems>
+                                <barButtonItem>
+                                    <title>Left 1</title>
+                                    <actionName>showLeftAlert1</actionName>
+                                </barButtonItem>
+                                <barButtonItem>
+                                    <title>Left 2</title>
+                                    <actionName>showLeftAlert2</actionName>
+                                </barButtonItem>
+                            </leftBarButtonItems>
+                            <leftItemsSupplementBackButton>YES</leftItemsSupplementBackButton>
+                        </navigationItem>
+                        <container>
+                            <label>leftBarButtonItems test</label>
+                        </container>
+                        <showAlert name="showLeftAlert1">
+                            <message>Left 1!</message>
+                        </showAlert>
+                        <showAlert name="showLeftAlert2">
+                            <message>Left 2!</message>
+                        </showAlert>
+                    </screen>
+                </pushController>
+                <pushController name="testLeftBarButtonItemsWithoutSupplement">
+                    <screen>
+                        <title>leftBarButtonItems test w/o supplement</title>
+                        <navigationItem>
+                            <leftBarButtonItems>
+                                <barButtonItem>
+                                    <title>Left 1</title>
+                                    <actionName>showLeftAlert1</actionName>
+                                </barButtonItem>
+                                <barButtonItem>
+                                    <title>Left 2</title>
+                                    <actionName>showLeftAlert2</actionName>
+                                </barButtonItem>
+                            </leftBarButtonItems>
+                        </navigationItem>
+                        <container>
+                            <label>leftBarButtonItems test w/o supplement</label>
+                            <button>
+                                <title>Pop me</title>
+                                <actionName>screenShouldPop</actionName>
+                            </button>
+                        </container>
+                        <sendMessage name="screenShouldPop">
+                            <messageType>screen</messageType>
+                            <messageName>pop</messageName>
+                        </sendMessage>
+                        <showAlert name="showLeftAlert1">
+                            <message>Left 1!</message>
+                        </showAlert>
+                        <showAlert name="showLeftAlert2">
+                            <message>Left 2!</message>
+                        </showAlert>
+                    </screen>
+                </pushController>
+                <pushController name="testRightBarButtonItem">
+                    <screen>
+                        <title>rightBarButtonItem test</title>
+                        <navigationItem>
+                            <rightBarButtonItem>
+                                <barButtonItem>
+                                    <title>Right</title>
+                                    <actionName>showRightAlert</actionName>
+                                </barButtonItem>
+                            </rightBarButtonItem>
+                        </navigationItem>
+                        <container>
+                            <label>rightBarButtonItem test</label>
+                        </container>
+                        <showAlert name="showRightAlert">
+                            <message>Right!</message>
+                        </showAlert>
+                    </screen>
+                </pushController>
+                <pushController name="testRightBarButtonItemWithImage">
+                    <screen>
+                        <title>rightBarButtonItem test w/ image</title>
+                        <navigationItem>
+                            <rightBarButtonItem>
+                                <barButtonItem>
+                                    <image>first</image>
+                                    <accessibilityLabel>Right</accessibilityLabel>
+                                    <actionName>showRightAlert</actionName>
+                                </barButtonItem>
+                            </rightBarButtonItem>
+                        </navigationItem>
+                        <container>
+                            <label>rightBarButtonItem test w/ image</label>
+                        </container>
+                        <showAlert name="showRightAlert">
+                            <message>Right!</message>
+                        </showAlert>
+                    </screen>
+                </pushController>
+                <pushController name="testRightBarButtonItems">
+                    <screen>
+                        <title>rightBarButtonItems test</title>
+                        <navigationItem>
+                            <rightBarButtonItems>
+                                <barButtonItem>
+                                    <title>Right 1</title>
+                                    <actionName>showRightAlert1</actionName>
+                                </barButtonItem>
+                                <barButtonItem>
+                                    <title>Right 2</title>
+                                    <actionName>showRightAlert2</actionName>
+                                </barButtonItem>
+                            </rightBarButtonItems>
+                        </navigationItem>
+                        <container>
+                            <label>rightBarButtonItems test</label>
+                        </container>
+                        <showAlert name="showRightAlert1">
+                            <message>Right 1!</message>
+                        </showAlert>
+                        <showAlert name="showRightAlert2">
+                            <message>Right 2!</message>
+                        </showAlert>
+                    </screen>
+                </pushController>
+                <popController name="pop" />
+            </actions>
+        </screen>
+    </navigation>
+</workflow>
