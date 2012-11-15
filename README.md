@@ -3,15 +3,74 @@ WorkflowSchema
 
 WorkflowSchema is an iOS framework which allows you to define MVC workflows in XML.
 
-A workflow encapsulates a controller and its view, as well as actions that can be performed in response to user input.
+Setup
+-----
 
-A simple workflow might look like this:
+To add WorkflowSchema to a project, drag WorkflowSchema.xcodeproj into the project's frameworks group:
+
+![WorkflowSchema.xcodeproj in the project's frameworks group](http://credit360.github.com/WorkflowSchema/readme_images/add_framework.png)
+
+Under "Build Phases", add the framework to "Target Dependencies" and "Link Binary With Libraries":
+
+![WorkflowSchema.xcodeproj in the project's frameworks group](http://credit360.github.com/WorkflowSchema/readme_images/build_phases.png)
+
+In your app delegate (or wherever you want to use WorkflowSchema), load a schema:
+
+```ObjC
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{   
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    NSError *error = nil;
+    NSURL *xmlURL = [NSURL fileURLWithPath:@"/path/to/your/file.xml"];
+    WFSSchema *schema = [[[WFSXMLParser alloc] initWithContentsOfURL:xmlURL] parse:&error];
+```
+
+Now create a context and create the schema's root object:
+
+```ObjC
+    WFSContext *context = [WFSContext contextWithDelegate:self];
+    UIViewController *controller = (UIViewController *)[schema createObjectWithContext:context error:&error];
+    
+    self.window.rootViewController = controller;
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
+```
+
+You'll have to implement WFSContextDelegate:
+
+```ObjC
+- (void)context:(WFSContext *)contect didReceiveWorkflowError:(NSError *)error
+{
+    [[[UIAlertView alloc] initWithTitle:@"Workflow error" 
+                                message:error.localizedDescription
+                               delegate:nil
+                      cancelButtonTitle:@"OK" 
+                      otherButtonTitles:nil] show];
+}
+
+- (BOOL)context:(WFSContext *)contect didReceiveWorkflowMessage:(WFSMessage *)message
+{
+    return NO;
+}
+```
+
+You're now ready to go.
+
+Schemata
+--------
+
+A workflow schema encapsulates a controller and its view, as well as actions that can be performed in response to user input.
+
+A simple schema might look like this:
 
 ```xml
 <workflow>
     <navigation>
         <screen>
-            <title>Example<title>
+            <title>Example</title>
             <view>
                 <container>
                     <label>Example label</label>
@@ -40,7 +99,7 @@ It also specifies that when the button is tapped, this happens:
 Objects and parameters
 ----------------------
 
-The basic structure of a workflow is that object tags contain parameter tags, which contain object tags.  Object tags instruct the framework to create an object, and parameter tags instruct the framework to set a property on the object.
+The basic structure of a schema is that object tags contain parameter tags, which contain object tags.  Object tags instruct the framework to create an object, and parameter tags instruct the framework to set a property on the object.
 
 So, in our example, the `<screen>` tag represents a `WFSScreenController` object, which has three parameters: `title`, `view` and `actions`.  The title parameter contains a string ("Example")' the `view` contains a `WFSContainerView`, and the `actions` contains a `WFSShowAlertAction`.
 
@@ -52,7 +111,7 @@ In order to keep the files small, the framework supports *default parameters*.  
     <navigation>
         <viewControllers>
             <screen>
-                <title>Example<title>
+                <title>Example</title>
                 <view>
                     <container>
                         <views>
@@ -84,7 +143,7 @@ Or, since `view` is the default for view objects, and `actions` is the default f
 <workflow>
     <navigation>
         <screen>
-            <title>Example<title>
+            <title>Example</title>
             <container>
                 <label>Example label</label>
                 <button>
@@ -100,18 +159,16 @@ Or, since `view` is the default for view objects, and `actions` is the default f
 
 Objects can have names. In our example, the `showAlert` tag has the name `exampleButtonTapped`.
 
-Actions and messages
---------------------
+Actions
+-------
 
-When the user interacts with a view, it can tell its controller to perform an action.  Actions include showing alerts, presenting or dismissing controllers, showing or hiding views, submitting forms, etc, etc...
-
-Looking again at our first example:
+When the user interacts with a view, it can tell its controller to perform an action.  Looking again at our first example:
 
 ```xml
 <workflow>
     <navigation>
         <screen>
-            <title>Example<title>
+            <title>Example</title>
             <view>
                 <container>
                     <label>Example label</label>
@@ -129,7 +186,47 @@ Looking again at our first example:
 </workflow>
 ```
 
-The button has an `actionName` property, which specifies the action that it tells the controller to perform.  So when the user taps the button, it tells the controller to perform the `exampleButtonTapped` action, which in this case shows an alert.
+The button has an `actionName` property, which specifies the action that it tells the controller to perform.  So when the user taps the button, it tells the controller to perform the action with the name `exampleButtonTapped`, which in this case shows an alert.
+
+Different actions can do different things.  For example, we can push another screen onto the navigation stack:
+
+```xml
+<workflow>
+    <navigation>
+        <screen>
+            <title>Example</title>
+            <view>
+                <container>
+                    <label>Example label</label>
+                    <button>
+                        <title>Example button</title>
+                        <actionName>exampleButtonTapped</actionName>
+                    </button>
+                </container>
+            </view>
+            <actions>
+                <pushController name="exampleButtonTapped">
+                    <screen>
+                        <title>Example 2</title>
+                        <view>
+                            <container>
+                                <label>This controller gets pushed!</label>
+                            </container>
+                        </view>
+                    </screen>
+                </pushController>
+            </actions>
+        </screen>
+    </navigation>
+</workflow>
+```
+
+When the user taps the button, they see this:
+
+![An alert has been show reading 'Example button tapped1'](http://credit360.github.com/WorkflowSchema/readme_images/example2-pushed.png)
+
+Messages
+--------
 
 A view can only tell its controller to perform actions.  Suppose we modify our screen to add another button, and to add an action to the navigation controller:
 
@@ -201,15 +298,63 @@ If we want to wire the button up to the navigation controller's action, we need 
 
 Now when the user taps the second button, it tells the screen controller to perform the action named `exampleButton2Tapped`; that action then sends a message with message type `navigation` and message name `exampleMessageName`.  The navigation controller receives this message, sees that it has the right type (navigation) and so it tries to perform an action with a matching name.  There is such an action, so it performs it.
 
-It the message had had a different type, the navigation controller would have passed the message on; if it had a different name, it would have kept it and done nothing.  Messages can get passed all the way out to your app delegate, which is how you implement things like API calls.
+It the message had had a different type, the navigation controller would have passed the message on; if it had a different name, it would have kept it and done nothing.  In general, messages are passed on to the creator of the controller - in this case, the creator of the screen controller is the navigation controller.  In a more complicated example:
+
+```xml
+<workflow>
+    <navigation>
+        <screen>
+            <title>Example</title>
+            <view>
+                <container>
+                    <label>Example label</label>
+                    <button>
+                        <title>Example button 1</title>
+                        <actionName>exampleButton1Tapped</actionName>
+                    </button>
+                </container>
+            </view>
+            <actions>
+                <pushController name="exampleButton1Tapped">
+                    <screen>
+                        <title>Example 2</title>
+                        <view>
+                            <container>
+                                <label>This controller gets pushed!</label>
+                                <button>
+                                    <title>Example button 2</title>
+                                    <actionName>exampleButton2Tapped</actionName>
+                                </button>
+                            </container>
+                        </view>
+                        <actions>
+                            <sendMessage name="exampleButton2Tapped">
+                                <messageType>navigation</messageType>
+                                <messageName>exampleMessageName</messageName>
+                            </sendMessage>
+                        </actions>
+                    </screen>
+                </pushController>
+            </actions>
+        </screen>
+        <actions>
+            <showAlert name="exampleMessageName">Example button 2 tapped!</showAlert>
+        </actions>
+    </navigation>
+</workflow>
+```
+
+In this case, when the first button is tapped, the second screen controller is created by the first screen controller; so when the second button is tapped, it sends a message to the first screen controller.  The message type (navigation) isn't handled by the screen controller, so it passes the message on to the navigation controller, which does handle it, and the alert is shown.
+
+Messages can get passed all the way out to your app delegate, where the `context:didReceiveWorkflowMessage:` delegate message will be called. This is how you implement things like API calls.
 
 Note the difference between the name of the action, and the name of the message:
 
 ```xml
-                <sendMessage name="exampleButton2Tapped">
-                    <messageType>navigation</messageType>
-                    <messageName>exampleMessageName</messageName>
-                </sendMessage>
+<sendMessage name="exampleButton2Tapped">
+    <messageType>navigation</messageType>
+    <messageName>exampleMessageName</messageName>
+</sendMessage>
 ```
 
 The action is named `exampleButton2Tapped`, but it sends a message named `exampleMessageName`.
