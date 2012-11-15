@@ -196,6 +196,7 @@
 		F65BE0631642DF5700D6F569 /* WFSHideViewsAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSHideViewsAction.m; sourceTree = "<group>"; };
 		F6697C47163EF4530098B3A7 /* WFSSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSSwipeGestureRecognizer.h; sourceTree = "<group>"; };
 		F6697C48163EF4530098B3A7 /* WFSSwipeGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSSwipeGestureRecognizer.m; sourceTree = "<group>"; };
+		F68DF1931655071900489EA2 /* WorkflowSchema.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = WorkflowSchema.podspec; path = ../WorkflowSchema.podspec; sourceTree = "<group>"; };
 		F6BEBDF81653F95D004412B4 /* WFSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSMacros.h; sourceTree = "<group>"; };
 		F6C0EBCF163A8DB200271964 /* NSArray+WorkflowSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+WorkflowSchema.h"; sourceTree = "<group>"; };
 		F6C0EBD0163A8DB200271964 /* NSArray+WorkflowSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+WorkflowSchema.m"; sourceTree = "<group>"; };
@@ -444,6 +445,7 @@
 		F6E796741632ACFC006F59F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F68DF1931655071900489EA2 /* WorkflowSchema.podspec */,
 				F61749D51653F6DC005B9090 /* README.md */,
 				F61749D31653F536005B9090 /* LICENSE */,
 				F61749741653D798005B9090 /* InfoPlist.strings */,
