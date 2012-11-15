@@ -1,7 +1,7 @@
 WorkflowSchema
 ==============
 
-WorkflowSchema is an iOS framework which allows you to define MVC workflows in XML.
+WorkflowSchema is an iOS framework which allows you to define app workflows in XML.
 
 Setup
 -----

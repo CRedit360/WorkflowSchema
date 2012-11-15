@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "WorkflowSchema"
   s.version      = "0.1.0"
-  s.summary      = "An iOS framework which allows you to define MVC workflows in XML."
+  s.summary      = "An iOS framework which allows you to define app workflows in XML."
   s.homepage     = "https://github.com/CRedit360/WorkflowSchema"
   s.license      = 'MIT'
   s.author       = { "Simon Booth" => "simon.booth@credit360.com" }
