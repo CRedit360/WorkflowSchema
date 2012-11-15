@@ -45,7 +45,13 @@
     else
     {
         WFSSchema *schema = context.parameters[WFSLoadSchemaActionSchemaKey];
-        controllerToShow = (UIViewController *)[schema createObjectWithContext:context error:&error];
+        
+        WFSMutableContext *controllerContext = [context mutableCopy];
+        NSMutableDictionary *parameters = [context.parameters mutableCopy];
+        [parameters removeObjectForKey:WFSLoadSchemaActionSchemaKey];
+        controllerContext.parameters = parameters;
+        
+        controllerToShow = (UIViewController *)[schema createObjectWithContext:controllerContext error:&error];
     }
         
     if (![controllerToShow isKindOfClass:[UIViewController class]])
