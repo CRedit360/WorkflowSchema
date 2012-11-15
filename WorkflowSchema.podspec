@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/CRedit360/WorkflowSchema"
   s.license      = 'MIT'
   s.author       = { "Simon Booth" => "simon.booth@credit360.com" }
-  s.source       = { :git => "https://github.com/CRedit360/WorkflowSchema", :tag => "0.1.0" }
+  s.source       = { :git => "git://github.com/CRedit360/WorkflowSchema.git", :tag => "0.1.0" }
   s.platform     = :ios, '5.0'
   s.source_files = 'WorkflowSchema/Code'
   s.resources = 'WorkflowSchema/*.lproj/WorkflowSchema.strings'
