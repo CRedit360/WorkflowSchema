@@ -359,10 +359,200 @@ Note the difference between the name of the action, and the name of the message:
 
 The action is named `exampleButton2Tapped`, but it sends a message named `exampleMessageName`.
 
+Contexts
+--------
+
+Earlier, we said "In general, messages are passed on to the creator of the controller".  To explain what's actually happening, it's necessary to introduce the concept of the workflow context.  We've seen one already, when we set up the workflow:
+
+```ObjC
+    WFSContext *context = [WFSContext contextWithDelegate:self];
+```
+
+The context wraps up the information that the framework needs in order to create objects from schemata, and to determine where messages should get sent.  Each context has a delegate object which implements `context:didReceiveWorkflowMessage:` in order to handle messages.  Any time an object is created or an action is performed, a context is passed to it.  When an object is created as a parameter to a controller, or when an action is performed by a controller, it makes a copy of the context that was used to create the controller and sets the new context's delegate to be itself.  It then implements `context:didReceiveWorkflowMessage:` to strip out messages for that controller and then to pass any others to its own context.  As a result, controllers have a chain of delegates which can respond to messages, all the way out to the delegate you provide when you create the first context.
+
+Contexts also have a dictionary of parameters which contain the results of actions.  This is used, among other things, to allow schemata to load other schemata.
+
+Loading
+-------
+
+We've seen an example schema which pushes a new controller onto the navigation stack, but it would be nice if we could load that controller from another file.  We do this using the `loadSchema` action.
+
+```xml
+<workflow>
+    <navigation>
+        <screen>
+            <title>Example</title>
+            <view>
+                <container>
+                    <label>Example label</label>
+                    <button>
+                        <title>Example button</title>
+                        <actionName>exampleButtonTapped</actionName>
+                    </button>
+                </container>
+            </view>
+            <actions>
+                <loadSchema name="exampleButtonTapped">
+                    <path>/path/to/other/schema.xml</path>
+                    <successAction>
+                        <pushController />
+                    </successAction>
+                    <failureAction>
+                        <showAlert>Failed to load schema</showAlert>
+                    </failureAction>
+                </loadSchema>
+            </actions>
+        </screen>
+    </navigation>
+</workflow>
+```
+
+Now when the user taps the button, the `loadSchema` action is performed.  This sends a message with type "loadSchema" and name "/path/to/other/schema.xml" along the delegate chain and waits for a response.  When the response is received, it looks to see whether it was successful, and if it was then it looks at the parameters of the context coming back with the response.  If the value for the key "schema" contains a schema, it adds that to its original context and performs the success action.
+
+In this case, the success action is a `pushController` action, which knows that if it has no parameters it should look at its context for a "schema" key, and if it finds one create that schema and check whether it is a `UIViewController`.  If it is, then it pushes the controller onto the stack.
+
+One part is missing here: actually reading the file.  The framework makes no assumptions about how you want to store your workflow files; they might be on the device, or they might be on some remote server.  It's the responsibility of the delegate of the original context to do the actual loading and parsing.  One way you might do it would be to implement `context:didReceiveWorkflowMessage:` like this:
+
+```ObjC
+- (BOOL)context:(WFSContext *)contect didReceiveWorkflowMessage:(WFSMessage *)message
+{
+    if ([message.type isEqualToString:WFSLoadSchemaActionMessageType])
+    {
+        NSError *error = nil;
+        NSURL *xmlURL = [NSURL fileURLWithPath:message.name];
+        WFSSchema *schema = [[[WFSXMLParser alloc] initWithContentsOfURL:xmlURL] parse:&error];
+        WFSResult *result = nil;   
+
+        if (schema)
+        {
+            WFSMutableContext *successContext = [message.context mutableCopy];
+            successContext.parameters = @{ WFSLoadSchemaActionSchemaKey : schema };
+            result = [WFSResult successResultWithContext:successContext];
+        }
+        else
+        {
+            NSLog(@"Error loading schema at %@: %@", xmlURL, error);
+            result = [WFSResult failureResultWithContext:message.context];
+        }
+
+        [message respondWithResult:result];
+        return YES; // The message has been handled, whether successfully or not
+    }
+
+    return NO; // The message has not been handled
+}
+```
+
+The result of all this is that, when the user taps on the button, a schema will be loaded from the given path and the controller that it represents will be pushed onto the navigation stack.
+
+Parameter proxies
+-----------------
+
+Now that we can break our workflow up across multiple files, it would be nice if we could reuse those files in different ways.  It seems like it will be difficult, because we don't know whether we're writing a controller to be pushed into an existing navigation stack, or whether it will be presented modally and therefore need its own.  What we want is for the controller which is doing the presenting to be able to provide the navigation stack, and then we can write all our files except for the first without any outer controllers.
+
+Happily, we can do this using parameter proxies.  A parameter proxy is an object that should be pulled out of the context's parameters instead of created directly.  An object tag represents a parameter proxy if it uses the `keyPath` attribute, like this:
+
+```xml
+<workflow>
+    <navigation>
+        <screen>
+            <title>Example</title>
+            <view>
+                <container>
+                    <label>Example label</label>
+                    <button>
+                        <title>Example button</title>
+                        <actionName>exampleButtonTapped</actionName>
+                    </button>
+                </container>
+            </view>
+            <actions>
+                <loadSchema name="exampleButtonTapped">
+                    <path>/path/to/other/schema.xml</path>
+                    <successAction>
+                        <presentController>
+                            <navigation>
+                                <screen keyPath="schema" />
+                            </navigation>
+                        </presentController>
+                    </successAction>
+                    <failureAction>
+                        <showAlert>Failed to load schema</showAlert>
+                    </failureAction>
+                </loadSchema>
+            </actions>
+        </screen>
+    </navigation>
+</workflow>
+```
+
+This now tells the framework that when the button is pressed, it should load the given schema; that schema goes into the "schema" key of the parameters of the context that is used for the success action, which modally presents a navigation controller.  That controller creates a screen controller, but instead of doing so based on the XML it looks in the "schema" key, and creates the object defined by the schema it finds there.
+
+To put it another way, it loads the schema from the given file, wraps the controller it finds in a navigation controller, and then modally presents that.
+
+View lifecycle events
+---------------------
+
+We can now write all our workflow schema files in isolation, except for the first one that the user sees.  What do we do if we want to use a reusable component there, too?  So far we've only been able to perform actions in response to user input.  However, it's also possible to perform actions in response to view lifecycle events.  When the controller's viewDidLoad, viewWillAppear, viewDidAppear, viewWillDisappear and viewDidDisappear methods are called for a tab bar, navigation or screen controller, the controller looks for a correspondingly-named action (The action name omits the colon in the method names, for those that have one).  We could therefore set up our first workflow file like this:
+
+```xml
+<workflow>
+    <tabs>
+        <navigation>
+            <tabItem>
+                <title>Tab 1</title>
+                <image>tab1</image>
+            </tabItem>
+            <screen>
+                <title>Loading...</title>
+                <view>
+                    <label>Loading....</label>
+                </view>
+            </screen>
+            <loadSchema name="viewDidLoad">
+                <path>/path/to/schema1.xml</path>
+                <successAction>
+                    <replaceRootController />
+                </successAction>
+                <failureAction>
+                    <showAlert>Failed to load schema</showAlert>
+                </failureAction>
+            </loadSchema>
+        </navigation>
+        <navigation>
+            <tabItem>
+                <title>Tab 2</title>
+                <image>tab2</image>
+            </tabItem>
+            <screen>
+                <title>Loading...</title>
+                <view>
+                    <label>Loading....</label>
+                </view>
+            </screen>
+            <loadSchema name="viewDidLoad">
+                <path>/path/to/schema2.xml</path>
+                <successAction>
+                    <replaceRootController />
+                </successAction>
+                <failureAction>
+                    <showAlert>Failed to load schema</showAlert>
+                </failureAction>
+            </loadSchema>
+        </navigation>
+    </tabs>
+</workflow>
+```
+
+This will give us an initial window with a tab controller containing two navigation controllers, each containing a temporary screen with title "Loading..." and a label also saying "Loading...".  When the screen loads, a new schema is loaded and used to replace the temporary screen.
+
+In this way, every screen in the application can be written as a top-level controller.
+
+
 Styling
 -------
 
-Styling is handled by the built-in UIAppearance protocol.  This can be set using code, or using the excellent [UISS project](https://github.com/robertwijas/UISS) which allows you to define styles in a centralised JSON file.
+Styling is handled by iOS's built-in UIAppearance protocol.  This can be set using code, or using the excellent [UISS project](https://github.com/robertwijas/UISS) which allows you to define styles in a centralised JSON file.
 
 UIAppearance works class-by-class, but it's common to want different styles for different classes of object.  WorkflowSchema supports this to an extent by allowing the user to set a `class` attribute on object tags, which modifies the class of the object that is created.  For example:
 
