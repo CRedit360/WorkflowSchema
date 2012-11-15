@@ -131,28 +131,32 @@ static char * const WFSSchematisingNameKey = "name";
     
     context = [self contextForSchemaParameters:context];
     NSDictionary *groupedParameters = [schema groupedParametersWithContext:context error:&error];
-    NSMutableArray *remainingParameters = [[[self class] mandatorySchemaParameters] mutableCopy];
     
-    for (NSString *name in groupedParameters.allKeys)
+    if (!error)
     {
-        id value = groupedParameters[name];
+        NSMutableArray *remainingParameters = [[[self class] mandatorySchemaParameters] mutableCopy];
         
-        BOOL didSetParameter = [self setSchemaParameterWithName:name value:value context:context error:&error];
+        for (NSString *name in groupedParameters.allKeys)
+        {
+            id value = groupedParameters[name];
+            
+            BOOL didSetParameter = [self setSchemaParameterWithName:name value:value context:context error:&error];
+            
+            if (didSetParameter)
+            {
+                [remainingParameters removeObject:name];
+            }
+            else
+            {
+                if (!error) error = WFSError(@"Failed to set parameter %@", name);
+                break;
+            }
+        }
         
-        if (didSetParameter)
+        if (!error && (remainingParameters.count > 0))
         {
-            [remainingParameters removeObject:name];
+            error = WFSError(@"Missing mandatory parameters: %@", remainingParameters);
         }
-        else
-        {
-            if (!error) error = WFSError(@"Failed to set parameter %@", name);
-            break;
-        }
-    }
-    
-    if (!error && (remainingParameters.count > 0))
-    {
-        error = WFSError(@"Missing mandatory parameters: %@", remainingParameters);
     }
     
     if (outError) *outError = error;
