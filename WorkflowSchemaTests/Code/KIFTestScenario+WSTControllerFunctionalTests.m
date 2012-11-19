@@ -626,7 +626,6 @@
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Lemon"]];
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Leopard"]];
     
-    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"This does not exist"]];
     return scenario;
 }
 
