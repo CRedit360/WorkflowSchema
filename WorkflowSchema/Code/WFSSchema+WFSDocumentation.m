@@ -49,12 +49,12 @@
             [NSException raise:NSInternalInconsistencyException format:@"defaultSchemaParameters incorrectly defined for %@", type];
         }
         
-        Class type = defaultSchemaParameter[0];
-        NSString *name = defaultSchemaParameter[1];
+        Class defaultType = defaultSchemaParameter[0];
+        NSString *defaultName = defaultSchemaParameter[1];
         
-        if ([name isEqualToString:parameterName])
+        if ([defaultName isEqualToString:parameterName])
         {
-            [classes addObject:type];
+            [classes addObject:defaultType];
         }
     }
     

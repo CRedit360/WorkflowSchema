@@ -18,7 +18,7 @@
 
 + (NSArray *)defaultSchemaParameters
 {
-    return [[super defaultSchemaParameters] arrayByAddingObject:@[ @"actionName", [NSString class] ]];
+    return [[super defaultSchemaParameters] arrayByAddingObject:@[ [NSString class], @"actionName" ]];
 }
 
 + (NSDictionary *)schemaParameterTypes

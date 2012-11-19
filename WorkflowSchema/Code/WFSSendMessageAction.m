@@ -12,7 +12,7 @@
 
 + (NSArray *)mandatorySchemaParameters
 {
-    return [[super mandatorySchemaParameters] arrayByAddingObjectsFromArray:@[ @"messageTarget", @"messageName" ]];
+    return [[super mandatorySchemaParameters] arrayByAddingObjectsFromArray:@[ @"messageName" ]];
 }
 
 + (NSArray *)arraySchemaParameters
