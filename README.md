@@ -9,7 +9,7 @@ Setup
 The quickest way to add WorkflowSchema to your project is by using [CocoaPods](http://cocoapods.org).  Add the following to your podfile:
 
 ```ruby
-pod 'WorkflowSchema`, '~> 0.2.0'
+pod 'WorkflowSchema', '~> 0.2.0'
 ```
 
 and then 
