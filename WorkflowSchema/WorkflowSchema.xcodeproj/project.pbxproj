@@ -32,6 +32,8 @@
 		F62234D5163ED94C00C90A71 /* UIView+WFSSchematising.m in Sources */ = {isa = PBXBuildFile; fileRef = F62234D3163ED94C00C90A71 /* UIView+WFSSchematising.m */; };
 		F62234D8163EDAD600C90A71 /* WFSLongPressGestureRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = F62234D6163EDAD600C90A71 /* WFSLongPressGestureRecognizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F62234D9163EDAD600C90A71 /* WFSLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F62234D7163EDAD600C90A71 /* WFSLongPressGestureRecognizer.m */; };
+		F64C7F8616555BE800D248C0 /* WFSSearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = F64C7F8416555BE800D248C0 /* WFSSearchBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F64C7F8716555BE800D248C0 /* WFSSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C7F8516555BE800D248C0 /* WFSSearchBar.m */; };
 		F651F5F7165158380056ECB7 /* WFSStoreValuesAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F651F5F5165158380056ECB7 /* WFSStoreValuesAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F651F5F8165158380056ECB7 /* WFSStoreValuesAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F651F5F6165158380056ECB7 /* WFSStoreValuesAction.m */; };
 		F651F60416515B560056ECB7 /* WFSReloadDataAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F651F60216515B560056ECB7 /* WFSReloadDataAction.m */; };
@@ -176,6 +178,8 @@
 		F62234D3163ED94C00C90A71 /* UIView+WFSSchematising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WFSSchematising.m"; sourceTree = "<group>"; };
 		F62234D6163EDAD600C90A71 /* WFSLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSLongPressGestureRecognizer.h; sourceTree = "<group>"; };
 		F62234D7163EDAD600C90A71 /* WFSLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSLongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		F64C7F8416555BE800D248C0 /* WFSSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSSearchBar.h; sourceTree = "<group>"; };
+		F64C7F8516555BE800D248C0 /* WFSSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSSearchBar.m; sourceTree = "<group>"; };
 		F651F5F5165158380056ECB7 /* WFSStoreValuesAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSStoreValuesAction.h; sourceTree = "<group>"; };
 		F651F5F6165158380056ECB7 /* WFSStoreValuesAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSStoreValuesAction.m; sourceTree = "<group>"; };
 		F651F60216515B560056ECB7 /* WFSReloadDataAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSReloadDataAction.m; sourceTree = "<group>"; };
@@ -514,6 +518,8 @@
 				F6E797391632B0E1006F59F2 /* WFSLabel.m */,
 				F6E797621632B0E1006F59F2 /* WFSTextField.h */,
 				F6E797631632B0E1006F59F2 /* WFSTextField.m */,
+				F64C7F8416555BE800D248C0 /* WFSSearchBar.h */,
+				F64C7F8516555BE800D248C0 /* WFSSearchBar.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -692,6 +698,7 @@
 				F651F60B16523EBA0056ECB7 /* NSObject+WorkflowSchema.h in Headers */,
 				F61749731653D78E005B9090 /* WorkflowSchema-Prefix.pch in Headers */,
 				F6BEBDF91653F95D004412B4 /* WFSMacros.h in Headers */,
+				F64C7F8616555BE800D248C0 /* WFSSearchBar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +876,7 @@
 				F651F5F8165158380056ECB7 /* WFSStoreValuesAction.m in Sources */,
 				F651F60416515B560056ECB7 /* WFSReloadDataAction.m in Sources */,
 				F651F60C16523EBA0056ECB7 /* NSObject+WorkflowSchema.m in Sources */,
+				F64C7F8716555BE800D248C0 /* WFSSearchBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

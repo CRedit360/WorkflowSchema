@@ -13,7 +13,6 @@
 
 @interface WFSTextField ()
 
-@property (nonatomic, strong) NSArray *validations;
 @property (nonatomic, strong) WFSTextFieldDelegate *textFieldDelegate;
 
 @end

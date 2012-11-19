@@ -13,7 +13,9 @@ extern NSString * const WFSTableMessageType;
 
 @interface WFSTableController : UITableViewController <WFSSchematising>
 
+@property (nonatomic, strong) id tableHeaderView;
 @property (nonatomic, strong) id sections;
+@property (nonatomic, strong) id tableFooterView;
 
 - (void)reloadData;
 

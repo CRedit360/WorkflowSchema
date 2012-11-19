@@ -55,7 +55,13 @@ NSString * const WFSTableMessageType = @"table";
 
 + (NSArray *)lazilyCreatedSchemaParameters
 {
-    return [[super lazilyCreatedSchemaParameters] arrayByAddingObject:@"sections"];
+    return [[super lazilyCreatedSchemaParameters] arrayByAddingObjectsFromArray:@[
+            
+            @"sections",
+            @"tableHeaderView",
+            @"tableFooterView"
+            
+    ]];
 }
 
 + (NSArray *)mandatorySchemaParameters
@@ -72,7 +78,7 @@ NSString * const WFSTableMessageType = @"table";
 {
     return [[super defaultSchemaParameters] arrayByPrependingObjectsFromArray:@[
     
-    @[ [WFSTableSection class], @"sections" ]
+            @[ [WFSTableSection class], @"sections" ]
             
     ]];
 }
@@ -81,8 +87,10 @@ NSString * const WFSTableMessageType = @"table";
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
     
-    @"style" : @[ [NSString class], [NSNumber class] ],
-    @"sections" : [WFSTableSection class]
+            @"style" : @[ [NSString class], [NSNumber class] ],
+            @"sections" : [WFSTableSection class],
+            @"tableHeaderView" : [UIView class],
+            @"tableFooterView" : [UIView class],
 
     }];
 }
@@ -124,12 +132,36 @@ NSString * const WFSTableMessageType = @"table";
     return _cachedSections;
 }
 
-#pragma mark - Table view delegate and data source
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    WFSContext *context = [self contextForSchemaParameters:self.workflowContext];
+    NSError *error = nil;
+    
+    UIView *tableHeaderView = [self schemaParameterWithName:@"tableHeaderView" context:context error:&error];
+    if (tableHeaderView)
+    {
+        [tableHeaderView sizeToFit];
+        self.tableView.tableHeaderView = tableHeaderView;
+    }
+    
+    UIView *tableFooterView = [self schemaParameterWithName:@"tableFooterView" context:context error:&error];
+    if (tableFooterView)
+    {
+        [tableFooterView sizeToFit];
+        self.tableView.tableFooterView = tableFooterView;
+    }
+    
+    if (error) [context sendWorkflowError:error];
+}
 
 - (void)reloadData
 {
     [self.tableView reloadData];
 }
+
+#pragma mark - Table view delegate and data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

@@ -42,6 +42,7 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[WFSContainerView class] forTypeName:@"container"];
     [self registerClass:[WFSImageView class] forTypeName:@"imageView"];
     [self registerClass:[WFSLabel class] forTypeName:@"label"];
+    [self registerClass:[WFSSearchBar class] forTypeName:@"searchBar"];
     [self registerClass:[WFSTextField class] forTypeName:@"textField"];
     [self registerClass:[WFSTableCell class] forTypeName:@"tableCell"];
     

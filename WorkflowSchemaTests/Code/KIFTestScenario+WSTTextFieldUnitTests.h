@@ -1,5 +1,5 @@
 //
-//  KIFTestScenario+WSTViewUnitTests.h
+//  KIFTestScenario+WSTTextFieldUnitTests.h
 //  WorkflowSchemaTests
 //
 //  Created by Simon Booth on 26/10/2012.
@@ -8,6 +8,6 @@
 
 #import "KIFTestScenario.h"
 
-@interface KIFTestScenario (WSTUnitTests)
+@interface KIFTestScenario (WSTTextFieldUnitTests)
 
 @end

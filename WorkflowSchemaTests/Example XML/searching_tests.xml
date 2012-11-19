@@ -1,0 +1,57 @@
+<workflow>
+    <screen>
+        <table>
+            <tableHeaderView>
+                <searchBar>
+                    <placeholder>Search...</placeholder>
+                    <searchActionName>searchBarDidSearch</searchActionName>
+                    <scopeButtonItems>
+                        <actionButtonItem>
+                            <title>Both</title>
+                            <actionName>searchBarDidSearch</actionName>
+                        </actionButtonItem>
+                        <actionButtonItem>
+                            <title>Animals</title>
+                            <actionName>searchBarDidSearch</actionName>
+                        </actionButtonItem>
+                        <actionButtonItem>
+                            <title>Fruit</title>
+                            <actionName>searchBarDidSearch</actionName>
+                        </actionButtonItem>
+                    </scopeButtonItems>
+                </searchBar>
+            </tableHeaderView>
+            <sections>
+                <tableSection keyPath="sections">
+                    <default>
+                        <tableSection>
+                            <tableCell>No results found</tableCell>
+                        </tableSection>
+                    </default>
+                    <template>
+                        <tableSection>
+                            <headerTitle><string keyPath="title" /></headerTitle>
+                            <cells>
+                                <tableCell keyPath="results">
+                                    <template>
+                                        <tableCell><string keyPath="text" /></tableCell>
+                                    </template>
+                                </tableCell>
+                            </cells>
+                        </tableSection>
+                    </template>
+                </tableSection>
+            </sections>
+            <actions>
+                <sendMessage name="searchBarDidSearch">
+                    <messageType>scenarioFunctionalTestSearching</messageType>
+                    <messageName>getResults</messageName>
+                    <multipleActions>
+                        <storeValues />
+                        <reloadData />
+                    </multipleActions>
+                </sendMessage>
+            </actions>
+        </table>
+    </screen>
+</workflow>

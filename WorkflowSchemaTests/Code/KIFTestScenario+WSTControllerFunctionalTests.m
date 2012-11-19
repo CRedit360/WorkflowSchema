@@ -543,4 +543,91 @@
     return scenario;
 }
 
++ (id)scenarioFunctionalTestSearching
+{
+    KIFTestScenario *scenario = [self scenarioWithDescription:@"Test that searching works"];
+    [scenario addStep:[KIFTestStep stepToSetupWindowWithWorkflow:@"searching_tests.xml"]];
+    
+    [scenario addStep:[KIFTestStep stepToSetupMessageType:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
+       
+           @"sections" : @[
+               @{
+                    @"title"   : @"A",
+                    @"results" : @[
+                        @{ @"text" : @"Aardvark" },
+                    ]
+               },
+               @{
+                   @"title"   : @"L",
+                   @"results" : @[
+                       @{ @"text" : @"Leopard" },
+                   ]
+               }
+           ]
+                       
+    }]];
+    
+    // due to a bug in KIF, this also selects the middle scope button ("Animals")
+    [scenario addStep:[KIFTestStep stepToEnterText:@"Test\n" intoViewWithAccessibilityLabel:@"Search..." traits:UIAccessibilityTraitNone expectedResult:@"Test"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"A"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Aardvark"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"L"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Leopard"]];
+    
+    [scenario addStep:[KIFTestStep stepToSetupMessageType:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
+                       
+            @"sections" : @[
+                @{
+                    @"title"   : @"A",
+                    @"results" : @[
+                        @{ @"text" : @"Apple" },
+                    ]
+                },
+                @{
+                    @"title"   : @"L",
+                    @"results" : @[
+                        @{ @"text" : @"Lemon" },
+                    ]
+                }
+            ]
+
+    }]];
+    [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Fruit"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"A"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Apple"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"L"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Lemon"]];
+    
+    [scenario addStep:[KIFTestStep stepToSetupMessageType:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
+                       
+            @"sections" : @[
+                @{
+                    @"title"   : @"A",
+                    @"results" : @[
+                        @{ @"text" : @"Aardvark" },
+                        @{ @"text" : @"Apple" },
+                    ]
+                },
+                @{
+                    @"title"   : @"L",
+                    @"results" : @[
+                        @{ @"text" : @"Lemon" },
+                        @{ @"text" : @"Leopard" },
+                    ]
+                }
+            ]
+
+    }]];
+    [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Both"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"A"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Aardvark"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Apple"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"L"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Lemon"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Leopard"]];
+    
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"This does not exist"]];
+    return scenario;
+}
+
 @end

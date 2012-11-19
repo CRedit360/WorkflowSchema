@@ -14,10 +14,11 @@
 @interface WFSTextField : UITextField <WFSSchematising, WFSResponsiveInput>
 
 @property (nonatomic, strong, readonly) id formValue;
+@property (nonatomic, strong) NSArray *validations;
+@property (nonatomic, weak) id<WFSFormInputDelegate> formInputDelegate;
 
 @property (nonatomic, strong) UIImage *backgroundImage UI_APPEARANCE_SELECTOR; // UITextField misnames this as 'background'
 @property (nonatomic, assign) UIEdgeInsets textInsets UI_APPEARANCE_SELECTOR; // default is 4,8,4,8
 
-@property (nonatomic, weak) id<WFSFormInputDelegate> formInputDelegate;
 
 @end
