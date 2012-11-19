@@ -237,7 +237,9 @@
                                           ]],
                                           [[WFSSchema alloc] initWithTypeName:@"textField" attributes:nil parameters:@[
                                                [[WFSSchemaParameter alloc] initWithName:@"placeholder" value:@"Please confirm your password"],
-                                               [[WFSSchema alloc] initWithTypeName:@"isEqualToInput" attributes:nil parameters:@[@"password"]]
+                                               [[WFSSchema alloc] initWithTypeName:@"isEqual" attributes:nil parameters:@[
+                                                [[WFSParameterProxy alloc] initWithTypeName:@"string" attributes:@{ @"keyPath" : @"password" }]
+                                               ]]
                                           ]]
                                      ]],
                                      [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[

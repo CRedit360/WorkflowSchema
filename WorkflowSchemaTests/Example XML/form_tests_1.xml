@@ -15,10 +15,10 @@
                     <label>Confirm title</label>
                     <textField name="confirmScreenTitle">
                         <accessibilityLabel>confirmScreenTitle</accessibilityLabel>
-                        <isEqualToInput>
-                            <otherInputName>screenTitle</otherInputName>
+                        <isEqual>
+                            <otherValue><string keyPath="screenTitle" /></otherValue>
                             <failureMessage>Titles must match</failureMessage>
-                        </isEqualToInput>
+                        </isEqual>
                     </textField>
                     <button>
                         <title>Submit</title>

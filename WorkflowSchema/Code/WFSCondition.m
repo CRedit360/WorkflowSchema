@@ -39,14 +39,6 @@
 {
     NSError *error = nil;
     id value = [self schemaParameterWithName:@"value" context:context error:&error];
-    
-    if (!value)
-    {
-        if (!error) error = WFSError(@"Could not find value for condition");
-        [context sendWorkflowError:error];
-        return NO;
-    }
-    
     return [self evaluateWithValue:value context:context];
 }
 

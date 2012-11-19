@@ -54,6 +54,10 @@
 		F65BE0651642DF5700D6F569 /* WFSHideViewsAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F65BE0631642DF5700D6F569 /* WFSHideViewsAction.m */; };
 		F6697C49163EF4530098B3A7 /* WFSSwipeGestureRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = F6697C47163EF4530098B3A7 /* WFSSwipeGestureRecognizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6697C4A163EF4530098B3A7 /* WFSSwipeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F6697C48163EF4530098B3A7 /* WFSSwipeGestureRecognizer.m */; };
+		F68795BF165A82D900F495A1 /* WFSConditionalAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795BD165A82D900F495A1 /* WFSConditionalAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F68795C0165A82D900F495A1 /* WFSConditionalAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795BE165A82D900F495A1 /* WFSConditionalAction.m */; };
+		F68795D3165A8C6E00F495A1 /* WFSPresenceCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */; };
+		F68795D4165A8C6E00F495A1 /* WFSPresenceCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */; };
 		F6BEBDF91653F95D004412B4 /* WFSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEBDF81653F95D004412B4 /* WFSMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6C0EBD9163A8DB200271964 /* NSArray+WorkflowSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C0EBCF163A8DB200271964 /* NSArray+WorkflowSchema.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6C0EBDA163A8DB200271964 /* NSArray+WorkflowSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C0EBD0163A8DB200271964 /* NSArray+WorkflowSchema.m */; };
@@ -73,8 +77,8 @@
 		F6E797701632B0E1006F59F2 /* WFSBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E797241632B0E1006F59F2 /* WFSBarButtonItem.m */; };
 		F6E797711632B0E1006F59F2 /* WFSButton.h in Headers */ = {isa = PBXBuildFile; fileRef = F6E797251632B0E1006F59F2 /* WFSButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6E797721632B0E1006F59F2 /* WFSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E797261632B0E1006F59F2 /* WFSButton.m */; };
-		F6E797731632B0E1006F59F2 /* WFSConfirmationCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F6E797271632B0E1006F59F2 /* WFSConfirmationCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F6E797741632B0E1006F59F2 /* WFSConfirmationCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E797281632B0E1006F59F2 /* WFSConfirmationCondition.m */; };
+		F6E797731632B0E1006F59F2 /* WFSEqualityCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F6E797271632B0E1006F59F2 /* WFSEqualityCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6E797741632B0E1006F59F2 /* WFSEqualityCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E797281632B0E1006F59F2 /* WFSEqualityCondition.m */; };
 		F6E797751632B0E1006F59F2 /* WFSContainerView.h in Headers */ = {isa = PBXBuildFile; fileRef = F6E797291632B0E1006F59F2 /* WFSContainerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6E797761632B0E1006F59F2 /* WFSContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E7972A1632B0E1006F59F2 /* WFSContainerView.m */; };
 		F6E797771632B0E1006F59F2 /* WFSContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F6E7972B1632B0E1006F59F2 /* WFSContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -200,6 +204,10 @@
 		F65BE0631642DF5700D6F569 /* WFSHideViewsAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSHideViewsAction.m; sourceTree = "<group>"; };
 		F6697C47163EF4530098B3A7 /* WFSSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSSwipeGestureRecognizer.h; sourceTree = "<group>"; };
 		F6697C48163EF4530098B3A7 /* WFSSwipeGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSSwipeGestureRecognizer.m; sourceTree = "<group>"; };
+		F68795BD165A82D900F495A1 /* WFSConditionalAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSConditionalAction.h; sourceTree = "<group>"; };
+		F68795BE165A82D900F495A1 /* WFSConditionalAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSConditionalAction.m; sourceTree = "<group>"; };
+		F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSPresenceCondition.h; sourceTree = "<group>"; };
+		F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSPresenceCondition.m; sourceTree = "<group>"; };
 		F68DF1931655071900489EA2 /* WorkflowSchema.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = WorkflowSchema.podspec; path = ../WorkflowSchema.podspec; sourceTree = "<group>"; };
 		F6BEBDF81653F95D004412B4 /* WFSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSMacros.h; sourceTree = "<group>"; };
 		F6C0EBCF163A8DB200271964 /* NSArray+WorkflowSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+WorkflowSchema.h"; sourceTree = "<group>"; };
@@ -221,8 +229,8 @@
 		F6E797241632B0E1006F59F2 /* WFSBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSBarButtonItem.m; sourceTree = "<group>"; };
 		F6E797251632B0E1006F59F2 /* WFSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSButton.h; sourceTree = "<group>"; };
 		F6E797261632B0E1006F59F2 /* WFSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSButton.m; sourceTree = "<group>"; };
-		F6E797271632B0E1006F59F2 /* WFSConfirmationCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSConfirmationCondition.h; sourceTree = "<group>"; };
-		F6E797281632B0E1006F59F2 /* WFSConfirmationCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSConfirmationCondition.m; sourceTree = "<group>"; };
+		F6E797271632B0E1006F59F2 /* WFSEqualityCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSEqualityCondition.h; sourceTree = "<group>"; };
+		F6E797281632B0E1006F59F2 /* WFSEqualityCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSEqualityCondition.m; sourceTree = "<group>"; };
 		F6E797291632B0E1006F59F2 /* WFSContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSContainerView.h; sourceTree = "<group>"; };
 		F6E7972A1632B0E1006F59F2 /* WFSContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSContainerView.m; sourceTree = "<group>"; };
 		F6E7972B1632B0E1006F59F2 /* WFSContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSContext.h; sourceTree = "<group>"; };
@@ -438,9 +446,10 @@
 				F6BEBDF81653F95D004412B4 /* WFSMacros.h */,
 				F6E7971B1632B0D2006F59F2 /* Data */,
 				F6C0EBCE163A8D8F00271964 /* Extensions */,
-				F6E797C01632B3B2006F59F2 /* Parsers */,
 				F6E797B61632B268006F59F2 /* Actions */,
 				F6E797B81632B272006F59F2 /* Controllers */,
+				F6E797B91632B2A6006F59F2 /* Conditions */,
+				F6E797C01632B3B2006F59F2 /* Parsers */,
 				F6E797B71632B26E006F59F2 /* Views */,
 			);
 			path = Code;
@@ -500,6 +509,8 @@
 				F6E797501632B0E1006F59F2 /* WFSSendMessageAction.m */,
 				F6EAC8E41633F9DF0035D744 /* WFSMultipleAction.h */,
 				F6EAC8E51633F9DF0035D744 /* WFSMultipleAction.m */,
+				F68795BD165A82D900F495A1 /* WFSConditionalAction.h */,
+				F68795BE165A82D900F495A1 /* WFSConditionalAction.m */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -544,12 +555,14 @@
 			children = (
 				F6E797641632B0E1006F59F2 /* WFSCondition.h */,
 				F6E797651632B0E1006F59F2 /* WFSCondition.m */,
-				F6E797271632B0E1006F59F2 /* WFSConfirmationCondition.h */,
-				F6E797281632B0E1006F59F2 /* WFSConfirmationCondition.m */,
+				F6E797271632B0E1006F59F2 /* WFSEqualityCondition.h */,
+				F6E797281632B0E1006F59F2 /* WFSEqualityCondition.m */,
 				F6E797401632B0E1006F59F2 /* WFSRegularExpressionCondition.h */,
 				F6E797411632B0E1006F59F2 /* WFSRegularExpressionCondition.m */,
 				F65BE0541642D74200D6F569 /* WFSMultipleCondition.h */,
 				F65BE0551642D74200D6F569 /* WFSMultipleCondition.m */,
+				F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */,
+				F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */,
 			);
 			name = Conditions;
 			sourceTree = "<group>";
@@ -557,7 +570,6 @@
 		F6E797BA1632B307006F59F2 /* Form */ = {
 			isa = PBXGroup;
 			children = (
-				F6E797B91632B2A6006F59F2 /* Conditions */,
 				F6E797311632B0E1006F59F2 /* WFSFormController.h */,
 				F6E797321632B0E1006F59F2 /* WFSFormController.m */,
 				F6E797331632B0E1006F59F2 /* WFSFormInput.h */,
@@ -631,7 +643,7 @@
 				F6E7976D1632B0E1006F59F2 /* WFSAction.h in Headers */,
 				F6E7976F1632B0E1006F59F2 /* WFSBarButtonItem.h in Headers */,
 				F6E797711632B0E1006F59F2 /* WFSButton.h in Headers */,
-				F6E797731632B0E1006F59F2 /* WFSConfirmationCondition.h in Headers */,
+				F6E797731632B0E1006F59F2 /* WFSEqualityCondition.h in Headers */,
 				F6E797751632B0E1006F59F2 /* WFSContainerView.h in Headers */,
 				F6E797771632B0E1006F59F2 /* WFSContext.h in Headers */,
 				F6E7977B1632B0E1006F59F2 /* WFSError.h in Headers */,
@@ -699,6 +711,8 @@
 				F61749731653D78E005B9090 /* WorkflowSchema-Prefix.pch in Headers */,
 				F6BEBDF91653F95D004412B4 /* WFSMacros.h in Headers */,
 				F64C7F8616555BE800D248C0 /* WFSSearchBar.h in Headers */,
+				F68795BF165A82D900F495A1 /* WFSConditionalAction.h in Headers */,
+				F68795D3165A8C6E00F495A1 /* WFSPresenceCondition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,7 +829,7 @@
 				F6E7976E1632B0E1006F59F2 /* WFSAction.m in Sources */,
 				F6E797701632B0E1006F59F2 /* WFSBarButtonItem.m in Sources */,
 				F6E797721632B0E1006F59F2 /* WFSButton.m in Sources */,
-				F6E797741632B0E1006F59F2 /* WFSConfirmationCondition.m in Sources */,
+				F6E797741632B0E1006F59F2 /* WFSEqualityCondition.m in Sources */,
 				F6E797761632B0E1006F59F2 /* WFSContainerView.m in Sources */,
 				F6E797781632B0E1006F59F2 /* WFSContext.m in Sources */,
 				F6E7977C1632B0E1006F59F2 /* WFSError.m in Sources */,
@@ -877,6 +891,8 @@
 				F651F60416515B560056ECB7 /* WFSReloadDataAction.m in Sources */,
 				F651F60C16523EBA0056ECB7 /* NSObject+WorkflowSchema.m in Sources */,
 				F64C7F8716555BE800D248C0 /* WFSSearchBar.m in Sources */,
+				F68795C0165A82D900F495A1 /* WFSConditionalAction.m in Sources */,
+				F68795D4165A8C6E00F495A1 /* WFSPresenceCondition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -50,6 +50,7 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[WFSLongPressGestureRecognizer class] forTypeName:@"longPressGesture"];
     [self registerClass:[WFSSwipeGestureRecognizer class] forTypeName:@"swipeGesture"];
     
+    [self registerClass:[WFSConditionalAction class] forTypeName:@"conditionalAction"];
     [self registerClass:[WFSMultipleAction class] forTypeName:@"multipleActions"];
     [self registerClass:[WFSSendMessageAction class] forTypeName:@"sendMessage"];
     [self registerClass:[WFSShowAlertAction class] forTypeName:@"showAlert"];
@@ -68,7 +69,7 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[WFSFormTrigger class] forTypeName:@"trigger"];
     
     [self registerClass:[WFSMultipleCondition class] forTypeName:@"multipleConditions"];
-    [self registerClass:[WFSConfirmationCondition class] forTypeName:@"isEqualToInput"];
+    [self registerClass:[WFSEqualityCondition class] forTypeName:@"isEqual"];
     [self registerClass:[WFSRegularExpressionCondition class] forTypeName:@"doesMatchRegularExpression"];
     
     [self registerClass:[WFSActionButtonItem class] forTypeName:@"actionButtonItem"];

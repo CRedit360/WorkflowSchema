@@ -205,7 +205,7 @@
 #pragma mark - Text fields
 
 #define WSTTextFieldXMLFormat [NSString stringWithFormat:WSTScreenXMLFormat, @"<textField name=\"Test\"><text>Text</text><placeholder>Placeholder</placeholder>%@</textField>"]
-#define WSTTextFieldConditionsXML @"<doesMatchRegularExpression>.</doesMatchRegularExpression><isEqualToInput>blah</isEqualToInput>"
+#define WSTTextFieldConditionsXML @"<doesMatchRegularExpression>.</doesMatchRegularExpression><isEqual>blah</isEqual>"
 
 + (id)scenarioUnitTestParseTextFieldTagWithImplicitConditions
 {
@@ -230,7 +230,7 @@
         WFSSchema *textFieldFirstConditionSchema = textFieldSchema.parameters[2];
         WSTAssert(textFieldFirstConditionSchema.schemaClass == [WFSRegularExpressionCondition class]);
         WFSSchema *textFieldSecondConditionSchema = textFieldSchema.parameters[3];
-        WSTAssert(textFieldSecondConditionSchema.schemaClass == [WFSConfirmationCondition class]);
+        WSTAssert(textFieldSecondConditionSchema.schemaClass == [WFSEqualityCondition class]);
         
         return KIFTestStepResultSuccess;
         
@@ -265,7 +265,7 @@
         WFSSchema *textFieldFirstConditionSchema = textFieldConditionsArray[0];
         WSTAssert(textFieldFirstConditionSchema.schemaClass == [WFSRegularExpressionCondition class]);
         WFSSchema *textFieldSecondConditionSchema = textFieldConditionsArray[1];
-        WSTAssert(textFieldSecondConditionSchema.schemaClass == [WFSConfirmationCondition class]);
+        WSTAssert(textFieldSecondConditionSchema.schemaClass == [WFSEqualityCondition class]);
         
         return KIFTestStepResultSuccess;
         

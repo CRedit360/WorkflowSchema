@@ -57,7 +57,7 @@
         WFSSchema *textFieldSchema = [[WFSSchema alloc] initWithTypeName:@"textField" attributes:nil parameters:@[
                                           [[WFSSchemaParameter alloc] initWithName:@"placeholder" value:@"Please enter a value"],
                                           [[WFSSchema alloc] initWithTypeName:@"doesMatchRegularExpression" attributes:nil parameters:@[ @"." ]],
-                                          [[WFSSchema alloc] initWithTypeName:@"isEqualToInput" attributes:nil parameters:@[ @"other" ]]
+                                          [[WFSSchema alloc] initWithTypeName:@"isEqual" attributes:nil parameters:@[ @"other" ]]
                                       ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
@@ -70,9 +70,9 @@
         WFSRegularExpressionCondition *regexCondition = (id)textField.validations[0];
         WSTAssert([regexCondition isKindOfClass:[WFSRegularExpressionCondition class]]);
         WSTAssert([regexCondition.pattern isEqual:@"."]);
-        WFSConfirmationCondition *confirmationCondition = (id)textField.validations[1];
-        WSTAssert([confirmationCondition isKindOfClass:[WFSConfirmationCondition class]]);
-        WSTAssert([confirmationCondition.otherInputName isEqual:@"other"]);
+        WFSEqualityCondition *confirmationCondition = (id)textField.validations[1];
+        WSTAssert([confirmationCondition isKindOfClass:[WFSEqualityCondition class]]);
+        WSTAssert([confirmationCondition.otherValue isEqual:@"other"]);
         
         return KIFTestStepResultSuccess;
         
@@ -93,7 +93,7 @@
                                           [[WFSSchemaParameter alloc] initWithName:@"placeholder" value:@"Please enter a value"],
                                           [[WFSSchemaParameter alloc] initWithName:@"validations" value:@[
                                                [[WFSSchema alloc] initWithTypeName:@"doesMatchRegularExpression" attributes:nil parameters:@[ @"." ]],
-                                               [[WFSSchema alloc] initWithTypeName:@"isEqualToInput" attributes:nil parameters:@[ @"other" ]]
+                                               [[WFSSchema alloc] initWithTypeName:@"isEqual" attributes:nil parameters:@[ @"other" ]]
                                            ]]
                                       ]];
         
@@ -107,9 +107,9 @@
         WFSRegularExpressionCondition *regexCondition = (id)textField.validations[0];
         WSTAssert([regexCondition isKindOfClass:[WFSRegularExpressionCondition class]]);
         WSTAssert([regexCondition.pattern isEqual:@"."]);
-        WFSConfirmationCondition *confirmationCondition = (id)textField.validations[1];
-        WSTAssert([confirmationCondition isKindOfClass:[WFSConfirmationCondition class]]);
-        WSTAssert([confirmationCondition.otherInputName isEqual:@"other"]);
+        WFSEqualityCondition *confirmationCondition = (id)textField.validations[1];
+        WSTAssert([confirmationCondition isKindOfClass:[WFSEqualityCondition class]]);
+        WSTAssert([confirmationCondition.otherValue isEqual:@"other"]);
         
         return KIFTestStepResultSuccess;
         

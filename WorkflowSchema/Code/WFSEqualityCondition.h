@@ -8,8 +8,8 @@
 
 #import "WFSCondition.h"
 
-@interface WFSConfirmationCondition : WFSCondition
+@interface WFSEqualityCondition : WFSCondition
 
-@property (nonatomic, strong) NSString *otherInputName;
+@property (nonatomic, strong) id otherValue;
 
 @end

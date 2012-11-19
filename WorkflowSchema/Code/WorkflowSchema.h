@@ -31,7 +31,13 @@
 #import "WFSTabBarController.h"
 #import "WFSTableController.h"
 
+#import "WFSCondition.h"
+#import "WFSMultipleCondition.h"
+#import "WFSEqualityCondition.h"
+#import "WFSRegularExpressionCondition.h"
+
 #import "WFSAction.h"
+#import "WFSConditionalAction.h"
 #import "WFSMultipleAction.h"
 #import "WFSSendMessageAction.h"
 #import "WFSShowAlertAction.h"
@@ -46,11 +52,6 @@
 #import "WFSHideViewsAction.h"
 #import "WFSStoreValuesAction.h"
 #import "WFSReloadDataAction.h"
-
-#import "WFSCondition.h"
-#import "WFSMultipleCondition.h"
-#import "WFSConfirmationCondition.h"
-#import "WFSRegularExpressionCondition.h"
 
 #import "WFSFormTrigger.h"
 #import "WFSFormInput.h"
