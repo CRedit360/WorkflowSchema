@@ -12,6 +12,6 @@
 
 @interface WFSTapGestureRecognizer : UITapGestureRecognizer <WFSSchematising>
 
-@property (nonatomic, strong) NSString *actionName;
+@property (nonatomic, strong) id message;
 
 @end

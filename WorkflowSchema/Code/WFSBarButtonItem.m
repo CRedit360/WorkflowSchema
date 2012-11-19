@@ -8,7 +8,7 @@
 
 #import "WFSBarButtonItem.h"
 #import "WFSSchema+WFSGroupedParameters.h"
-#import "UIViewController+WFSSchematising.h"
+#import "UIView+WFSSchematising.h"
 
 @implementation WFSBarButtonItem
 
@@ -92,9 +92,14 @@
             @"systemItem" : @[ [NSString class], [NSNumber class] ],
             @"accessibilityLabel" : [NSString class],
             @"accessibilityHint" : [NSString class],
-            @"actionName" : [NSString class]
+            @"message" : @[ [WFSMessage class], [NSString class] ]
     
     }];
+}
+
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByPrependingObject:@"message"];
 }
 
 + (NSDictionary *)enumeratedSchemaParameters
@@ -160,8 +165,7 @@
 {
     WFSMutableContext *context = [self.workflowContext mutableCopy];
     context.actionSender = sender;
-    WFSMessage *message = [WFSMessage actionMessageWithName:self.actionName context:context];
-    [context sendWorkflowMessage:message];
+    [self sendMessageFromParameterWithName:@"message" context:context];
 }
 
 @end

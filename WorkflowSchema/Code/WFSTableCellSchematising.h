@@ -12,8 +12,8 @@
 
 @protocol WFSTableCellSchematising <WFSSchematising>
 
-@property (nonatomic, strong) NSString *actionName;
-@property (nonatomic, strong) NSString *detailDisclosureActionName;
+@property (nonatomic, strong) id message;
+@property (nonatomic, strong) id detailDisclosureMessage;
 
 
 @end

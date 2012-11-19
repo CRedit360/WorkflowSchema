@@ -7,7 +7,7 @@
 //
 
 #import "WFSSwipeGestureRecognizer.h"
-#import "UIViewController+WFSSchematising.h"
+#import "WFSSchematising.h"
 
 @implementation WFSSwipeGestureRecognizer
 
@@ -25,14 +25,19 @@
 
 + (NSArray *)mandatorySchemaParameters
 {
-    return [[super mandatorySchemaParameters] arrayByPrependingObject:@"actionName"];
+    return [[super mandatorySchemaParameters] arrayByPrependingObject:@"message"];
+}
+
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByPrependingObject:@"message"];
 }
 
 + (NSDictionary *)schemaParameterTypes
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"actionName" : [NSString class],
+            @"message" : @[ [WFSMessage class], [NSString class] ],
             @"numberOfTouchesRequired" : @[ [NSString class], [NSNumber class] ],
             @"direction" : @[ [NSString class], [NSNumber class] ]
     
@@ -62,8 +67,7 @@
         {
             WFSMutableContext *context = [self.workflowContext mutableCopy];
             context.actionSender = sender.view;
-            WFSMessage *message = [WFSMessage actionMessageWithName:self.actionName context:context];
-            [context sendWorkflowMessage:message];
+            [self sendMessageFromParameterWithName:@"message" context:context];
         }
             
         default:

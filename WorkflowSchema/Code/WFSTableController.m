@@ -13,7 +13,8 @@
 #import "WFSSchema+WFSGroupedParameters.h"
 #import "UIViewController+WFSSchematising.h"
 
-NSString * const WFSTableMessageType = @"table";
+NSString * const WFSTableMessageTarget = @"table";
+NSString * const WFSTableDidSelectCellActionName = @"didSelectCell";
 
 @interface WFSTableController () <WFSContextDelegate>
 
@@ -199,25 +200,22 @@ NSString * const WFSTableMessageType = @"table";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell<WFSTableCellSchematising> *cell = (UITableViewCell<WFSTableCellSchematising> *)[tableView cellForRowAtIndexPath:indexPath];
-    
-    NSString *actionName = cell.actionName;
-    [self performActionName:actionName context:cell.workflowContext];
+    if (cell.message) [cell sendMessageFromParameterWithName:@"message" context:cell.workflowContext];
+    else [self performActionName:WFSTableDidSelectCellActionName context:cell.workflowContext];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell<WFSTableCellSchematising> *cell = (UITableViewCell<WFSTableCellSchematising> *)[tableView cellForRowAtIndexPath:indexPath];
-    
-    NSString *actionName = cell.detailDisclosureActionName;
-    [self performActionName:actionName context:cell.workflowContext];
+    if (cell.detailDisclosureMessage) [cell sendMessageFromParameterWithName:@"detailDisclosureMessage" context:cell.workflowContext];
 }
 
 #pragma mark - Actions
 
-+ (NSString *)actionWorkflowMessageType
++ (NSString *)actionWorkflowMessageTarget
 {
-    return WFSTableMessageType;
+    return WFSTableMessageTarget;
 }
 
 @end

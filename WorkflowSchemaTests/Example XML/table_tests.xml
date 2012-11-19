@@ -10,7 +10,7 @@
                         <style>subtitle</style>
                         <text>text 1</text>
                         <detailText>detailText 1</detailText>
-                        <actionName>didSelectCell1</actionName>
+                        <message>didSelectCell1</message>
                     </tableCell>
                 </tableSection>
                 <tableSection>
@@ -20,15 +20,15 @@
                         <text>text 2a</text>
                         <detailText>detailText 2a</detailText>
                         <accessoryType>disclosureIndicator</accessoryType>
-                        <actionName>didSelectCell2a</actionName>
+                        <message>didSelectCell2a</message>
                     </tableCell>
                     <tableCell>
                         <style>value2</style>
                         <text>text 2b</text>
                         <detailText>detailText 2b</detailText>
                         <accessoryType>detailDisclosureIndicatorButton</accessoryType>
-                        <actionName>didSelectCell2b</actionName>
-                        <detailDisclosureActionName>didSelectCell2bDetail</detailDisclosureActionName>
+                        <message>didSelectCell2b</message>
+                        <detailDisclosureMessage>didSelectCell2bDetail</detailDisclosureMessage>
                     </tableCell>
                     <footerTitle>No more groups.</footerTitle>
                 </tableSection>
@@ -50,7 +50,7 @@
                                     <tableCell>Row 1</tableCell>
                                     <tableCell>Row 2</tableCell>
                                     <tableCell>
-                                        <actionName>correct</actionName>
+                                        <message>correct</message>
                                         <text>Row 3</text>
                                     </tableCell>
                                     <tableCell>Row 4</tableCell>

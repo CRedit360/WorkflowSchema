@@ -160,17 +160,17 @@
         WFSSchema *tableSchema = [[WFSSchema alloc] initWithTypeName:@"table" attributes:nil parameters:@[
                                       [[WFSSchema alloc] initWithTypeName:@"tableSection" attributes:nil parameters:@[
                                            [[WFSSchema alloc] initWithTypeName:@"tableCell" attributes:nil parameters:@[
-                                                [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectCellA"],
+                                                [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectCellA"],
                                                 [[WFSSchemaParameter alloc] initWithName:@"text" value:@"1a"],
                                            ]],
                                            [[WFSSchema alloc] initWithTypeName:@"tableCell" attributes:nil parameters:@[
-                                                [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectCellB"],
+                                                [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectCellB"],
                                                 [[WFSSchemaParameter alloc] initWithName:@"text" value:@"1b"],
                                            ]],
                                            [[WFSSchema alloc] initWithTypeName:@"tableCell" attributes:nil parameters:@[
                                                 [[WFSSchemaParameter alloc] initWithName:@"accessoryType" value:@"detailDisclosureIndicatorButton"],
-                                                [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectCellC"],
-                                                [[WFSSchemaParameter alloc] initWithName:@"detailDisclosureActionName" value:@"didSelectCellCAccessory"],
+                                                [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectCellC"],
+                                                [[WFSSchemaParameter alloc] initWithName:@"detailDisclosureMessage" value:@"didSelectCellCAccessory"],
                                                 [[WFSSchemaParameter alloc] initWithName:@"text" value:@"1c"],
                                            ]],
                                       ]],
@@ -198,26 +198,26 @@
         
         NSIndexPath *indexPathA = [NSIndexPath indexPathForRow:0 inSection:0];
         [tableController tableView:tableView didSelectRowAtIndexPath:indexPathA];
-        // the first action's name (didSelectCellA) matches the actionName of the cell (didSelectCellA) so it fires
+        // the first action's name (didSelectCellA) matches the message of the cell (didSelectCellA) so it fires
         WSTAssert([WSTTestAction lastTestAction] == tableController.actions[0]);
         
         NSIndexPath *indexPathB = [NSIndexPath indexPathForRow:1 inSection:0];
         [tableController tableView:tableView didSelectRowAtIndexPath:indexPathB];
-        // the first action's name (didSelectCellA) does not match the actionName of the cell (didSelectCellB)
-        // the second action's pattern (didSelectCellC) does not match the actionName of the cell (didSelectCellB)
+        // the first action's name (didSelectCellA) does not match the message of the cell (didSelectCellB)
+        // the second action's name (didSelectCellC) does not match the message of the cell (didSelectCellB)
         // the third action has no name so it fires as a default
         WSTAssert([WSTTestAction lastTestAction] == tableController.actions[2]);
         
         NSIndexPath *indexPathC = [NSIndexPath indexPathForRow:2 inSection:0];
         [tableController tableView:tableView didSelectRowAtIndexPath:indexPathC];
-        // the first action's name (didSelectCellA) does not match the actionName of the cell (didSelectCellC)
-        // the second action's name (didSelectCellC) matches the actionName of the cell (didSelectCellC) so it fires
+        // the first action's name (didSelectCellA) does not match the message of the cell (didSelectCellC)
+        // the second action's name (didSelectCellC) matches the message of the cell (didSelectCellC) so it fires
         WSTAssert([WSTTestAction lastTestAction] == tableController.actions[1]);
         
         [tableController tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPathC];
-        // the first action's name (didSelectCellA) does not match the detailDisclosureActionName of the cell (didSelectCellCAccessory)
-        // the second action's pattern (didSelectCellC) does match the detailDisclosureActionName of the cell (didSelectCellCAccessory)
-        // the third action has no pattern so it fires as a default
+        // the first action's name (didSelectCellA) does not match the detailDisclosureMessage of the cell (didSelectCellCAccessory)
+        // the second action's name (didSelectCellC) does match the detailDisclosureMessage of the cell (didSelectCellCAccessory)
+        // the third action has no name so it fires as a default
         WSTAssert([WSTTestAction lastTestAction] == tableController.actions[2]);
         
         return KIFTestStepResultSuccess;
@@ -336,17 +336,17 @@
         
         WFSContext *messageContext = [WFSContext contextWithDelegate:tableController];
         
-        WFSMessage *firstMessage = [WFSMessage messageWithType:@"table" name:@"test" context:messageContext responseHandler:nil];
+        WFSMessage *firstMessage = [WFSMessage messageWithTarget:@"table" name:@"test" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:firstMessage];
         WSTAssert([WSTTestAction lastTestAction] == firstAction);
         
-        WFSMessage *secondMessage = [WFSMessage messageWithType:@"table" name:@"different name" context:messageContext responseHandler:nil];
+        WFSMessage *secondMessage = [WFSMessage messageWithTarget:@"table" name:@"different name" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:secondMessage];
         WSTAssert([WSTTestAction lastTestAction] == secondAction);
         
         WSTAssert([context.messages isEqualToArray:@[]]);
         
-        WFSMessage *thirdMessage = [WFSMessage messageWithType:@"different type" name:@"test" context:messageContext responseHandler:nil];
+        WFSMessage *thirdMessage = [WFSMessage messageWithTarget:@"different type" name:@"test" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:thirdMessage];
         
         WSTAssert([context.messages isEqualToArray:@[ thirdMessage ]]);
@@ -373,7 +373,7 @@
                                       ]],
                                       [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
                                            [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"test1"} parameters:@[
-                                                [[WFSSchemaParameter alloc] initWithName:@"messageType" value:@"table"],
+                                                [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"table"],
                                                 [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"test2"]
                                            ]]
                                       ]]
@@ -388,11 +388,11 @@
         [tableController.tableView reloadData];
         WFSTableCell *tableCell = (WFSTableCell *)[tableController.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
         
-        WFSMessage *messageGoingIn = [WFSMessage messageWithType:@"table" name:@"test1" context:tableCell.workflowContext responseHandler:nil];
+        WFSMessage *messageGoingIn = [WFSMessage messageWithTarget:@"table" name:@"test1" context:tableCell.workflowContext responseHandler:nil];
         [tableCell.workflowContext sendWorkflowMessage:messageGoingIn];
         WSTAssert(context.messages.count == 1);
         WFSMessage *messageComingOut = context.messages[0];
-        WSTAssert([messageComingOut.type isEqual:@"table"]);
+        WSTAssert([messageComingOut.target isEqual:@"table"]);
         WSTAssert([messageComingOut.name isEqual:@"test2"]);
         
         return KIFTestStepResultSuccess;

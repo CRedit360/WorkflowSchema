@@ -110,4 +110,9 @@ typedef BOOL(^WFSParameterCallback)(NSString *name, id value, NSError **outError
  */
 - (BOOL)setParametersForSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError;
 
+/*
+ *  This sends a message based on the given parameter, which should either be a message or a message name.
+ */
+- (void)sendMessageFromParameterWithName:(NSString *)name context:(WFSContext *)context;
+
 @end

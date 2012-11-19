@@ -7,7 +7,7 @@
 //
 
 #import "WFSLongPressGestureRecognizer.h"
-#import "UIViewController+WFSSchematising.h"
+#import "WFSSchematising.h"
 
 @implementation WFSLongPressGestureRecognizer
 
@@ -18,9 +18,9 @@
     {
         WFS_SCHEMATISING_INITIALISATION
         
-        if (!self.beginActionName && !self.endActionName)
+        if (!self.beginMessage && !self.endMessage)
         {
-            if (outError) *outError = WFSError(@"Long press must have a begin or end action");
+            if (outError) *outError = WFSError(@"Long press must have a begin or end message");
             return nil;
         }
         
@@ -29,16 +29,21 @@
     return self;
 }
 
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByPrependingObjectsFromArray:@[ @"beginMessage", @"endMessage" ]];
+}
+
 + (NSDictionary *)schemaParameterTypes
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-    @"beginActionName" : [NSString class],
-    @"endActionName" : [NSString class],
-    @"numberOfTapsRequired" : @[ [NSString class], [NSNumber class] ],
-    @"numberOfTouchesRequired" : @[ [NSString class], [NSNumber class] ],
-    @"minimumPressDuration" : @[ [NSString class], [NSNumber class] ],
-    @"allowableMovement" : @[ [NSString class], [NSNumber class] ]
+            @"beginMessage"            : @[ [WFSMessage class], [NSString class] ],
+            @"endMessage"              : @[ [WFSMessage class], [NSString class] ],
+            @"numberOfTapsRequired"    : @[ [NSString class], [NSNumber class] ],
+            @"numberOfTouchesRequired" : @[ [NSString class], [NSNumber class] ],
+            @"minimumPressDuration"    : @[ [NSString class], [NSNumber class] ],
+            @"allowableMovement"       : @[ [NSString class], [NSNumber class] ]
 
     }];
 }
@@ -50,8 +55,7 @@
         {
             WFSMutableContext *context = [self.workflowContext mutableCopy];
             context.actionSender = sender.view;
-            WFSMessage *message = [WFSMessage actionMessageWithName:self.beginActionName context:context];
-            [context sendWorkflowMessage:message];
+            if (self.beginMessage) [self sendMessageFromParameterWithName:@"beginMessage" context:context];
             break;
         }
             
@@ -59,8 +63,7 @@
         {
             WFSMutableContext *context = [self.workflowContext mutableCopy];
             context.actionSender = sender.view;
-            WFSMessage *message = [WFSMessage actionMessageWithName:self.endActionName context:context];
-            [context sendWorkflowMessage:message];
+            if (self.endMessage) [self sendMessageFromParameterWithName:@"endMessage" context:context];
             break;
         }
             

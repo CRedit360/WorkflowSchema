@@ -26,7 +26,7 @@
         WFSSchema *textFieldSchema = [[WFSSchema alloc] initWithTypeName:@"container" attributes:nil parameters:@[
                                           [[WFSSchema alloc] initWithTypeName:@"button" attributes:nil parameters:@[
                                                [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Test"],
-                                               [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didTap"]
+                                               [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didTap"]
                                           ]],
                                           [[WFSSchema alloc] initWithTypeName:@"imageView" attributes:nil parameters:@[
                                                @"first"
@@ -71,7 +71,7 @@
                                           [[WFSSchemaParameter alloc] initWithName:@"views" value:@[
                                                [[WFSSchema alloc] initWithTypeName:@"button" attributes:nil parameters:@[
                                                     [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Test"],
-                                                    [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didTap"]
+                                                    [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didTap"]
                                                ]],
                                                [[WFSSchema alloc] initWithTypeName:@"imageView" attributes:nil parameters:@[
                                                     @"first"

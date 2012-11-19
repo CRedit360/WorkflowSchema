@@ -116,7 +116,7 @@
 
 - (BOOL)context:(WFSContext *)contect didReceiveWorkflowMessage:(WFSMessage *)message
 {
-    if ([message.type isEqualToString:WFSLoadSchemaActionMessageType])
+    if ([message.target isEqualToString:WFSLoadSchemaActionMessageTarget])
     {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
         hud.labelText = @"Loading...";
@@ -136,9 +136,9 @@
         [message respondWithResult:response];
         return YES;
     }
-    else if ([[self.messageData objectForKey:message.type] isKindOfClass:[NSDictionary class]])
+    else if ([[self.messageData objectForKey:message.target] isKindOfClass:[NSDictionary class]])
     {
-        NSDictionary *data = self.messageData[message.type][message.name];
+        NSDictionary *data = self.messageData[message.target][message.name];
         if ([data isKindOfClass:[NSDictionary class]])
         {
             WFSMutableContext *resultContext = [message.context mutableCopy];

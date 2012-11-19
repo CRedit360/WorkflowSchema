@@ -59,15 +59,15 @@
                                           [[WFSSchemaParameter alloc] initWithName:@"scopeButtonItems" value:@[
                                                [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                                     [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Red"],
-                                                    [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectRed"]
+                                                    [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectRed"]
                                                 ]],
                                                [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                                     [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Green"],
-                                                    [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectGreen"]
+                                                    [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectGreen"]
                                                ]],
                                                [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                                     [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Blue"],
-                                                    [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectBlue"]
+                                                    [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectBlue"]
                                                ]]
                                           ]]
                                      ]];
@@ -84,13 +84,13 @@
         
         WFSActionButtonItem *firstActionButtonItem = searchBar.scopeButtonItems[0];
         WSTAssert([firstActionButtonItem.title isEqualToString:@"Red"]);
-        WSTAssert([firstActionButtonItem.actionName isEqualToString:@"didSelectRed"]);
+        WSTAssert([firstActionButtonItem.message isEqualToString:@"didSelectRed"]);
         WFSActionButtonItem *secondActionButtonItem = searchBar.scopeButtonItems[1];
         WSTAssert([secondActionButtonItem.title isEqualToString:@"Green"]);
-        WSTAssert([secondActionButtonItem.actionName isEqualToString:@"didSelectGreen"]);
+        WSTAssert([secondActionButtonItem.message isEqualToString:@"didSelectGreen"]);
         WFSActionButtonItem *thirdActionButtonItem = searchBar.scopeButtonItems[2];
         WSTAssert([thirdActionButtonItem.title isEqualToString:@"Blue"]);
-        WSTAssert([thirdActionButtonItem.actionName isEqualToString:@"didSelectBlue"]);
+        WSTAssert([thirdActionButtonItem.message isEqualToString:@"didSelectBlue"]);
         
         WSTAssert(context.messages.count == 0);
         
@@ -115,7 +115,7 @@
 
 + (id)scenarioUnitTestCreateSearchBarWithNonScopeParameters
 {
-    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test search bar creation with non-validations parameters"];
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test search bar creation with non-scope parameters"];
     
     [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
         
@@ -133,10 +133,10 @@
                                           [[WFSSchemaParameter alloc] initWithName:@"text" value:@"test text"],
                                           [[WFSSchemaParameter alloc] initWithName:@"translucent" value:@"YES"],
                                       
-                                          [[WFSSchemaParameter alloc] initWithName:@"bookmarkActionName" value:@"didTapBookmarks"],
-                                          [[WFSSchemaParameter alloc] initWithName:@"cancelActionName" value:@"didTapCancel"],
-                                          [[WFSSchemaParameter alloc] initWithName:@"searchActionName" value:@"didTapSearch"],
-                                          [[WFSSchemaParameter alloc] initWithName:@"resultsListActionName" value:@"didTapResultsList"]
+                                          [[WFSSchemaParameter alloc] initWithName:@"bookmarkMessage" value:@"didTapBookmarks"],
+                                          [[WFSSchemaParameter alloc] initWithName:@"cancelMessage" value:@"didTapCancel"],
+                                          [[WFSSchemaParameter alloc] initWithName:@"searchMessage" value:@"didTapSearch"],
+                                          [[WFSSchemaParameter alloc] initWithName:@"resultsListMessage" value:@"didTapResultsList"]
                                       
                                      ]];
         
@@ -158,10 +158,10 @@
         WSTAssert([searchBar.text isEqual:@"test text"]);
         WSTAssert(searchBar.translucent);
         
-        WSTAssert([searchBar.bookmarkActionName isEqualToString:@"didTapBookmarks"]);
-        WSTAssert([searchBar.cancelActionName isEqualToString:@"didTapCancel"]);
-        WSTAssert([searchBar.searchActionName isEqualToString:@"didTapSearch"]);
-        WSTAssert([searchBar.resultsListActionName isEqualToString:@"didTapResultsList"]);
+        WSTAssert([searchBar.bookmarkMessage isEqualToString:@"didTapBookmarks"]);
+        WSTAssert([searchBar.cancelMessage isEqualToString:@"didTapCancel"]);
+        WSTAssert([searchBar.searchMessage isEqualToString:@"didTapSearch"]);
+        WSTAssert([searchBar.resultsListMessage isEqualToString:@"didTapResultsList"]);
         
         WSTAssert(context.messages.count == 0);
         

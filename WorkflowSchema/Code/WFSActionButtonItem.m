@@ -25,7 +25,12 @@
 
 + (NSArray *)mandatorySchemaParameters
 {
-    return [[super mandatorySchemaParameters] arrayByPrependingObjectsFromArray:@[ @"title", @"actionName" ]];
+    return [[super mandatorySchemaParameters] arrayByPrependingObjectsFromArray:@[ @"title", @"message" ]];
+}
+
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByPrependingObject:@"message"];
 }
 
 + (NSArray *)defaultSchemaParameters
@@ -35,7 +40,7 @@
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"title" : [NSString class], @"actionName" : [NSString class] }];
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"title" : [NSString class], @"message" : @[ [WFSMessage class], [NSString class] ] }];
 }
 
 @end
@@ -59,7 +64,7 @@
 {
     NSMutableArray *mandatorySchemaParameters = [[super mandatorySchemaParameters] mutableCopy];
     [mandatorySchemaParameters removeObject:@"title"];
-    [mandatorySchemaParameters removeObject:@"actionName"];
+    [mandatorySchemaParameters removeObject:@"message"];
     return mandatorySchemaParameters;
 }
 

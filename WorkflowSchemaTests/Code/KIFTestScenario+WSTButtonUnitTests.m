@@ -25,7 +25,7 @@
         
         WFSSchema *buttonSchema = [[WFSSchema alloc] initWithTypeName:@"button" attributes:nil parameters:@[
                                        [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Test"],
-                                       [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didTap"]
+                                       [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didTap"]
                                    ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
@@ -33,7 +33,7 @@
         WFSButton *button = (WFSButton *)[buttonSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
         WSTAssert([button.currentTitle isEqual:@"Test"]);
-        WSTAssert([button.actionName isEqual:@"didTap"]);
+        WSTAssert([button.message isEqual:@"didTap"]);
         
         [button sendActionsForControlEvents:UIControlEventTouchUpInside];
         WSTAssert([[[context.messages lastObject] name] isEqual:@"didTap"]);
@@ -55,7 +55,7 @@
     
         WFSSchema *buttonSchema = [[WFSSchema alloc] initWithTypeName:@"button" attributes:nil parameters:@[
                                        [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Test"],
-                                       [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didTap"]
+                                       [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didTap"]
                                    ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
@@ -63,7 +63,7 @@
         WFSButton *button = (WFSButton *)[buttonSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
         WSTAssert([button.currentTitle isEqual:@"Test"]);
-        WSTAssert([button.actionName isEqual:@"didTap"]);
+        WSTAssert([button.message isEqual:@"didTap"]);
         
         [button sendActionsForControlEvents:UIControlEventTouchUpInside];
         WSTAssert([[[context.messages lastObject] name] isEqual:@"didTap"]);
@@ -86,7 +86,7 @@
         
         WFSSchema *buttonSchema = [[WFSSchema alloc] initWithTypeName:@"button" attributes:nil parameters:@[
                                        [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"Test"],
-                                       [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didTap"]
+                                       [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didTap"]
                                   ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
@@ -94,7 +94,7 @@
         WFSButton *button = (WFSButton *)[buttonSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
         WSTAssert([button.accessibilityLabel isEqual:@"Test"]);
-        WSTAssert([button.actionName isEqual:@"didTap"]);
+        WSTAssert([button.message isEqual:@"didTap"]);
         
         [button sendActionsForControlEvents:UIControlEventTouchUpInside];
         WSTAssert([[[context.messages lastObject] name] isEqual:@"didTap"]);

@@ -19,7 +19,7 @@
  *  passed to performActionName:context: whereas others will be passed to the controller's 
  *  context's message delegate.
  */
-+ (NSString *)actionWorkflowMessageType;
++ (NSString *)actionWorkflowMessageTarget;
 
 @property (nonatomic, strong) NSArray *actions;
 - (NSString *)actionNameForSelector:(SEL)selector;

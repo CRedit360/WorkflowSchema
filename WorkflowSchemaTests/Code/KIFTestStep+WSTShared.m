@@ -35,7 +35,7 @@
     }];
 }
 
-+ (KIFTestStep *)stepToSetupMessageType:(NSString *)type name:(NSString *)name data:(NSDictionary *)data
++ (KIFTestStep *)stepToSetupMessageWithTarget:(NSString *)type name:(NSString *)name data:(NSDictionary *)data
 {
     return [self stepWithDescription:@"Set message data" executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **error) {
         

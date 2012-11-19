@@ -42,17 +42,17 @@
         
         WFSContext *messageContext = [WFSContext contextWithDelegate:navigationController];
         
-        WFSMessage *firstMessage = [WFSMessage messageWithType:@"navigation" name:@"test" context:messageContext responseHandler:nil];
+        WFSMessage *firstMessage = [WFSMessage messageWithTarget:@"navigation" name:@"test" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:firstMessage];
         WSTAssert([WSTTestAction lastTestAction] == firstAction);
         
-        WFSMessage *secondMessage = [WFSMessage messageWithType:@"navigation" name:@"different name" context:messageContext responseHandler:nil];
+        WFSMessage *secondMessage = [WFSMessage messageWithTarget:@"navigation" name:@"different name" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:secondMessage];
         WSTAssert([WSTTestAction lastTestAction] == secondAction);
         
         WSTAssert([context.messages isEqualToArray:@[]]);
         
-        WFSMessage *thirdMessage = [WFSMessage messageWithType:@"different type" name:@"test" context:messageContext responseHandler:nil];
+        WFSMessage *thirdMessage = [WFSMessage messageWithTarget:@"different type" name:@"test" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:thirdMessage];
         
         WSTAssert([context.messages isEqualToArray:@[ thirdMessage ]]);
@@ -76,7 +76,7 @@
                                            [[WFSSchema alloc] initWithTypeName:@"screen" attributes:nil parameters:nil],
                                            [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
                                                 [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"test1"} parameters:@[
-                                                     [[WFSSchemaParameter alloc] initWithName:@"messageType" value:@"navigation"],
+                                                     [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"navigation"],
                                                      [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"test2"]
                                                 ]]
                                            ]]
@@ -89,11 +89,11 @@
         WSTAssert([navigationController isKindOfClass:[WFSNavigationController class]]);
         
         WFSContext *messageContext = [WFSContext contextWithDelegate:navigationController];
-        WFSMessage *messageGoingIn = [WFSMessage messageWithType:@"navigation" name:@"test1" context:messageContext responseHandler:nil];
+        WFSMessage *messageGoingIn = [WFSMessage messageWithTarget:@"navigation" name:@"test1" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:messageGoingIn];
         WSTAssert(context.messages.count == 1);
         WFSMessage *messageComingOut = context.messages[0];
-        WSTAssert([messageComingOut.type isEqual:@"navigation"]);
+        WSTAssert([messageComingOut.target isEqual:@"navigation"]);
         WSTAssert([messageComingOut.name isEqual:@"test2"]);
         
         return KIFTestStepResultSuccess;

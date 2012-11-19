@@ -6,7 +6,7 @@
             <rightBarButtonItem>
                 <barButtonItem>
                     <title>Done</title>
-                    <actionName>doneButtonTapped</actionName>
+                    <message>doneButtonTapped</message>
                 </barButtonItem>
             </rightBarButtonItem>
         </navigationItem>
@@ -19,7 +19,7 @@
             <label><string keyPath="input3" /></label>
         </container>
         <sendMessage name="doneButtonTapped">
-            <messageType>screen</messageType>
+            <messageTarget>screen</messageTarget>
             <messageName>form3done</messageName>
         </sendMessage>
     </screen>

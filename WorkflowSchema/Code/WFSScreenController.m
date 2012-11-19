@@ -12,7 +12,7 @@
 #import "WFSTabBarItem.h"
 #import "WFSMacros.h"
 
-NSString * const WFSScreenMessageType = @"screen";
+NSString * const WFSScreenMessageTarget = @"screen";
 
 @interface WFSScreenController ()
 
@@ -102,9 +102,9 @@ NSString * const WFSScreenMessageType = @"screen";
 
 #pragma mark - Actions
 
-+ (NSString *)actionWorkflowMessageType
++ (NSString *)actionWorkflowMessageTarget
 {
-    return WFSScreenMessageType;
+    return WFSScreenMessageTarget;
 }
 
 WFS_UIVIEWCONTROLLER_LIFECYCLE

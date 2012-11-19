@@ -5,7 +5,7 @@
             <screen>
                 <title>Loading screen 1...</title>
                 <sendMessage name="viewDidLoad">
-                    <messageType>navigation</messageType>
+                    <messageTarget>navigation</messageTarget>
                     <messageName>loadScreen</messageName>
                 </sendMessage>
             </screen>
@@ -20,7 +20,7 @@
             <screen>
                 <title>Loading screen 2...</title>
                 <sendMessage name="viewDidLoad">
-                    <messageType>navigation</messageType>
+                    <messageTarget>navigation</messageTarget>
                     <messageName>loadScreen</messageName>
                 </sendMessage>
             </screen>
@@ -35,7 +35,7 @@
             <screen>
                 <title>Loading screen 3...</title>
                 <sendMessage name="viewDidLoad">
-                    <messageType>navigation</messageType>
+                    <messageTarget>navigation</messageTarget>
                     <messageName>loadScreen</messageName>
                 </sendMessage>
             </screen>

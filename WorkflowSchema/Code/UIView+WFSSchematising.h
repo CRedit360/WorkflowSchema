@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WFSSchematising.h"
 
 @interface UIView (WFSSchematising)
 

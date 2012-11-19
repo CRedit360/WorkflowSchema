@@ -26,19 +26,19 @@
                                        [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Test title"],
                                        [[WFSSchema alloc] initWithTypeName:@"cancelButtonItem" attributes:nil parameters:@[
                                             [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Cancel"],
-                                            [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didCancel"]
+                                            [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didCancel"]
                                        ]],
                                        [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                             [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Salute"],
-                                            [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSalute"]
+                                            [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSalute"]
                                        ]],
                                        [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                             [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Paint"],
-                                            [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didPaint"]
+                                            [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didPaint"]
                                        ]],
                                        [[WFSSchema alloc] initWithTypeName:@"destructiveButtonItem" attributes:nil parameters:@[
                                             [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Destroy"],
-                                            [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didDestroy"]
+                                            [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didDestroy"]
                                        ]],
                                   ]];
         

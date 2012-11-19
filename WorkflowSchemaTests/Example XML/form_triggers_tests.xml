@@ -38,7 +38,7 @@
                     
                     <button>
                         <title>Submit</title>
-                        <actionName>submit</actionName>
+                        <message>submit</message>
                     </button>
                 </container>
                 
@@ -48,8 +48,8 @@
                             <pattern>A</pattern>
                             <value><string keyPath="thing1" /></value>
                         </doesMatchRegularExpression>
-                        <successActionName>showThings1A</successActionName>
-                        <failureActionName>hideThings1A</failureActionName>
+                        <successMessage>showThings1A</successMessage>
+                        <failureMessage>hideThings1A</failureMessage>
                     </trigger>
                     
                     <trigger>
@@ -57,8 +57,8 @@
                             <pattern>B</pattern>
                             <value><string keyPath="thing1" /></value>
                         </doesMatchRegularExpression>
-                        <successActionName>showThings1B</successActionName>
-                        <failureActionName>hideThings1B</failureActionName>
+                        <successMessage>showThings1B</successMessage>
+                        <failureMessage>hideThings1B</failureMessage>
                     </trigger>
                 </triggers>
                 

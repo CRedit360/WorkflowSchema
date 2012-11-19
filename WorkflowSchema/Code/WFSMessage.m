@@ -12,22 +12,17 @@
 
 @implementation WFSMessage
 
-+ (WFSMessage *)messageWithType:(NSString *)type name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler
++ (WFSMessage *)messageWithTarget:(NSString *)target name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler
 {
-    return [[self alloc] initWithType:type name:name context:context responseHandler:responseHandler];
+    return [[self alloc] initWithTarget:target name:name context:context responseHandler:responseHandler];
 }
 
-+ (WFSMessage *)actionMessageWithName:(NSString *)name context:(WFSContext *)context
-{
-    return [self messageWithType:nil name:name context:context responseHandler:nil];
-}
-
-- (id)initWithType:(NSString *)type name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler
+- (id)initWithTarget:(NSString *)target name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler
 {
     self = [super init];
     if (self)
     {
-        _type = [type copy];
+        _target = [target copy];
         _name = [name copy];
         _context = context;
         _responseHandler = [responseHandler copy];

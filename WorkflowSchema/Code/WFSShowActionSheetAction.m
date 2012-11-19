@@ -147,10 +147,9 @@
         }
     }
     
-    if (actionButtonItem.actionName)
+    if (actionButtonItem.message)
     {
-        WFSMessage *message = [WFSMessage actionMessageWithName:actionButtonItem.actionName context:actionButtonItem.workflowContext];
-        [self.workflowContext sendWorkflowMessage:message];
+        [actionButtonItem sendMessageFromParameterWithName:@"message" context:actionButtonItem.workflowContext];
     }
 }
 

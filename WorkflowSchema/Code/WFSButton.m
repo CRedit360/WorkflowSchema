@@ -7,7 +7,8 @@
 //
 
 #import "WFSButton.h"
-#import "UIViewController+WFSSchematising.h"
+#import "WFSMessage.h"
+#import "UIView+WFSSchematising.h"
 
 @implementation WFSButton
 
@@ -39,13 +40,18 @@
     ]];
 }
 
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByPrependingObject:@"message"];
+}
+
 + (NSDictionary *)schemaParameterTypes
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
             @"title" : [NSString class],
             @"image" : [UIImage class],
-            @"actionName" : [NSString class]
+            @"message" : @[ [WFSMessage class], [NSString class] ]
             
     }];
 }
@@ -70,8 +76,7 @@
 {
     WFSMutableContext *context = [self.workflowContext mutableCopy];
     context.actionSender = sender;
-    WFSMessage *message = [WFSMessage actionMessageWithName:self.actionName context:context];
-    [context sendWorkflowMessage:message];
+    [self sendMessageFromParameterWithName:@"message" context:context];
 }
 
 @end

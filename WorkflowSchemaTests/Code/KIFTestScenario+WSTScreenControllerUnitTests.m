@@ -138,18 +138,18 @@
                                             [[WFSSchemaParameter alloc] initWithName:@"leftBarButtonItems" value:@[
                                                  [[WFSSchema alloc] initWithTypeName:@"barButtonItem" attributes:nil parameters:@[
                                                       [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Left"],
-                                                      [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectLeftNavigationButton"]
+                                                      [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectLeftNavigationButton"]
                                                   ]]
                                              ]],
                                             [[WFSSchemaParameter alloc] initWithName:@"rightBarButtonItems" value:@[
                                                  [[WFSSchema alloc] initWithTypeName:@"barButtonItem" attributes:nil parameters:@[
                                                       [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[@"first"]],
-                                                      [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectRightNavigationButton1"],
+                                                      [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectRightNavigationButton1"],
                                                       [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"Right 1"]
                                                   ]],
                                                  [[WFSSchema alloc] initWithTypeName:@"barButtonItem" attributes:nil parameters:@[
                                                       [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[@"second"]],
-                                                      [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectRightNavigationButton2"],
+                                                      [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectRightNavigationButton2"],
                                                       [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"Right 2"]
                                                   ]]
                                              ]],
@@ -161,14 +161,14 @@
                                        [[WFSSchemaParameter alloc] initWithName:@"toolbarItems" value:@[
                                             [[WFSSchema alloc] initWithTypeName:@"barButtonItem" attributes:nil parameters:@[
                                                  [[WFSSchemaParameter alloc] initWithName:@"title" value:@"TB Left"],
-                                                 [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectLeftToolbarButton"]
+                                                 [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectLeftToolbarButton"]
                                              ]],
                                             [[WFSSchema alloc] initWithTypeName:@"barButtonItem" attributes:nil parameters:@[
                                                  [[WFSSchemaParameter alloc] initWithName:@"systemItem" value:@"flexibleSpace"]
                                              ]],
                                             [[WFSSchema alloc] initWithTypeName:@"barButtonItem" attributes:nil parameters:@[
                                                  [[WFSSchemaParameter alloc] initWithName:@"title" value:@"TB Right"],
-                                                 [[WFSSchemaParameter alloc] initWithName:@"actionName" value:@"didSelectRightToolbarButton"]
+                                                 [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectRightToolbarButton"]
                                              ]]
                                         ]]
                                    ]];
@@ -267,17 +267,17 @@
         
         WFSContext *messageContext = [WFSContext contextWithDelegate:screenController];
         
-        WFSMessage *firstMessage = [WFSMessage messageWithType:@"screen" name:@"test" context:messageContext responseHandler:nil];
+        WFSMessage *firstMessage = [WFSMessage messageWithTarget:@"screen" name:@"test" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:firstMessage];
         WSTAssert([WSTTestAction lastTestAction] == firstAction);
         
-        WFSMessage *secondMessage = [WFSMessage messageWithType:@"screen" name:@"different name" context:messageContext responseHandler:nil];
+        WFSMessage *secondMessage = [WFSMessage messageWithTarget:@"screen" name:@"different name" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:secondMessage];
         WSTAssert([WSTTestAction lastTestAction] == secondAction);
         
         WSTAssert([context.messages isEqualToArray:@[]]);
         
-        WFSMessage *thirdMessage = [WFSMessage messageWithType:@"different type" name:@"test" context:messageContext responseHandler:nil];
+        WFSMessage *thirdMessage = [WFSMessage messageWithTarget:@"different type" name:@"test" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:thirdMessage];
         
         WSTAssert([context.messages isEqualToArray:@[ thirdMessage ]]);
@@ -301,7 +301,7 @@
                                        [[WFSSchema alloc] initWithTypeName:@"label" attributes:nil parameters:@[ @"Text" ]],
                                        [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
                                             [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"test1"} parameters:@[
-                                                 [[WFSSchemaParameter alloc] initWithName:@"messageType" value:@"screen"],
+                                                 [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"screen"],
                                                  [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"test2"]
                                             ]]
                                        ]]
@@ -314,11 +314,11 @@
         WSTAssert([screenController isKindOfClass:[WFSScreenController class]]);
         
         WFSContext *messageContext = [WFSContext contextWithDelegate:screenController];
-        WFSMessage *messageGoingIn = [WFSMessage messageWithType:@"screen" name:@"test1" context:messageContext responseHandler:nil];
+        WFSMessage *messageGoingIn = [WFSMessage messageWithTarget:@"screen" name:@"test1" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:messageGoingIn];
         WSTAssert(context.messages.count == 1);
         WFSMessage *messageComingOut = context.messages[0];
-        WSTAssert([messageComingOut.type isEqual:@"screen"]);
+        WSTAssert([messageComingOut.target isEqual:@"screen"]);
         WSTAssert([messageComingOut.name isEqual:@"test2"]);
         
         return KIFTestStepResultSuccess;

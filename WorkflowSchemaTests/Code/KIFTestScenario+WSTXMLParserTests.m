@@ -93,7 +93,7 @@
         
         NSError *error = nil;
         
-        NSString *buttonXML = [NSString stringWithFormat:WSTScreenXMLFormat, @"<button><title>Test</title><actionName>didTap</actionName></button>"];
+        NSString *buttonXML = [NSString stringWithFormat:WSTScreenXMLFormat, @"<button><title>Test</title><message>didTap</message></button>"];
         WFSSchema *buttonSchema = [(WFSSchemaParameter *)([[[WFSXMLParser alloc] initWithString:buttonXML] parse:&error].parameters[1]) value];
         WSTFailOnError(error);
         WSTAssert(buttonSchema.schemaClass == [WFSButton class]);
@@ -101,9 +101,9 @@
         WFSSchemaParameter *buttonTitleParameter = buttonSchema.parameters[0];
         WSTAssert([buttonTitleParameter.name isEqual:@"title"]);
         WSTAssert([buttonTitleParameter.value isEqual:@"Test"]);
-        WFSSchemaParameter *buttonActionNameParameter = buttonSchema.parameters[1];
-        WSTAssert([buttonActionNameParameter.name isEqual:@"actionName"]);
-        WSTAssert([buttonActionNameParameter.value isEqual:@"didTap"]);
+        WFSSchemaParameter *buttonMessageParameter = buttonSchema.parameters[1];
+        WSTAssert([buttonMessageParameter.name isEqual:@"message"]);
+        WSTAssert([buttonMessageParameter.value isEqual:@"didTap"]);
         
         return KIFTestStepResultSuccess;
         

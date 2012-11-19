@@ -7,7 +7,6 @@
 //
 
 #import "UIView+WFSSchematising.h"
-#import "WFSTapGestureRecognizer.h"
 
 @implementation UIView (WFSSchematising)
 

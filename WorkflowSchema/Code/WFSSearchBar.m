@@ -62,6 +62,18 @@ NSString * WFSSearchBarScopeKey = @"scope";
     return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [WFSCondition class], @"validations" ]];
 }
 
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByPrependingObjectsFromArray:@[
+            
+            @"searchMessage",
+            @"cancelMessage",
+            @"bookmarkMessage",
+            @"resultsListMessage"
+            
+    ]];
+}
+
 + (NSDictionary *)enumeratedSchemaParameters
 {
     return [[super enumeratedSchemaParameters] dictionaryByAddingEntriesFromDictionary:@{
@@ -91,10 +103,10 @@ NSString * WFSSearchBarScopeKey = @"scope";
             @"translucent"              : @[ [NSString class], [NSNumber class] ],
             @"validations"              : [WFSCondition class],
             
-            @"searchActionName"         : [NSString class],
-            @"cancelActionName"         : [NSString class],
-            @"bookmarkActionName"       : [NSString class],
-            @"resultsListActionName"    : [NSString class]
+            @"searchMessage"            : @[ [WFSMessage class], [NSString class] ],
+            @"cancelMessage"            : @[ [WFSMessage class], [NSString class] ],
+            @"bookmarkMessage"          : @[ [WFSMessage class], [NSString class] ],
+            @"resultsListMessage"       : @[ [WFSMessage class], [NSString class] ]
             
     }];
 }
@@ -162,11 +174,10 @@ NSString * WFSSearchBarScopeKey = @"scope";
 {
     WFSSearchBar *workflowSearchBar = (WFSSearchBar *)searchBar;
     
-    if (workflowSearchBar.searchActionName)
+    if (workflowSearchBar.searchMessage)
     {
         WFSContext *actionContext = [workflowSearchBar contextWithTextAndScope:workflowSearchBar.workflowContext];
-        WFSMessage *actionMessage = [WFSMessage actionMessageWithName:workflowSearchBar.searchActionName context:actionContext];
-        [actionContext sendWorkflowMessage:actionMessage];
+        [workflowSearchBar sendMessageFromParameterWithName:@"searchMessage" context:actionContext];
     }
     
     [[workflowSearchBar formInputDelegate] formInputShouldReturn:workflowSearchBar];
@@ -176,11 +187,10 @@ NSString * WFSSearchBarScopeKey = @"scope";
 {
     WFSSearchBar *workflowSearchBar = (WFSSearchBar *)searchBar;
     
-    if (workflowSearchBar.bookmarkActionName)
+    if (workflowSearchBar.bookmarkMessage)
     {
         WFSContext *actionContext = [workflowSearchBar contextWithTextAndScope:workflowSearchBar.workflowContext];
-        WFSMessage *actionMessage = [WFSMessage actionMessageWithName:workflowSearchBar.bookmarkActionName context:actionContext];
-        [actionContext sendWorkflowMessage:actionMessage];
+        [workflowSearchBar sendMessageFromParameterWithName:@"bookmarkMessage" context:actionContext];
     }
 }
 
@@ -188,11 +198,10 @@ NSString * WFSSearchBarScopeKey = @"scope";
 {
     WFSSearchBar *workflowSearchBar = (WFSSearchBar *)searchBar;
     
-    if (workflowSearchBar.cancelActionName)
+    if (workflowSearchBar.cancelMessage)
     {
         WFSContext *actionContext = [workflowSearchBar contextWithTextAndScope:workflowSearchBar.workflowContext];
-        WFSMessage *actionMessage = [WFSMessage actionMessageWithName:workflowSearchBar.cancelActionName context:actionContext];
-        [actionContext sendWorkflowMessage:actionMessage];
+        [workflowSearchBar sendMessageFromParameterWithName:@"cancelMessage" context:actionContext];
     }
 }
 
@@ -200,11 +209,10 @@ NSString * WFSSearchBarScopeKey = @"scope";
 {
     WFSSearchBar *workflowSearchBar = (WFSSearchBar *)searchBar;
     
-    if (workflowSearchBar.resultsListActionName)
+    if (workflowSearchBar.resultsListMessage)
     {
         WFSContext *actionContext = [workflowSearchBar contextWithTextAndScope:workflowSearchBar.workflowContext];
-        WFSMessage *actionMessage = [WFSMessage actionMessageWithName:workflowSearchBar.resultsListActionName context:actionContext];
-        [actionContext sendWorkflowMessage:actionMessage];
+        [workflowSearchBar sendMessageFromParameterWithName:@"resultsListMessage" context:actionContext];
     }
 }
 
@@ -219,11 +227,10 @@ NSString * WFSSearchBarScopeKey = @"scope";
     WFSSearchBar *workflowSearchBar = (WFSSearchBar *)searchBar;
     WFSActionButtonItem *item = workflowSearchBar.scopeButtonItems[selectedScope];
     
-    if (item.actionName)
+    if (item.message)
     {
         WFSContext *actionContext = [workflowSearchBar contextWithTextAndScope:item.workflowContext];
-        WFSMessage *actionMessage = [WFSMessage actionMessageWithName:item.actionName context:actionContext];
-        [actionContext sendWorkflowMessage:actionMessage];
+        [item sendMessageFromParameterWithName:@"message" context:actionContext];
     }
 }
 

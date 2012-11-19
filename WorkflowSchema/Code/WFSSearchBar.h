@@ -20,9 +20,9 @@ extern NSString * WFSSearchBarScopeKey;
 @property (nonatomic, weak) id<WFSFormInputDelegate> formInputDelegate;
 @property (nonatomic, strong) NSArray *scopeButtonItems;
 
-@property (nonatomic, copy) NSString *searchActionName;
-@property (nonatomic, copy) NSString *cancelActionName;
-@property (nonatomic, copy) NSString *bookmarkActionName;
-@property (nonatomic, copy) NSString *resultsListActionName;
+@property (nonatomic, copy) id searchMessage;
+@property (nonatomic, copy) id cancelMessage;
+@property (nonatomic, copy) id bookmarkMessage;
+@property (nonatomic, copy) id resultsListMessage;
 
 @end

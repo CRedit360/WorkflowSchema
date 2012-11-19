@@ -15,10 +15,10 @@
 
 @property (nonatomic, strong) WFSCondition *condition;
 
-@property (nonatomic, strong) NSString *successActionName;
+@property (nonatomic, strong) id successMessage;
 @property (nonatomic, strong) NSArray *successTriggers;
 
-@property (nonatomic, strong) NSString *failureActionName;
+@property (nonatomic, strong) id failureMessage;
 @property (nonatomic, strong) NSArray *failureTriggers;
 
 - (void)fireWithContext:(WFSContext *)context;

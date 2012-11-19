@@ -6,27 +6,27 @@
                 <text>Test</text>
                 <longPressGesture>
                     <minimumPressDuration>2.0</minimumPressDuration>
-                    <endActionName>showLongPressAlert</endActionName>
+                    <endMessage>showLongPressAlert</endMessage>
                 </longPressGesture>
                 <tapGesture>
                     <numberOfTapsRequired>3</numberOfTapsRequired>
-                    <actionName>show3TapsAlert</actionName>
+                    <message>show3TapsAlert</message>
                 </tapGesture>
                 <tapGesture>
                     <numberOfTapsRequired>2</numberOfTapsRequired>
-                    <actionName>show2TapsAlert</actionName>
+                    <message>show2TapsAlert</message>
                 </tapGesture>
                 <tapGesture>
                     <numberOfTapsRequired>4</numberOfTapsRequired>
-                    <actionName>show4TapsAlert</actionName>
+                    <message>show4TapsAlert</message>
                 </tapGesture>
                 <swipeGesture>
                     <direction>left</direction>
-                    <actionName>showLeftSwipeAlert</actionName>
+                    <message>showLeftSwipeAlert</message>
                 </swipeGesture>
                 <swipeGesture>
                     <direction>right</direction>
-                    <actionName>showRightSwipeAlert</actionName>
+                    <message>showRightSwipeAlert</message>
                 </swipeGesture>
             </label>
         </container>

@@ -13,7 +13,7 @@
 
 #import "UIView+WFSViewsAction.h"
 
-NSString * const WFSFormMessageType = @"form";
+NSString * const WFSFormMessageTarget = @"form";
 NSString * const WFSFormSubmitActionName = @"submit";
 NSString * const WFSFormDidSubmitActionName = @"didSubmit";
 NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
@@ -296,9 +296,9 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
 
 #pragma mark - Actions
 
-+ (NSString *)actionWorkflowMessageType
++ (NSString *)actionWorkflowMessageTarget
 {
-    return WFSFormMessageType;
+    return WFSFormMessageTarget;
 }
 
 - (WFSResult *)performActionName:(NSString *)name context:(WFSContext *)context

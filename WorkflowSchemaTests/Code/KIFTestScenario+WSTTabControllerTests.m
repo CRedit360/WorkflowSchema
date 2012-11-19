@@ -43,17 +43,17 @@
 
         WFSContext *messageContext = [WFSContext contextWithDelegate:tabController];
         
-        WFSMessage *firstMessage = [WFSMessage messageWithType:@"tabs" name:@"test" context:messageContext responseHandler:nil];
+        WFSMessage *firstMessage = [WFSMessage messageWithTarget:@"tabs" name:@"test" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:firstMessage];
         WSTAssert([WSTTestAction lastTestAction] == firstAction);
         
-        WFSMessage *secondMessage = [WFSMessage messageWithType:@"tabs" name:@"different name" context:messageContext responseHandler:nil];
+        WFSMessage *secondMessage = [WFSMessage messageWithTarget:@"tabs" name:@"different name" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:secondMessage];
         WSTAssert([WSTTestAction lastTestAction] == secondAction);
         
         WSTAssert([context.messages isEqualToArray:@[]]);
         
-        WFSMessage *thirdMessage = [WFSMessage messageWithType:@"different type" name:@"test" context:messageContext responseHandler:nil];
+        WFSMessage *thirdMessage = [WFSMessage messageWithTarget:@"different type" name:@"test" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:thirdMessage];
         
         WSTAssert([context.messages isEqualToArray:@[ thirdMessage ]]);
@@ -77,7 +77,7 @@
                                     [[WFSSchema alloc] initWithTypeName:@"screen" attributes:nil parameters:nil],
                                     [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
                                          [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"test1"} parameters:@[
-                                              [[WFSSchemaParameter alloc] initWithName:@"messageType" value:@"tabs"],
+                                              [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"tabs"],
                                               [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"test2"]
                                          ]]
                                     ]]
@@ -90,11 +90,11 @@
         WSTAssert([tabController isKindOfClass:[WFSTabBarController class]]);
         
         WFSContext *messageContext = [WFSContext contextWithDelegate:tabController];
-        WFSMessage *messageGoingIn = [WFSMessage messageWithType:@"tabs" name:@"test1" context:messageContext responseHandler:nil];
+        WFSMessage *messageGoingIn = [WFSMessage messageWithTarget:@"tabs" name:@"test1" context:messageContext responseHandler:nil];
         [messageContext sendWorkflowMessage:messageGoingIn];
         WSTAssert(context.messages.count == 1);
         WFSMessage *messageComingOut = context.messages[0];
-        WSTAssert([messageComingOut.type isEqual:@"tabs"]);
+        WSTAssert([messageComingOut.target isEqual:@"tabs"]);
         WSTAssert([messageComingOut.name isEqual:@"test2"]);
         
         return KIFTestStepResultSuccess;

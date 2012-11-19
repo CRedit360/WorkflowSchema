@@ -13,7 +13,7 @@
 + (KIFTestStep *)stepToSetupWindowWithWorkflow:(NSString *)fileName;
 + (KIFTestStep *)stepToExamineWindow:(KIFTestStepResult(^)(UIWindow *window, NSError **outError))block;
 
-+ (KIFTestStep *)stepToSetupMessageType:(NSString *)type name:(NSString *)name data:(NSDictionary *)data;
++ (KIFTestStep *)stepToSetupMessageWithTarget:(NSString *)type name:(NSString *)name data:(NSDictionary *)data;
 
 + (KIFTestStep *)stepToWaitForAbsenceOfViewWithAccessibilityLabel:(NSString *)label zeroSizeIsAbsent:(BOOL)zeroSizeIsAbsent;
 + (NSArray *)stepsToWaitForViewWithAccessibilityLabel:(NSString *)waitLabel dismissedByTappingViewWithAccessibilityLabel:(NSString *)dismissLabel;

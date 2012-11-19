@@ -15,14 +15,13 @@ typedef void(^WFSMessageResponseHandler)(WFSResult *result);
 
 @interface WFSMessage : NSObject
 
-@property (nonatomic, copy, readonly) NSString *type;
+@property (nonatomic, copy, readonly) NSString *target;
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, strong, readonly) WFSContext *context;
 @property (nonatomic, copy, readonly) WFSMessageResponseHandler responseHandler;
 
-- (id)initWithType:(NSString *)type name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
-+ (WFSMessage *)messageWithType:(NSString *)type name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
-+ (WFSMessage *)actionMessageWithName:(NSString *)name context:(WFSContext *)context;
+- (id)initWithTarget:(NSString *)target name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
++ (WFSMessage *)messageWithTarget:(NSString *)target name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
 
 - (void)respondWithResult:(WFSResult *)result;
 

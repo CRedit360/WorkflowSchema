@@ -20,7 +20,7 @@
                 </textField>
                 <button>
                     <title>Submit</title>
-                    <actionName>submit</actionName>
+                    <message>submit</message>
                 </button>
             </container>
             <actions>
@@ -37,7 +37,7 @@
             </actions>
         </form>
         <sendMessage name="form3done">
-            <messageType>screen</messageType>
+            <messageTarget>screen</messageTarget>
             <messageName>form2done</messageName>
         </sendMessage>
     </screen>

@@ -8,7 +8,7 @@
 
 #import "WFSAction.h"
 
-extern NSString * const WFSLoadSchemaActionMessageType; // Tells the message delegate to load a 
+extern NSString * const WFSLoadSchemaActionMessageTarget; // Tells the message delegate to load a schema
 extern NSString * const WFSLoadSchemaActionSchemaKey;
 
 @interface WFSLoadSchemaAction : WFSAction

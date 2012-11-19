@@ -22,7 +22,7 @@
                     </textField>
                     <button>
                         <title>Submit</title>
-                        <actionName>submit</actionName>
+                        <message>submit</message>
                     </button>
                 </container>
                 <actions>

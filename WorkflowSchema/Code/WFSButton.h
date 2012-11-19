@@ -12,7 +12,7 @@
 
 @interface WFSButton : UIButton <WFSSchematising>
 
-@property (nonatomic, strong) NSString *actionName;
+@property (nonatomic, strong) id message;
 @property (nonatomic, copy) NSString *name;
 
 @end

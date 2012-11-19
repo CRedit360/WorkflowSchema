@@ -40,41 +40,48 @@
     ]];
 }
 
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByPrependingObjectsFromArray:@[@"successMessage", @"successMessage"]];
+}
+
 + (NSDictionary *)schemaParameterTypes
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"condition"         : [WFSCondition class],
+            @"condition"       : [WFSCondition class],
             
-            @"successActionName" : [NSString class],
-            @"successTriggers"   : [WFSFormTrigger class],
+            @"successMessage"  : @[ [WFSMessage class], [NSString class] ],
+            @"successTriggers" : [WFSFormTrigger class],
             
-            @"failureActionName" : [NSString class],
-            @"failureTriggers"   : [WFSFormTrigger class]
+            @"failureMessage"  : @[ [WFSMessage class], [NSString class] ],
+            @"failureTriggers" : [WFSFormTrigger class]
             
     }];
 }
 
 - (void)fireWithContext:(WFSContext *)context
 {
-    NSString *actionName = nil;
+    id message = nil;
+    NSString *messageParameterName = nil;
     NSArray *triggers = nil;
     
     if (!self.condition || [self.condition evaluateWithContext:context])
     {
-        actionName = self.successActionName;
+        message = self.successMessage;
+        messageParameterName = @"successMessage";
         triggers = self.successTriggers;
     }
     else
     {
-        actionName = self.failureActionName;
+        message = self.failureMessage;
+        messageParameterName = @"failureMessage";
         triggers = self.failureTriggers;
     }
     
-    if (actionName)
+    if (message)
     {
-        WFSMessage *message = [WFSMessage actionMessageWithName:actionName context:context];
-        [context sendWorkflowMessage:message];
+        [self sendMessageFromParameterWithName:messageParameterName context:context];
     }
     
     for (WFSFormTrigger *trigger in triggers)

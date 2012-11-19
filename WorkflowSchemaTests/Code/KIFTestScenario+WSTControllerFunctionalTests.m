@@ -463,12 +463,12 @@
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"This goes at the bottom"]];
     
     // A simple replacement should work
-    [scenario addStep:[KIFTestStep stepToSetupMessageType:@"scenarioFunctionalTestStoredValues" name:@"performNextStep" data:@{
+    [scenario addStep:[KIFTestStep stepToSetupMessageWithTarget:@"scenarioFunctionalTestStoredValues" name:@"performNextStep" data:@{
                        
            @"sections" : @{
                @"cells" : @{
                    @"text" : @"Now push me!",
-                   @"actionName" : @"performNextStep"
+                   @"message" : @"performNextStep"
                }
            }
                        
@@ -481,17 +481,17 @@
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"This goes at the bottom"]];
     
     // An array of cell values should work
-    [scenario addStep:[KIFTestStep stepToSetupMessageType:@"scenarioFunctionalTestStoredValues" name:@"performNextStep" data:@{
+    [scenario addStep:[KIFTestStep stepToSetupMessageWithTarget:@"scenarioFunctionalTestStoredValues" name:@"performNextStep" data:@{
                        
             @"sections" : @{
                 @"cells" : @[
                     @{
                         @"text" : @"Don't push me!",
-                        @"actionName" : @"noSuchAction"
+                        @"message" : @"noSuchAction"
                     },
                     @{
                         @"text" : @"Push me instead!",
-                        @"actionName" : @"performNextStep"
+                        @"message" : @"performNextStep"
                     },
                 ]
             }
@@ -506,24 +506,24 @@
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"This goes at the bottom"]];
     
     // An array of section values should work too
-    [scenario addStep:[KIFTestStep stepToSetupMessageType:@"scenarioFunctionalTestStoredValues" name:@"performNextStep" data:@{
+    [scenario addStep:[KIFTestStep stepToSetupMessageWithTarget:@"scenarioFunctionalTestStoredValues" name:@"performNextStep" data:@{
                        
             @"sections" : @[
                 @{
                     @"cells" : @{
                         @"text" : @"Not me!",
-                        @"actionName" : @"noSuchAction"
+                        @"message" : @"noSuchAction"
                     },
                 },
                 @{
                     @"cells" : @[
                         @{
                             @"text" : @"Not me either!",
-                            @"actionName" : @"noSuchAction"
+                            @"message" : @"noSuchAction"
                         },
                         @{
                             @"text" : @"Definitely not me!",
-                            @"actionName" : @"noSuchAction"
+                            @"message" : @"noSuchAction"
                         },
                     ]
                 },
@@ -548,7 +548,7 @@
     KIFTestScenario *scenario = [self scenarioWithDescription:@"Test that searching works"];
     [scenario addStep:[KIFTestStep stepToSetupWindowWithWorkflow:@"searching_tests.xml"]];
     
-    [scenario addStep:[KIFTestStep stepToSetupMessageType:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
+    [scenario addStep:[KIFTestStep stepToSetupMessageWithTarget:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
        
            @"sections" : @[
                @{
@@ -574,7 +574,7 @@
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"L"]];
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Leopard"]];
     
-    [scenario addStep:[KIFTestStep stepToSetupMessageType:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
+    [scenario addStep:[KIFTestStep stepToSetupMessageWithTarget:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
                        
             @"sections" : @[
                 @{
@@ -598,7 +598,7 @@
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"L"]];
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Lemon"]];
     
-    [scenario addStep:[KIFTestStep stepToSetupMessageType:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
+    [scenario addStep:[KIFTestStep stepToSetupMessageWithTarget:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
                        
             @"sections" : @[
                 @{

@@ -23,7 +23,7 @@
         NSError *error = nil;
         
         WFSSchema *actionSchema = [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:nil parameters:@[
-                                       [[WFSSchemaParameter alloc] initWithName:@"messageType" value:@"test type"],
+                                       [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"test type"],
                                        [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"test name"],
                                        [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
                                             [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:@{@"name":@"success"} parameters:nil],
@@ -36,7 +36,7 @@
         WFSSendMessageAction *sendMessageAction = (WFSSendMessageAction *)[actionSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
         WSTAssert([sendMessageAction isKindOfClass:[WFSSendMessageAction class]]);
-        WSTAssert([sendMessageAction.messageType isEqual:@"test type"]);
+        WSTAssert([sendMessageAction.messageTarget isEqual:@"test type"]);
         WSTAssert([sendMessageAction.messageName isEqual:@"test name"]);
         WSTAssert(sendMessageAction.actions.count == 2);
         WSTTestAction *successAction = sendMessageAction.actions[0];
@@ -49,7 +49,7 @@
         WSTAssert(resultWithSuccess.isSuccess);
         WSTAssert(performanceContext.messages.count == 1);
         WFSMessage *firstMessage = performanceContext.messages[0];
-        WSTAssert([firstMessage.type isEqualToString:@"test type"]);
+        WSTAssert([firstMessage.target isEqualToString:@"test type"]);
         WSTAssert([firstMessage.name isEqualToString:@"test name"]);
         WSTAssert([WSTTestAction lastTestAction] == successAction);
         
@@ -59,7 +59,7 @@
         WSTAssert(resultWithFailure.isSuccess); // the message was sent
         WSTAssert(performanceContext.messages.count == 2);
         WFSMessage *secondMessage = performanceContext.messages[1];
-        WSTAssert([secondMessage.type isEqualToString:@"test type"]);
+        WSTAssert([secondMessage.target isEqualToString:@"test type"]);
         WSTAssert([secondMessage.name isEqualToString:@"test name"]);
         WSTAssert([WSTTestAction lastTestAction] == wildcardAction);
         
@@ -79,7 +79,7 @@
         NSError *error = nil;
         
         WFSSchema *actionSchema = [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:nil parameters:@[
-                                       [[WFSSchemaParameter alloc] initWithName:@"messageType" value:@"test type"],
+                                       [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"test type"],
                                        [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"test name"]
                                   ]];
         
@@ -88,7 +88,7 @@
         WFSSendMessageAction *sendMessageAction = (WFSSendMessageAction *)[actionSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
         WSTAssert([sendMessageAction isKindOfClass:[WFSSendMessageAction class]]);
-        WSTAssert([sendMessageAction.messageType isEqual:@"test type"]);
+        WSTAssert([sendMessageAction.messageTarget isEqual:@"test type"]);
         WSTAssert([sendMessageAction.messageName isEqual:@"test name"]);
         WSTAssert(sendMessageAction.actions.count == 0);
         
@@ -99,7 +99,7 @@
         WSTAssert(resultWithSuccess.isSuccess);
         WSTAssert(performanceContext.messages.count == 1);
         WFSMessage *firstMessage = performanceContext.messages[0];
-        WSTAssert([firstMessage.type isEqualToString:@"test type"]);
+        WSTAssert([firstMessage.target isEqualToString:@"test type"]);
         WSTAssert([firstMessage.name isEqualToString:@"test name"]);
         
         return KIFTestStepResultSuccess;
@@ -118,7 +118,7 @@
         NSError *error = nil;
         
         WFSSchema *actionSchema = [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:nil parameters:@[
-                                   [[WFSSchemaParameter alloc] initWithName:@"messageType" value:@"test type"],
+                                   [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"test type"],
                                    ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];

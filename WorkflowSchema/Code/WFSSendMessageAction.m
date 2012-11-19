@@ -12,7 +12,7 @@
 
 + (NSArray *)mandatorySchemaParameters
 {
-    return [[super mandatorySchemaParameters] arrayByAddingObjectsFromArray:@[ @"messageType", @"messageName" ]];
+    return [[super mandatorySchemaParameters] arrayByAddingObjectsFromArray:@[ @"messageTarget", @"messageName" ]];
 }
 
 + (NSArray *)arraySchemaParameters
@@ -27,12 +27,12 @@
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"messageType" : [NSString class], @"messageName" : [NSString class],  @"actions" : [WFSAction class] }];
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"messageTarget" : [NSString class], @"messageName" : [NSString class],  @"actions" : [WFSAction class] }];
 }
 
 - (WFSResult *)performActionForController:(UIViewController *)controller context:(WFSContext *)context
 {
-    WFSMessage *message = [WFSMessage messageWithType:self.messageType name:self.messageName context:context responseHandler:^(WFSResult *result) {
+    WFSMessage *message = [WFSMessage messageWithTarget:self.messageTarget name:self.messageName context:context responseHandler:^(WFSResult *result) {
         
         for (WFSAction *action in self.actions)
         {
@@ -59,7 +59,9 @@
     }
     else
     {
-        NSError *error = WFSError(@"Message type %@, name %@ was not handled", self.messageType, self.messageName);
+        NSError *error = nil;
+        if (self.messageTarget) error = WFSError(@"Message with target %@, name %@ was not handled", self.messageTarget, self.messageName);
+        else WFSError(@"Message with name %@ was not handled", self.messageName);
         [context sendWorkflowError:error];
         return [WFSResult failureResultWithContext:context];
     }

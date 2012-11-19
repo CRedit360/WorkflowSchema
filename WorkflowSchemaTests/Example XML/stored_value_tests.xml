@@ -10,7 +10,7 @@
                     <tableSection>
                         <tableCell>
                             <text>Push me!</text>
-                            <actionName>performNextStep</actionName>
+                            <message>performNextStep</message>
                         </tableCell>
                     </tableSection>
                 </default>
@@ -20,9 +20,9 @@
                             <template>
                                 <tableCell>
                                     <text><string keyPath="text" /></text>
-                                    <actionName>
-                                        <string keyPath="actionName"><default>noSuchAction</default></string>
-                                    </actionName>
+                                    <message>
+                                        <string keyPath="message"><default>noSuchAction</default></string>
+                                    </message>
                                 </tableCell>
                             </template>
                         </tableCell>
@@ -35,7 +35,7 @@
         </sections>
         <actions>
             <sendMessage name="performNextStep">
-                <messageType>scenarioFunctionalTestStoredValues</messageType>
+                <messageTarget>scenarioFunctionalTestStoredValues</messageTarget>
                 <messageName>performNextStep</messageName>
                 <multipleActions>
                     <storeValues />

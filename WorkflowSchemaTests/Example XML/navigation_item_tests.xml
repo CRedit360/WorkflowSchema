@@ -4,35 +4,35 @@
             <container>
                 <button>
                     <title>Test hidesBackButton</title>
-                    <actionName>testHidesBackButton</actionName>
+                    <message>testHidesBackButton</message>
                 </button>
                 <button>
                     <title>Test leftBarButtonItem</title>
-                    <actionName>testLeftBarButtonItem</actionName>
+                    <message>testLeftBarButtonItem</message>
                 </button>
                 <button>
                     <title>Test leftBarButtonItem w/o supplement</title>
-                    <actionName>testLeftBarButtonItemWithoutSupplement</actionName>
+                    <message>testLeftBarButtonItemWithoutSupplement</message>
                 </button>
                 <button>
                     <title>Test leftBarButtonItems</title>
-                    <actionName>testLeftBarButtonItems</actionName>
+                    <message>testLeftBarButtonItems</message>
                 </button>
                 <button>
                     <title>Test leftBarButtonItems w/o supplement</title>
-                    <actionName>testLeftBarButtonItemsWithoutSupplement</actionName>
+                    <message>testLeftBarButtonItemsWithoutSupplement</message>
                 </button>
                 <button>
                     <title>Test rightBarButtonItem</title>
-                    <actionName>testRightBarButtonItem</actionName>
+                    <message>testRightBarButtonItem</message>
                 </button>
                 <button>
                     <title>Test rightBarButtonItem w/ image</title>
-                    <actionName>testRightBarButtonItemWithImage</actionName>
+                    <message>testRightBarButtonItemWithImage</message>
                 </button>
                 <button>
                     <title>Test rightBarButtonItems</title>
-                    <actionName>testRightBarButtonItems</actionName>
+                    <message>testRightBarButtonItems</message>
                 </button>
             </container>
             <actions>
@@ -45,11 +45,11 @@
                         <container>
                             <button>
                                 <title>Pop me</title>
-                                <actionName>screenShouldPop</actionName>
+                                <message>screenShouldPop</message>
                             </button>
                         </container>
                         <sendMessage name="screenShouldPop">
-                            <messageType>screen</messageType>
+                            <messageTarget>screen</messageTarget>
                             <messageName>pop</messageName>
                         </sendMessage>
                     </screen>
@@ -61,7 +61,7 @@
                             <leftBarButtonItem>
                                 <barButtonItem>
                                     <title>Left</title>
-                                    <actionName>showLeftAlert</actionName>
+                                    <message>showLeftAlert</message>
                                 </barButtonItem>
                             </leftBarButtonItem>
                             <leftItemsSupplementBackButton>YES</leftItemsSupplementBackButton>
@@ -81,7 +81,7 @@
                             <leftBarButtonItem>
                                 <barButtonItem>
                                     <title>Left</title>
-                                    <actionName>showLeftAlert</actionName>
+                                    <message>showLeftAlert</message>
                                 </barButtonItem>
                             </leftBarButtonItem>
                         </navigationItem>
@@ -89,14 +89,14 @@
                             <label>leftBarButtonItem test w/o supplement</label>
                             <button>
                                 <title>Pop me</title>
-                                <actionName>screenShouldPop</actionName>
+                                <message>screenShouldPop</message>
                             </button>
                         </container>
                         <showAlert name="showLeftAlert">
                             <message>Left!</message>
                         </showAlert>
                         <sendMessage name="screenShouldPop">
-                            <messageType>screen</messageType>
+                            <messageTarget>screen</messageTarget>
                             <messageName>pop</messageName>
                         </sendMessage>
                     </screen>
@@ -108,11 +108,11 @@
                             <leftBarButtonItems>
                                 <barButtonItem>
                                     <title>Left 1</title>
-                                    <actionName>showLeftAlert1</actionName>
+                                    <message>showLeftAlert1</message>
                                 </barButtonItem>
                                 <barButtonItem>
                                     <title>Left 2</title>
-                                    <actionName>showLeftAlert2</actionName>
+                                    <message>showLeftAlert2</message>
                                 </barButtonItem>
                             </leftBarButtonItems>
                             <leftItemsSupplementBackButton>YES</leftItemsSupplementBackButton>
@@ -135,11 +135,11 @@
                             <leftBarButtonItems>
                                 <barButtonItem>
                                     <title>Left 1</title>
-                                    <actionName>showLeftAlert1</actionName>
+                                    <message>showLeftAlert1</message>
                                 </barButtonItem>
                                 <barButtonItem>
                                     <title>Left 2</title>
-                                    <actionName>showLeftAlert2</actionName>
+                                    <message>showLeftAlert2</message>
                                 </barButtonItem>
                             </leftBarButtonItems>
                         </navigationItem>
@@ -147,11 +147,11 @@
                             <label>leftBarButtonItems test w/o supplement</label>
                             <button>
                                 <title>Pop me</title>
-                                <actionName>screenShouldPop</actionName>
+                                <message>screenShouldPop</message>
                             </button>
                         </container>
                         <sendMessage name="screenShouldPop">
-                            <messageType>screen</messageType>
+                            <messageTarget>screen</messageTarget>
                             <messageName>pop</messageName>
                         </sendMessage>
                         <showAlert name="showLeftAlert1">
@@ -169,7 +169,7 @@
                             <rightBarButtonItem>
                                 <barButtonItem>
                                     <title>Right</title>
-                                    <actionName>showRightAlert</actionName>
+                                    <message>showRightAlert</message>
                                 </barButtonItem>
                             </rightBarButtonItem>
                         </navigationItem>
@@ -189,7 +189,7 @@
                                 <barButtonItem>
                                     <image>first</image>
                                     <accessibilityLabel>Right</accessibilityLabel>
-                                    <actionName>showRightAlert</actionName>
+                                    <message>showRightAlert</message>
                                 </barButtonItem>
                             </rightBarButtonItem>
                         </navigationItem>
@@ -208,11 +208,11 @@
                             <rightBarButtonItems>
                                 <barButtonItem>
                                     <title>Right 1</title>
-                                    <actionName>showRightAlert1</actionName>
+                                    <message>showRightAlert1</message>
                                 </barButtonItem>
                                 <barButtonItem>
                                     <title>Right 2</title>
-                                    <actionName>showRightAlert2</actionName>
+                                    <message>showRightAlert2</message>
                                 </barButtonItem>
                             </rightBarButtonItems>
                         </navigationItem>

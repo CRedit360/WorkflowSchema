@@ -4,19 +4,19 @@
             <tableHeaderView>
                 <searchBar>
                     <placeholder>Search...</placeholder>
-                    <searchActionName>searchBarDidSearch</searchActionName>
+                    <searchMessage>searchBarDidSearch</searchMessage>
                     <scopeButtonItems>
                         <actionButtonItem>
                             <title>Both</title>
-                            <actionName>searchBarDidSearch</actionName>
+                            <message>searchBarDidSearch</message>
                         </actionButtonItem>
                         <actionButtonItem>
                             <title>Animals</title>
-                            <actionName>searchBarDidSearch</actionName>
+                            <message>searchBarDidSearch</message>
                         </actionButtonItem>
                         <actionButtonItem>
                             <title>Fruit</title>
-                            <actionName>searchBarDidSearch</actionName>
+                            <message>searchBarDidSearch</message>
                         </actionButtonItem>
                     </scopeButtonItems>
                 </searchBar>
@@ -44,7 +44,7 @@
             </sections>
             <actions>
                 <sendMessage name="searchBarDidSearch">
-                    <messageType>scenarioFunctionalTestSearching</messageType>
+                    <messageTarget>scenarioFunctionalTestSearching</messageTarget>
                     <messageName>getResults</messageName>
                     <multipleActions>
                         <storeValues />

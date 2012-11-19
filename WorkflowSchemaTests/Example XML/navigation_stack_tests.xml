@@ -6,7 +6,7 @@
                 <label>Screen 1 contents</label>
                 <button>
                     <title>Push screen 2</title>
-                    <actionName>pushScreen2</actionName>
+                    <message>pushScreen2</message>
                 </button>
             </container>
             <pushController name="pushScreen2">
@@ -20,7 +20,7 @@
                         <label>Screen 2 contents</label>
                         <button>
                             <title>Push screen 3</title>
-                            <actionName>pushScreen3</actionName>
+                            <message>pushScreen3</message>
                         </button>
                     </container>
                     <pushController name="pushScreen3">

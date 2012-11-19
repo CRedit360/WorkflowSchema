@@ -76,7 +76,7 @@ A simple schema might look like this:
                     <label>Example label</label>
                     <button>
                         <title>Example button</title>
-                        <actionName>exampleButtonTapped</actionName>
+                        <message>exampleButtonTapped</message>
                     </button>
                 </container>
             </view>
@@ -120,7 +120,7 @@ In order to keep the files small, the framework supports *default parameters*.  
                             </label>
                             <button>
                                 <title>Example button</title>
-                                <actionName>exampleButtonTapped</actionName>
+                                <message>exampleButtonTapped</message>
                             </button>
                         </views>
                     </container>
@@ -148,7 +148,7 @@ Or, since `view` is the default for view objects, and `actions` is the default f
                 <label>Example label</label>
                 <button>
                     <title>Example button</title>
-                    <actionName>exampleButtonTapped</actionName>
+                    <message>exampleButtonTapped</message>
                 </button>
             </container>
             <showAlert name="exampleButtonTapped">Example button tapped!</showAlert>
@@ -159,8 +159,8 @@ Or, since `view` is the default for view objects, and `actions` is the default f
 
 Objects can have names. In our example, the `showAlert` tag has the name `exampleButtonTapped`.
 
-Actions
--------
+Actions and Messages
+--------------------
 
 When the user interacts with a view, it can tell its controller to perform an action.  Looking again at our first example:
 
@@ -174,7 +174,7 @@ When the user interacts with a view, it can tell its controller to perform an ac
                     <label>Example label</label>
                     <button>
                         <title>Example button</title>
-                        <actionName>exampleButtonTapped</actionName>
+                        <message>exampleButtonTapped</message>
                     </button>
                 </container>
             </view>
@@ -186,7 +186,7 @@ When the user interacts with a view, it can tell its controller to perform an ac
 </workflow>
 ```
 
-The button has an `actionName` property, which specifies the action that it tells the controller to perform.  So when the user taps the button, it tells the controller to perform the action with the name `exampleButtonTapped`, which in this case shows an alert.
+The button has a `message` property, which specifies the message that it sends to the controller when it is tapped.  When the controller to receives the message, it tries to perform the action with the same name as the message - in this case `exampleButtonTapped`, which shows an alert.
 
 Different actions can do different things.  For example, we can push another screen onto the navigation stack:
 
@@ -200,7 +200,7 @@ Different actions can do different things.  For example, we can push another scr
                     <label>Example label</label>
                     <button>
                         <title>Example button</title>
-                        <actionName>exampleButtonTapped</actionName>
+                        <message>exampleButtonTapped</message>
                     </button>
                 </container>
             </view>
@@ -225,10 +225,7 @@ When the user taps the button, they see this:
 
 ![An alert has been show reading 'Example button tapped1'](http://credit360.github.com/WorkflowSchema/readme_images/example2-pushed.png)
 
-Messages
---------
-
-A view can only tell its controller to perform actions.  Suppose we modify our screen to add another button, and to add an action to the navigation controller:
+Suppose we modify our screen to add another button, and to add an action to the navigation controller:
 
 ```xml
 <workflow>
@@ -240,11 +237,11 @@ A view can only tell its controller to perform actions.  Suppose we modify our s
                     <label>Example label</label>
                     <button>
                         <title>Example button 1</title>
-                        <actionName>exampleButton1Tapped</actionName>
+                        <message>exampleButton1Tapped</message>
                     </button>
                     <button>
                         <title>Example button 2</title>
-                        <actionName>exampleButton2Tapped</actionName>
+                        <message>exampleButton2Tapped</message>
                     </button>
                 </container>
             </view>
@@ -259,9 +256,9 @@ A view can only tell its controller to perform actions.  Suppose we modify our s
 </workflow>
 ```
 
-Suppose also that the user taps the second button.  Nothing happens.  This is because the button tells the screen controller to perform the action named `exampleButton2Tapped`, but it has no such action.  The request isn't propagated at all, so nothing happens.
+Suppose also that the user taps the second button.  Nothing happens.  This is because the button tells the screen controller to perform the action named `exampleButton2Tapped`, but it has no such action.  The request isn't propagated to the navigation controller, so nothing happens.
 
-If we want to wire the button up to the navigation controller's action, we need to send a message.  We do this with a special action called `<sendMessage>` or `WFSSendMessageAction`:
+If we want to wire the button up to the navigation controller's action, we need to send another message.  We do this with a special action called `<sendMessage>` or `WFSSendMessageAction`:
 
 ```xml
 <workflow>
@@ -273,32 +270,31 @@ If we want to wire the button up to the navigation controller's action, we need 
                     <label>Example label</label>
                     <button>
                         <title>Example button 1</title>
-                        <actionName>exampleButton1Tapped</actionName>
+                        <message>exampleButton1Tapped</message>
                     </button>
                     <button>
                         <title>Example button 2</title>
-                        <actionName>exampleButton2Tapped</actionName>
+                        <message>exampleButton2Tapped</message>
                     </button>
                 </container>
             </view>
             <actions>
                 <showAlert name="exampleButton1Tapped">Example button 1 tapped!</showAlert>
                 <sendMessage name="exampleButton2Tapped">
-                    <messageType>navigation</messageType>
-                    <messageName>exampleMessageName</messageName>
+                    <messageName>exampleMessage</messageName>
                 </sendMessage>
             </actions>
         </screen>
         <actions>
-            <showAlert name="exampleMessageName">Example button 2 tapped!</showAlert>
+            <showAlert name="exampleMessage">Example button 2 tapped!</showAlert>
         </actions>
     </navigation>
 </workflow>
 ```
 
-Now when the user taps the second button, it tells the screen controller to perform the action named `exampleButton2Tapped`; that action then sends a message with message type `navigation` and message name `exampleMessageName`.  The navigation controller receives this message, sees that it has the right type (navigation) and so it tries to perform an action with a matching name.  There is such an action, so it performs it.
+Now when the user taps the second button, it tells the screen controller to perform the action named `exampleButton2Tapped`; that action then sends a message with  name `exampleMessage`.  The navigation controller receives this message and tries to perform an action with a matching name.  There is such an action, so it performs it.
 
-It the message had had a different type, the navigation controller would have passed the message on; if it had a different name, it would have kept it and done nothing.  In general, messages are passed on to the creator of the controller - in this case, the creator of the screen controller is the navigation controller.  In a more complicated example:
+In general, messages are passed on to the creator of the controller - in this case, the creator of the screen controller is the navigation controller - and do not get passed on.  It is possible to send them further by specifying a target.  For example:
 
 ```xml
 <workflow>
@@ -310,7 +306,7 @@ It the message had had a different type, the navigation controller would have pa
                     <label>Example label</label>
                     <button>
                         <title>Example button 1</title>
-                        <actionName>exampleButton1Tapped</actionName>
+                        <message>exampleButton1Tapped</message>
                     </button>
                 </container>
             </view>
@@ -323,14 +319,14 @@ It the message had had a different type, the navigation controller would have pa
                                 <label>This controller gets pushed!</label>
                                 <button>
                                     <title>Example button 2</title>
-                                    <actionName>exampleButton2Tapped</actionName>
+                                    <message>exampleButton2Tapped</message>
                                 </button>
                             </container>
                         </view>
                         <actions>
                             <sendMessage name="exampleButton2Tapped">
-                                <messageType>navigation</messageType>
-                                <messageName>exampleMessageName</messageName>
+                                <messageName>exampleMessage</messageName>
+                                <messageTarget>navigation</messageTarget>
                             </sendMessage>
                         </actions>
                     </screen>
@@ -338,21 +334,21 @@ It the message had had a different type, the navigation controller would have pa
             </actions>
         </screen>
         <actions>
-            <showAlert name="exampleMessageName">Example button 2 tapped!</showAlert>
+            <showAlert name="exampleMessage">Example button 2 tapped!</showAlert>
         </actions>
     </navigation>
 </workflow>
 ```
 
-In this case, when the first button is tapped, the second screen controller is created by the first screen controller; so when the second button is tapped, it sends a message to the first screen controller.  The message type (navigation) isn't handled by the screen controller, so it passes the message on to the navigation controller, which does handle it, and the alert is shown.
+In this case, when the first button is tapped, the second screen controller is created by the first screen controller; so when the second button is tapped, it sends a message to the first screen controller.  The message target (navigation) doesn't match the screen controller, so it passes the message on to its creator, the navigation controller.  This does match the target of the message, and so it looks for a matching action, finds one, and shows an alert.
 
-Messages can get passed all the way out to your app delegate, where the `context:didReceiveWorkflowMessage:` delegate message will be called. This is how you implement things like API calls.
+Targeted messages can get passed all the way out to your app delegate, where the `context:didReceiveWorkflowMessage:` delegate message will be called. This is how you implement things like API calls.  Views should not send targeted messages.
 
 Note the difference between the name of the action, and the name of the message:
 
 ```xml
 <sendMessage name="exampleButton2Tapped">
-    <messageType>navigation</messageType>
+    <messageTarget>navigation</messageTarget>
     <messageName>exampleMessageName</messageName>
 </sendMessage>
 ```
@@ -387,7 +383,7 @@ We've seen an example schema which pushes a new controller onto the navigation s
                     <label>Example label</label>
                     <button>
                         <title>Example button</title>
-                        <actionName>exampleButtonTapped</actionName>
+                        <message>exampleButtonTapped</message>
                     </button>
                 </container>
             </view>
@@ -407,7 +403,7 @@ We've seen an example schema which pushes a new controller onto the navigation s
 </workflow>
 ```
 
-Now when the user taps the button, the `loadSchema` action is performed.  This sends a message with type "loadSchema" and name "/path/to/other/schema.xml" along the delegate chain and waits for a response.  When the response is received, it looks to see whether it was successful, and if it was then it looks at the parameters of the context coming back with the response.  If the value for the key "schema" contains a schema, it adds that to its original context and performs the success action.
+Now when the user taps the button, the `loadSchema` action is performed.  This sends a message with target "loadSchema" and name "/path/to/other/schema.xml" along the delegate chain and waits for a response.  When the response is received, it looks to see whether it was successful, and if it was then it looks at the parameters of the context coming back with the response.  If the value for the key "schema" contains a schema, it adds that to its original context and performs the success action.
 
 In this case, the success action is a `pushController` action, which knows that if it has no parameters it should look at its context for a "schema" key, and if it finds one create that schema and check whether it is a `UIViewController`.  If it is, then it pushes the controller onto the stack.
 
@@ -416,7 +412,7 @@ One part is missing here: actually reading the file.  The framework makes no ass
 ```ObjC
 - (BOOL)context:(WFSContext *)contect didReceiveWorkflowMessage:(WFSMessage *)message
 {
-    if ([message.type isEqualToString:WFSLoadSchemaActionMessageType])
+    if ([message.target isEqualToString:WFSLoadSchemaActionMessageTarget])
     {
         NSError *error = nil;
         NSURL *xmlURL = [NSURL fileURLWithPath:message.name];
@@ -462,7 +458,7 @@ Happily, we can do this using parameter proxies.  A parameter proxy is an object
                     <label>Example label</label>
                     <button>
                         <title>Example button</title>
-                        <actionName>exampleButtonTapped</actionName>
+                        <message>exampleButtonTapped</message>
                     </button>
                 </container>
             </view>

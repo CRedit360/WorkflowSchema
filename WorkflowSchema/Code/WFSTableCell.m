@@ -33,17 +33,17 @@
         
         if (self.accessoryType == UITableViewCellAccessoryDetailDisclosureButton)
         {
-            if (!self.detailDisclosureActionName)
+            if (!self.detailDisclosureMessage)
             {
-                if (outError) *outError = WFSError(@"Cells with the detailDetailDisclosure accessory type must have a detailDisclosureActionName");
+                if (outError) *outError = WFSError(@"Cells with the detailDisclosureIndicatorButton accessory type must have a detailDisclosureMessage");
                 return nil;
             }
         }
         else
         {
-            if (self.detailDisclosureActionName)
+            if (self.detailDisclosureMessage)
             {
-                if (outError) *outError = WFSError(@"Cells without the detailDetailDisclosure accessory type may not have a detailDisclosureActionName");
+                if (outError) *outError = WFSError(@"Cells without the detailDisclosureIndicatorButton accessory type may not have a detailDisclosureMessage");
                 return nil;
             }
         }
@@ -81,6 +81,16 @@
     }];
 }
 
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByPrependingObjectsFromArray:@[
+            
+            @"message",
+            @"detailDisclosureMessage"
+            
+    ]];
+}
+
 + (NSArray *)defaultSchemaParameters
 {
     return [[super mandatorySchemaParameters] arrayByPrependingObjectsFromArray:@[
@@ -95,13 +105,13 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
     
-            @"style"                      : [NSString class],
-            @"text"                       : [NSString class],
-            @"detailText"                 : [NSString class],
-            @"accessoryType"              : [NSString class],
-            @"image"                      : [UIImage class],
-            @"actionName"                 : [NSString class],
-            @"detailDisclosureActionName" : [NSString class]
+            @"style"                   : [NSString class],
+            @"text"                    : [NSString class],
+            @"detailText"              : [NSString class],
+            @"accessoryType"           : [NSString class],
+            @"image"                   : [UIImage class],
+            @"message"                 : @[ [WFSMessage class], [NSString class] ],
+            @"detailDisclosureMessage" : @[ [WFSMessage class], [NSString class] ]
     
     }];
 }

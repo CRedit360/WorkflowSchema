@@ -12,7 +12,7 @@
 
 @interface WFSLongPressGestureRecognizer : UILongPressGestureRecognizer <WFSSchematising>
 
-@property (nonatomic, strong) NSString *beginActionName;
-@property (nonatomic, strong) NSString *endActionName;
+@property (nonatomic, strong) id beginMessage;
+@property (nonatomic, strong) id endMessage;
 
 @end

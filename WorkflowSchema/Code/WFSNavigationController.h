@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WFSSchematising.h"
 
-extern NSString * const WFSNavigationMessageType;
+extern NSString * const WFSNavigationMessageTarget;
 
 @interface WFSNavigationController : UINavigationController <WFSSchematising, WFSContextDelegate>
 

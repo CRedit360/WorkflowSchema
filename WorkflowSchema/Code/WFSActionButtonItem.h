@@ -13,7 +13,7 @@
 @interface WFSActionButtonItem : NSObject <WFSSchematising>
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, strong) NSString *actionName;
+@property (nonatomic, strong) id message;
 @property (nonatomic, assign) NSInteger index;
 
 @end
