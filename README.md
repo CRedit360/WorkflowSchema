@@ -6,7 +6,19 @@ WorkflowSchema is an iOS framework which allows you to define app workflows in X
 Setup
 -----
 
-To add WorkflowSchema to a project, drag WorkflowSchema.xcodeproj into the project's frameworks group:
+The quickest way to add WorkflowSchema to your project is by using [CocoaPods](http://cocoapods.org).  Add the following to your podfile:
+
+```ruby
+pod 'WorkflowSchema`, '~> 0.2.0'
+```
+
+and then 
+
+```sh
+$ pod install
+```
+
+To add WorkflowSchema to a project without using cocoapods, check out the source and then drag WorkflowSchema.xcodeproj into the project's frameworks group:
 
 ![WorkflowSchema.xcodeproj in the project's frameworks group](http://credit360.github.com/WorkflowSchema/readme_images/add_framework.png)
 
@@ -14,9 +26,11 @@ Under "Build Phases", add the framework to "Target Dependencies" and "Link Binar
 
 ![WorkflowSchema.xcodeproj in the project's frameworks group](http://credit360.github.com/WorkflowSchema/readme_images/build_phases.png)
 
-In your app delegate (or wherever you want to use WorkflowSchema), load a schema:
+Either way, you should now be able to access WorkflowSchema from your own source code.  In your app delegate (or wherever you want to use WorkflowSchema), load a schema:
 
 ```ObjC
+#import <WorkflowSchema/WorkflowSchema.h>
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {   
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
