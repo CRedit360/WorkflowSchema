@@ -68,8 +68,10 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     
     [self registerClass:[WFSFormTrigger class] forTypeName:@"trigger"];
     
+    [self registerClass:[WFSEqualityCondition class] forTypeName:@"isEqual"];
     [self registerClass:[WFSMultipleCondition class] forTypeName:@"multipleConditions"];
     [self registerClass:[WFSEqualityCondition class] forTypeName:@"isEqual"];
+    [self registerClass:[WFSPresenceCondition class] forTypeName:@"isPresent"];
     [self registerClass:[WFSRegularExpressionCondition class] forTypeName:@"doesMatchRegularExpression"];
     
     [self registerClass:[WFSActionButtonItem class] forTypeName:@"actionButtonItem"];

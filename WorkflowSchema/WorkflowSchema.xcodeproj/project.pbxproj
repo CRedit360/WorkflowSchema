@@ -56,7 +56,7 @@
 		F6697C4A163EF4530098B3A7 /* WFSSwipeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F6697C48163EF4530098B3A7 /* WFSSwipeGestureRecognizer.m */; };
 		F68795BF165A82D900F495A1 /* WFSConditionalAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795BD165A82D900F495A1 /* WFSConditionalAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68795C0165A82D900F495A1 /* WFSConditionalAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795BE165A82D900F495A1 /* WFSConditionalAction.m */; };
-		F68795D3165A8C6E00F495A1 /* WFSPresenceCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */; };
+		F68795D3165A8C6E00F495A1 /* WFSPresenceCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68795D4165A8C6E00F495A1 /* WFSPresenceCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */; };
 		F6BEBDF91653F95D004412B4 /* WFSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEBDF81653F95D004412B4 /* WFSMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6C0EBD9163A8DB200271964 /* NSArray+WorkflowSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C0EBCF163A8DB200271964 /* NSArray+WorkflowSchema.h */; settings = {ATTRIBUTES = (Public, ); }; };
