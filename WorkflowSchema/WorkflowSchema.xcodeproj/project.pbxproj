@@ -58,8 +58,6 @@
 		F68795C0165A82D900F495A1 /* WFSConditionalAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795BE165A82D900F495A1 /* WFSConditionalAction.m */; };
 		F68795D3165A8C6E00F495A1 /* WFSPresenceCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68795D4165A8C6E00F495A1 /* WFSPresenceCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */; };
-		F68795DE165A937100F495A1 /* WFSPerformAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795DC165A937100F495A1 /* WFSPerformAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F68795E0165A945000F495A1 /* WFSPerformAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795DD165A937100F495A1 /* WFSPerformAction.m */; };
 		F68795F1165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795EF165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68795F2165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795F0165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m */; };
 		F6BEBDF91653F95D004412B4 /* WFSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEBDF81653F95D004412B4 /* WFSMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -212,8 +210,6 @@
 		F68795BE165A82D900F495A1 /* WFSConditionalAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSConditionalAction.m; sourceTree = "<group>"; };
 		F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSPresenceCondition.h; sourceTree = "<group>"; };
 		F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSPresenceCondition.m; sourceTree = "<group>"; };
-		F68795DC165A937100F495A1 /* WFSPerformAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSPerformAction.h; sourceTree = "<group>"; };
-		F68795DD165A937100F495A1 /* WFSPerformAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSPerformAction.m; sourceTree = "<group>"; };
 		F68795EF165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WorkflowSchema.h"; sourceTree = "<group>"; };
 		F68795F0165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WorkflowSchema.m"; sourceTree = "<group>"; };
 		F68DF1931655071900489EA2 /* WorkflowSchema.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = WorkflowSchema.podspec; path = ../WorkflowSchema.podspec; sourceTree = "<group>"; };
@@ -521,8 +517,6 @@
 				F6EAC8E51633F9DF0035D744 /* WFSMultipleAction.m */,
 				F68795BD165A82D900F495A1 /* WFSConditionalAction.h */,
 				F68795BE165A82D900F495A1 /* WFSConditionalAction.m */,
-				F68795DC165A937100F495A1 /* WFSPerformAction.h */,
-				F68795DD165A937100F495A1 /* WFSPerformAction.m */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -725,7 +719,6 @@
 				F64C7F8616555BE800D248C0 /* WFSSearchBar.h in Headers */,
 				F68795BF165A82D900F495A1 /* WFSConditionalAction.h in Headers */,
 				F68795D3165A8C6E00F495A1 /* WFSPresenceCondition.h in Headers */,
-				F68795DE165A937100F495A1 /* WFSPerformAction.h in Headers */,
 				F68795F1165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -907,7 +900,6 @@
 				F64C7F8716555BE800D248C0 /* WFSSearchBar.m in Sources */,
 				F68795C0165A82D900F495A1 /* WFSConditionalAction.m in Sources */,
 				F68795D4165A8C6E00F495A1 /* WFSPresenceCondition.m in Sources */,
-				F68795E0165A945000F495A1 /* WFSPerformAction.m in Sources */,
 				F68795F2165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

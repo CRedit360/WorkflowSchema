@@ -10,8 +10,23 @@
 
 @implementation WFSPresenceCondition
 
++ (NSArray *)defaultSchemaParameters
+{
+    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [NSObject class], @"value" ]];
+}
+
 - (BOOL)evaluateWithValue:(id)value context:(WFSContext *)context
 {
+    if ([value isKindOfClass:[NSString class]])
+    {
+        NSString *stringValue = [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        return (stringValue.length > 0);
+    }
+    else if ([value isKindOfClass:[NSNull class]])
+    {
+        return NO;
+    }
+    
     return (value != nil);
 }
 

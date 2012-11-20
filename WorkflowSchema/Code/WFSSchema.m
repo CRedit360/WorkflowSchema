@@ -54,7 +54,6 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     
     [self registerClass:[WFSConditionalAction class] forTypeName:@"conditionalAction"];
     [self registerClass:[WFSMultipleAction class] forTypeName:@"multipleActions"];
-    [self registerClass:[WFSPerformAction class] forTypeName:@"performAction"];
     [self registerClass:[WFSSendMessageAction class] forTypeName:@"sendMessage"];
     [self registerClass:[WFSShowAlertAction class] forTypeName:@"showAlert"];
     [self registerClass:[WFSShowActionSheetAction class] forTypeName:@"showActionSheet"];

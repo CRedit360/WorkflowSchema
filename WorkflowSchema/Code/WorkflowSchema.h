@@ -40,7 +40,6 @@
 #import "WFSAction.h"
 #import "WFSConditionalAction.h"
 #import "WFSMultipleAction.h"
-#import "WFSPerformAction.h"
 #import "WFSSendMessageAction.h"
 #import "WFSShowAlertAction.h"
 #import "WFSShowActionSheetAction.h"
