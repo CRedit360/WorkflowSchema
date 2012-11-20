@@ -61,7 +61,6 @@ NSString * const WFSContextException = @"WFSContextException";
 
 - (BOOL)sendWorkflowMessage:(WFSMessage *)message
 {
-    NSLog(@"Got message with name %@", message.name);
     return [self.contextDelegate context:self didReceiveWorkflowMessage:message];
 }
 
