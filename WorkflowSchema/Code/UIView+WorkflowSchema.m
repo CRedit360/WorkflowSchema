@@ -1,15 +1,15 @@
 //
-//  UIView+WFSViewsAction.m
+//  UIView+WorkflowSchema.m
 //  WorkflowSchema
 //
 //  Created by Simon Booth on 02/11/2012.
 //  Copyright (c) 2012 CRedit360. All rights reserved.
 //
 
-#import "UIView+WFSViewsAction.h"
+#import "UIView+WorkflowSchema.h"
 #import "NSObject+WFSSchematising.h"
 
-@implementation UIView (WFSViewsAction)
+@implementation UIView (WorkflowSchema)
 
 - (NSArray *)subviewsWithWorkflowNames:(NSArray *)names
 {

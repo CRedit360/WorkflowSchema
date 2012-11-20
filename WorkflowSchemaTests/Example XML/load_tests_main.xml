@@ -4,10 +4,7 @@
             <title>Screen 1</title>
             <screen>
                 <title>Loading screen 1...</title>
-                <sendMessage name="viewDidLoad">
-                    <messageTarget>navigation</messageTarget>
-                    <messageName>loadScreen</messageName>
-                </sendMessage>
+                <sendMessage name="viewDidLoad">loadScreen</sendMessage>
             </screen>
             <loadSchema name="loadScreen">
                 <path>load_tests_screen1.xml</path>
@@ -19,10 +16,7 @@
             <title>Screen 2</title>
             <screen>
                 <title>Loading screen 2...</title>
-                <sendMessage name="viewDidLoad">
-                    <messageTarget>navigation</messageTarget>
-                    <messageName>loadScreen</messageName>
-                </sendMessage>
+                <sendMessage name="viewDidLoad">loadScreen</sendMessage>
             </screen>
             <loadSchema name="loadScreen">
                 <path>load_tests_screen2.xml</path>
@@ -34,10 +28,7 @@
             <title>Screen 3</title>
             <screen>
                 <title>Loading screen 3...</title>
-                <sendMessage name="viewDidLoad">
-                    <messageTarget>navigation</messageTarget>
-                    <messageName>loadScreen</messageName>
-                </sendMessage>
+                <sendMessage name="viewDidLoad">loadScreen</sendMessage>
             </screen>
             <loadSchema name="loadScreen">
                 <path>there_is_no_screen3.xml</path>

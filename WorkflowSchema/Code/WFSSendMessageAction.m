@@ -7,12 +7,14 @@
 //
 
 #import "WFSSendMessageAction.h"
+#import "UIViewController+WFSSchematising.h"
+#import "UIViewController+WorkflowSchema.h"
 
 @implementation WFSSendMessageAction
 
 + (NSArray *)mandatorySchemaParameters
 {
-    return [[super mandatorySchemaParameters] arrayByAddingObjectsFromArray:@[ @"messageName" ]];
+    return [[super mandatorySchemaParameters] arrayByAddingObjectsFromArray:@[ @"message" ]];
 }
 
 + (NSArray *)arraySchemaParameters
@@ -20,19 +22,38 @@
     return [[super arraySchemaParameters] arrayByAddingObject:@"actions"];
 }
 
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByAddingObject:@"message" ];
+}
+
 + (NSArray *)defaultSchemaParameters
 {
-    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [WFSAction class], @"actions" ]];
+    return [[super defaultSchemaParameters] arrayByPrependingObjectsFromArray:@[
+            
+            @[ [NSString class], @"message" ],
+            @[ [WFSMessage class], @"message" ],
+            @[ [WFSAction class], @"actions" ]
+            
+    ]];
 }
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"messageTarget" : [NSString class], @"messageName" : [NSString class],  @"actions" : [WFSAction class] }];
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
+            
+            @"message" : @[ [WFSMessage class], [NSString class], ],
+            @"actions" : [WFSAction class]
+            
+    }];
 }
 
 - (WFSResult *)performActionForController:(UIViewController *)controller context:(WFSContext *)context
 {
-    WFSMessage *message = [WFSMessage messageWithTarget:self.messageTarget name:self.messageName context:context responseHandler:^(WFSResult *result) {
+    WFSMessage *message = [self messageFromParameterWithName:@"message" context:context];
+    if (!message) return [WFSResult failureResultWithContext:context];
+       
+    message.responseHandler = ^(WFSResult *result) {
         
         for (WFSAction *action in self.actions)
         {
@@ -43,14 +64,37 @@
             }
         }
         
-    }];
+    };
     
-    WFSContext *messageContext = context;
+    WFSContext *messageContext = nil;
     
-    // If a controller is sending a message to itself, send it instead to the controller's message delegate
-    if ((id)context.contextDelegate == (id)controller)
+    switch (message.destinationType)
     {
-        messageContext = controller.workflowContext;
+        case WFSMessageDestinationDelegate:
+        {
+            messageContext = controller.workflowContext;
+            break;
+        }
+            
+        case WFSMessageDestinationRootDelegate:
+        {
+            messageContext = context;
+            break;
+        }
+            
+        case WFSMessageDestinationSelf:
+        {
+            messageContext = [controller contextForPerformingActions:context];
+            break;
+        }
+            
+        case WFSMessageDestinationDescendant:
+        {
+            NSArray *descendants = [controller descendantControllersWithWorkflowNames:[NSArray arrayWithObjects:message.destinationName, nil]];
+            UIViewController *lastDescendant = [descendants lastObject];
+            messageContext = [lastDescendant contextForPerformingActions:context];
+            break;
+        }
     }
     
     if ([messageContext sendWorkflowMessage:message])
@@ -60,8 +104,7 @@
     else
     {
         NSError *error = nil;
-        if (self.messageTarget) error = WFSError(@"Message with target %@, name %@ was not handled", self.messageTarget, self.messageName);
-        else WFSError(@"Message with name %@ was not handled", self.messageName);
+        WFSError(@"Message with name %@, destination type %d, destination name %@ was not handled", message.name, message.destinationType, message.destinationName);
         [context sendWorkflowError:error];
         return [WFSResult failureResultWithContext:context];
     }

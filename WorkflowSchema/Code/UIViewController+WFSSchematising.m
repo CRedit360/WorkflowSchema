@@ -113,7 +113,7 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 
 - (BOOL)context:(WFSContext *)contect didReceiveWorkflowMessage:(WFSMessage *)message
 {
-    if ((message.target.length == 0) || [[[self class] actionWorkflowMessageTarget] isEqualToString:message.target])
+    if (message.destinationType != WFSMessageDestinationRootDelegate)
     {
         WFSResult *response = [self performActionName:message.name context:message.context];;
         [message respondWithResult:response];
@@ -124,11 +124,6 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 }
 
 #pragma mark - Shared action methods
-
-+ (NSString *)actionWorkflowMessageTarget
-{
-    return nil;
-}
 
 - (NSArray *)actions
 {

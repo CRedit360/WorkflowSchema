@@ -14,13 +14,6 @@
 
 @interface UIViewController (WFSSchematising) <WFSContextDelegate>
 
-/*
- *  Workflow messages with matching (or nil) type will be intercepted and their name and context
- *  passed to performActionName:context: whereas others will be passed to the controller's 
- *  context's message delegate.
- */
-+ (NSString *)actionWorkflowMessageTarget;
-
 @property (nonatomic, strong) NSArray *actions;
 - (NSString *)actionNameForSelector:(SEL)selector;
 - (WFSResult *)performActionName:(NSString *)name context:(WFSContext *)context;

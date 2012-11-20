@@ -7,7 +7,7 @@
 //
 
 #import "WFSShowViewsAction.h"
-#import "UIView+WFSViewsAction.h"
+#import "UIView+WorkflowSchema.h"
 
 @implementation WFSShowViewsAction
 

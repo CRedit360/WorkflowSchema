@@ -10,8 +10,7 @@
 
 @interface WFSSendMessageAction : WFSAction
 
-@property (nonatomic, strong) NSString *messageName;
-@property (nonatomic, strong) NSString *messageTarget;
+@property (nonatomic, strong) id message;
 
 @property (nonatomic, strong) NSArray *actions;
 

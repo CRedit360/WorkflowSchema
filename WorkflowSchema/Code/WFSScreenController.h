@@ -8,8 +8,6 @@
 #import "WFSSchematising.h"
 #import "WFSScreenView.h"
 
-extern NSString * const WFSScreenMessageTarget;
-
 @interface WFSScreenController : UIViewController <WFSSchematising, WFSContextDelegate>
 
 @property (nonatomic, retain) NSArray *actions;

@@ -44,9 +44,12 @@
             </sections>
             <actions>
                 <sendMessage name="searchBarDidSearch">
-                    <messageTarget>scenarioFunctionalTestSearching</messageTarget>
-                    <messageName>getResults</messageName>
-                    <multipleActions>
+                    <message>
+                        <name>getResults</name>
+                        <destinationType>rootDelegate</destinationType>
+                        <destinationName>scenarioFunctionalTestSearching</destinationName>
+                    </message>
+                    <multipleActions name="success">
                         <storeValues />
                         <reloadData />
                     </multipleActions>

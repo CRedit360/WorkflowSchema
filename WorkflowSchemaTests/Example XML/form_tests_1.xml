@@ -31,6 +31,7 @@
                         <presentController>
                             <navigation>
                                 <screen keyPath="schema" />
+                                <sendMessage name="form2done">form2done</sendMessage>
                             </navigation>
                         </presentController>
                         <showAlert>Failed to load screen 2</showAlert>
@@ -38,9 +39,9 @@
                     <showAlert name="didNotSubmit">
                         <message><string keyPath="failureMessage" /></message>
                     </showAlert>
+                    <dismissController name="form2done" />
                 </actions>
             </form>
-            <dismissController name="form2done" />
         </screen>
     </navigation>
 </workflow>

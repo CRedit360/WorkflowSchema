@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WFSSchematising.h"
 
-extern NSString * const WFSTableMessageTarget;
 extern NSString * const WFSTableDidSelectCellActionName;
 
 @interface WFSTableController : UITableViewController <WFSSchematising>

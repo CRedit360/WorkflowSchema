@@ -172,8 +172,7 @@
                                      ]],
                                      [[WFSSchemaParameter alloc] initWithName:@"actions" value:
                                           [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"didSubmit"} parameters:@[
-                                               [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"test"],
-                                               [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"test"],
+                                               [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"test" ]],
                                                [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:nil parameters:nil]
                                           ]]
                                      ]
@@ -189,7 +188,7 @@
         WSTTestAction *testAction = [(WFSSendMessageAction *)formController.actions[0] actions][0];
         
         [formController loadView];
-        WFSMessage *submitMessage = [WFSMessage messageWithTarget:@"form" name:@"submit" context:context responseHandler:nil];
+        WFSMessage *submitMessage = [WFSMessage messageWithName:@"submit" context:context responseHandler:nil];
         
         WFSContext *messageContext = [WFSContext contextWithDelegate:formController];
         [messageContext sendWorkflowMessage:submitMessage];
@@ -243,13 +242,11 @@
                                           ]]
                                      ]],
                                      [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
-                                      [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"didSubmit"} parameters:@[
-                                               [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"test"],
-                                               [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"forwardedDidSubmit"]
+                                          [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"didSubmit"} parameters:@[
+                                               [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[@"forwardedDidSubmit"]]
                                           ]],
                                           [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"didNotSubmit"} parameters:@[
-                                               [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"test"],
-                                               [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"forwardedDidNotSubmit"]
+                                               [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[@"forwardedDidNotSubmit"]]
                                           ]]
                                      ]]
                                 ]];
@@ -275,7 +272,7 @@
         WFSTextField *passwordField = (WFSTextField *)formController.allInputs[1];
         WFSTextField *confirmField = (WFSTextField *)formController.allInputs[2];
         
-        WFSMessage *submitMessage = [WFSMessage messageWithTarget:@"form" name:@"submit" context:context responseHandler:nil];
+        WFSMessage *submitMessage = [WFSMessage messageWithName:@"submit" context:context responseHandler:nil];
         WSTAssert(context.messages.count == 0);
         
         WFSContext *messageContext = [WFSContext contextWithDelegate:formController];
@@ -319,96 +316,5 @@
     
     return scenario;
 }
-
-+ (id)scenarioUnitTestFormsHandleMessages
-{
-    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test form controller handles 'form' messages and passes on others"];
-    
-    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
-        
-        NSError *error = nil;
-        
-        WFSSchema *formSchema = [[WFSSchema alloc] initWithTypeName:@"form" attributes:nil parameters:@[
-                                     [[WFSSchema alloc] initWithTypeName:@"label" attributes:nil parameters:@[ @"Text" ]],
-                                     [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
-                                          [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:@{@"name":@"test"} parameters:nil],
-                                          [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:nil parameters:nil]
-                                     ]]
-                                ]];
-        
-        WSTTestContext *context = [[WSTTestContext alloc] init];
-        
-        WFSFormController *formController = (WFSFormController *)[formSchema createObjectWithContext:context error:&error];
-        WSTFailOnError(error);
-        WSTAssert([formController isKindOfClass:[WFSFormController class]]);
-        WSTAssert(formController.actions.count == 2);
-        
-        WSTTestAction *firstAction = formController.actions[0];
-        WSTTestAction *secondAction = formController.actions[1];
-        
-        WFSContext *messageContext = [WFSContext contextWithDelegate:formController];
-        
-        WFSMessage *firstMessage = [WFSMessage messageWithTarget:@"form" name:@"test" context:messageContext responseHandler:nil];
-        [messageContext sendWorkflowMessage:firstMessage];
-        WSTAssert([WSTTestAction lastTestAction] == firstAction);
-        
-        WFSMessage *secondMessage = [WFSMessage messageWithTarget:@"form" name:@"different name" context:messageContext responseHandler:nil];
-        [messageContext sendWorkflowMessage:secondMessage];
-        WSTAssert([WSTTestAction lastTestAction] == secondAction);
-
-        WSTAssert([context.messages isEqualToArray:@[]]);
-        
-        WFSMessage *thirdMessage = [WFSMessage messageWithTarget:@"different type" name:@"test" context:messageContext responseHandler:nil];
-        [messageContext sendWorkflowMessage:thirdMessage];
-        
-        WSTAssert([context.messages isEqualToArray:@[ thirdMessage ]]);
-        
-        return KIFTestStepResultSuccess;
-        
-    }]];
-    
-    return scenario;
-}
-
-
-+ (id)scenarioUnitTestSendFormMessageFromForm
-{
-    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that 'form' messages sent by a form go up a level"];
-    
-    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
-        
-        NSError *error = nil;
-        
-        WFSSchema *formSchema = [[WFSSchema alloc] initWithTypeName:@"form" attributes:nil parameters:@[
-                                     [[WFSSchema alloc] initWithTypeName:@"label" attributes:nil parameters:@[ @"Text" ]],
-                                     [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
-                                          [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"test1"} parameters:@[
-                                               [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"form"],
-                                               [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"test2"]
-                                          ]]
-                                     ]]
-                                ]];
-        
-        WSTTestContext *context = [[WSTTestContext alloc] init];
-        
-        WFSFormController *formController = (WFSFormController *)[formSchema createObjectWithContext:context error:&error];
-        WSTFailOnError(error);
-        WSTAssert([formController isKindOfClass:[WFSFormController class]]);
-        
-        WFSContext *messageContext = [WFSContext contextWithDelegate:formController];
-        WFSMessage *messageGoingIn = [WFSMessage messageWithTarget:@"form" name:@"test1" context:messageContext responseHandler:nil];
-        [messageContext sendWorkflowMessage:messageGoingIn];
-        WSTAssert(context.messages.count == 1);
-        WFSMessage *messageComingOut = context.messages[0];
-        WSTAssert([messageComingOut.target isEqual:@"form"]);
-        WSTAssert([messageComingOut.name isEqual:@"test2"]);
-        
-        return KIFTestStepResultSuccess;
-        
-    }]];
-    
-    return scenario;
-}
-
 
 @end

@@ -7,21 +7,51 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WFSSchematising.h"
 
-@class WFSContext;
-@class WFSResult;
+typedef enum {
+    
+    WFSMessageDestinationDelegate = 0, // The message should be sent to the sender's immediate workflow delegate. destinationName is ignored.
+    WFSMessageDestinationRootDelegate, // The message should be sent to the root delegate of the workflow. destinationName is interpreted by that delegate.
+    WFSMessageDestinationSelf,         // The message should be sent to the sender. destinationName is ignored.
+    WFSMessageDestinationDescendant    // The message should be sent to the descendant of the sender with the name given by destinationName. Behaviour is undefined if there are multiple such descendants.
+    
+} WFSMessageDestinationType;
 
 typedef void(^WFSMessageResponseHandler)(WFSResult *result);
 
-@interface WFSMessage : NSObject
+@interface WFSMessage : NSObject <WFSSchematising>
 
-@property (nonatomic, copy, readonly) NSString *target;
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, strong, readonly) WFSContext *context;
-@property (nonatomic, copy, readonly) WFSMessageResponseHandler responseHandler;
+/*
+ *  The name of the message to be sent, e.g. didSubmit or shouldLoad
+ */
+@property (nonatomic, copy) NSString *name;
 
-- (id)initWithTarget:(NSString *)target name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
-+ (WFSMessage *)messageWithTarget:(NSString *)target name:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
+/*
+ *  Where the message should be sent.  See WFSMessageDestinationType for details.
+ */
+@property (nonatomic, assign) WFSMessageDestinationType destinationType;
+
+/*
+ *  Who the message should be sent to.  What this means depends on the destination type; see WFSMessageDestinationType for details.
+ */
+@property (nonatomic, copy) NSString *destinationName;
+
+/*
+ *  A callback which is called with the reponse to the message
+ */
+@property (nonatomic, copy) WFSMessageResponseHandler responseHandler;
+
+/*
+ *  The context in which the message is sent. Its parameters may be used to respond to the message.
+ */
+@property (nonatomic, strong) WFSContext *context;
+
+- (id)initWithName:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
+- (id)initWithName:(NSString *)name destinationType:(WFSMessageDestinationType)destinationType destinationName:(NSString *)destinationName context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
+
++ (WFSMessage *)messageWithName:(NSString *)name context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
++ (WFSMessage *)messageWithName:(NSString *)name destinationType:(WFSMessageDestinationType)destinationType destinationName:(NSString *)destinationName context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
 
 - (void)respondWithResult:(WFSResult *)result;
 

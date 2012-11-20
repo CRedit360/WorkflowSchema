@@ -10,8 +10,6 @@
 #import "UIViewController+WFSSchematising.h"
 #import "WFSAction.h"
 
-NSString * const WFSTabsMessageTarget = @"tabs";
-
 @interface WFSTabBarController ()
 
 @end
@@ -57,11 +55,6 @@ NSString * const WFSTabsMessageTarget = @"tabs";
 }
 
 #pragma mark - Actions
-
-+ (NSString *)actionWorkflowMessageTarget
-{
-    return WFSTabsMessageTarget;
-}
 
 WFS_UIVIEWCONTROLLER_LIFECYCLE
 

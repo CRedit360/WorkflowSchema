@@ -10,8 +10,6 @@
 #import "UIViewController+WFSSchematising.h"
 #import "WFSAction.h"
 
-NSString * const WFSNavigationMessageTarget = @"navigation";
-
 @interface WFSNavigationController ()
 
 @end
@@ -59,11 +57,6 @@ NSString * const WFSNavigationMessageTarget = @"navigation";
 }
 
 #pragma mark - Actions
-
-+ (NSString *)actionWorkflowMessageTarget
-{
-    return WFSNavigationMessageTarget;
-}
 
 WFS_UIVIEWCONTROLLER_LIFECYCLE
 

@@ -114,16 +114,17 @@
     [[[UIAlertView alloc] initWithTitle:@"Workflow error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
-- (BOOL)context:(WFSContext *)contect didReceiveWorkflowMessage:(WFSMessage *)message
+- (BOOL)context:(WFSContext *)context didReceiveWorkflowMessage:(WFSMessage *)message
 {
-    if ([message.target isEqualToString:WFSLoadSchemaActionMessageTarget])
+    if ([message.name isEqualToString:WFSLoadSchemaActionMessageName])
     {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
         hud.labelText = @"Loading...";
         
         WFSResult *response = [WFSResult failureResultWithContext:message.context];
         
-        WFSSchema *schema = [self loadSchemaWithFile:message.name];
+        NSString *path = message.context.parameters[WFSLoadSchemaActionPathKey];
+        WFSSchema *schema = [self loadSchemaWithFile:path];
         
         if (schema)
         {
@@ -136,9 +137,9 @@
         [message respondWithResult:response];
         return YES;
     }
-    else if ([[self.messageData objectForKey:message.target] isKindOfClass:[NSDictionary class]])
+    else if ([[self.messageData objectForKey:message.destinationName] isKindOfClass:[NSDictionary class]])
     {
-        NSDictionary *data = self.messageData[message.target][message.name];
+        NSDictionary *data = self.messageData[message.destinationName][message.name];
         if ([data isKindOfClass:[NSDictionary class]])
         {
             WFSMutableContext *resultContext = [message.context mutableCopy];

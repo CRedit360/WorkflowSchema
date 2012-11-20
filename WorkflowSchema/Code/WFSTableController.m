@@ -13,7 +13,6 @@
 #import "WFSSchema+WFSGroupedParameters.h"
 #import "UIViewController+WFSSchematising.h"
 
-NSString * const WFSTableMessageTarget = @"table";
 NSString * const WFSTableDidSelectCellActionName = @"didSelectCell";
 
 @interface WFSTableController () <WFSContextDelegate>
@@ -209,13 +208,6 @@ NSString * const WFSTableDidSelectCellActionName = @"didSelectCell";
 {
     UITableViewCell<WFSTableCellSchematising> *cell = (UITableViewCell<WFSTableCellSchematising> *)[tableView cellForRowAtIndexPath:indexPath];
     if (cell.detailDisclosureMessage) [cell sendMessageFromParameterWithName:@"detailDisclosureMessage" context:cell.workflowContext];
-}
-
-#pragma mark - Actions
-
-+ (NSString *)actionWorkflowMessageTarget
-{
-    return WFSTableMessageTarget;
 }
 
 @end

@@ -11,7 +11,8 @@
 #import "WFSMessage.h"
 #import "WFSControllerAction.h"
 
-NSString * const WFSLoadSchemaActionMessageTarget = @"loadSchema";
+NSString * const WFSLoadSchemaActionMessageName = @"loadSchema";
+NSString * const WFSLoadSchemaActionPathKey = @"path";
 NSString * const WFSLoadSchemaActionSchemaKey = @"schema";
 
 @implementation WFSLoadSchemaAction
@@ -48,8 +49,13 @@ NSString * const WFSLoadSchemaActionSchemaKey = @"schema";
     // stop listening to the user
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
+    WFSMutableContext *loadContext = [context mutableCopy];
+    NSMutableDictionary *parameters = [context.parameters mutableCopy];
+    parameters[WFSLoadSchemaActionPathKey] = self.path;
+    loadContext.parameters = parameters;
+    
     // tell the workflow delegate to load the schema at the given path
-    WFSMessage *message = [WFSMessage messageWithTarget:WFSLoadSchemaActionMessageTarget name:self.path context:context responseHandler:^(WFSResult *result) {
+    WFSMessage *message = [WFSMessage messageWithName:WFSLoadSchemaActionMessageName destinationType:WFSMessageDestinationRootDelegate destinationName:nil context:loadContext responseHandler:^(WFSResult *result) {
         
         WFSSchema *schema = nil;
         
@@ -80,7 +86,7 @@ NSString * const WFSLoadSchemaActionSchemaKey = @"schema";
     }
     else
     {
-        NSError *error = WFSError(@"Message type %@, name %@ was not handled", WFSLoadSchemaActionMessageTarget, self.path);
+        NSError *error = WFSError(@"Load schema message for path %@ was not handled", self.path);
         [context sendWorkflowError:error];
         return [WFSResult failureResultWithContext:context];
     }

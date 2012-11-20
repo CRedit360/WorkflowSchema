@@ -45,13 +45,10 @@
                         <container>
                             <button>
                                 <title>Pop me</title>
-                                <message>screenShouldPop</message>
+                                <message>popButtonTapped</message>
                             </button>
                         </container>
-                        <sendMessage name="screenShouldPop">
-                            <messageTarget>screen</messageTarget>
-                            <messageName>pop</messageName>
-                        </sendMessage>
+                        <sendMessage name="popButtonTapped">screenShouldPop</sendMessage>
                     </screen>
                 </pushController>
                 <pushController name="testLeftBarButtonItem">
@@ -89,16 +86,13 @@
                             <label>leftBarButtonItem test w/o supplement</label>
                             <button>
                                 <title>Pop me</title>
-                                <message>screenShouldPop</message>
+                                <message>popButtonTapped</message>
                             </button>
                         </container>
                         <showAlert name="showLeftAlert">
                             <message>Left!</message>
                         </showAlert>
-                        <sendMessage name="screenShouldPop">
-                            <messageTarget>screen</messageTarget>
-                            <messageName>pop</messageName>
-                        </sendMessage>
+                        <sendMessage name="popButtonTapped">screenShouldPop</sendMessage>
                     </screen>
                 </pushController>
                 <pushController name="testLeftBarButtonItems">
@@ -147,12 +141,11 @@
                             <label>leftBarButtonItems test w/o supplement</label>
                             <button>
                                 <title>Pop me</title>
-                                <message>screenShouldPop</message>
+                                <message>popButtonTapped</message>
                             </button>
                         </container>
-                        <sendMessage name="screenShouldPop">
-                            <messageTarget>screen</messageTarget>
-                            <messageName>pop</messageName>
+                        <sendMessage name="popButtonTapped">
+                            <message>screenShouldPop</message>
                         </sendMessage>
                         <showAlert name="showLeftAlert1">
                             <message>Left 1!</message>
@@ -227,7 +220,7 @@
                         </showAlert>
                     </screen>
                 </pushController>
-                <popController name="pop" />
+                <popController name="screenShouldPop" />
             </actions>
         </screen>
     </navigation>

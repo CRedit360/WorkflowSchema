@@ -59,15 +59,15 @@
                                           [[WFSSchemaParameter alloc] initWithName:@"scopeButtonItems" value:@[
                                                [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                                     [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Red"],
-                                                    [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectRed"]
+                                                    [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectRed" ]]
                                                 ]],
                                                [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                                     [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Green"],
-                                                    [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectGreen"]
+                                                    [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectGreen" ]]
                                                ]],
                                                [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                                     [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Blue"],
-                                                    [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectBlue"]
+                                                    [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectBlue" ]]
                                                ]]
                                           ]]
                                      ]];
@@ -84,13 +84,10 @@
         
         WFSActionButtonItem *firstActionButtonItem = searchBar.scopeButtonItems[0];
         WSTAssert([firstActionButtonItem.title isEqualToString:@"Red"]);
-        WSTAssert([firstActionButtonItem.message isEqualToString:@"didSelectRed"]);
         WFSActionButtonItem *secondActionButtonItem = searchBar.scopeButtonItems[1];
         WSTAssert([secondActionButtonItem.title isEqualToString:@"Green"]);
-        WSTAssert([secondActionButtonItem.message isEqualToString:@"didSelectGreen"]);
         WFSActionButtonItem *thirdActionButtonItem = searchBar.scopeButtonItems[2];
         WSTAssert([thirdActionButtonItem.title isEqualToString:@"Blue"]);
-        WSTAssert([thirdActionButtonItem.message isEqualToString:@"didSelectBlue"]);
         
         WSTAssert(context.messages.count == 0);
         
@@ -157,12 +154,7 @@
         WSTAssert(searchBar.showsSearchResultsButton);
         WSTAssert([searchBar.text isEqual:@"test text"]);
         WSTAssert(searchBar.translucent);
-        
-        WSTAssert([searchBar.bookmarkMessage isEqualToString:@"didTapBookmarks"]);
-        WSTAssert([searchBar.cancelMessage isEqualToString:@"didTapCancel"]);
-        WSTAssert([searchBar.searchMessage isEqualToString:@"didTapSearch"]);
-        WSTAssert([searchBar.resultsListMessage isEqualToString:@"didTapResultsList"]);
-        
+                
         WSTAssert(context.messages.count == 0);
         
         [searchBar.delegate searchBarBookmarkButtonClicked:searchBar];

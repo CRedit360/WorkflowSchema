@@ -10,6 +10,7 @@
 #import "WFSSchema.h"
 #import "WFSParameterProxy.h"
 #import "WFSSchemaParameter.h"
+#import "WFSSchematising.h"
 
 #define WFSParserLog(X, args...) { if ([[[NSProcessInfo processInfo] environment] objectForKey:@"WFS_DEBUG_PARSER"]) NSLog(X, ## args); }
 
@@ -90,6 +91,31 @@
     
     if (schemaClass)
     {
+        WFSSchema *currentSchema = [self.parseStack lastObject];
+        if ([currentSchema isKindOfClass:[WFSSchema class]])
+        {
+            BOOL classIsValidInCurrentSchema = NO;
+            
+            for (NSArray *defaultPair in [(Class)currentSchema.schemaClass defaultSchemaParameters])
+            {
+                Class possibleClass = defaultPair[0];
+
+                if ([schemaClass isSubclassOfClass:possibleClass])
+                {
+                    classIsValidInCurrentSchema = YES;
+                    break;
+                }
+            }
+            
+            if (!classIsValidInCurrentSchema)
+            {
+                schemaClass = nil;
+            }
+        }
+    }
+    
+    if (schemaClass)
+    {
         WFSSchema *schema = nil;
         
         NSString *parameterKeyPath = attributeDict[@"keyPath"];
@@ -108,7 +134,7 @@
     }
     else
     {
-        WFSParserLog(@"No class found for %@", elementName);
+        WFSParserLog(@"Class %@ not valid for %@", schemaClass, elementName);
         WFSSchemaParameter *parameter = [[WFSSchemaParameter alloc] initWithName:elementName];
         [self.parseStack addObject:parameter];
     }

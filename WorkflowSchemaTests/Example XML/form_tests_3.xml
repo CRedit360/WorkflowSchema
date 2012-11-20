@@ -18,9 +18,6 @@
             <label>Fruit:</label>
             <label><string keyPath="input3" /></label>
         </container>
-        <sendMessage name="doneButtonTapped">
-            <messageTarget>screen</messageTarget>
-            <messageName>form3done</messageName>
-        </sendMessage>
+        <sendMessage name="doneButtonTapped">form3done</sendMessage>
     </screen>
 </workflow>

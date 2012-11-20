@@ -32,6 +32,11 @@
     return [[super mandatorySchemaParameters] arrayByPrependingObjectsFromArray:@[ @"title", @"image" ]];
 }
 
++ (NSArray *)defaultSchemaParameters
+{
+    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [UIImage class], @"image" ]];
+}
+
 + (NSDictionary *)schemaParameterTypes
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"image" : [UIImage class], @"title" : [NSString class], @"badgeValue" : [NSString class] }];

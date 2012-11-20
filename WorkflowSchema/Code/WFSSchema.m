@@ -32,6 +32,8 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[NSString class] forTypeName:@"string"];
     [self registerClass:[UIImage class] forTypeName:@"image"];
     
+    [self registerClass:[WFSMessage class] forTypeName:@"message"];
+    
     [self registerClass:[WFSTabBarController class] forTypeName:@"tabs"];
     [self registerClass:[WFSNavigationController class] forTypeName:@"navigation"];
     [self registerClass:[WFSScreenController class] forTypeName:@"screen"];

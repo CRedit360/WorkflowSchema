@@ -61,15 +61,15 @@
                                        [[WFSSchemaParameter alloc] initWithName:@"message" value:@"Test message"],
                                        [[WFSSchema alloc] initWithTypeName:@"cancelButtonItem" attributes:nil parameters:@[
                                             [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Cancel"],
-                                            [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didCancel"]
+                                            [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didCancel" ]]
                                        ]],
                                        [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                             [[WFSSchemaParameter alloc] initWithName:@"title" value:@"Yes"],
-                                            [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectYes"]
+                                            [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectYes" ]]
                                        ]],
                                        [[WFSSchema alloc] initWithTypeName:@"actionButtonItem" attributes:nil parameters:@[
                                             [[WFSSchemaParameter alloc] initWithName:@"title" value:@"No"],
-                                            [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectNo"]
+                                            [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectNo" ]]
                                        ]],
                                   ]];
         

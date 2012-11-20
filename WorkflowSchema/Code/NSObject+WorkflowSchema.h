@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class WFSContext;
+@class WFSMessage;
+
 @interface NSObject (WorkflowSchema)
 
 - (NSArray *)flattenedArray;
+
+- (WFSMessage *)messageFromParameterWithName:(NSString *)name context:(WFSContext *)context;
+- (void)sendMessageFromParameterWithName:(NSString *)name context:(WFSContext *)context;
+
 
 @end

@@ -295,7 +295,7 @@ If we want to wire the button up to the navigation controller's action, we need 
             <actions>
                 <showAlert name="exampleButton1Tapped">Example button 1 tapped!</showAlert>
                 <sendMessage name="exampleButton2Tapped">
-                    <messageName>exampleMessage</messageName>
+                    <message>exampleMessage</message>
                 </sendMessage>
             </actions>
         </screen>
@@ -308,7 +308,7 @@ If we want to wire the button up to the navigation controller's action, we need 
 
 Now when the user taps the second button, it tells the screen controller to perform the action named `exampleButton2Tapped`; that action then sends a message with  name `exampleMessage`.  The navigation controller receives this message and tries to perform an action with a matching name.  There is such an action, so it performs it.
 
-In general, messages are passed on to the creator of the controller - in this case, the creator of the screen controller is the navigation controller - and do not get passed on.  It is possible to send them further by specifying a target.  For example:
+By default, messages are passed on to the creator of the controller - in this case, the creator of the screen controller is the navigation controller - and do not get passed on.  It is possible to send them elsewhere by specifying a destination.  For example, you can use the 'self' destination type to fire other actions on the same controller:
 
 ```xml
 <workflow>
@@ -319,51 +319,73 @@ In general, messages are passed on to the creator of the controller - in this ca
                 <container>
                     <label>Example label</label>
                     <button>
-                        <title>Example button 1</title>
-                        <message>exampleButton1Tapped</message>
+                        <title>Example button</title>
+                        <message>exampleButtonTapped</message>
                     </button>
                 </container>
             </view>
             <actions>
-                <pushController name="exampleButton1Tapped">
-                    <screen>
-                        <title>Example 2</title>
-                        <view>
-                            <container>
-                                <label>This controller gets pushed!</label>
-                                <button>
-                                    <title>Example button 2</title>
-                                    <message>exampleButton2Tapped</message>
-                                </button>
-                            </container>
-                        </view>
-                        <actions>
-                            <sendMessage name="exampleButton2Tapped">
-                                <messageName>exampleMessage</messageName>
-                                <messageTarget>navigation</messageTarget>
-                            </sendMessage>
-                        </actions>
-                    </screen>
-                </pushController>
+                <sendMessage name="exampleButtonTapped">
+                    <message>
+                        <name>exampleMessage</name>
+                        <destinationType>self</destinationType>
+                    </message>
+                </sendMessage>
+                <showAlert name="exampleMessage">Message received and understood!</showAlert>
             </actions>
         </screen>
-        <actions>
-            <showAlert name="exampleMessage">Example button 2 tapped!</showAlert>
-        </actions>
     </navigation>
 </workflow>
 ```
 
-In this case, when the first button is tapped, the second screen controller is created by the first screen controller; so when the second button is tapped, it sends a message to the first screen controller.  The message target (navigation) doesn't match the screen controller, so it passes the message on to its creator, the navigation controller.  This does match the target of the message, and so it looks for a matching action, finds one, and shows an alert.
+In this case, when the button is tapped, the screen controller receives the `exampleButtonTapped` message, and performs the matching action.  This sends the `exampleMessage` message to itself, and so it performs the matching action again, which in this case shows an alert.
 
-Targeted messages can get passed all the way out to your app delegate, where the `context:didReceiveWorkflowMessage:` delegate message will be called. This is how you implement things like API calls.  Views should not send targeted messages.
+You can use the 'descendant' destination type to send messages to descendant controllers.  For example:
+
+```xml
+<workflow>
+    <navigation>
+        <screen>
+            <title>Example</title>
+            <navigationItem>
+                <rightBarButtonItem>
+                    <barButtonItem>
+                        <title>Submit</title>
+                        <message>submitBarButtonTapped</message>
+                    </barButtonItem>
+                </rightBarButtonItem>
+            </navigationItem>
+            <form name="theForm">
+                <container>
+                    <label>Example text</label>
+                    <textField name="exampleText"></textField>
+                </container>
+            </view>
+            <actions>
+                <sendMessage name="leftBarButtonTapped">
+                    <message>
+                        <name>submit</name>
+                        <destinationType>descendant</destinationType>
+                        <destinationName>theForm</destinationName>
+                    </message>
+                </sendMessage>
+            </actions>
+        </screen>
+    </navigation>
+</workflow>
+```
+
+In this case, when the bar button is tapped, the screen controller receives the `submitBarButtonTapped` message; it then sends the `submit` message to its descendant with the name `theForm`.
+
+The fourth type of destination is `rootDelegate`.  Messages with this destination type get passed all the way out to your app delegate, where the `context:didReceiveWorkflowMessage:` delegate message will be called. This is how you implement things like API calls.
 
 Note the difference between the name of the action, and the name of the message:
 
 ```xml
 <sendMessage name="exampleButton2Tapped">
-    <messageTarget>navigation</messageTarget>
-    <messageName>exampleMessageName</messageName>
+    <message>
+        <name>exampleMessageName</name>
+    </message>
 </sendMessage>
 ```
 
@@ -372,7 +394,7 @@ The action is named `exampleButton2Tapped`, but it sends a message named `exampl
 Contexts
 --------
 
-Earlier, we said "In general, messages are passed on to the creator of the controller".  To explain what's actually happening, it's necessary to introduce the concept of the workflow context.  We've seen one already, when we set up the workflow:
+Earlier, we said "By default, messages are passed on to the creator of the controller".  To explain what's actually happening, it's necessary to introduce the concept of the workflow context.  We've seen one already, when we set up the workflow:
 
 ```ObjC
     WFSContext *context = [WFSContext contextWithDelegate:self];
@@ -417,7 +439,7 @@ We've seen an example schema which pushes a new controller onto the navigation s
 </workflow>
 ```
 
-Now when the user taps the button, the `loadSchema` action is performed.  This sends a message with target "loadSchema" and name "/path/to/other/schema.xml" along the delegate chain and waits for a response.  When the response is received, it looks to see whether it was successful, and if it was then it looks at the parameters of the context coming back with the response.  If the value for the key "schema" contains a schema, it adds that to its original context and performs the success action.
+Now when the user taps the button, the `loadSchema` action is performed.  This sends a message with name "loadSchema" with "/path/to/other/schema.xml" in its context's parameters along the delegate chain and waits for a response.  When the response is received, it looks to see whether it was successful, and if it was then it looks at the parameters of the context coming back with the response.  If the value for the key "schema" contains a schema, it adds that to its original context and performs the success action.
 
 In this case, the success action is a `pushController` action, which knows that if it has no parameters it should look at its context for a "schema" key, and if it finds one create that schema and check whether it is a `UIViewController`.  If it is, then it pushes the controller onto the stack.
 
@@ -426,12 +448,18 @@ One part is missing here: actually reading the file.  The framework makes no ass
 ```ObjC
 - (BOOL)context:(WFSContext *)contect didReceiveWorkflowMessage:(WFSMessage *)message
 {
-    if ([message.target isEqualToString:WFSLoadSchemaActionMessageTarget])
+    if ([message.name isEqualToString:WFSLoadSchemaActionMessageName])
     {
         NSError *error = nil;
-        NSURL *xmlURL = [NSURL fileURLWithPath:message.name];
-        WFSSchema *schema = [[[WFSXMLParser alloc] initWithContentsOfURL:xmlURL] parse:&error];
-        WFSResult *result = nil;   
+        WFSSchema *schema = nil;
+        WFSResult *result = nil;
+
+        NSString *path = message.context.parameters[WFSLoadSchemaActionPathKey];
+        if (path)
+        {
+            NSURL *xmlURL = [NSURL fileURLWithPath:message.name];
+            schema = [[[WFSXMLParser alloc] initWithContentsOfURL:xmlURL] parse:&error];
+        }
 
         if (schema)
         {
@@ -441,7 +469,7 @@ One part is missing here: actually reading the file.  The framework makes no ass
         }
         else
         {
-            NSLog(@"Error loading schema at %@: %@", xmlURL, error);
+            NSLog(@"Error loading schema at %@: %@", path, error);
             result = [WFSResult failureResultWithContext:message.context];
         }
 

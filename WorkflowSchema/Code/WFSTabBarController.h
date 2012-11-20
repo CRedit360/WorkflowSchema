@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WFSSchematising.h"
 
-extern NSString * const WFSTabsMessageTarget;
-
 @interface WFSTabBarController : UITabBarController <WFSSchematising, WFSContextDelegate>
 
 @property (nonatomic, retain) NSArray *actions;

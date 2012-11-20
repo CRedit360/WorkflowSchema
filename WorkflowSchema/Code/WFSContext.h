@@ -55,7 +55,7 @@ extern NSString * const WFSContextException;
  *  This is called when an unrecoverable error occurs.  Implementing apps are advised to use this
  *  to give the user the information they need to put together a support request.
  */
-- (void)context:(WFSContext *)contect didReceiveWorkflowError:(NSError *)error;
+- (void)context:(WFSContext *)context didReceiveWorkflowError:(NSError *)error;
 
 /*
  *  This is called when the workflow wants a message handled.  Implementors should either return NO
@@ -63,6 +63,6 @@ extern NSString * const WFSContextException;
  *  MUST eventually call -respondWithResult: on the message that is passed.  This can occur later if
  *  e.g. asynchronouse communication is required.  -respondWithResult: can be called safely from any queue.
  */
-- (BOOL)context:(WFSContext *)contect didReceiveWorkflowMessage:(WFSMessage *)message;
+- (BOOL)context:(WFSContext *)context didReceiveWorkflowMessage:(WFSMessage *)message;
 
 @end

@@ -160,16 +160,16 @@
         WFSSchema *tableSchema = [[WFSSchema alloc] initWithTypeName:@"table" attributes:nil parameters:@[
                                       [[WFSSchema alloc] initWithTypeName:@"tableSection" attributes:nil parameters:@[
                                            [[WFSSchema alloc] initWithTypeName:@"tableCell" attributes:nil parameters:@[
-                                                [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectCellA"],
+                                                [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectCellA" ]],
                                                 [[WFSSchemaParameter alloc] initWithName:@"text" value:@"1a"],
                                            ]],
                                            [[WFSSchema alloc] initWithTypeName:@"tableCell" attributes:nil parameters:@[
-                                                [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectCellB"],
+                                                [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectCellB" ]],
                                                 [[WFSSchemaParameter alloc] initWithName:@"text" value:@"1b"],
                                            ]],
                                            [[WFSSchema alloc] initWithTypeName:@"tableCell" attributes:nil parameters:@[
                                                 [[WFSSchemaParameter alloc] initWithName:@"accessoryType" value:@"detailDisclosureIndicatorButton"],
-                                                [[WFSSchemaParameter alloc] initWithName:@"message" value:@"didSelectCellC"],
+                                                [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectCellC" ]],
                                                 [[WFSSchemaParameter alloc] initWithName:@"detailDisclosureMessage" value:@"didSelectCellCAccessory"],
                                                 [[WFSSchemaParameter alloc] initWithName:@"text" value:@"1c"],
                                            ]],
@@ -299,102 +299,6 @@
         WSTAssert([cellD.textLabel.text isEqual:@"1d"]);
         WSTAssert([cellD.detailTextLabel.text isEqual:@"1d detail"]);
 
-        return KIFTestStepResultSuccess;
-        
-    }]];
-    
-    return scenario;
-}
-
-+ (id)scenarioUnitTestTablesHandleMessages
-{
-    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test table controller handles 'table' messages and passes on others"];
-    
-    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
-        
-        NSError *error = nil;
-        
-        WFSSchema *tableSchema = [[WFSSchema alloc] initWithTypeName:@"table" attributes:nil parameters:@[
-                                      [[WFSSchema alloc] initWithTypeName:@"tableSection" attributes:nil parameters:@[
-                                           [[WFSSchema alloc] initWithTypeName:@"tableCell" attributes:nil parameters:@[ @"Text"]]
-                                      ]],
-                                      [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
-                                           [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:@{@"name":@"test"} parameters:nil],
-                                           [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:nil parameters:nil]
-                                      ]]
-                                 ]];
-        
-        WSTTestContext *context = [[WSTTestContext alloc] init];
-        
-        WFSTableController *tableController = (WFSTableController *)[tableSchema createObjectWithContext:context error:&error];
-        WSTFailOnError(error);
-        WSTAssert([tableController isKindOfClass:[WFSTableController class]]);
-        WSTAssert(tableController.actions.count == 2);
-        
-        WSTTestAction *firstAction = tableController.actions[0];
-        WSTTestAction *secondAction = tableController.actions[1];
-        
-        WFSContext *messageContext = [WFSContext contextWithDelegate:tableController];
-        
-        WFSMessage *firstMessage = [WFSMessage messageWithTarget:@"table" name:@"test" context:messageContext responseHandler:nil];
-        [messageContext sendWorkflowMessage:firstMessage];
-        WSTAssert([WSTTestAction lastTestAction] == firstAction);
-        
-        WFSMessage *secondMessage = [WFSMessage messageWithTarget:@"table" name:@"different name" context:messageContext responseHandler:nil];
-        [messageContext sendWorkflowMessage:secondMessage];
-        WSTAssert([WSTTestAction lastTestAction] == secondAction);
-        
-        WSTAssert([context.messages isEqualToArray:@[]]);
-        
-        WFSMessage *thirdMessage = [WFSMessage messageWithTarget:@"different type" name:@"test" context:messageContext responseHandler:nil];
-        [messageContext sendWorkflowMessage:thirdMessage];
-        
-        WSTAssert([context.messages isEqualToArray:@[ thirdMessage ]]);
-        
-        return KIFTestStepResultSuccess;
-        
-    }]];
-    
-    return scenario;
-}
-
-
-+ (id)scenarioUnitTestSendTableMessageFromTable
-{
-    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that 'table' messages sent by a table go up a level"];
-    
-    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
-        
-        NSError *error = nil;
-        
-        WFSSchema *tableSchema = [[WFSSchema alloc] initWithTypeName:@"table" attributes:nil parameters:@[
-                                      [[WFSSchema alloc] initWithTypeName:@"tableSection" attributes:nil parameters:@[
-                                           [[WFSSchema alloc] initWithTypeName:@"tableCell" attributes:nil parameters:@[ @"Text"]]
-                                      ]],
-                                      [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
-                                           [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:@{@"name":@"test1"} parameters:@[
-                                                [[WFSSchemaParameter alloc] initWithName:@"messageTarget" value:@"table"],
-                                                [[WFSSchemaParameter alloc] initWithName:@"messageName" value:@"test2"]
-                                           ]]
-                                      ]]
-                                 ]];
-        
-        WSTTestContext *context = [[WSTTestContext alloc] init];
-        
-        WFSTableController *tableController = (WFSTableController *)[tableSchema createObjectWithContext:context error:&error];
-        WSTFailOnError(error);
-        WSTAssert([tableController isKindOfClass:[WFSTableController class]]);
-        
-        [tableController.tableView reloadData];
-        WFSTableCell *tableCell = (WFSTableCell *)[tableController.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-        
-        WFSMessage *messageGoingIn = [WFSMessage messageWithTarget:@"table" name:@"test1" context:tableCell.workflowContext responseHandler:nil];
-        [tableCell.workflowContext sendWorkflowMessage:messageGoingIn];
-        WSTAssert(context.messages.count == 1);
-        WFSMessage *messageComingOut = context.messages[0];
-        WSTAssert([messageComingOut.target isEqual:@"table"]);
-        WSTAssert([messageComingOut.name isEqual:@"test2"]);
-        
         return KIFTestStepResultSuccess;
         
     }]];

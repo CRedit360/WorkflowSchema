@@ -35,12 +35,22 @@
 
 + (NSArray *)defaultSchemaParameters
 {
-    return [[super defaultSchemaParameters] arrayByPrependingObjectsFromArray:@[ @[ [NSString class], @"title"] ]];
+    return [[super defaultSchemaParameters] arrayByPrependingObjectsFromArray:@[
+            
+            @[ [NSString class], @"title"],
+            @[ [WFSMessage class], @"message" ]
+            
+    ]];
 }
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"title" : [NSString class], @"message" : @[ [WFSMessage class], [NSString class] ] }];
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
+            
+            @"title" : [NSString class],
+            @"message" : @[ [WFSMessage class], [NSString class] ]
+            
+    }];
 }
 
 @end

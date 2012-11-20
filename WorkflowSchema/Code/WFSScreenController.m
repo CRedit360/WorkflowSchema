@@ -12,8 +12,6 @@
 #import "WFSTabBarItem.h"
 #import "WFSMacros.h"
 
-NSString * const WFSScreenMessageTarget = @"screen";
-
 @interface WFSScreenController ()
 
 @property (nonatomic, strong) WFSSchema *viewSchema;
@@ -101,11 +99,6 @@ NSString * const WFSScreenMessageTarget = @"screen";
 }
 
 #pragma mark - Actions
-
-+ (NSString *)actionWorkflowMessageTarget
-{
-    return WFSScreenMessageTarget;
-}
 
 WFS_UIVIEWCONTROLLER_LIFECYCLE
 

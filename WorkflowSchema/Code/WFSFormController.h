@@ -10,8 +10,6 @@
 #import "WFSAction.h"
 #import "WFSFormView.h"
 
-extern NSString * const WFSFormMessageTarget;
-
 // some messages are special-cased for forms
 extern NSString * const WFSFormSubmitActionName;
 

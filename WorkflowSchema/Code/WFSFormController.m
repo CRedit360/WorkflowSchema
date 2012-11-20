@@ -11,9 +11,8 @@
 #import "WFSFormTrigger.h"
 #import "WFSMacros.h"
 
-#import "UIView+WFSViewsAction.h"
+#import "UIView+WorkflowSchema.h"
 
-NSString * const WFSFormMessageTarget = @"form";
 NSString * const WFSFormSubmitActionName = @"submit";
 NSString * const WFSFormDidSubmitActionName = @"didSubmit";
 NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
@@ -295,11 +294,6 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
 }
 
 #pragma mark - Actions
-
-+ (NSString *)actionWorkflowMessageTarget
-{
-    return WFSFormMessageTarget;
-}
 
 - (WFSResult *)performActionName:(NSString *)name context:(WFSContext *)context
 {

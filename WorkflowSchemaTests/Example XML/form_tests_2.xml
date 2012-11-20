@@ -34,11 +34,9 @@
                 <showAlert name="didNotSubmit">
                     <message>All fields must be filled</message>
                 </showAlert>
+                <sendMessage name="form3done">form2done</sendMessage>
             </actions>
         </form>
-        <sendMessage name="form3done">
-            <messageTarget>screen</messageTarget>
-            <messageName>form2done</messageName>
-        </sendMessage>
+        <sendMessage name="form2done">form2done</sendMessage>
     </screen>
 </workflow>

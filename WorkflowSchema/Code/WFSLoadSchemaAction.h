@@ -8,8 +8,10 @@
 
 #import "WFSAction.h"
 
-extern NSString * const WFSLoadSchemaActionMessageTarget; // Tells the message delegate to load a schema
-extern NSString * const WFSLoadSchemaActionSchemaKey;
+extern NSString * const WFSLoadSchemaActionMessageName; // Tells the message delegate to load a schema
+
+extern NSString * const WFSLoadSchemaActionPathKey;   // The path will be contained in this key
+extern NSString * const WFSLoadSchemaActionSchemaKey; // The schema should be returned in this key
 
 @interface WFSLoadSchemaAction : WFSAction
 

@@ -163,27 +163,4 @@ static char * const WFSSchematisingNameKey = "name";
     if (outError) *outError = error;
     return (error == nil);
 }
-
-#pragma mark - Message sending
-
-- (void)sendMessageFromParameterWithName:(NSString *)name context:(id)context
-{
-    NSError *error = nil;
-    id message = [self schemaParameterWithName:name context:context error:&error];
-    if ([message isKindOfClass:[NSString class]])
-    {
-        message = [WFSMessage messageWithTarget:nil name:message context:context responseHandler:nil];
-    }
-    
-    if ([message isKindOfClass:[WFSMessage class]])
-    {
-        [context sendWorkflowMessage:message];
-    }
-    else
-    {
-        if (!error) error = WFSError(@"Could not find message for parameter %@", name);
-        [context sendWorkflowError:error];
-    }
-}
-
 @end

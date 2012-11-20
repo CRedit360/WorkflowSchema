@@ -1,5 +1,5 @@
 //
-//  UIView+WFSViewsAction.h
+//  UIView+WorkflowSchema.h
 //  WorkflowSchema
 //
 //  Created by Simon Booth on 02/11/2012.
@@ -8,15 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    
-    WFSViewsActionStateStable = 0,
-    WFSViewsActionStateShowing,
-    WFSViewsActionStateHiding
-    
-} WFSViewsActionState;
-
-@interface UIView (WFSViewsAction)
+@interface UIView (WorkflowSchema)
 
 - (NSArray *)subviewsWithWorkflowNames:(NSArray *)names;
 

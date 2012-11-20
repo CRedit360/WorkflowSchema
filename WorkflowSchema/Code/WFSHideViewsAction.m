@@ -7,7 +7,7 @@
 //
 
 #import "WFSHideViewsAction.h"
-#import "UIView+WFSViewsAction.h"
+#import "UIView+WorkflowSchema.h"
 
 @implementation WFSHideViewsAction
 

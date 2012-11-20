@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WFSSchematising.h"
 #import "WFSFormInput.h"
-#import "UIView+WFSViewsAction.h"
+#import "UIView+WorkflowSchema.h"
 
 @interface WFSTextField : UITextField <WFSSchematising, WFSResponsiveInput>
 
