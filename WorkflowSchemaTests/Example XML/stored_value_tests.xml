@@ -42,7 +42,12 @@
                 </message>
                 <multipleActions name="success">
                     <storeValues />
-                    <reloadData />
+                    <sendMessage>
+                        <message>
+                            <destinationType>self</destinationType>
+                            <name>reloadData</name>
+                        </message>
+                    </sendMessage>
                 </multipleActions>
             </sendMessage>
         </actions>

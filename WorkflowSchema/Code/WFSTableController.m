@@ -13,6 +13,7 @@
 #import "WFSSchema+WFSGroupedParameters.h"
 #import "UIViewController+WFSSchematising.h"
 
+NSString * const WFSTableReloadDataMessageName = @"reloadData";
 NSString * const WFSTableDidSelectCellActionName = @"didSelectCell";
 
 @interface WFSTableController () <WFSContextDelegate>
@@ -156,9 +157,19 @@ NSString * const WFSTableDidSelectCellActionName = @"didSelectCell";
     if (error) [context sendWorkflowError:error];
 }
 
-- (void)reloadData
+#pragma mark - Actions
+
+- (WFSResult *)performActionName:(NSString *)name context:(WFSContext *)context
 {
-    [self.tableView reloadData];
+    if ([name isEqualToString:WFSTableReloadDataMessageName])
+    {
+        [self.tableView reloadData];
+        return [WFSResult successResultWithContext:context];
+    }
+    else
+    {
+        return [super performActionName:name context:context];
+    }
 }
 
 #pragma mark - Table view delegate and data source

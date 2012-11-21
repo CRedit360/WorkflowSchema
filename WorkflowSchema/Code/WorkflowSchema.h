@@ -52,7 +52,6 @@
 #import "WFSShowViewsAction.h"
 #import "WFSHideViewsAction.h"
 #import "WFSStoreValuesAction.h"
-#import "WFSReloadDataAction.h"
 
 #import "WFSFormTrigger.h"
 #import "WFSFormInput.h"

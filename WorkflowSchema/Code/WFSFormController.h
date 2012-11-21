@@ -11,7 +11,7 @@
 #import "WFSFormView.h"
 
 // some messages are special-cased for forms
-extern NSString * const WFSFormSubmitActionName;
+extern NSString * const WFSFormSubmitMessageName;
 
 // A submitted form will try to perform one of didSubmit or didNotSubmit.
 extern NSString * const WFSFormDidSubmitActionName;

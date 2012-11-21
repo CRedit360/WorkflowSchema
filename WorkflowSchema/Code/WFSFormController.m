@@ -13,7 +13,7 @@
 
 #import "UIView+WorkflowSchema.h"
 
-NSString * const WFSFormSubmitActionName = @"submit";
+NSString * const WFSFormSubmitMessageName = @"submit";
 NSString * const WFSFormDidSubmitActionName = @"didSubmit";
 NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
 
@@ -297,7 +297,7 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
 
 - (WFSResult *)performActionName:(NSString *)name context:(WFSContext *)context
 {
-    if ([name isEqualToString:WFSFormSubmitActionName])
+    if ([name isEqualToString:WFSFormSubmitMessageName])
     {
         return [self submitForm];
     }

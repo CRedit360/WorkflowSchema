@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WFSSchematising.h"
 
+extern NSString * const WFSTableReloadDataMessageName;
 extern NSString * const WFSTableDidSelectCellActionName;
 
 @interface WFSTableController : UITableViewController <WFSSchematising>
@@ -16,7 +17,5 @@ extern NSString * const WFSTableDidSelectCellActionName;
 @property (nonatomic, strong) id tableHeaderView;
 @property (nonatomic, strong) id sections;
 @property (nonatomic, strong) id tableFooterView;
-
-- (void)reloadData;
 
 @end
