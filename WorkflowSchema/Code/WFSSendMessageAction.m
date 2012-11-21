@@ -103,8 +103,7 @@
     }
     else
     {
-        NSError *error = nil;
-        WFSError(@"Message with name %@, destination type %d, destination name %@ was not handled", message.name, message.destinationType, message.destinationName);
+        NSError *error = WFSError(@"Message with name %@, destination type %d, destination name %@ was not handled", message.name, message.destinationType, message.destinationName);
         [context sendWorkflowError:error];
         return [WFSResult failureResultWithContext:context];
     }
