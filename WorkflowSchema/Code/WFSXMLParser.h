@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "WFSSchema.h"
 
+extern NSString * const WFSXMLParserException;
+extern NSString * const WFSXMLParserStackKey;
+
 @interface WFSXMLParser : NSObject
 
 - (id)initWithParser:(NSXMLParser *)parser;

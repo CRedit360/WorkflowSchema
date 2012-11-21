@@ -83,7 +83,7 @@
 
 #pragma mark - Simple views
 
-#define WSTScreenXMLFormat @"<workflow><screen><title>Test title</title><view>%@</view></screen>"
+#define WSTScreenXMLFormat @"<workflow><screen><title>Test title</title><view>%@</view></screen></workflow>"
 
 + (id)scenarioUnitTestParseButtonTag
 {

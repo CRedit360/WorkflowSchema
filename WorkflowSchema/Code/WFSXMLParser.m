@@ -12,6 +12,9 @@
 #import "WFSSchemaParameter.h"
 #import "WFSSchematising.h"
 
+NSString * const WFSXMLParserException = @"WFSXMLParserException";
+NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
+
 #define WFSParserLog(X, args...) { if ([[[NSProcessInfo processInfo] environment] objectForKey:@"WFS_DEBUG_PARSER"]) NSLog(X, ## args); }
 
 @interface WFSXMLParser () <NSXMLParserDelegate>
@@ -83,8 +86,8 @@
     if (!self.documentType)
     {
         WFSParserLog(@"Found document type %@", elementName);
-        if (self.parseStack.count > 0) [NSException raise:@"WFSXMLInvalidException" format:@"Invalid XML"];
-        if (self.resultSchema || self.resultError) [NSException raise:@"WFSXMLInvalidException" format:@"Invalid XML"];
+        if (self.parseStack.count > 0) [self raiseException:@"Stack non-empty at start"];
+        if (self.resultSchema || self.resultError) [self raiseException:@"Attempted to reuse parser"];
         self.documentType = elementName;
         return;
     }
@@ -156,13 +159,13 @@
             WFSParserLog(@"Found value %@ for %@", string, parameter.name);
             if (!parameter.value) parameter.value = string;
         }
-        else if ([element isKindOfClass:[WFSSchema class]])
+        else if ([element isKindOfClass:[WFSMutableSchema class]])
         {
             WFSMutableSchema *schema = element;
             WFSParserLog(@"Found parameter %@ for %@", string, schema.typeName);
             [schema addParameter:string];
         }
-        else [NSException raise:@"WFSXMLInvalidException" format:@"Invalid XML"];
+        else [self raiseException:@"Cannot add characters to current element"];
     }
 }
 
@@ -170,7 +173,7 @@
 {
     if (elementName == self.documentType)
     {
-        if (self.parseStack.count > 0) [NSException raise:@"WFSXMLInvalidException" format:@"Invalid XML"];
+        if (self.parseStack.count > 0) [self raiseException:@"Document ended but stack non-empty"];
         return;
     }
     
@@ -213,9 +216,36 @@
         {
             self.resultSchema = element;
         }
-        else [NSException raise:@"WFSXMLInvalidException" format:@"Invalid XML"];
+        else [self raiseException:@"Document ended but result is not a schema"];
     }
-    else [NSException raise:@"WFSXMLInvalidException" format:@"Invalid XML"];
+    else [self raiseException:@"Tag ended but no current element"];
+}
+
+- (void)raiseException:(NSString *)format, ...
+{
+    va_list args;
+    va_start(args, format);
+    NSString *reason = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    
+    NSMutableArray *stack = [NSMutableArray array];
+    for (id element in self.parseStack)
+    {
+        if ([element isKindOfClass:[WFSSchema class]])
+        {
+            [stack addObject:[element typeName]];
+        }
+        else if ([element isKindOfClass:[WFSSchemaParameter class]])
+        {
+            [stack addObject:[element name]];
+        }
+        else
+        {
+            [stack addObject:[element description]];
+        }
+    }
+    
+    [[NSException exceptionWithName:WFSXMLParserException reason:reason userInfo:@{ WFSXMLParserStackKey : stack }] raise];
 }
 
 @end
