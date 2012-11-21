@@ -42,6 +42,123 @@
     return scenario;
 }
 
++ (id)scenarioUnitTestParameterProxyReplacementMissing
+{
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test parameter proxies when keyPath is not found in context"];
+    
+    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
+        
+        NSError *error = nil;
+        
+        WFSSchema *labelSchema = [[WFSSchema alloc] initWithTypeName:@"label" attributes:nil parameters:@[
+                                      [[WFSSchemaParameter alloc] initWithName:@"text" value:
+                                           [[WFSParameterProxy alloc] initWithTypeName:@"string" attributes:@{ @"keyPath" : @"testKey" } parameters:nil]
+                                      ]
+                                 ]];
+        
+        WSTTestContext *context = [[WSTTestContext alloc] init];
+        context.parameters = @{  };
+        
+        WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
+        WSTAssert(error);
+        WSTAssert(!label)
+        
+        return KIFTestStepResultSuccess;
+        
+    }]];
+    
+    return scenario;
+}
+
++ (id)scenarioUnitTestParameterProxyReplacementTwoPossibilitiesOnePresent
+{
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that multiple proxies can be used if only one keyPath is present"];
+    
+    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
+        
+        NSError *error = nil;
+        
+        WFSSchema *labelSchema = [[WFSSchema alloc] initWithTypeName:@"label" attributes:nil parameters:@[
+                                      [[WFSSchemaParameter alloc] initWithName:@"text" value:@[
+                                           [[WFSParameterProxy alloc] initWithTypeName:@"string" attributes:@{ @"keyPath" : @"testKey1" } parameters:nil],
+                                           [[WFSParameterProxy alloc] initWithTypeName:@"string" attributes:@{ @"keyPath" : @"testKey2" } parameters:nil]
+                                      ]]
+                                 ]];
+        
+        WSTTestContext *context = [[WSTTestContext alloc] init];
+        context.parameters = @{ @"testKey2" : @"Test text" };
+        
+        WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
+        WSTFailOnError(error);
+        WSTAssert([label.text isEqual:@"Test text"]);
+        
+        return KIFTestStepResultSuccess;
+        
+    }]];
+    
+    return scenario;
+}
+
++ (id)scenarioUnitTestParameterProxyReplacementTwoPossibilitiesOnePresentAlternativeSchemaLayout
+{
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that multiple proxies can be used if only one keyPath is present (alternative schema layout)"];
+    
+    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
+        
+        NSError *error = nil;
+        
+        WFSSchema *labelSchema = [[WFSSchema alloc] initWithTypeName:@"label" attributes:nil parameters:@[
+                                      [[WFSSchemaParameter alloc] initWithName:@"text" value:
+                                           [[WFSParameterProxy alloc] initWithTypeName:@"string" attributes:@{ @"keyPath" : @"testKey1" } parameters:nil]
+                                      ],
+                                      [[WFSSchemaParameter alloc] initWithName:@"text" value:
+                                           [[WFSParameterProxy alloc] initWithTypeName:@"string" attributes:@{ @"keyPath" : @"testKey2" } parameters:nil]
+                                      ]
+                                 ]];
+        
+        WSTTestContext *context = [[WSTTestContext alloc] init];
+        context.parameters = @{ @"testKey2" : @"Test text" };
+        
+        WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
+        WSTFailOnError(error);
+        WSTAssert([label.text isEqual:@"Test text"]);
+        
+        return KIFTestStepResultSuccess;
+        
+    }]];
+    
+    return scenario;
+}
+
++ (id)scenarioUnitTestParameterProxyReplacementTwoPossibilitiesBothPresent
+{
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that multiple proxies cannot be used if multiple keyPaths are present"];
+    
+    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
+        
+        NSError *error = nil;
+        
+        WFSSchema *labelSchema = [[WFSSchema alloc] initWithTypeName:@"label" attributes:nil parameters:@[
+                                      [[WFSSchemaParameter alloc] initWithName:@"text" value:@[
+                                           [[WFSParameterProxy alloc] initWithTypeName:@"string" attributes:@{ @"keyPath" : @"testKey1" } parameters:nil],
+                                           [[WFSParameterProxy alloc] initWithTypeName:@"string" attributes:@{ @"keyPath" : @"testKey2" } parameters:nil]
+                                      ]]
+                                 ]];
+        
+        WSTTestContext *context = [[WSTTestContext alloc] init];
+        context.parameters = @{ @"testKey1" : @"Test text", @"testKey2" : @"More test text" };
+        
+        WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
+        WSTAssert(error);
+        WSTAssert(!label)
+        
+        return KIFTestStepResultSuccess;
+        
+    }]];
+    
+    return scenario;
+}
+
 + (id)scenarioUnitTestParameterProxyUnusedDefault
 {
     KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test parameter proxies defaults are ignored if the keypath is found in the context"];

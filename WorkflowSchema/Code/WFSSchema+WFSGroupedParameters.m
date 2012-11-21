@@ -124,6 +124,13 @@
                         break;
                     }
                     
+                    if (!newValue)
+                    {
+                        // If eager-loading made this nil, then we've nothing to do.
+                        didAddParameter = YES;
+                        continue;
+                    }
+                    
                     BOOL didParseParameter = [self parseParameterName:parameterName value:&newValue error:&error];
                     
                     if (!didParseParameter)
@@ -207,16 +214,15 @@
                 return NO;
             }
             
-            [newValues addObject:newSubValue];
+            if (newSubValue) [newValues addObject:newSubValue];
         }
     }
     else if ([value isKindOfClass:[WFSSchema class]])
     {
         value = [(WFSSchema *)value createObjectWithContext:context error:&error];
         
-        if (!value)
+        if (error)
         {
-            if (!error) error = WFSError(@"Failed to eager load parameter %@", name);
             if (outError) *outError = error;
             return NO;
         }

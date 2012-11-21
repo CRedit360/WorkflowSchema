@@ -42,12 +42,9 @@
         for (__strong id subObject in object)
         {
             subObject = [self createProxiedObject:subObject context:context error:&error];
-            if (error)
-            {
-                proxiedObjects = nil;
-                break;
-            }
-            [proxiedObjects addObject:subObject];
+            
+            if (error) break;
+            if (subObject) [proxiedObjects addObject:subObject];
         }
         
         object = proxiedObjects;
@@ -59,7 +56,7 @@
             object = [(WFSSchema *)object createObjectWithContext:context error:&error];
         }
         
-        if (![object isKindOfClass:self.schemaClass])
+        if (object && ![object isKindOfClass:self.schemaClass])
         {
             if (!error) error = WFSError(@"Proxied parameter %@ of class %@ did not match schema class %@", self.parameterKeyPath, [object class], self.schemaClass);
         }
@@ -77,7 +74,7 @@
     NSDictionary *groupedParameters = [self groupedParametersWithContext:context error:&error];
     
     WFSSchema *template = groupedParameters[@"template"];
-    if (object && [template isKindOfClass:[WFSSchema class]])
+    if (object && template)
     {
         object = [object flattenedArray];
         NSMutableArray *subObjects = [NSMutableArray array];
@@ -89,16 +86,15 @@
                 WFSMutableContext *subContext = [context mutableCopy];
                 subContext.parameters = parameters;
                 
-                id subObject = [template createObjectWithContext:subContext error:&error];
-                if ([subObject isKindOfClass:self.schemaClass])
-                {
-                    [subObjects addObject:subObject];
-                }
-                else
+                id subObject = [self createProxiedObject:template context:subContext error:&error];
+                
+                if (object && ![subObject isKindOfClass:self.schemaClass])
                 {
                     if (!error) error = WFSError(@"Proxied parameter %@ of class %@ did not match schema class %@", self.parameterKeyPath, [subObject class], self.schemaClass);
-                    break;
                 }
+                
+                if (error) break;
+                if (subObject) [subObjects addObject:subObject];
             }
             else
             {
