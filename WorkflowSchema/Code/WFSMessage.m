@@ -141,9 +141,9 @@ NSString * const WFSMessageErrorKey = @"error";
     }
 }
 
-- (void)respondWithError:(NSError *)error context:(WFSContext *)context
+- (void)respondWithError:(NSError *)error
 {
-    WFSMutableContext *errorContext = [context mutableCopy];
+    WFSMutableContext *errorContext = [self.context mutableCopy];
     errorContext.parameters = @{ WFSMessageErrorKey : error };
     [self respondWithResult:[WFSResult failureResultWithContext:errorContext]];
 }

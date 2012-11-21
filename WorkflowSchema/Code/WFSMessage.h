@@ -56,6 +56,6 @@ typedef void(^WFSMessageResponseHandler)(WFSResult *result);
 + (WFSMessage *)messageWithName:(NSString *)name destinationType:(WFSMessageDestinationType)destinationType destinationName:(NSString *)destinationName context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
 
 - (void)respondWithResult:(WFSResult *)result;
-- (void)respondWithError:(NSError *)error context:(WFSContext *)context;
+- (void)respondWithError:(NSError *)error;
 
 @end
