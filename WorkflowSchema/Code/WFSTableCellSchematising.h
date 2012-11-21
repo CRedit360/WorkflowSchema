@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) id message;
 @property (nonatomic, strong) id detailDisclosureMessage;
-
+@property (nonatomic, assign, getter = isSelectable) BOOL selectable;
 
 @end

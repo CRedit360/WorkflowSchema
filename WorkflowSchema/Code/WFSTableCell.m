@@ -28,6 +28,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _style = style;
+        _selectable = YES;
         
         WFS_SCHEMATISING_INITIALISATION
         
@@ -60,6 +61,15 @@
 {
     return [[super enumeratedSchemaParameters] dictionaryByAddingEntriesFromDictionary:@{
             
+            @"accessoryType" : @{
+            
+                    @"none"                            : @(UITableViewCellAccessoryNone),
+                    @"disclosureIndicator"             : @(UITableViewCellAccessoryDisclosureIndicator),
+                    @"detailDisclosureIndicatorButton" : @(UITableViewCellAccessoryDetailDisclosureButton),
+                    @"checkmark"                       : @(UITableViewCellAccessoryCheckmark)
+            
+            },
+            
             @"style" : @{
             
                     @"default"  :@(UITableViewCellStyleDefault),
@@ -69,12 +79,11 @@
             
             },
             
-            @"accessoryType" : @{
+            @"selectionStyle" : @{
             
-                    @"none"                            : @(UITableViewCellAccessoryNone),
-                    @"disclosureIndicator"             : @(UITableViewCellAccessoryDisclosureIndicator),
-                    @"detailDisclosureIndicatorButton" : @(UITableViewCellAccessoryDetailDisclosureButton),
-                    @"checkmark"                       : @(UITableViewCellAccessoryCheckmark)
+                    @"none" : @(UITableViewCellSelectionStyleNone),
+                    @"blue" : @(UITableViewCellSelectionStyleBlue),
+                    @"gray" : @(UITableViewCellSelectionStyleGray)
             
             }
             
@@ -105,10 +114,12 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
     
-            @"style"                   : [NSString class],
             @"text"                    : [NSString class],
             @"detailText"              : [NSString class],
-            @"accessoryType"           : [NSString class],
+            @"accessoryType"           : @[ [NSString class], [NSNumber class] ],
+            @"selectionStyle"          : @[ [NSString class], [NSNumber class] ],
+            @"style"                   : @[ [NSString class], [NSNumber class] ],
+            @"selectable"              : @[ [NSString class], [NSNumber class] ],
             @"image"                   : [UIImage class],
             @"message"                 : @[ [WFSMessage class], [NSString class] ],
             @"detailDisclosureMessage" : @[ [WFSMessage class], [NSString class] ]

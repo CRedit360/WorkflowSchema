@@ -173,11 +173,17 @@
                                                 [[WFSSchemaParameter alloc] initWithName:@"detailDisclosureMessage" value:@"didSelectCellCAccessory"],
                                                 [[WFSSchemaParameter alloc] initWithName:@"text" value:@"1c"],
                                            ]],
+                                           [[WFSSchema alloc] initWithTypeName:@"tableCell" attributes:nil parameters:@[
+                                                [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectCellD" ]],
+                                                [[WFSSchemaParameter alloc] initWithName:@"text" value:@"1b"],
+                                                [[WFSSchemaParameter alloc] initWithName:@"selectable" value:@"NO"],
+                                           ]],
                                       ]],
                                       [[WFSSchemaParameter alloc] initWithName:@"actions" value:@[
-                                          [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:@{@"name":@"didSelectCellA"} parameters:nil],
-                                          [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:@{@"name":@"didSelectCellC"} parameters:nil],
-                                          [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:nil parameters:nil]
+                                           [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:@{@"name":@"didSelectCellA"} parameters:nil],
+                                           [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:@{@"name":@"didSelectCellC"} parameters:nil],
+                                           [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:@{@"name":@"didSelectCellD"} parameters:nil],
+                                           [[WFSSchema alloc] initWithTypeName:@"testAction" attributes:nil parameters:nil]
                                       ]]
                                   ]];
         
@@ -191,34 +197,46 @@
         WSTAssert(tableView.delegate == tableController);
         WSTAssert(tableView.dataSource == tableController);
         
-        WSTAssert(tableController.actions.count == 3)
+        WSTAssert(tableController.actions.count == 4)
         
         WSTAssert([tableView numberOfSections] == 1);
-        WSTAssert([tableView numberOfRowsInSection:0] == 3);
+        WSTAssert([tableView numberOfRowsInSection:0] == 4);
         
         NSIndexPath *indexPathA = [NSIndexPath indexPathForRow:0 inSection:0];
+        [WSTTestAction clearRecentTestActions];
         [tableController tableView:tableView didSelectRowAtIndexPath:indexPathA];
         // the first action's name (didSelectCellA) matches the message of the cell (didSelectCellA) so it fires
         WSTAssert([WSTTestAction lastTestAction] == tableController.actions[0]);
         
         NSIndexPath *indexPathB = [NSIndexPath indexPathForRow:1 inSection:0];
+        [WSTTestAction clearRecentTestActions];
         [tableController tableView:tableView didSelectRowAtIndexPath:indexPathB];
         // the first action's name (didSelectCellA) does not match the message of the cell (didSelectCellB)
         // the second action's name (didSelectCellC) does not match the message of the cell (didSelectCellB)
-        // the third action has no name so it fires as a default
-        WSTAssert([WSTTestAction lastTestAction] == tableController.actions[2]);
+        // the third action's name (didSelectCellD) does not match the message of the cell (didSelectCellB)
+        // the fourth action has no name so it fires as a default
+        WSTAssert([WSTTestAction lastTestAction] == tableController.actions[3]);
         
         NSIndexPath *indexPathC = [NSIndexPath indexPathForRow:2 inSection:0];
+        [WSTTestAction clearRecentTestActions];
         [tableController tableView:tableView didSelectRowAtIndexPath:indexPathC];
         // the first action's name (didSelectCellA) does not match the message of the cell (didSelectCellC)
         // the second action's name (didSelectCellC) matches the message of the cell (didSelectCellC) so it fires
         WSTAssert([WSTTestAction lastTestAction] == tableController.actions[1]);
         
+        [WSTTestAction clearRecentTestActions];
         [tableController tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPathC];
         // the first action's name (didSelectCellA) does not match the detailDisclosureMessage of the cell (didSelectCellCAccessory)
         // the second action's name (didSelectCellC) does match the detailDisclosureMessage of the cell (didSelectCellCAccessory)
-        // the third action has no name so it fires as a default
-        WSTAssert([WSTTestAction lastTestAction] == tableController.actions[2]);
+        // the third action's name (didSelectCellD) does not match the detailDisclosureMessage of the cell (didSelectCellB)
+        // the fourth action has no name so it fires as a default
+        WSTAssert([WSTTestAction lastTestAction] == tableController.actions[3]);
+        
+        NSIndexPath *indexPathD = [NSIndexPath indexPathForRow:3 inSection:0];
+        [WSTTestAction clearRecentTestActions];
+        [tableController tableView:tableView didSelectRowAtIndexPath:indexPathD];
+        // the cell is not selectable, so no action fires
+        WSTAssert([WSTTestAction lastTestAction] == nil);
         
         return KIFTestStepResultSuccess;
         

@@ -199,8 +199,13 @@ NSString * const WFSTableDidSelectCellActionName = @"didSelectCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell<WFSTableCellSchematising> *cell = (UITableViewCell<WFSTableCellSchematising> *)[tableView cellForRowAtIndexPath:indexPath];
-    if (cell.message) [cell sendMessageFromParameterWithName:@"message" context:cell.workflowContext];
-    else [self performActionName:WFSTableDidSelectCellActionName context:cell.workflowContext];
+    
+    if (cell.selectable)
+    {
+        if (cell.message) [cell sendMessageFromParameterWithName:@"message" context:cell.workflowContext];
+        else [self performActionName:WFSTableDidSelectCellActionName context:cell.workflowContext];
+    }
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

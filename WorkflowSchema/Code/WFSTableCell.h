@@ -17,5 +17,6 @@
 @property (nonatomic, strong) id message;
 @property (nonatomic, strong) NSString *detailDisclosureMessage;
 @property (nonatomic, copy, readwrite) NSString *name;
+@property (nonatomic, assign, getter = isSelectable) BOOL selectable;
 
 @end
