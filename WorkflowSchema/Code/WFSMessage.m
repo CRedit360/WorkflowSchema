@@ -7,7 +7,10 @@
 //
 
 #import "WFSMessage.h"
+#import "WFSResult.h"
 #import "WFSSchema+WFSGroupedParameters.h"
+
+NSString * const WFSMessageErrorKey = @"error";
 
 @implementation WFSMessage
 
@@ -136,6 +139,13 @@
             handler(result);
         });
     }
+}
+
+- (void)respondWithError:(NSError *)error context:(WFSContext *)context
+{
+    WFSMutableContext *errorContext = [context mutableCopy];
+    errorContext.parameters = @{ WFSMessageErrorKey : error };
+    [self respondWithResult:[WFSResult failureResultWithContext:errorContext]];
 }
 
 @end

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "WFSSchematising.h"
 
+extern NSString * const WFSMessageErrorKey;
+
 typedef enum {
     
     WFSMessageDestinationDelegate = 0, // The message should be sent to the sender's immediate workflow delegate. destinationName is ignored.
@@ -54,5 +56,6 @@ typedef void(^WFSMessageResponseHandler)(WFSResult *result);
 + (WFSMessage *)messageWithName:(NSString *)name destinationType:(WFSMessageDestinationType)destinationType destinationName:(NSString *)destinationName context:(WFSContext *)context responseHandler:(WFSMessageResponseHandler)responseHandler;
 
 - (void)respondWithResult:(WFSResult *)result;
+- (void)respondWithError:(NSError *)error context:(WFSContext *)context;
 
 @end
