@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  WorkflowSchemaTests
+
+  Created by Simon Booth on 21/11/2012.
+  Copyright (c) 2012 CRedit360. All rights reserved.
+*/
+
+"key_1" = "value_1";
+"key_2" = "value_2";

@@ -17,25 +17,34 @@
     NSDictionary *groupedParameters = [schema groupedParametersWithContext:context error:outError];
     if (!groupedParameters) return nil;
     
+    NSString *key   = groupedParameters[@"key"];
     NSString *value = groupedParameters[@"value"];
+    NSString *table = groupedParameters[@"table"];
 
-    if (![value isKindOfClass:[NSString class]])
+    if (!key & !value)
     {
-        if (outError) *outError = WFSError(@"Value of class %@ is not a string", [value class]);
+        if (outError) *outError = WFSError(@"Strings must specify a key or a value");
         return nil;
     }
     
+    if (table && !key)
+    {
+        if (outError) *outError = WFSError(@"Strings may only specify a table if they also specify a key");
+        return nil;
+    }
+    
+    if (key)
+    {
+        value = [[NSBundle mainBundle] localizedStringForKey:key value:value table:table];
+    }
+                 
     self = [self initWithString:value];
+    
     if (self)
     {
         WFS_SCHEMATISING_PROPERTY_INITITIALISATION;
     }
     return self;
-}
-
-+ (NSArray *)mandatorySchemaParameters
-{
-    return [[super mandatorySchemaParameters] arrayByPrependingObject:@"value"];
 }
 
 + (NSArray *)defaultSchemaParameters
@@ -45,7 +54,13 @@
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"value" : [NSString class] }];
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
+            
+            @"key"   : [NSString class],
+            @"value" : [NSString class],
+            @"table" : [NSString class]
+            
+    }];
 }
 
 - (char)charValue
