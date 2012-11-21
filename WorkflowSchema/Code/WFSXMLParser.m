@@ -69,11 +69,13 @@
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
     WFSParserLog(@"Parser error: %@", [parseError localizedDescription]);
+    self.resultError = parseError;
 }
 
 - (void)parser:(NSXMLParser *)parser conditionErrorOccurred:(NSError *)conditionError
 {
     WFSParserLog(@"Parser condition error: %@", [conditionError localizedDescription]);
+    self.resultError = conditionError;
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
