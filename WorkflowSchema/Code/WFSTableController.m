@@ -196,15 +196,19 @@ NSString * const WFSTableDidSelectCellActionName = @"didSelectCell";
     return ((WFSTableSection *)self.cachedSections[section]).footerTitle;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell<WFSTableCellSchematising> *cell = (UITableViewCell<WFSTableCellSchematising> *)[tableView cellForRowAtIndexPath:indexPath];
+    if (!cell.selectable) return nil;
+    return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell<WFSTableCellSchematising> *cell = (UITableViewCell<WFSTableCellSchematising> *)[tableView cellForRowAtIndexPath:indexPath];
     
-    if (cell.selectable)
-    {
-        if (cell.message) [cell sendMessageFromParameterWithName:@"message" context:cell.workflowContext];
-        else [self performActionName:WFSTableDidSelectCellActionName context:cell.workflowContext];
-    }
+    if (cell.message) [cell sendMessageFromParameterWithName:@"message" context:cell.workflowContext];
+    else [self performActionName:WFSTableDidSelectCellActionName context:cell.workflowContext];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

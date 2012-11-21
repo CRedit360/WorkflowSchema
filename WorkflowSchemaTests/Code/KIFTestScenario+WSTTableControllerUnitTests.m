@@ -204,12 +204,14 @@
         
         NSIndexPath *indexPathA = [NSIndexPath indexPathForRow:0 inSection:0];
         [WSTTestAction clearRecentTestActions];
+        WSTAssert([tableController tableView:tableView willSelectRowAtIndexPath:indexPathA] == indexPathA);
         [tableController tableView:tableView didSelectRowAtIndexPath:indexPathA];
         // the first action's name (didSelectCellA) matches the message of the cell (didSelectCellA) so it fires
         WSTAssert([WSTTestAction lastTestAction] == tableController.actions[0]);
         
         NSIndexPath *indexPathB = [NSIndexPath indexPathForRow:1 inSection:0];
         [WSTTestAction clearRecentTestActions];
+        WSTAssert([tableController tableView:tableView willSelectRowAtIndexPath:indexPathB] == indexPathB);
         [tableController tableView:tableView didSelectRowAtIndexPath:indexPathB];
         // the first action's name (didSelectCellA) does not match the message of the cell (didSelectCellB)
         // the second action's name (didSelectCellC) does not match the message of the cell (didSelectCellB)
@@ -219,6 +221,7 @@
         
         NSIndexPath *indexPathC = [NSIndexPath indexPathForRow:2 inSection:0];
         [WSTTestAction clearRecentTestActions];
+        WSTAssert([tableController tableView:tableView willSelectRowAtIndexPath:indexPathC] == indexPathC);
         [tableController tableView:tableView didSelectRowAtIndexPath:indexPathC];
         // the first action's name (didSelectCellA) does not match the message of the cell (didSelectCellC)
         // the second action's name (didSelectCellC) matches the message of the cell (didSelectCellC) so it fires
@@ -233,10 +236,7 @@
         WSTAssert([WSTTestAction lastTestAction] == tableController.actions[3]);
         
         NSIndexPath *indexPathD = [NSIndexPath indexPathForRow:3 inSection:0];
-        [WSTTestAction clearRecentTestActions];
-        [tableController tableView:tableView didSelectRowAtIndexPath:indexPathD];
-        // the cell is not selectable, so no action fires
-        WSTAssert([WSTTestAction lastTestAction] == nil);
+        WSTAssert([tableController tableView:tableView willSelectRowAtIndexPath:indexPathD] == nil);
         
         return KIFTestStepResultSuccess;
         
