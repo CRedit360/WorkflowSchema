@@ -10,7 +10,7 @@
 #import "WFSActionButtonItem.h"
 #import "WFSCondition.h"
 
-NSString * WFSSearchBarTextKey = @"scope";
+NSString * WFSSearchBarTextKey = @"text";
 NSString * WFSSearchBarScopeKey = @"scope";
 
 @interface WFSSearchBarDelegate : NSObject <UISearchBarDelegate>; @end
@@ -142,10 +142,15 @@ NSString * WFSSearchBarScopeKey = @"scope";
 - (WFSMutableContext *)contextWithTextAndScope:(WFSContext *)context
 {
     WFSMutableContext *subContext = [super contextForSchemaParameters:context];
+    NSMutableDictionary *parameters = [subContext.parameters mutableCopy];
+    
+    if (self.text)
+    {
+        [parameters setObject:self.text forKey:WFSSearchBarTextKey];
+    }
     
     if (self.showsScopeBar)
     {
-        NSMutableDictionary *parameters = [subContext.parameters mutableCopy];
         NSString *scope = [self.scopeButtonItems[self.selectedScopeButtonIndex] workflowName];
         
         if (scope)
@@ -158,6 +163,7 @@ NSString * WFSSearchBarScopeKey = @"scope";
         }
     }
     
+    subContext.parameters = parameters;
     return subContext;
 }
 
