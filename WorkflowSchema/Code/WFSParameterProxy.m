@@ -81,6 +81,8 @@
     WFSSchema *template = groupedParameters[@"template"];
     if (object && template)
     {
+        BOOL objectIsArray = [object isKindOfClass:[NSArray class]];
+        
         object = [object flattenedArray];
         NSMutableArray *subObjects = [NSMutableArray array];
         
@@ -108,7 +110,14 @@
             }
         }
         
-        object = subObjects;
+        if (objectIsArray)
+        {
+            object = subObjects;
+        }
+        else
+        {
+            object = [subObjects lastObject];
+        }
     }
     else
     {
