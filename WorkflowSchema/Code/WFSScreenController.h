@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSArray *actions;
 
-@property (nonatomic, strong, readonly) WFSScreenView *screenView;
+@property (nonatomic, strong) WFSScreenView *screenView;
+@property (nonatomic, strong) WFSToolbar *toolbar;
 
 @end

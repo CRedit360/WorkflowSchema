@@ -40,8 +40,9 @@
 {
     return [[super defaultSchemaParameters] arrayByPrependingObjectsFromArray:@[
 
-    @[ [UIView class], @"view"],
-    @[ [UIViewController class], @"view"]
+            @[ [UIToolbar class], @"toolbar" ],
+            @[ [UIView class], @"view"],
+            @[ [UIViewController class], @"view"],
     
     ]];
 }
@@ -50,7 +51,8 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
     
-    @"view" : @[ [UIView class], [UIViewController class] ]
+            @"view"    : @[ [UIView class], [UIViewController class] ],
+            @"toolbar" : [UIToolbar class]
 
     }];
 }
@@ -88,6 +90,7 @@
     WFSScreenView *screenView = [[WFSScreenView alloc] initWithSchema:self.viewSchema context:self.viewContext error:&error];
     if (screenView)
     {
+        screenView.toolbar = self.toolbar;
         self.view = screenView;
     }
     else

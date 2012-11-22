@@ -6,8 +6,11 @@
 
 #import <UIKit/UIKit.h>
 #import "WFSHostView.h"
+#import "WFSToolbar.h"
 
 @interface WFSScreenView : WFSHostView
+
+@property (nonatomic, strong) WFSToolbar *toolbar;
 
 @end
 

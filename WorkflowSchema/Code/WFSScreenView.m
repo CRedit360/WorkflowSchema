@@ -33,8 +33,29 @@
 - (void)layoutSubviews
 {
     CGRect frame = self.bounds;
-    frame.size.height -= self.keyboardHeight;
-    self.hostedView.frame = frame;
+    CGFloat width = frame.size.width, height = frame.size.height;
+    CGFloat toolbarHeight = [self.toolbar sizeThatFits:frame.size].height;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        self.toolbar.frame = CGRectMake(0, 0, width, toolbarHeight);
+        self.hostedView.frame = CGRectMake(0, toolbarHeight, width, height - (toolbarHeight + self.keyboardHeight));
+    }
+    else
+    {
+        self.hostedView.frame = CGRectMake(0, 0, width, height - MAX(toolbarHeight, self.keyboardHeight));
+        self.toolbar.frame = CGRectMake(0, height - toolbarHeight, width, toolbarHeight);
+    }
+}
+
+- (void)setToolbar:(WFSToolbar *)toolbar
+{
+    if (toolbar != _toolbar)
+    {
+        [_toolbar removeFromSuperview];
+        _toolbar = toolbar;
+        if (_toolbar) [self addSubview:_toolbar];
+    }
 }
 
 #pragma mark - Notifications
