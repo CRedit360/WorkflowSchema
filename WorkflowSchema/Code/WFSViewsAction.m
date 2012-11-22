@@ -24,11 +24,6 @@ NSString * const WFSViewsActionNotificationViewKey = @"view";
     return [[super mandatorySchemaParameters] arrayByPrependingObject:@"viewNames"];
 }
 
-+ (NSArray *)defaultSchemaParameters
-{
-    return [[super defaultSchemaParameters] arrayByAddingObject:@[ [NSString class], @"viewNames" ]];
-}
-
 + (NSDictionary *)schemaParameterTypes
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{

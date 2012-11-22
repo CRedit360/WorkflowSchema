@@ -1,0 +1,36 @@
+<workflow>
+    <screen>
+        <container>
+            <label name="theLabel">Press a button!</label>
+            <button>
+                <title>Button 1</title>
+                <message>button1Tapped</message>
+            </button>
+            <button>
+                <title>Button 2</title>
+                <message>button2Tapped</message>
+            </button>
+            <button>
+                <title>Button 3</title>
+                <message>button3Tapped</message>
+            </button>
+        </container>
+        <actions>
+            <updateViews name="button1Tapped">
+                <viewNames>theLabel</viewNames>
+                <parameterName>text</parameterName>
+                <value>You pressed button 1.</value>
+            </updateViews>
+            <updateViews name="button2Tapped">
+                <viewNames>theLabel</viewNames>
+                <parameterName>text</parameterName>
+                <value>You pressed button 2.</value>
+            </updateViews>
+            <updateViews name="button3Tapped">
+                <viewNames>theLabel</viewNames>
+                <parameterName>text</parameterName>
+                <value>You pressed button 3.</value>
+            </updateViews>
+        </actions>
+    </screen>
+</workflow>

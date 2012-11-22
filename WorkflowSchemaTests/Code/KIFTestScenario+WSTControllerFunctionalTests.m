@@ -629,4 +629,26 @@
     return scenario;
 }
 
++ (id)scenarioFunctionalTestUpdatingViews
+{
+    KIFTestScenario *scenario = [self scenarioWithDescription:@"Test that updating views works"];
+    [scenario addStep:[KIFTestStep stepToSetupWindowWithWorkflow:@"updating_views_tests.xml"]];
+    
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Press a button!"]];
+    
+    [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Button 1"]];
+    [scenario addStep:[KIFTestStep stepToWaitForAbsenceOfViewWithAccessibilityLabel:@"Press a button!"]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"You pressed button 1."]];
+    
+    [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Button 2"]];
+    [scenario addStep:[KIFTestStep stepToWaitForAbsenceOfViewWithAccessibilityLabel:@"You pressed button 1."]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"You pressed button 2."]];
+    
+    [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Button 3"]];
+    [scenario addStep:[KIFTestStep stepToWaitForAbsenceOfViewWithAccessibilityLabel:@"You pressed button 2."]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"You pressed button 3."]];
+    
+    return scenario;
+}
+
 @end

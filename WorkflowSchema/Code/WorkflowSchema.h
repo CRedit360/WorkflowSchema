@@ -51,6 +51,7 @@
 #import "WFSReplaceRootControllerAction.h"
 #import "WFSShowViewsAction.h"
 #import "WFSHideViewsAction.h"
+#import "WFSUpdateViewsAction.h"
 #import "WFSStoreValuesAction.h"
 
 #import "WFSFormTrigger.h"

@@ -11,6 +11,11 @@
 
 @implementation WFSHideViewsAction
 
++ (NSArray *)defaultSchemaParameters
+{
+    return [[super defaultSchemaParameters] arrayByAddingObject:@[ [NSString class], @"viewNames" ]];
+}
+
 - (WFSResult *)performActionForController:(UIViewController *)controller context:(WFSContext *)context
 {
     NSArray *views = [controller.view subviewsWithWorkflowNames:self.viewNames];
