@@ -34,11 +34,6 @@
     return [[super arraySchemaParameters] arrayByPrependingObject:@"cells"];
 }
 
-+ (NSArray *)mandatorySchemaParameters
-{
-    return [[super mandatorySchemaParameters] arrayByPrependingObject:@"cells"];
-}
-
 + (NSArray *)defaultSchemaParameters
 {
     return [[super defaultSchemaParameters] arrayByPrependingObjectsFromArray:@[ @[ [NSString class], @"headerTitle" ], @[ [UITableViewCell class], @"cells" ] ]];
