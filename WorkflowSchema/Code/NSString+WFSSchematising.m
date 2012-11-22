@@ -37,9 +37,9 @@
     {
         value = [[NSBundle mainBundle] localizedStringForKey:key value:value table:table];
     }
-                 
-    self = [self initWithString:value];
     
+    // We use initWithFormat here to avoid the "Did you forget to nest alloc and init?" message
+    self = [self initWithFormat:@"%@", value];
     if (self)
     {
         WFS_SCHEMATISING_PROPERTY_INITITIALISATION;
