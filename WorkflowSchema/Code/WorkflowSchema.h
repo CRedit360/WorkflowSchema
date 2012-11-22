@@ -20,6 +20,7 @@
 #import "WFSLabel.h"
 #import "WFSSearchBar.h"
 #import "WFSTextField.h"
+#import "WFSToolbar.h"
 
 #import "WFSTapGestureRecognizer.h"
 #import "WFSLongPressGestureRecognizer.h"

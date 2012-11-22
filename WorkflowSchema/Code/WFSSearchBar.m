@@ -74,25 +74,10 @@ NSString * WFSSearchBarScopeKey = @"scope";
     ]];
 }
 
-+ (NSDictionary *)enumeratedSchemaParameters
-{
-    return [[super enumeratedSchemaParameters] dictionaryByAddingEntriesFromDictionary:@{
-            
-            @"barStyle" : @{
-            
-                    @"default" : @(UIBarStyleDefault),
-                    @"black"   : @(UIBarStyleBlack)
-            
-            }
-            
-    }];
-}
-
 + (NSDictionary *)schemaParameterTypes
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"barStyle"                 : @[ [NSString class], [NSNumber class] ],
             @"placeholder"              : [NSString class],
             @"prompt"                   : [NSString class],
             @"scopeButtonItems"         : [WFSActionButtonItem class],

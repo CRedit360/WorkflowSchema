@@ -255,7 +255,12 @@
         for (NSString *parameterName in Sort(parameters.allKeys))
         {
             NSArray *parameterTypes = [parameters[parameterName] flattenedArray];
-            BOOL parameterMixed = [parameterTypes containsObject:[NSString class]];
+            
+            BOOL parameterMixed = NO;
+            for (Class type in parameterTypes)
+            {
+                if ([[NSString class] isSubclassOfClass:type]) parameterMixed = YES;
+            }
             
             [xmlSchemaDefinition appendFormat:@"<xsd:group name=\"%@.%@\">\n", objectType, parameterName];
             [xmlSchemaDefinition appendString:@"  <xsd:choice>\n"];

@@ -56,6 +56,8 @@
 		F68389AC165E66D1005455EC /* NSNull+WorkflowSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = F68389AA165E66D1005455EC /* NSNull+WorkflowSchema.m */; };
 		F68389CC165E6BCA005455EC /* WFSUpdateViewsAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F68389CA165E6BCA005455EC /* WFSUpdateViewsAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68389CD165E6BCA005455EC /* WFSUpdateViewsAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F68389CB165E6BCA005455EC /* WFSUpdateViewsAction.m */; };
+		F68389F0165E776B005455EC /* WFSToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F68389EE165E776A005455EC /* WFSToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F68389F1165E776B005455EC /* WFSToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F68389EF165E776B005455EC /* WFSToolbar.m */; };
 		F68795BF165A82D900F495A1 /* WFSConditionalAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795BD165A82D900F495A1 /* WFSConditionalAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68795C0165A82D900F495A1 /* WFSConditionalAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795BE165A82D900F495A1 /* WFSConditionalAction.m */; };
 		F68795D3165A8C6E00F495A1 /* WFSPresenceCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -210,6 +212,8 @@
 		F68389AA165E66D1005455EC /* NSNull+WorkflowSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+WorkflowSchema.m"; sourceTree = "<group>"; };
 		F68389CA165E6BCA005455EC /* WFSUpdateViewsAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSUpdateViewsAction.h; sourceTree = "<group>"; };
 		F68389CB165E6BCA005455EC /* WFSUpdateViewsAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSUpdateViewsAction.m; sourceTree = "<group>"; };
+		F68389EE165E776A005455EC /* WFSToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSToolbar.h; sourceTree = "<group>"; };
+		F68389EF165E776B005455EC /* WFSToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSToolbar.m; sourceTree = "<group>"; };
 		F68795BD165A82D900F495A1 /* WFSConditionalAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSConditionalAction.h; sourceTree = "<group>"; };
 		F68795BE165A82D900F495A1 /* WFSConditionalAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSConditionalAction.m; sourceTree = "<group>"; };
 		F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSPresenceCondition.h; sourceTree = "<group>"; };
@@ -543,6 +547,8 @@
 				F6E797631632B0E1006F59F2 /* WFSTextField.m */,
 				F64C7F8416555BE800D248C0 /* WFSSearchBar.h */,
 				F64C7F8516555BE800D248C0 /* WFSSearchBar.m */,
+				F68389EE165E776A005455EC /* WFSToolbar.h */,
+				F68389EF165E776B005455EC /* WFSToolbar.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -727,6 +733,7 @@
 				F68795F1165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h in Headers */,
 				F68389AB165E66D1005455EC /* NSNull+WorkflowSchema.h in Headers */,
 				F68389CC165E6BCA005455EC /* WFSUpdateViewsAction.h in Headers */,
+				F68389F0165E776B005455EC /* WFSToolbar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +916,7 @@
 				F68795F2165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m in Sources */,
 				F68389AC165E66D1005455EC /* NSNull+WorkflowSchema.m in Sources */,
 				F68389CD165E6BCA005455EC /* WFSUpdateViewsAction.m in Sources */,
+				F68389F1165E776B005455EC /* WFSToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

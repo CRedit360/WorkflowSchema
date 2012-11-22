@@ -65,6 +65,7 @@
 		F651F629165247660056ECB7 /* table_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F651F61B165247660056ECB7 /* table_tests.xml */; };
 		F655CF69165A2ACD004410C9 /* searching_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F655CF68165A2ACD004410C9 /* searching_tests.xml */; };
 		F68389D0165E6F8A005455EC /* updating_views_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F68389CF165E6F8A005455EC /* updating_views_tests.xml */; };
+		F68389F5165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F68389F4165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m */; };
 		F686EAF0165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F686EAEF165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.m */; };
 		F686EAF3165D3FAF00A24DA8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F686EAF1165D3FAF00A24DA8 /* Localizable.strings */; };
 		F686EAF4165D3FAF00A24DA8 /* Test.strings in Resources */ = {isa = PBXBuildFile; fileRef = F686EAF2165D3FAF00A24DA8 /* Test.strings */; };
@@ -180,6 +181,8 @@
 		F651F61B165247660056ECB7 /* table_tests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = table_tests.xml; sourceTree = "<group>"; };
 		F655CF68165A2ACD004410C9 /* searching_tests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = searching_tests.xml; sourceTree = "<group>"; };
 		F68389CF165E6F8A005455EC /* updating_views_tests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = updating_views_tests.xml; sourceTree = "<group>"; };
+		F68389F3165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTToolbarTests.h"; sourceTree = "<group>"; };
+		F68389F4165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTToolbarTests.m"; sourceTree = "<group>"; };
 		F686EAEE165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTStringTests.h"; sourceTree = "<group>"; };
 		F686EAEF165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTStringTests.m"; sourceTree = "<group>"; };
 		F686EAF1165D3FAF00A24DA8 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -351,6 +354,8 @@
 				F642C10F163AEB4200CFAA80 /* KIFTestScenario+WSTTableControllerUnitTests.m */,
 				F642C106163AE52A00CFAA80 /* KIFTestScenario+WSTTextFieldUnitTests.h */,
 				F642C107163AE52A00CFAA80 /* KIFTestScenario+WSTTextFieldUnitTests.m */,
+				F68389F3165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.h */,
+				F68389F4165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m */,
 				F6E7062416411CE100E131BC /* KIFTestScenario+WSTViewSharedPropertyTests.h */,
 				F6E7062516411CE100E131BC /* KIFTestScenario+WSTViewSharedPropertyTests.m */,
 				F6AEB071163FE00900831297 /* KIFTestScenario+WSTXMLParserTests.h */,
@@ -569,6 +574,7 @@
 				F63AA069165656C100C3C775 /* KIFTestScenario+WSTSearchBarUnitTests.m in Sources */,
 				F68795CF165A84B200F495A1 /* KIFTestScenario+WSTConditionalActionTests.m in Sources */,
 				F686EAF0165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.m in Sources */,
+				F68389F5165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

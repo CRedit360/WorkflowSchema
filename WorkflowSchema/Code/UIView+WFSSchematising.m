@@ -32,6 +32,15 @@
 
     }];
     
+    if ([self instancesRespondToSelector:@selector(setBarStyle:)])
+    {
+        schemaParameterTypes = [schemaParameterTypes dictionaryByAddingEntriesFromDictionary:@{
+                                
+            @"barStyle" : @[ [NSString class], [NSValue class] ]
+                                
+        }];
+    }
+    
     if ([self conformsToProtocol:@protocol(UITextInput)])
     {
         schemaParameterTypes = [schemaParameterTypes dictionaryByAddingEntriesFromDictionary:@{
@@ -102,6 +111,13 @@
                     @"default" : @(UITextAutocorrectionTypeDefault),
                     @"no"      : @(UITextAutocorrectionTypeNo),
                     @"yes"     : @(UITextAutocorrectionTypeYes)
+            
+            },
+            
+            @"barStyle" : @{
+            
+                    @"default" : @(UIBarStyleDefault),
+                    @"black"   : @(UIBarStyleBlack)
             
             },
             
