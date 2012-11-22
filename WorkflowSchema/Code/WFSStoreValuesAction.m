@@ -10,20 +10,44 @@
 
 @implementation WFSStoreValuesAction
 
++ (NSArray *)mandatorySchemaParameters
+{
+    return [[super mandatorySchemaParameters] arrayByAddingObject:@"keys"];
+}
+
++ (NSArray *)arraySchemaParameters
+{
+    return [[super arraySchemaParameters] arrayByAddingObject:@"keys"];
+}
+
++ (NSArray *)defaultSchemaParameters
+{
+    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [NSString class], @"keys" ]];
+}
+
++ (NSDictionary *)schemaParameterTypes
+{
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"keys" : [NSString class] }];
+}
+
 - (WFSResult *)performActionForController:(UIViewController *)controller context:(WFSContext *)context
 {
-    NSError *error = nil;
+    NSMutableDictionary *values = [NSMutableDictionary dictionary];
     
-    if (!error)
-    {   
-        [controller storeValues:context.parameters];
-        return [WFSResult successResultWithContext:context];
-    }
-    else
+    for (NSString *key in self.keys)
     {
-        [context sendWorkflowError:error];
-        return [WFSResult failureResultWithContext:context];
+        if (context.parameters[key])
+        {
+            values[key] = context.parameters[key];
+        }
+        else
+        {
+            values[key] = [NSNull null];
+        }
     }
+    
+    [controller storeValues:context.parameters];
+    return [WFSResult successResultWithContext:context];
 }
 
 @end

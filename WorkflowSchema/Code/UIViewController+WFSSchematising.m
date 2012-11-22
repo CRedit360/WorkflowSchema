@@ -64,7 +64,10 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 {
     WFSMutableContext *subContext = [super contextForSchemaParameters:context];
     subContext.contextDelegate = self;
-    subContext.parameters = [self.storedValues dictionaryByAddingEntriesFromDictionary:context.parameters];
+    
+    // when creating a schema parameter, the stored values should win, or else what's the point of them?
+    subContext.parameters = [context.parameters dictionaryByAddingEntriesFromDictionary:self.storedValues];
+    
     return subContext;
 }
 
@@ -144,7 +147,10 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 {
     WFSMutableContext *subContext = [context mutableCopy];
     subContext.contextDelegate = self;
+    
+    // when performing an action, the context's values should win, or else how could we store values?
     subContext.parameters = [self.storedValues dictionaryByAddingEntriesFromDictionary:context.parameters];
+    
     return subContext;
 }
 

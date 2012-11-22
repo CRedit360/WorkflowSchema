@@ -10,4 +10,6 @@
 
 @interface WFSStoreValuesAction : WFSAction
 
+@property (nonatomic, strong) NSArray *keys;
+
 @end
