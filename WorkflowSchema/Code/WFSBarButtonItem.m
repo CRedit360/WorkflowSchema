@@ -163,9 +163,12 @@
 
 - (void)tapped:(id)sender
 {
-    WFSMutableContext *context = [self.workflowContext mutableCopy];
-    context.actionSender = sender;
-    [self sendMessageFromParameterWithName:@"message" context:context];
+    if (self.message)
+    {
+        WFSMutableContext *context = [self.workflowContext mutableCopy];
+        context.actionSender = sender;
+        [self sendMessageFromParameterWithName:@"message" context:context];
+    }
 }
 
 @end
