@@ -550,7 +550,7 @@
     
     [scenario addStep:[KIFTestStep stepToSetupMessageWithTarget:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
        
-           @"sections" : @[
+           @"groups" : @[
                @{
                     @"title"   : @"A",
                     @"results" : @[
@@ -576,7 +576,7 @@
     
     [scenario addStep:[KIFTestStep stepToSetupMessageWithTarget:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
                        
-            @"sections" : @[
+            @"groups" : @[
                 @{
                     @"title"   : @"A",
                     @"results" : @[
@@ -600,7 +600,7 @@
     
     [scenario addStep:[KIFTestStep stepToSetupMessageWithTarget:@"scenarioFunctionalTestSearching" name:@"getResults" data:@{
                        
-            @"sections" : @[
+            @"groups" : @[
                 @{
                     @"title"   : @"A",
                     @"results" : @[

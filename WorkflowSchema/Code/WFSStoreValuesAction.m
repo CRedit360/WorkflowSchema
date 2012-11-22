@@ -12,41 +12,80 @@
 
 + (NSArray *)mandatorySchemaParameters
 {
-    return [[super mandatorySchemaParameters] arrayByAddingObject:@"keys"];
+    return [[super mandatorySchemaParameters] arrayByAddingObject:@"keyName"];
 }
+
 
 + (NSArray *)arraySchemaParameters
 {
-    return [[super arraySchemaParameters] arrayByAddingObject:@"keys"];
+    return [[super arraySchemaParameters] arrayByAddingObjectsFromArray:@[@"keyName", @"keyPath", @"value"]];
 }
 
 + (NSArray *)defaultSchemaParameters
 {
-    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [NSString class], @"keys" ]];
+    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [NSString class], @"keyName" ]];
 }
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"keys" : [NSString class] }];
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
+            
+            @"keyName" : [NSString class],
+            @"keyPath" : [NSString class],
+            @"value"   : [NSObject class]
+            
+    }];
 }
 
 - (WFSResult *)performActionForController:(UIViewController *)controller context:(WFSContext *)context
 {
-    NSMutableDictionary *values = [NSMutableDictionary dictionary];
+    NSError *error = nil;
+    NSMutableDictionary *valuesToStore = [NSMutableDictionary dictionary];
     
-    for (NSString *key in self.keys)
+    NSArray *keyNames = self.keyName;
+    NSArray *keyPaths = self.keyPath;
+    NSArray *values   = [self schemaParameterWithName:@"value" context:context error:&error];
+    
+    if (error)
     {
-        if (context.parameters[key])
-        {
-            values[key] = context.parameters[key];
-        }
-        else
-        {
-            values[key] = [NSNull null];
-        }
+        [context sendWorkflowError:error];
+        return [WFSResult failureResultWithContext:context];
     }
     
-    [controller storeValues:context.parameters];
+    if (!keyPaths) keyPaths = keyNames;
+    if (!values)
+    {
+        if (keyPaths.count != keyNames.count)
+        {
+            error = WFSError(@"Key path count does not match key name count");
+            [context sendWorkflowError:error];
+            return [WFSResult failureResultWithContext:context];
+        }
+        
+        NSMutableArray *createdValues = [NSMutableArray arrayWithCapacity:keyNames.count];
+        for (int i = 0; i < keyNames.count; i++)
+        {
+            NSString *keyPath = keyPaths[i];
+            id value = context.parameters[keyPath];
+            if (!value) value = [NSNull null];
+            [createdValues addObject:value];
+        }
+        values = createdValues;
+    }
+    
+    if (values.count != keyNames.count)
+    {
+        error = WFSError(@"Value count does not match key name count");
+        [context sendWorkflowError:error];
+        return [WFSResult failureResultWithContext:context];
+    }
+    
+    for (int i = 0; i < keyNames.count; i++)
+    {
+        valuesToStore[keyNames[i]] = values[i];
+    }
+    
+    [controller storeValues:valuesToStore];
     return [WFSResult successResultWithContext:context];
 }
 
