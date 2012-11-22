@@ -58,6 +58,8 @@
 		F68389CD165E6BCA005455EC /* WFSUpdateViewsAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F68389CB165E6BCA005455EC /* WFSUpdateViewsAction.m */; };
 		F68389F0165E776B005455EC /* WFSToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F68389EE165E776A005455EC /* WFSToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68389F1165E776B005455EC /* WFSToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F68389EF165E776B005455EC /* WFSToolbar.m */; };
+		F6838A27165E9814005455EC /* WFSNegatedCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F6838A25165E9813005455EC /* WFSNegatedCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6838A28165E9814005455EC /* WFSNegatedCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F6838A26165E9813005455EC /* WFSNegatedCondition.m */; };
 		F68795BF165A82D900F495A1 /* WFSConditionalAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795BD165A82D900F495A1 /* WFSConditionalAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68795C0165A82D900F495A1 /* WFSConditionalAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795BE165A82D900F495A1 /* WFSConditionalAction.m */; };
 		F68795D3165A8C6E00F495A1 /* WFSPresenceCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -214,6 +216,8 @@
 		F68389CB165E6BCA005455EC /* WFSUpdateViewsAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSUpdateViewsAction.m; sourceTree = "<group>"; };
 		F68389EE165E776A005455EC /* WFSToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSToolbar.h; sourceTree = "<group>"; };
 		F68389EF165E776B005455EC /* WFSToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSToolbar.m; sourceTree = "<group>"; };
+		F6838A25165E9813005455EC /* WFSNegatedCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSNegatedCondition.h; sourceTree = "<group>"; };
+		F6838A26165E9813005455EC /* WFSNegatedCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSNegatedCondition.m; sourceTree = "<group>"; };
 		F68795BD165A82D900F495A1 /* WFSConditionalAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSConditionalAction.h; sourceTree = "<group>"; };
 		F68795BE165A82D900F495A1 /* WFSConditionalAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSConditionalAction.m; sourceTree = "<group>"; };
 		F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSPresenceCondition.h; sourceTree = "<group>"; };
@@ -581,6 +585,8 @@
 				F65BE0551642D74200D6F569 /* WFSMultipleCondition.m */,
 				F68795D1165A8C6E00F495A1 /* WFSPresenceCondition.h */,
 				F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */,
+				F6838A25165E9813005455EC /* WFSNegatedCondition.h */,
+				F6838A26165E9813005455EC /* WFSNegatedCondition.m */,
 			);
 			name = Conditions;
 			sourceTree = "<group>";
@@ -734,6 +740,7 @@
 				F68389AB165E66D1005455EC /* NSNull+WorkflowSchema.h in Headers */,
 				F68389CC165E6BCA005455EC /* WFSUpdateViewsAction.h in Headers */,
 				F68389F0165E776B005455EC /* WFSToolbar.h in Headers */,
+				F6838A27165E9814005455EC /* WFSNegatedCondition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,6 +924,7 @@
 				F68389AC165E66D1005455EC /* NSNull+WorkflowSchema.m in Sources */,
 				F68389CD165E6BCA005455EC /* WFSUpdateViewsAction.m in Sources */,
 				F68389F1165E776B005455EC /* WFSToolbar.m in Sources */,
+				F6838A28165E9814005455EC /* WFSNegatedCondition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

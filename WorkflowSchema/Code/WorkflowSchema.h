@@ -33,6 +33,7 @@
 #import "WFSTableController.h"
 
 #import "WFSCondition.h"
+#import "WFSNegatedCondition.h"
 #import "WFSEqualityCondition.h"
 #import "WFSMultipleCondition.h"
 #import "WFSPresenceCondition.h"
