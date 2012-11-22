@@ -64,7 +64,7 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 {
     WFSMutableContext *subContext = [super contextForSchemaParameters:context];
     subContext.contextDelegate = self;
-    subContext.parameters = [subContext.parameters dictionaryByAddingEntriesFromDictionary:self.storedValues];
+    subContext.parameters = [self.storedValues dictionaryByAddingEntriesFromDictionary:context.parameters];
     return subContext;
 }
 
@@ -144,7 +144,7 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 {
     WFSMutableContext *subContext = [context mutableCopy];
     subContext.contextDelegate = self;
-    subContext.parameters = [subContext.parameters dictionaryByAddingEntriesFromDictionary:self.storedValues];
+    subContext.parameters = [self.storedValues dictionaryByAddingEntriesFromDictionary:context.parameters];
     return subContext;
 }
 
