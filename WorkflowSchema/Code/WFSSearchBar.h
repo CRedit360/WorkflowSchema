@@ -24,5 +24,6 @@ extern NSString * WFSSearchBarScopeKey;
 @property (nonatomic, copy) id cancelMessage;
 @property (nonatomic, copy) id bookmarkMessage;
 @property (nonatomic, copy) id resultsListMessage;
+@property (nonatomic, copy) id textDidChangeMessage;
 
 @end

@@ -106,7 +106,8 @@ NSString * WFSSearchBarScopeKey = @"scope";
             @"searchMessage"            : @[ [WFSMessage class], [NSString class] ],
             @"cancelMessage"            : @[ [WFSMessage class], [NSString class] ],
             @"bookmarkMessage"          : @[ [WFSMessage class], [NSString class] ],
-            @"resultsListMessage"       : @[ [WFSMessage class], [NSString class] ]
+            @"resultsListMessage"       : @[ [WFSMessage class], [NSString class] ],
+            @"textDidChangeMessage"     : @[ [WFSMessage class], [NSString class] ]
             
     }];
 }
@@ -219,6 +220,17 @@ NSString * WFSSearchBarScopeKey = @"scope";
     {
         WFSContext *actionContext = [workflowSearchBar contextWithTextAndScope:workflowSearchBar.workflowContext];
         [workflowSearchBar sendMessageFromParameterWithName:@"resultsListMessage" context:actionContext];
+    }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    WFSSearchBar *workflowSearchBar = (WFSSearchBar *)searchBar;
+    
+    if (workflowSearchBar.textDidChangeMessage)
+    {
+        WFSContext *actionContext = [workflowSearchBar contextWithTextAndScope:workflowSearchBar.workflowContext];
+        [workflowSearchBar sendMessageFromParameterWithName:@"textDidChangeMessage" context:actionContext];
     }
 }
 
