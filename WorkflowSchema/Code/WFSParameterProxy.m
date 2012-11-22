@@ -56,6 +56,11 @@
             object = [(WFSSchema *)object createObjectWithContext:context error:&error];
         }
         
+        if ([object isKindOfClass:[NSNull class]])
+        {
+            object = nil;
+        }
+        
         if (object && ![object isKindOfClass:self.schemaClass])
         {
             if (!error) error = WFSError(@"Proxied parameter %@ of class %@ did not match schema class %@", self.parameterKeyPath, [object class], self.schemaClass);
