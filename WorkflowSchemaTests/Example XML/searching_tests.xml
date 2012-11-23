@@ -52,7 +52,7 @@
                     <multipleActions name="success">
                         <storeValue>
                             <name>sections</name>
-                            <keyPath>groups</keyPath>
+                            <value><object keyPath="groups" /></value>
                         </storeValue>
                         <sendMessage>
                             <message>

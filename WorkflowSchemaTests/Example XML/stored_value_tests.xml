@@ -42,8 +42,8 @@
                 </message>
                 <multipleActions name="success">
                     <storeValue>
-                        <keyPath>sections</keyPath>
                         <name>sections</name>
+                        <value><object keyPath="sections" /></value>
                     </storeValue>
                     <sendMessage>
                         <message>

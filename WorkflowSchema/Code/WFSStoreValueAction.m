@@ -21,12 +21,16 @@
     return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [NSString class], @"name" ]];
 }
 
++ (NSArray *)lazilyCreatedSchemaParameters
+{
+    return [[super lazilyCreatedSchemaParameters] arrayByAddingObject:@"value"];
+}
+
 + (NSDictionary *)schemaParameterTypes
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
             @"name"    : [NSString class],
-            @"keyPath" : [NSString class],
             @"value"   : [NSObject class]
             
     }];
@@ -36,18 +40,20 @@
 {
     NSError *error = nil;
     
-    id value = [self schemaParameterWithName:@"value" context:context error:&error];
-    
-    if (error)
+    id value = nil;
+    if (self.value)
     {
-        [context sendWorkflowError:error];
-        return [WFSResult failureResultWithContext:context];
+        value = [self schemaParameterWithName:@"value" context:context error:&error];
+        
+        if (error)
+        {
+            [context sendWorkflowError:error];
+            return [WFSResult failureResultWithContext:context];
+        }
     }
-    
-    if (!value)
+    else
     {
-        if (self.keyPath) value = [context.parameters valueForKeyPath:self.keyPath];
-        else value = context.parameters;
+        value = context.parameters;
     }
     
     if (!value) value = [NSNull null];
