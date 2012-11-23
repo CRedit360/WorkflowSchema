@@ -15,6 +15,7 @@
 
 #import <objc/runtime.h>
 
+static char * const WFSUIViewControllerSchematisingShouldForwardMessagesKey = "shouldForwardMessages";
 static char * const WFSUIViewControllerSchematisingActionsKey = "actions";
 static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValues";
 
@@ -50,12 +51,13 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"title" : [NSString class],
+            @"title"                    : [NSString class],
             @"hidesBottomBarWhenPushed" : [NSString class],
-            @"navigationItem" : [WFSNavigationItem class],
-            @"tabBarItem" : [WFSTabBarItem class],
-            @"toolbarItems" : [WFSBarButtonItem class],
-            @"actions" : [WFSAction class]
+            @"navigationItem"           : [WFSNavigationItem class],
+            @"tabBarItem"               : [WFSTabBarItem class],
+            @"toolbarItems"             : [WFSBarButtonItem class],
+            @"actions"                  : [WFSAction class],
+            @"shouldForwardMessages"    : @[ [NSString class], [NSNumber class] ]
             
     }];
 }
@@ -109,6 +111,17 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 
 #pragma mark - Workflow message delegate
 
+- (BOOL)shouldForwardMessages
+{
+    NSNumber *shouldForwardMessages = objc_getAssociatedObject(self, WFSUIViewControllerSchematisingShouldForwardMessagesKey);
+    return [shouldForwardMessages boolValue];
+}
+
+- (void)setShouldForwardMessages:(BOOL)shouldForwardMessages
+{
+    objc_setAssociatedObject(self, WFSUIViewControllerSchematisingShouldForwardMessagesKey, @(shouldForwardMessages), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (void)context:(WFSContext *)contect didReceiveWorkflowError:(NSError *)error
 {
     return [self.workflowContext sendWorkflowError:error];
@@ -116,14 +129,14 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 
 - (BOOL)context:(WFSContext *)contect didReceiveWorkflowMessage:(WFSMessage *)message
 {
-    if (message.destinationType != WFSMessageDestinationRootDelegate)
+    if ((message.destinationType == WFSMessageDestinationRootDelegate) || self.shouldForwardMessages)
     {
-        WFSResult *response = [self performActionName:message.name context:message.context];;
-        [message respondWithResult:response];
-        return YES;
+        return [self.workflowContext sendWorkflowMessage:message];
     }
-    
-    return [self.workflowContext sendWorkflowMessage:message];
+
+    WFSResult *response = [self performActionName:message.name context:message.context];;
+    [message respondWithResult:response];
+    return YES;
 }
 
 #pragma mark - Shared action methods
