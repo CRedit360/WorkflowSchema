@@ -7,6 +7,7 @@
 //
 
 #import "WFSAction.h"
+#import "UIView+WorkflowSchema.h"
 
 extern NSString * const WFSViewsActionDidChangeHierarchyNotification;
 extern NSString * const WFSViewsActionNotificationViewKey;

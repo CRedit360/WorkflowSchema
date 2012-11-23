@@ -7,6 +7,7 @@
 //
 
 #import "WFSStoreValueAction.h"
+#import "UIViewController+WFSSchematising.h"
 
 @implementation WFSStoreValueAction
 

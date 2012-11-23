@@ -8,6 +8,7 @@
 
 #import "WFSParameterProxy.h"
 #import "WFSSchema+WFSGroupedParameters.h"
+#import "WFSSchematising.h"
 
 @implementation WFSParameterProxy
 

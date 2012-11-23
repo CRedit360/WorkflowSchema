@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 CRedit360. All rights reserved.
 //
 
-#import <WorkflowSchema/WorkflowSchema.h>
+#import "WFSControllerAction.h"
 
 @interface WFSReplaceRootControllerAction : WFSControllerAction
 
