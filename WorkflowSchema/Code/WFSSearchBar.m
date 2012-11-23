@@ -25,13 +25,11 @@ NSString * WFSSearchBarScopeKey = @"scope";
 
 - (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
-    self = [super init];
+    self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
         _searchBarDelegate = [[WFSSearchBarDelegate alloc] init];
         self.delegate = _searchBarDelegate;
-        
-        WFS_SCHEMATISING_INITIALISATION
         
         if (self.accessibilityLabel.length == 0)
         {

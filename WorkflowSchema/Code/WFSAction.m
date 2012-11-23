@@ -16,16 +16,6 @@ static NSUInteger WFSActionAnimationDisabledCount;
 
 @implementation WFSAction
 
-- (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
-{
-    self = [super init];
-    if (self)
-    {
-        WFS_SCHEMATISING_INITIALISATION
-    }
-    return self;
-}
-
 - (BOOL)shouldPerformActionForResultName:(NSString *)name
 {
     return (self.workflowName.length == 0) || [self.workflowName isEqualToString:name];

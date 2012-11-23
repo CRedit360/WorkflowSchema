@@ -13,12 +13,10 @@
 
 - (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
-    self = [super init];
+    self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
         _index = NSNotFound;
-        
-        WFS_SCHEMATISING_INITIALISATION
     }
     return self;
 }

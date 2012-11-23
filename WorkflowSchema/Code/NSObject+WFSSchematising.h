@@ -20,6 +20,11 @@ typedef BOOL(^WFSParameterCallback)(NSString *name, id value, NSError **outError
 @interface NSObject (WFSSchematising)
 
 /*
+ *  This is the initialiser that will be used when creating the object
+ */
+- (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError;
+
+/*
  *  This is the schema that the object was created with
  */
 @property (nonatomic, strong) WFSSchema *workflowSchema;

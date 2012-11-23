@@ -50,6 +50,7 @@
         else value = context.parameters;
     }
     
+    if (!value) value = [NSNull null];
     [controller storeValues:@{ self.name : value }];
     return [WFSResult successResultWithContext:context];
 }

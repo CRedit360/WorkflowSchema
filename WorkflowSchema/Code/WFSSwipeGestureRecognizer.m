@@ -13,11 +13,9 @@
 
 - (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
-    self = [super init];
+    self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
-        WFS_SCHEMATISING_INITIALISATION
-        
         [self addTarget:self action:@selector(handleWorkflowSwipe:)];
     }
     return self;

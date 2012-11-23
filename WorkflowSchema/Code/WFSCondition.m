@@ -10,16 +10,6 @@
 
 @implementation WFSCondition
 
-- (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
-{
-    self = [super init];
-    if (self)
-    {
-        WFS_SCHEMATISING_INITIALISATION;
-    }
-    return self;
-}
-
 + (NSArray *)lazilyCreatedSchemaParameters
 {
     return [[super lazilyCreatedSchemaParameters] arrayByPrependingObject:@"value"];

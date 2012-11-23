@@ -10,16 +10,6 @@
 
 @implementation WFSToolbar
 
-- (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
-{
-    self = [super init];
-    if (self)
-    {
-        WFS_SCHEMATISING_INITIALISATION;
-    }
-    return self;
-}
-
 + (NSArray *)arraySchemaParameters
 {
     return [[super arraySchemaParameters] arrayByPrependingObject:@"items"];
@@ -34,7 +24,7 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"items"     : [UIBarButtonItem class]
+            @"items" : [UIBarButtonItem class]
             
     }];
 }

@@ -47,6 +47,16 @@ static char * const WFSSchematisingNameKey = "name";
     objc_setAssociatedObject(self, WFSSchematisingNameKey, workflowName, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
+- (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
+{
+    self = [self init];
+    if (self)
+    {
+        WFS_SCHEMATISING_INITIALISATION
+    }
+    return self;
+}
+
 + (NSArray *)mandatorySchemaParameters
 {
     return @[];

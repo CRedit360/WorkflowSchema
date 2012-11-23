@@ -12,13 +12,11 @@
 
 - (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
-    self = [super init];
+    self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
         self.opaque = NO;
         self.backgroundColor = [UIColor clearColor];
-        
-        WFS_SCHEMATISING_INITIALISATION
     }
     return self;
 }

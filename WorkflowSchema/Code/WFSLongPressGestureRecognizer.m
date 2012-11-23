@@ -13,11 +13,9 @@
 
 - (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
-    self = [super init];
+    self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
-        WFS_SCHEMATISING_INITIALISATION
-        
         if (!self.beginMessage && !self.endMessage)
         {
             if (outError) *outError = WFSError(@"Long press must have a begin or end message");

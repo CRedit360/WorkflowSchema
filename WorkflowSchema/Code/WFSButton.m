@@ -14,11 +14,9 @@
 
 - (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
-    self = [super init];
+    self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
-        WFS_SCHEMATISING_INITIALISATION
-        
         if (([self titleForState:UIControlStateNormal].length == 0) && (self.accessibilityLabel.length == 0))
         {
             if (outError) *outError = WFSError(@"Buttons must have a title or an accessibilityLabel");

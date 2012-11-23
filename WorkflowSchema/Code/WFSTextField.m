@@ -21,14 +21,12 @@
 
 - (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
-    self = [super init];
+    self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
         _textInsets = UIEdgeInsetsMake(4, 8, 4, 8);
         _textFieldDelegate = [[WFSTextFieldDelegate alloc] init];
         self.delegate = _textFieldDelegate;
-        
-        WFS_SCHEMATISING_INITIALISATION
         
         if (self.accessibilityLabel.length == 0)
         {

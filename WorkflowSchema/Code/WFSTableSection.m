@@ -19,16 +19,6 @@
 
 @implementation WFSTableSection
 
-- (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
-{
-    self = [super init];
-    if (self)
-    {
-        WFS_SCHEMATISING_INITIALISATION
-    }
-    return self;
-}
-
 + (NSArray *)arraySchemaParameters
 {
     return [[super arraySchemaParameters] arrayByPrependingObject:@"cells"];

@@ -12,10 +12,9 @@
 
 - (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
-    self = [super init];
-    if (self) {
-        WFS_SCHEMATISING_INITIALISATION
-        
+    self = [super initWithSchema:schema context:context error:outError];
+    if (self)
+    {
         if (!self.image)
         {
             if (outError) *outError = WFSError(@"Image views must have an image");
