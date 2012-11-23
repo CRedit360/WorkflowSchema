@@ -29,6 +29,7 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
 
 + (void)initialize
 {
+    [self registerClass:[NSObject class] forTypeName:@"object"];
     [self registerClass:[NSString class] forTypeName:@"string"];
     [self registerClass:[UIImage class] forTypeName:@"image"];
     
