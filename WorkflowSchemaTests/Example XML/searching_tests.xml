@@ -50,10 +50,10 @@
                         <destinationName>scenarioFunctionalTestSearching</destinationName>
                     </message>
                     <multipleActions name="success">
-                        <storeValues>
+                        <storeValue>
                             <name>sections</name>
                             <keyPath>groups</keyPath>
-                        </storeValues>
+                        </storeValue>
                         <sendMessage>
                             <message>
                                 <destinationType>self</destinationType>

@@ -41,7 +41,10 @@
                     <destinationName>scenarioFunctionalTestStoredValues</destinationName>
                 </message>
                 <multipleActions name="success">
-                    <storeValues>sections</storeValues>
+                    <storeValue>
+                        <keyPath>sections</keyPath>
+                        <name>sections</name>
+                    </storeValue>
                     <sendMessage>
                         <message>
                             <destinationType>self</destinationType>

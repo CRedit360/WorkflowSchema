@@ -67,7 +67,7 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[WFSShowViewsAction class] forTypeName:@"showViews"];
     [self registerClass:[WFSHideViewsAction class] forTypeName:@"hideViews"];
     [self registerClass:[WFSUpdateViewsAction class] forTypeName:@"updateViews"];
-    [self registerClass:[WFSStoreValuesAction class] forTypeName:@"storeValues"];
+    [self registerClass:[WFSStoreValueAction class] forTypeName:@"storeValue"];
     
     [self registerClass:[WFSFormTrigger class] forTypeName:@"trigger"];
     
