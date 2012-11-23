@@ -51,7 +51,7 @@
                     </message>
                     <multipleActions name="success">
                         <storeValues>
-                            <keyName>sections</keyName>
+                            <name>sections</name>
                             <keyPath>groups</keyPath>
                         </storeValues>
                         <sendMessage>

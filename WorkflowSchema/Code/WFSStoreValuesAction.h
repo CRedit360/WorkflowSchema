@@ -10,8 +10,9 @@
 
 @interface WFSStoreValuesAction : WFSAction
 
-@property (nonatomic, strong) NSArray *keyName;
-@property (nonatomic, strong) NSArray *keyPath;
-@property (nonatomic, strong) id value;
+@property (nonatomic, strong) NSArray *name;    //Where to store the value
+@property (nonatomic, strong) id value;         // The value to store
+@property (nonatomic, strong) NSArray *keyPath; // Where to get the value in the context (if value is not set)
+
 
 @end
