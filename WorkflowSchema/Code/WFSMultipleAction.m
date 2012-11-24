@@ -35,10 +35,9 @@
 {
     for (WFSAction *action in self.actions)
     {
-        // Refresh the context each time, in case the user has stored some parameters
-        WFSContext *actionContext = [controller contextForPerformingActions:context];
-        WFSResult *result = [action performActionForController:controller context:actionContext];
+        WFSResult *result = [action performActionForController:controller context:context];
         if (!result.isSuccess) return result;
+        context = result.context;
     }
     
     return [WFSResult successResultWithContext:context];

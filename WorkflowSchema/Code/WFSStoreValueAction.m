@@ -57,8 +57,16 @@
     }
     
     if (!value) value = [NSNull null];
-    [controller storeValues:@{ self.name : value }];
-    return [WFSResult successResultWithContext:context];
+    NSDictionary *valuesToStore = @{ self.name : value };
+    
+    // Store the value in the controller
+    [controller storeValues:valuesToStore];
+    
+    // *also* store it in the current context
+    WFSMutableContext *responseContext = [context mutableCopy];
+    responseContext.parameters = [context.parameters dictionaryByAddingEntriesFromDictionary:valuesToStore];
+    
+    return [WFSResult successResultWithContext:responseContext];
 }
 
 @end
