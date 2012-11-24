@@ -10,8 +10,9 @@
 
 @interface WFSSendMessageAction : WFSAction
 
-@property (nonatomic, strong) id message;
+@property (nonatomic, strong) id message; // The message to send
 
-@property (nonatomic, strong) NSArray *actions;
+@property (nonatomic, strong) NSArray *actions;    // Actions to perform based on the response to the message
+@property (nonatomic, strong) NSArray *valueNames; // If set, the message context will be restricted to the keys with matching names
 
 @end

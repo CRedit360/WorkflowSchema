@@ -19,7 +19,12 @@
 
 + (NSArray *)arraySchemaParameters
 {
-    return [[super arraySchemaParameters] arrayByAddingObject:@"actions"];
+    return [[super arraySchemaParameters] arrayByAddingObjectsFromArray:@[
+            
+            @"actions",
+            @"valueNames"
+            
+    ]];
 }
 
 + (NSArray *)lazilyCreatedSchemaParameters
@@ -42,14 +47,31 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"message" : @[ [WFSMessage class], [NSString class], ],
-            @"actions" : [WFSAction class]
+            @"message"    : @[ [WFSMessage class], [NSString class], ],
+            @"actions"    : [WFSAction class],
+            @"valueNames" : [NSString class]
             
     }];
 }
 
 - (WFSResult *)performActionForController:(UIViewController *)controller context:(WFSContext *)context
 {
+    if (self.valueNames)
+    {
+        WFSMutableContext *restrictedContext = [context mutableCopy];
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:self.valueNames.count];
+        
+        for (NSString *name in self.valueNames)
+        {
+            id value = context.parameters[name];
+            if (value) parameters[name] = value;
+            else parameters[name] = [NSNull null];
+        }
+        
+        restrictedContext.parameters = parameters;
+        context = restrictedContext;
+    }
+    
     WFSMessage *message = [self messageFromParameterWithName:@"message" context:context];
     if (!message) return [WFSResult failureResultWithContext:context];
        

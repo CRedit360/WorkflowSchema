@@ -392,4 +392,54 @@
     return scenario;
 }
 
++ (id)scenarioUnitTestSendMessageActionWithValueNames
+{
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test the send message action with value names"];
+    
+    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
+        
+        NSError *error = nil;
+        
+        WFSSchema *actionSchema = [[WFSSchema alloc] initWithTypeName:@"sendMessage" attributes:nil parameters:@[
+                                       [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[@"test name"]],
+                                       [[WFSSchemaParameter alloc] initWithName:@"valueNames" value:@[ @"test1", @"test2" ]]
+                                  ]];
+        
+        WSTTestContext *context = [[WSTTestContext alloc] init];
+        
+        WFSSendMessageAction *sendMessageAction = (WFSSendMessageAction *)[actionSchema createObjectWithContext:context error:&error];
+        WSTFailOnError(error);
+        WSTAssert([sendMessageAction isKindOfClass:[WFSSendMessageAction class]]);
+        
+        WSTTestContext *controllerContext = [[WSTTestContext alloc] init];
+        controllerContext.messageResult = [WFSResult successResultWithContext:controllerContext];
+        
+        UIViewController *controller = [[UIViewController alloc] init];
+        controller.workflowContext = controllerContext;
+        
+        WSTTestContext *performanceContext = [[WSTTestContext alloc] init];
+        performanceContext.parameters = @{ @"test0" : @"value0", @"test1" : @"value1" };
+        performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
+        
+        WFSResult *resultWithSuccess = [sendMessageAction performActionForController:controller context:performanceContext];
+        WSTAssert(resultWithSuccess.isSuccess);
+        
+        WSTAssert(performanceContext.messages.count == 0);
+        WSTAssert(controllerContext.messages.count == 1);
+        
+        NSDictionary *expectedParameters = @{ @"test1" : @"value1", @"test2" : [NSNull null] };
+        
+        WFSMessage *firstMessage = controllerContext.messages[0];
+        WSTAssert([firstMessage.name isEqualToString:@"test name"]);
+        WSTAssert([firstMessage.context.parameters isEqual:expectedParameters]);
+        WSTAssert(firstMessage.destinationType == WFSMessageDestinationDelegate);
+        WSTAssert(firstMessage.destinationName == nil);
+        
+        return KIFTestStepResultSuccess;
+        
+    }]];
+    
+    return scenario;
+}
+
 @end
