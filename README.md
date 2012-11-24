@@ -18,7 +18,7 @@ and then
 $ pod install
 ```
 
-To add WorkflowSchema to a project without using cocoapods, check out the source and then drag WorkflowSchema.xcodeproj into the project's frameworks group:
+To add WorkflowSchema to a project without using cocoapods, you need to install [https://github.com/kstenerud/iOS-Universal-Framework](iOS-Universal-Framework).  Then check out the source and then drag WorkflowSchema.xcodeproj into the project's frameworks group:
 
 ![WorkflowSchema.xcodeproj in the project's frameworks group](http://credit360.github.com/WorkflowSchema/readme_images/add_framework.png)
 
