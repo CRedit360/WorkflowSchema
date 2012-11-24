@@ -7,6 +7,7 @@
 //
 
 #import "WFSMultipleAction.h"
+#import "UIViewController+WFSSchematising.h"
 
 @implementation WFSMultipleAction
 
@@ -34,7 +35,9 @@
 {
     for (WFSAction *action in self.actions)
     {
-        WFSResult *result = [action performActionForController:controller context:context];
+        // Refresh the context each time, in case the user has stored some parameters
+        WFSContext *actionContext = [controller contextForPerformingActions:context];
+        WFSResult *result = [action performActionForController:controller context:actionContext];
         if (!result.isSuccess) return result;
     }
     
