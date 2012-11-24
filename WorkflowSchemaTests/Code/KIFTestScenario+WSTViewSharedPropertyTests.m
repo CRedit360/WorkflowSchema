@@ -53,7 +53,7 @@
                                       [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"Text label"],
                                       [[WFSSchemaParameter alloc] initWithName:@"accessibilityHint" value:@"This is a label"],
                                       [[WFSSchemaParameter alloc] initWithName:@"accessibilityValue" value:@(1234)],
-                                      [[WFSSchemaParameter alloc] initWithName:@"accessibilityTraits" value:@"header,staticText,playsSound,summaryElement"],
+                                      [[WFSSchemaParameter alloc] initWithName:@"accessibilityTraits" value:@"staticText,playsSound,summaryElement"],
                                  ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
@@ -63,7 +63,7 @@
         WSTAssert([label.accessibilityLabel isEqual:@"Text label"]);
         WSTAssert([label.accessibilityHint isEqual:@"This is a label"]);
         WSTAssert([label.accessibilityValue isEqual:@(1234)]);
-        WSTAssert(label.accessibilityTraits == (UIAccessibilityTraitHeader | UIAccessibilityTraitStaticText | UIAccessibilityTraitPlaysSound | UIAccessibilityTraitSummaryElement));
+        WSTAssert(label.accessibilityTraits == (UIAccessibilityTraitStaticText | UIAccessibilityTraitPlaysSound | UIAccessibilityTraitSummaryElement));
         
         return KIFTestStepResultSuccess;
         

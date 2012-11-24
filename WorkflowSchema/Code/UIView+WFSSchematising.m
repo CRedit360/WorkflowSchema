@@ -85,8 +85,7 @@
                     @"startsMediaSession"       : @(UIAccessibilityTraitStartsMediaSession),
                     @"adjustable"               : @(UIAccessibilityTraitAdjustable),
                     @"allowsDirectInteraction"  : @(UIAccessibilityTraitAllowsDirectInteraction),
-                    @"causesPageTurn"           : @(UIAccessibilityTraitCausesPageTurn),
-                    @"header"                   : @(UIAccessibilityTraitHeader)
+                    @"causesPageTurn"           : @(UIAccessibilityTraitCausesPageTurn)
             
             }
             

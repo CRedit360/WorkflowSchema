@@ -16,4 +16,7 @@
 // charValue to boolValue.
 - (char)charValue;
 
+// On iOS 5, KVC attempts to call this, even though it's not defined on NSString.
+- (NSUInteger)unsignedIntValue;
+
 @end

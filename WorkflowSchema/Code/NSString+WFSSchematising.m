@@ -68,4 +68,9 @@
     return (char)[self boolValue];
 }
 
+- (NSUInteger)unsignedIntValue
+{
+    return [self intValue];
+}
+
 @end

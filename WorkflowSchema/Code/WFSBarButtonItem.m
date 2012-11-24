@@ -148,7 +148,7 @@
 
 - (BOOL)setSchemaParameterWithName:(NSString *)name value:(id)value context:(WFSContext *)context error:(NSError *__autoreleasing *)outError
 {
-    if ([@[ @"image", @"title", @"style" ] containsObject:name])
+    if ([@[ @"image", @"title", @"style", @"systemItem" ] containsObject:name])
     {
         // we had to deal with these in advance
         return YES;
