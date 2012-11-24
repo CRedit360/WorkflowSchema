@@ -31,7 +31,7 @@
                         <presentController>
                             <navigation>
                                 <screen keyPath="schema" />
-                                <sendMessage name="form2done">form2done</sendMessage>
+                                <shouldForwardAllMessages>YES</shouldForwardAllMessages>
                             </navigation>
                         </presentController>
                         <showAlert>Failed to load screen 2</showAlert>

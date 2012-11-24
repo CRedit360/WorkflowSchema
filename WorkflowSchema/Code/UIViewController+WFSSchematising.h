@@ -14,7 +14,7 @@
 
 @interface UIViewController (WFSSchematising) <WFSContextDelegate>
 
-@property (nonatomic, assign) BOOL shouldForwardMessages;
+@property (nonatomic, assign) BOOL shouldForwardAllMessages;
 
 @property (nonatomic, strong) NSArray *actions;
 - (NSString *)actionNameForSelector:(SEL)selector;
