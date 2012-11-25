@@ -159,6 +159,8 @@
 		F6EAC8E71633F9E00035D744 /* WFSMultipleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EAC8E51633F9DF0035D744 /* WFSMultipleAction.m */; };
 		F6EAC8EA1634004C0035D744 /* WFSActionButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F6EAC8E81634004C0035D744 /* WFSActionButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6EAC8ED163401310035D744 /* WFSActionButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EAC8EC163401310035D744 /* WFSActionButtonItem.m */; };
+		F6F3CFCB166276D600C7B4AB /* NSNumber+WFSSchematising.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F3CFC9166276D600C7B4AB /* NSNumber+WFSSchematising.h */; };
+		F6F3CFCC166276D600C7B4AB /* NSNumber+WFSSchematising.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3CFCA166276D600C7B4AB /* NSNumber+WFSSchematising.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -319,6 +321,8 @@
 		F6EAC8E51633F9DF0035D744 /* WFSMultipleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSMultipleAction.m; sourceTree = "<group>"; };
 		F6EAC8E81634004C0035D744 /* WFSActionButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSActionButtonItem.h; sourceTree = "<group>"; };
 		F6EAC8EC163401310035D744 /* WFSActionButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSActionButtonItem.m; sourceTree = "<group>"; };
+		F6F3CFC9166276D600C7B4AB /* NSNumber+WFSSchematising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+WFSSchematising.h"; sourceTree = "<group>"; };
+		F6F3CFCA166276D600C7B4AB /* NSNumber+WFSSchematising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+WFSSchematising.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,6 +415,10 @@
 				F6C0EBD0163A8DB200271964 /* NSArray+WorkflowSchema.m */,
 				F6C0EBD1163A8DB200271964 /* NSDictionary+WorkflowSchema.h */,
 				F6C0EBD2163A8DB200271964 /* NSDictionary+WorkflowSchema.m */,
+				F68389A9165E66D1005455EC /* NSNull+WorkflowSchema.h */,
+				F68389AA165E66D1005455EC /* NSNull+WorkflowSchema.m */,
+				F6F3CFC9166276D600C7B4AB /* NSNumber+WFSSchematising.h */,
+				F6F3CFCA166276D600C7B4AB /* NSNumber+WFSSchematising.m */,
 				F6C0EBD3163A8DB200271964 /* NSObject+WFSSchematising.h */,
 				F6C0EBD4163A8DB200271964 /* NSObject+WFSSchematising.m */,
 				F651F60916523EB90056ECB7 /* NSObject+WorkflowSchema.h */,
@@ -427,8 +435,6 @@
 				F62234C9163ED39700C90A71 /* UIViewController+WFSSchematising.m */,
 				F68795EF165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h */,
 				F68795F0165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m */,
-				F68389A9165E66D1005455EC /* NSNull+WorkflowSchema.h */,
-				F68389AA165E66D1005455EC /* NSNull+WorkflowSchema.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -741,6 +747,7 @@
 				F68389CC165E6BCA005455EC /* WFSUpdateViewsAction.h in Headers */,
 				F68389F0165E776B005455EC /* WFSToolbar.h in Headers */,
 				F6838A27165E9814005455EC /* WFSNegatedCondition.h in Headers */,
+				F6F3CFCB166276D600C7B4AB /* NSNumber+WFSSchematising.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -925,6 +932,7 @@
 				F68389CD165E6BCA005455EC /* WFSUpdateViewsAction.m in Sources */,
 				F68389F1165E776B005455EC /* WFSToolbar.m in Sources */,
 				F6838A28165E9814005455EC /* WFSNegatedCondition.m in Sources */,
+				F6F3CFCC166276D600C7B4AB /* NSNumber+WFSSchematising.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

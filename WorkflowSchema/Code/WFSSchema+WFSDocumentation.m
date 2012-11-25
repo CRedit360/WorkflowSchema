@@ -98,6 +98,7 @@
     {
         NSMutableSet *possibleObjectChildren = [NSMutableSet set];
         Class objectClass = registeredClasses[objectTypeName];
+        [documentTypeDescription appendFormat:@"<!-- %@ maps to %@ -->\n", objectTypeName, objectClass];
         
         NSDictionary *parameters = [objectClass schemaParameterTypes];
         for (NSString *parameterName in parameters.allKeys)
@@ -148,9 +149,8 @@
         }
         
         NSString *declaration = [self elementDeclarationForPossibleChildren:possibleObjectChildren.allObjects];
-        [documentTypeDescription appendFormat:@"<!-- %@ maps to %@ -->\n", objectTypeName, objectClass];
         [documentTypeDescription appendFormat:@"<!ELEMENT %@ %@ >\n", objectTypeName, (declaration.length > 0) ? [NSString stringWithFormat:@"(%@)*", declaration] : @"EMPTY"];
-        [documentTypeDescription appendFormat:@"<!ATTLIST %@\nname CDATA #IMPLIED\nclass CDATA #IMPLIED\nkeyPath CDATA #IMPLIED\n>\n\n", objectTypeName];
+        [documentTypeDescription appendFormat:@"<!ATTLIST %@\nname CDATA #IMPLIED\nlocale CDATA #IMPLIED\nclass CDATA #IMPLIED\nkeyPath CDATA #IMPLIED\n>\n\n", objectTypeName];
     }
     
     [documentTypeDescription appendString:@"<!-- PARAMETER ELEMENTS -->\n\n"];
@@ -222,12 +222,21 @@
     [xmlSchemaDefinition appendString:@"  </xsd:complexType>\n"];
     [xmlSchemaDefinition appendString:@"</xsd:element>\n\n"];
     
+    NSMutableSet *emittedClasses = [NSMutableSet setWithCapacity:registeredClasses.count];
+    
     for (NSString *objectTypeName in Sort(registeredClasses.allKeys))
     {
         Class objectType = registeredClasses[objectTypeName];
         BOOL objectMixed = [self objectTypeCanContainText:objectType];
         
         [xmlSchemaDefinition appendFormat:@"<!-- %@ maps to %@ -->\n", objectTypeName, objectType];
+        if ([emittedClasses containsObject:objectType])
+        {
+            [xmlSchemaDefinition appendFormat:@"<!-- %@ was already emitted -->\n\n", objectType];
+            continue;
+        }
+        else [emittedClasses addObject:objectType];
+        
         [xmlSchemaDefinition appendFormat:@"<xsd:complexType name=\"%@\" %@>\n", objectType, (objectMixed ? @"mixed=\"true\"" : @"")];
         
         NSDictionary *parameters = [objectType schemaParameterTypes];
@@ -248,6 +257,7 @@
         }
         
         [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"name\" type=\"xsd:string\" />\n"];
+        [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"locale\" type=\"xsd:string\" />\n"];
         [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"class\" type=\"xsd:string\" />\n"];
         [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"keyPath\" type=\"xsd:string\" />\n"];
         [xmlSchemaDefinition appendString:@"</xsd:complexType>\n\n"];

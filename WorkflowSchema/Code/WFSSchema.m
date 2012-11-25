@@ -31,6 +31,8 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
 {
     [self registerClass:[NSObject class] forTypeName:@"object"];
     [self registerClass:[NSString class] forTypeName:@"string"];
+    [self registerClass:[NSNumber class] forTypeName:@"number"];
+    [self registerClass:[NSNumber class] forTypeName:@"bool"];
     [self registerClass:[UIImage class] forTypeName:@"image"];
     
     [self registerClass:[WFSMessage class] forTypeName:@"message"];
@@ -123,6 +125,19 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
 + (Class<WFSSchematising>)registeredClassForTypeName:(NSString *)typeName
 {
     return [self registeredClasses][typeName];
+}
+
+- (NSString *)localeIdentifier
+{
+    NSString *localeIdentifier = self.attributes[@"locale"];
+    // We assume that the schema was written by the same people as the app, so their language is the default.
+    if (!localeIdentifier) localeIdentifier = [[NSBundle mainBundle] objectForInfoDictionaryKey:CFBridgingRelease(kCFBundleDevelopmentRegionKey)];
+    return localeIdentifier;
+}
+
+- (NSLocale *)locale
+{
+    return [[NSLocale alloc] initWithLocaleIdentifier:self.localeIdentifier];
 }
 
 - (NSString *)styleName
