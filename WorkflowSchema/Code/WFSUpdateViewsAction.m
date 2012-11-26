@@ -80,6 +80,7 @@
         }
     }
     
+    [self notifyDidChangeHierarchyOfView:controller.view];
     return [WFSResult successResultWithContext:context];
 }
 
