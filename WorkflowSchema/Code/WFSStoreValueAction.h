@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSString *name; // Where to store the value
 @property (nonatomic, strong) id value;       // The value to store
-
+@property (nonatomic, assign) BOOL transient; // If true, the value is only stored in the result's context. If false, it is also stored to the controller.
 
 @end

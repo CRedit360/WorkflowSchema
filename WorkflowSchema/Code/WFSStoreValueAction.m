@@ -30,8 +30,9 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"name"    : [NSString class],
-            @"value"   : [NSObject class]
+            @"name"      : [NSString class],
+            @"value"     : [NSObject class],
+            @"transient" : @[ [NSString class], [NSNumber class] ]
             
     }];
 }
@@ -60,7 +61,7 @@
     NSDictionary *valuesToStore = @{ self.name : value };
     
     // Store the value in the controller
-    [controller storeValues:valuesToStore];
+    if (!self.transient) [controller storeValues:valuesToStore];
     
     // *also* store it in the current context
     WFSMutableContext *responseContext = [context mutableCopy];

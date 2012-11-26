@@ -76,6 +76,7 @@
 		F6D976281647DDBA0080B77B /* KIFTestScenario+WSTParameterProxyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D976271647DDBA0080B77B /* KIFTestScenario+WSTParameterProxyTests.m */; };
 		F6E7062616411CE100E131BC /* KIFTestScenario+WSTViewSharedPropertyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E7062516411CE100E131BC /* KIFTestScenario+WSTViewSharedPropertyTests.m */; };
 		F6F3CFD016627B3B00C7B4AB /* KIFTestScenario+WSTNumberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3CFCF16627B3B00C7B4AB /* KIFTestScenario+WSTNumberTests.m */; };
+		F6F3CFE916637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3CFE816637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +203,8 @@
 		F6E7062516411CE100E131BC /* KIFTestScenario+WSTViewSharedPropertyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTViewSharedPropertyTests.m"; sourceTree = "<group>"; };
 		F6F3CFCE16627B3B00C7B4AB /* KIFTestScenario+WSTNumberTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTNumberTests.h"; sourceTree = "<group>"; };
 		F6F3CFCF16627B3B00C7B4AB /* KIFTestScenario+WSTNumberTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTNumberTests.m"; sourceTree = "<group>"; };
+		F6F3CFE716637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTStoreValueActionTests.h"; sourceTree = "<group>"; };
+		F6F3CFE816637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTStoreValueActionTests.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +354,8 @@
 				F63AA068165656C100C3C775 /* KIFTestScenario+WSTSearchBarUnitTests.m */,
 				F6223452163EADBA00C90A71 /* KIFTestScenario+WSTSendMessageActionTests.h */,
 				F6223453163EADBB00C90A71 /* KIFTestScenario+WSTSendMessageActionTests.m */,
+				F6F3CFE716637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.h */,
+				F6F3CFE816637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.m */,
 				F686EAEE165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.h */,
 				F686EAEF165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.m */,
 				F62234AE163EBEF800C90A71 /* KIFTestScenario+WSTTabControllerTests.h */,
@@ -581,6 +586,7 @@
 				F686EAF0165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.m in Sources */,
 				F68389F5165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m in Sources */,
 				F6F3CFD016627B3B00C7B4AB /* KIFTestScenario+WSTNumberTests.m in Sources */,
+				F6F3CFE916637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

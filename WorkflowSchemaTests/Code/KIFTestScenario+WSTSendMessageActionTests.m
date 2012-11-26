@@ -42,8 +42,8 @@
         WSTTestContext *performanceContext = [[WSTTestContext alloc] init];
         performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
         
-        WFSResult *resultWithSuccess = [sendMessageAction performActionForController:controller context:performanceContext];
-        WSTAssert(resultWithSuccess.isSuccess);
+        WFSResult *result = [sendMessageAction performActionForController:controller context:performanceContext];
+        WSTAssert(result.isSuccess);
         
         WSTAssert(performanceContext.messages.count == 0);
         WSTAssert(controllerContext.messages.count == 1);
@@ -95,8 +95,8 @@
         WSTTestContext *performanceContext = [[WSTTestContext alloc] init];
         performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
         
-        WFSResult *resultWithSuccess = [sendMessageAction performActionForController:controller context:performanceContext];
-        WSTAssert(resultWithSuccess.isSuccess);
+        WFSResult *result = [sendMessageAction performActionForController:controller context:performanceContext];
+        WSTAssert(result.isSuccess);
         
         WSTAssert(performanceContext.messages.count == 0);
         WSTAssert(controllerContext.messages.count == 1);
@@ -152,8 +152,8 @@
         WSTTestContext *performanceContext = [[WSTTestContext alloc] init];
         performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
         
-        WFSResult *resultWithSuccess = [sendMessageAction performActionForController:controller context:performanceContext];
-        WSTAssert(resultWithSuccess.isSuccess);
+        WFSResult *result = [sendMessageAction performActionForController:controller context:performanceContext];
+        WSTAssert(result.isSuccess);
         
         WSTAssert(performanceContext.messages.count == 1);
         WSTAssert(controllerContext.messages.count == 0);
@@ -212,8 +212,8 @@
         WSTTestContext *performanceContext = [[WSTTestContext alloc] init];
         performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
         
-        WFSResult *resultWithSuccess = [sendMessageAction performActionForController:controller context:performanceContext];
-        WSTAssert(resultWithSuccess.isSuccess);
+        WFSResult *result = [sendMessageAction performActionForController:controller context:performanceContext];
+        WSTAssert(result.isSuccess);
         
         WSTAssert(performanceContext.messages.count == 0);
         WSTAssert(controllerContext.messages.count == 0);
@@ -288,8 +288,8 @@
         WSTTestContext *performanceContext = [[WSTTestContext alloc] init];
         performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
         
-        WFSResult *resultWithSuccess = [sendMessageAction performActionForController:controller context:performanceContext];
-        WSTAssert(resultWithSuccess.isSuccess);
+        WFSResult *result = [sendMessageAction performActionForController:controller context:performanceContext];
+        WSTAssert(result.isSuccess);
         
         WSTAssert(performanceContext.messages.count == 0);
         WSTAssert(controllerContext.messages.count == 0);
@@ -336,8 +336,8 @@
         WSTTestContext *performanceContext = [[WSTTestContext alloc] init];
         performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
         
-        WFSResult *resultWithSuccess = [sendMessageAction performActionForController:controller context:performanceContext];
-        WSTAssert(resultWithSuccess.isSuccess);
+        WFSResult *result = [sendMessageAction performActionForController:controller context:performanceContext];
+        WSTAssert(result.isSuccess);
         
         WSTAssert(performanceContext.messages.count == 0);
         WSTAssert(controllerContext.messages.count == 1);
@@ -421,8 +421,8 @@
         performanceContext.parameters = @{ @"test0" : @"value0", @"test1" : @"value1" };
         performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
         
-        WFSResult *resultWithSuccess = [sendMessageAction performActionForController:controller context:performanceContext];
-        WSTAssert(resultWithSuccess.isSuccess);
+        WFSResult *result = [sendMessageAction performActionForController:controller context:performanceContext];
+        WSTAssert(result.isSuccess);
         
         WSTAssert(performanceContext.messages.count == 0);
         WSTAssert(controllerContext.messages.count == 1);
