@@ -17,6 +17,7 @@
     {
         self.opaque = NO;
         self.backgroundColor = [UIColor clearColor];
+        self.numberOfLines = 0;
     }
     return self;
 }
@@ -28,7 +29,13 @@
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"text" : [NSString class] }];
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
+    
+            @"adjustsFontSizeToFitWidth" : @[ [NSString class], [NSNumber class] ],
+            @"numberOfLines"             : @[ [NSString class], [NSNumber class] ],
+            @"text"                      : [NSString class]
+            
+    }];
 }
 
 @end
