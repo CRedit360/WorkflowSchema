@@ -8,6 +8,7 @@
 
 #import "WFSSlider.h"
 #import "WFSMessage.h"
+#import "WFSCondition.h"
 
 @implementation WFSSlider
 
@@ -21,6 +22,16 @@
     return self;
 }
 
++ (NSArray *)arraySchemaParameters
+{
+    return [[super arraySchemaParameters] arrayByPrependingObject:@"validations"];
+}
+
++ (NSArray *)defaultSchemaParameters
+{
+    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [WFSCondition class], @"validations" ]];
+}
+
 + (NSArray *)mandatorySchemaParameters
 {
     return [[super mandatorySchemaParameters] arrayByAddingObject:@"accessibilityLabel"];
@@ -30,11 +41,12 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"continuous"        : @[ [NSString class], [NSNumber class] ],
-            @"value"             : @[ [NSString class], [NSNumber class] ],
-            @"minimumValue"      : @[ [NSString class], [NSNumber class] ],
-            @"maximumValue"      : @[ [NSString class], [NSNumber class] ],
-            @"message"           : @[ [WFSMessage class], [NSString class] ]
+            @"continuous"   : @[ [NSString class], [NSNumber class] ],
+            @"value"        : @[ [NSString class], [NSNumber class] ],
+            @"minimumValue" : @[ [NSString class], [NSNumber class] ],
+            @"maximumValue" : @[ [NSString class], [NSNumber class] ],
+            @"message"      : @[ [WFSMessage class], [NSString class] ],
+            @"validations"  : [WFSCondition class]
             
     }];
 }
