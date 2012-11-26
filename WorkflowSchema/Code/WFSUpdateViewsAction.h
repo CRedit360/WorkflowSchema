@@ -11,6 +11,6 @@
 @interface WFSUpdateViewsAction : WFSViewsAction
 
 @property (nonatomic, copy) NSString *parameterName;
-@property (nonatomic, copy) id value;
+@property (nonatomic, strong) id value;
 
 @end
