@@ -13,6 +13,5 @@
 @interface WFSButton : UIButton <WFSSchematising>
 
 @property (nonatomic, strong) id message;
-@property (nonatomic, copy) NSString *name;
 
 @end

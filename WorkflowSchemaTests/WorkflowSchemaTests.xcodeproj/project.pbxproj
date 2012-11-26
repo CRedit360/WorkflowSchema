@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B20876101A042B8AC40665C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94EF6E20A7EA44FBAC7308B0 /* libPods.a */; };
+		D6B5E0E41663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B5E0E31663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m */; };
 		F617498D1653D90A005B9090 /* button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749841653D90A005B9090 /* button_bg.png */; };
 		F617498E1653D90A005B9090 /* button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749851653D90A005B9090 /* button_bg@2x.png */; };
 		F617498F1653D90A005B9090 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749861653D90A005B9090 /* first.png */; };
@@ -99,6 +100,8 @@
 /* Begin PBXFileReference section */
 		94EF6E20A7EA44FBAC7308B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22586738C5049B9B091A295 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		D6B5E0E21663F4B5000E409B /* KIFTestScenario+WSTSliderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTSliderTests.h"; sourceTree = "<group>"; };
+		D6B5E0E31663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTSliderTests.m"; sourceTree = "<group>"; };
 		F6057C3916396112002496F7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F61749841653D90A005B9090 /* button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bg.png; sourceTree = "<group>"; };
 		F61749851653D90A005B9090 /* button_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_bg@2x.png"; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 				F63AA068165656C100C3C775 /* KIFTestScenario+WSTSearchBarUnitTests.m */,
 				F6223452163EADBA00C90A71 /* KIFTestScenario+WSTSendMessageActionTests.h */,
 				F6223453163EADBB00C90A71 /* KIFTestScenario+WSTSendMessageActionTests.m */,
+				D6B5E0E21663F4B5000E409B /* KIFTestScenario+WSTSliderTests.h */,
+				D6B5E0E31663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m */,
 				F6F3CFE716637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.h */,
 				F6F3CFE816637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.m */,
 				F686EAEE165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.h */,
@@ -587,6 +592,7 @@
 				F68389F5165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m in Sources */,
 				F6F3CFD016627B3B00C7B4AB /* KIFTestScenario+WSTNumberTests.m in Sources */,
 				F6F3CFE916637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.m in Sources */,
+				D6B5E0E41663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

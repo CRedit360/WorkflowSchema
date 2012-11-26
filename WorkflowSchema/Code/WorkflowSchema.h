@@ -19,6 +19,7 @@
 #import "WFSImageView.h"
 #import "WFSLabel.h"
 #import "WFSSearchBar.h"
+#import "WFSSlider.h"
 #import "WFSTextField.h"
 #import "WFSToolbar.h"
 

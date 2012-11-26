@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6B5E0DF1663F191000E409B /* WFSSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B5E0DD1663F191000E409B /* WFSSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D6B5E0E01663F191000E409B /* WFSSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B5E0DE1663F191000E409B /* WFSSlider.m */; };
 		F600EF0E1636744900463D87 /* WFSReplaceRootControllerAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F600EF0C1636744900463D87 /* WFSReplaceRootControllerAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F600EF0F1636744900463D87 /* WFSReplaceRootControllerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F600EF0D1636744900463D87 /* WFSReplaceRootControllerAction.m */; };
 		F60405B6163304580026F708 /* WFSImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = F60405B4163304580026F708 /* WFSImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -164,6 +166,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D6B5E0DD1663F191000E409B /* WFSSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSSlider.h; sourceTree = "<group>"; };
+		D6B5E0DE1663F191000E409B /* WFSSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSSlider.m; sourceTree = "<group>"; };
 		F600EF0C1636744900463D87 /* WFSReplaceRootControllerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSReplaceRootControllerAction.h; sourceTree = "<group>"; };
 		F600EF0D1636744900463D87 /* WFSReplaceRootControllerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSReplaceRootControllerAction.m; sourceTree = "<group>"; };
 		F60405B4163304580026F708 /* WFSImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSImageView.h; sourceTree = "<group>"; };
@@ -559,6 +563,8 @@
 				F64C7F8516555BE800D248C0 /* WFSSearchBar.m */,
 				F68389EE165E776A005455EC /* WFSToolbar.h */,
 				F68389EF165E776B005455EC /* WFSToolbar.m */,
+				D6B5E0DD1663F191000E409B /* WFSSlider.h */,
+				D6B5E0DE1663F191000E409B /* WFSSlider.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -748,6 +754,7 @@
 				F68389F0165E776B005455EC /* WFSToolbar.h in Headers */,
 				F6838A27165E9814005455EC /* WFSNegatedCondition.h in Headers */,
 				F6F3CFCB166276D600C7B4AB /* NSNumber+WFSSchematising.h in Headers */,
+				D6B5E0DF1663F191000E409B /* WFSSlider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,6 +940,7 @@
 				F68389F1165E776B005455EC /* WFSToolbar.m in Sources */,
 				F6838A28165E9814005455EC /* WFSNegatedCondition.m in Sources */,
 				F6F3CFCC166276D600C7B4AB /* NSNumber+WFSSchematising.m in Sources */,
+				D6B5E0E01663F191000E409B /* WFSSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
