@@ -35,6 +35,7 @@
 
 #import "WFSCondition.h"
 #import "WFSNegatedCondition.h"
+#import "WFSComparisonCondition.h"
 #import "WFSEqualityCondition.h"
 #import "WFSMultipleCondition.h"
 #import "WFSPresenceCondition.h"

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3B20876101A042B8AC40665C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94EF6E20A7EA44FBAC7308B0 /* libPods.a */; };
 		D6B5E0E41663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B5E0E31663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m */; };
+		D6B5E0EB1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B5E0EA1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m */; };
 		F617498D1653D90A005B9090 /* button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749841653D90A005B9090 /* button_bg.png */; };
 		F617498E1653D90A005B9090 /* button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749851653D90A005B9090 /* button_bg@2x.png */; };
 		F617498F1653D90A005B9090 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749861653D90A005B9090 /* first.png */; };
@@ -102,6 +103,8 @@
 		D22586738C5049B9B091A295 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		D6B5E0E21663F4B5000E409B /* KIFTestScenario+WSTSliderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTSliderTests.h"; sourceTree = "<group>"; };
 		D6B5E0E31663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTSliderTests.m"; sourceTree = "<group>"; };
+		D6B5E0E91663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTComparisonConditionTests.h"; sourceTree = "<group>"; };
+		D6B5E0EA1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTComparisonConditionTests.m"; sourceTree = "<group>"; };
 		F6057C3916396112002496F7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F61749841653D90A005B9090 /* button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bg.png; sourceTree = "<group>"; };
 		F61749851653D90A005B9090 /* button_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_bg@2x.png"; sourceTree = "<group>"; };
@@ -329,6 +332,8 @@
 				F622344A163E97F600C90A71 /* KIFTestScenario+WSTAlertViewTests.m */,
 				F642C0FC163AE52A00CFAA80 /* KIFTestScenario+WSTButtonUnitTests.h */,
 				F642C0FD163AE52A00CFAA80 /* KIFTestScenario+WSTButtonUnitTests.m */,
+				D6B5E0E91663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.h */,
+				D6B5E0EA1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m */,
 				F68795CD165A84B200F495A1 /* KIFTestScenario+WSTConditionalActionTests.h */,
 				F68795CE165A84B200F495A1 /* KIFTestScenario+WSTConditionalActionTests.m */,
 				F642C0FE163AE52A00CFAA80 /* KIFTestScenario+WSTContainerUnitTests.h */,
@@ -593,6 +598,7 @@
 				F6F3CFD016627B3B00C7B4AB /* KIFTestScenario+WSTNumberTests.m in Sources */,
 				F6F3CFE916637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.m in Sources */,
 				D6B5E0E41663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m in Sources */,
+				D6B5E0EB1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
