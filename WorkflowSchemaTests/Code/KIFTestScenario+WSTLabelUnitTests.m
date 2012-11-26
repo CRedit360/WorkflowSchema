@@ -78,8 +78,8 @@
         WSTTestContext *context = [[WSTTestContext alloc] init];
         
         WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
-        WSTAssert(label == nil);
-        WSTAssert(error != nil);
+        WSTFailOnError(error);
+        WSTAssert(label.text == nil);
         
         return KIFTestStepResultSuccess;
         

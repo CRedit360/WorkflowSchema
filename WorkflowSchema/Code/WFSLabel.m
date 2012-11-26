@@ -21,11 +21,6 @@
     return self;
 }
 
-+ (NSArray *)mandatorySchemaParameters
-{
-    return [[super mandatorySchemaParameters] arrayByPrependingObject:@"text"];
-}
-
 + (NSArray *)defaultSchemaParameters
 {
     return [[super defaultSchemaParameters] arrayByPrependingObject:@[[NSString class], @"text"]];

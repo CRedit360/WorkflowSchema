@@ -60,8 +60,8 @@
         context.parameters = @{  };
         
         WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
-        WSTAssert(error);
-        WSTAssert(!label)
+        WSTFailOnError(error);
+        WSTAssert(label.text == nil);
         
         return KIFTestStepResultSuccess;
         
