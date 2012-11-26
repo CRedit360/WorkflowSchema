@@ -76,58 +76,67 @@
 - (id<WFSSchematising>)createObjectWithContext:(WFSContext *)context error:(NSError **)outError
 {
     NSError *error = nil;
-    id object = [context.parameters valueForKeyPath:self.parameterKeyPath];
-    NSDictionary *groupedParameters = [self groupedParametersWithContext:context error:&error];
+    id object = nil;
     
-    WFSSchema *template = groupedParameters[@"template"];
-    if (object && template)
+    @try
     {
-        BOOL objectIsArray = [object isKindOfClass:[NSArray class]];
+        object = [context.parameters valueForKeyPath:self.parameterKeyPath];
+        NSDictionary *groupedParameters = [self groupedParametersWithContext:context error:&error];
         
-        object = [object flattenedArray];
-        NSMutableArray *subObjects = [NSMutableArray array];
-        
-        for (NSDictionary *parameters in object)
+        WFSSchema *template = groupedParameters[@"template"];
+        if (object && template)
         {
-            if ([parameters isKindOfClass:[NSDictionary class]])
+            BOOL objectIsArray = [object isKindOfClass:[NSArray class]];
+            
+            object = [object flattenedArray];
+            NSMutableArray *subObjects = [NSMutableArray array];
+            
+            for (NSDictionary *parameters in object)
             {
-                WFSMutableContext *subContext = [context mutableCopy];
-                subContext.parameters = parameters;
-                
-                id subObject = [self createProxiedObject:template context:subContext error:&error];
-                
-                if (object && ![subObject isKindOfClass:self.schemaClass])
+                if ([parameters isKindOfClass:[NSDictionary class]])
                 {
-                    if (!error) error = WFSError(@"Proxied parameter %@ of class %@ did not match schema class %@", self.parameterKeyPath, [subObject class], self.schemaClass);
+                    WFSMutableContext *subContext = [context mutableCopy];
+                    subContext.parameters = parameters;
+                    
+                    id subObject = [self createProxiedObject:template context:subContext error:&error];
+                    
+                    if (object && ![subObject isKindOfClass:self.schemaClass])
+                    {
+                        if (!error) error = WFSError(@"Proxied parameter %@ of class %@ did not match schema class %@", self.parameterKeyPath, [subObject class], self.schemaClass);
+                    }
+                    
+                    if (error) break;
+                    if (subObject) [subObjects addObject:subObject];
                 }
-                
-                if (error) break;
-                if (subObject) [subObjects addObject:subObject];
+                else
+                {
+                    error = WFSError(@"Proxied parameter %@ contained illegal value of class %@", self.parameterKeyPath, [parameters class]);
+                    break;
+                }
+            }
+            
+            if (objectIsArray)
+            {
+                object = subObjects;
             }
             else
             {
-                error = WFSError(@"Proxied parameter %@ contained illegal value of class %@", self.parameterKeyPath, [parameters class]);
-                break;
+                object = [subObjects lastObject];
             }
-        }
-        
-        if (objectIsArray)
-        {
-            object = subObjects;
         }
         else
         {
-            object = [subObjects lastObject];
+            if (!object || [object isKindOfClass:[NSNull class]])
+            {
+                object = groupedParameters[@"default"];
+            }
+            
+            object = [self createProxiedObject:object context:context error:&error];
         }
     }
-    else
+    @catch (NSException *exception)
     {
-        if (!object || [object isKindOfClass:[NSNull class]])
-        {
-            object = groupedParameters[@"default"];
-        }
-        
-        object = [self createProxiedObject:object context:context error:&error];
+        error = WFSErrorFromException(exception);
     }
     
     if (outError) *outError = error;
