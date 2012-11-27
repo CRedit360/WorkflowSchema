@@ -96,6 +96,44 @@
         context.actionSender = sender;
         [self sendMessageFromParameterWithName:@"message" context:context];
     }
+    
+    // If this is an input view, update the responder
+    UIResponder *responder = [[[[UIApplication sharedApplication] delegate] window] findFirstResponder];
+    if ((responder.inputView == self) && [responder respondsToSelector:@selector(setText:)])
+    {
+        NSString *text = nil;
+        
+        if (self.datePickerMode == UIDatePickerModeCountDownTimer)
+        {
+            NSUInteger minutes = round(self.countDownDuration) / 60;
+            text = [NSString stringWithFormat:@"%02u:%02u", minutes / 60, minutes % 60];
+        }
+        else
+        {
+            NSDateFormatterStyle dateStyle = NSDateFormatterNoStyle;
+            NSDateFormatterStyle timeStyle = NSDateFormatterShortStyle;
+            
+            switch (self.datePickerMode) {
+                    
+                case UIDatePickerModeDate:
+                    dateStyle = NSDateFormatterLongStyle;
+                    timeStyle = NSDateFormatterNoStyle;
+                    break;
+                    
+                case UIDatePickerModeDateAndTime:
+                    dateStyle = NSDateFormatterMediumStyle;
+                    break;
+                    
+                default:
+                    break;
+                    
+            }
+            
+            text = [NSDateFormatter localizedStringFromDate:self.date dateStyle:dateStyle timeStyle:timeStyle];
+        }
+        
+        [(id)responder setText:text];
+    }
 }
 
 @end
