@@ -10,6 +10,13 @@
 
 @implementation WFSToolbar
 
+- (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError *__autoreleasing *)outError
+{
+    self = [super initWithSchema:schema context:context error:outError];
+    [self sizeToFit];
+    return self;
+}
+
 + (NSArray *)arraySchemaParameters
 {
     return [[super arraySchemaParameters] arrayByPrependingObject:@"items"];
