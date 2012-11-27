@@ -20,6 +20,7 @@
 #import "WFSLabel.h"
 #import "WFSNavigationBar.h"
 #import "WFSSearchBar.h"
+#import "WFSSegmentedControl.h"
 #import "WFSSlider.h"
 #import "WFSTextField.h"
 #import "WFSToolbar.h"

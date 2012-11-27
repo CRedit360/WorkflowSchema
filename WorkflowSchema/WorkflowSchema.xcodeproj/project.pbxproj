@@ -62,6 +62,10 @@
 		F67D4DB51664C51300C9D111 /* UINavigationItem+WFSSchematising.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DB31664C51300C9D111 /* UINavigationItem+WFSSchematising.m */; };
 		F67D4DB81664C58000C9D111 /* WFSNavigationItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DB61664C58000C9D111 /* WFSNavigationItem.h */; };
 		F67D4DB91664C58000C9D111 /* WFSNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DB71664C58000C9D111 /* WFSNavigationItem.m */; };
+		F67D4DBF1664C8B800C9D111 /* WFSSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DBD1664C8B800C9D111 /* WFSSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F67D4DC01664C8B800C9D111 /* WFSSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DBE1664C8B800C9D111 /* WFSSegmentedControl.m */; };
+		F67D4DC41664C94300C9D111 /* WFSSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DC21664C94300C9D111 /* WFSSegment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F67D4DC51664C94300C9D111 /* WFSSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DC31664C94300C9D111 /* WFSSegment.m */; };
 		F68389AB165E66D1005455EC /* NSNull+WorkflowSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = F68389A9165E66D1005455EC /* NSNull+WorkflowSchema.h */; };
 		F68389AC165E66D1005455EC /* NSNull+WorkflowSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = F68389AA165E66D1005455EC /* NSNull+WorkflowSchema.m */; };
 		F68389CC165E6BCA005455EC /* WFSUpdateViewsAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F68389CA165E6BCA005455EC /* WFSUpdateViewsAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -228,6 +232,10 @@
 		F67D4DB31664C51300C9D111 /* UINavigationItem+WFSSchematising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+WFSSchematising.m"; sourceTree = "<group>"; };
 		F67D4DB61664C58000C9D111 /* WFSNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSNavigationItem.h; sourceTree = "<group>"; };
 		F67D4DB71664C58000C9D111 /* WFSNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSNavigationItem.m; sourceTree = "<group>"; };
+		F67D4DBD1664C8B800C9D111 /* WFSSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSSegmentedControl.h; sourceTree = "<group>"; };
+		F67D4DBE1664C8B800C9D111 /* WFSSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSSegmentedControl.m; sourceTree = "<group>"; };
+		F67D4DC21664C94300C9D111 /* WFSSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSSegment.h; sourceTree = "<group>"; };
+		F67D4DC31664C94300C9D111 /* WFSSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSSegment.m; sourceTree = "<group>"; };
 		F68389A9165E66D1005455EC /* NSNull+WorkflowSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+WorkflowSchema.h"; sourceTree = "<group>"; };
 		F68389AA165E66D1005455EC /* NSNull+WorkflowSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+WorkflowSchema.m"; sourceTree = "<group>"; };
 		F68389CA165E6BCA005455EC /* WFSUpdateViewsAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSUpdateViewsAction.h; sourceTree = "<group>"; };
@@ -420,6 +428,17 @@
 			name = "View management";
 			sourceTree = "<group>";
 		};
+		F67D4DC11664C93200C9D111 /* Segmented control */ = {
+			isa = PBXGroup;
+			children = (
+				F67D4DBD1664C8B800C9D111 /* WFSSegmentedControl.h */,
+				F67D4DBE1664C8B800C9D111 /* WFSSegmentedControl.m */,
+				F67D4DC21664C94300C9D111 /* WFSSegment.h */,
+				F67D4DC31664C94300C9D111 /* WFSSegment.m */,
+			);
+			name = "Segmented control";
+			sourceTree = "<group>";
+		};
 		F6C0EBCE163A8D8F00271964 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,6 +577,7 @@
 		F6E797B71632B26E006F59F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F67D4DC11664C93200C9D111 /* Segmented control */,
 				F62234CD163ED66C00C90A71 /* Gestures */,
 				F6E797251632B0E1006F59F2 /* WFSButton.h */,
 				F6E797261632B0E1006F59F2 /* WFSButton.m */,
@@ -769,6 +789,8 @@
 				F67D4DAF1664C2A000C9D111 /* WFSNavigationBar.h in Headers */,
 				F67D4DB41664C51300C9D111 /* UINavigationItem+WFSSchematising.h in Headers */,
 				F67D4DB81664C58000C9D111 /* WFSNavigationItem.h in Headers */,
+				F67D4DBF1664C8B800C9D111 /* WFSSegmentedControl.h in Headers */,
+				F67D4DC41664C94300C9D111 /* WFSSegment.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,6 +979,8 @@
 				F67D4DB01664C2A000C9D111 /* WFSNavigationBar.m in Sources */,
 				F67D4DB51664C51300C9D111 /* UINavigationItem+WFSSchematising.m in Sources */,
 				F67D4DB91664C58000C9D111 /* WFSNavigationItem.m in Sources */,
+				F67D4DC01664C8B800C9D111 /* WFSSegmentedControl.m in Sources */,
+				F67D4DC51664C94300C9D111 /* WFSSegment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

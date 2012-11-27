@@ -67,6 +67,7 @@
 		F651F629165247660056ECB7 /* table_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F651F61B165247660056ECB7 /* table_tests.xml */; };
 		F655CF69165A2ACD004410C9 /* searching_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F655CF68165A2ACD004410C9 /* searching_tests.xml */; };
 		F67D4DBC1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DBB1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.m */; };
+		F67D4DC81664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DC71664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.m */; };
 		F68389D0165E6F8A005455EC /* updating_views_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F68389CF165E6F8A005455EC /* updating_views_tests.xml */; };
 		F68389F5165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F68389F4165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m */; };
 		F686EAF0165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F686EAEF165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.m */; };
@@ -191,6 +192,8 @@
 		F655CF68165A2ACD004410C9 /* searching_tests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = searching_tests.xml; sourceTree = "<group>"; };
 		F67D4DBA1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTNavigationBarTests.h"; sourceTree = "<group>"; };
 		F67D4DBB1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTNavigationBarTests.m"; sourceTree = "<group>"; };
+		F67D4DC61664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTSegmentedControlTests.h"; sourceTree = "<group>"; };
+		F67D4DC71664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTSegmentedControlTests.m"; sourceTree = "<group>"; };
 		F68389CF165E6F8A005455EC /* updating_views_tests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = updating_views_tests.xml; sourceTree = "<group>"; };
 		F68389F3165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTToolbarTests.h"; sourceTree = "<group>"; };
 		F68389F4165E7A43005455EC /* KIFTestScenario+WSTToolbarTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTToolbarTests.m"; sourceTree = "<group>"; };
@@ -365,6 +368,8 @@
 				F642C0EA163AD8AA00CFAA80 /* KIFTestScenario+WSTScreenControllerUnitTests.m */,
 				F63AA067165656C100C3C775 /* KIFTestScenario+WSTSearchBarUnitTests.h */,
 				F63AA068165656C100C3C775 /* KIFTestScenario+WSTSearchBarUnitTests.m */,
+				F67D4DC61664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.h */,
+				F67D4DC71664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.m */,
 				F6223452163EADBA00C90A71 /* KIFTestScenario+WSTSendMessageActionTests.h */,
 				F6223453163EADBB00C90A71 /* KIFTestScenario+WSTSendMessageActionTests.m */,
 				D6B5E0E21663F4B5000E409B /* KIFTestScenario+WSTSliderTests.h */,
@@ -605,6 +610,7 @@
 				D6B5E0E41663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m in Sources */,
 				D6B5E0EB1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m in Sources */,
 				F67D4DBC1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.m in Sources */,
+				F67D4DC81664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
