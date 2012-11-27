@@ -31,7 +31,10 @@
                                                       [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didTapFirstSegment" ]],
                                                  ]],
                                                  [[WFSSchema alloc] initWithTypeName:@"segment" attributes:nil parameters:@[
-                                                      [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[ @"first" ]],
+                                                      [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[
+                                                           [[WFSSchemaParameter alloc] initWithName:@"name" value:@"first"],
+                                                           [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"test"],                                                        
+                                                      ]],
                                                       [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didTapSecondSegment" ]],
                                                  ]]
                                             ]];
@@ -82,7 +85,10 @@
                                                       ]],
                                                       [[WFSSchema alloc] initWithTypeName:@"segment" attributes:nil parameters:@[
                                                            [[WFSSchemaParameter alloc] initWithName:@"image" value:
-                                                                [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[ @"first" ]]
+                                                                [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[
+                                                                    [[WFSSchemaParameter alloc] initWithName:@"name" value:@"first"],
+                                                                    [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"test"],
+                                                                ]]
                                                            ],
                                                            [[WFSSchemaParameter alloc] initWithName:@"message" value:
                                                                 [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didTapSecondSegment" ]]
@@ -109,6 +115,33 @@
         segmentedControl.selectedSegmentIndex = 1;
         [segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
         WSTAssert([[[context.messages lastObject] name] isEqualToString:@"didTapSecondSegment"]);
+        
+        return KIFTestStepResultSuccess;
+        
+    }]];
+    
+    return scenario;
+}
+
++ (id)scenarioUnitTestSegmentedControlWithoutAccessibilityLabel
+{
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test segmented control without accessibility label"];
+    
+    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
+        
+        NSError *error = nil;
+        
+        WFSSchema *segmentedControlSchema = [[WFSSchema alloc] initWithTypeName:@"segmentedControl" attributes:@{@"name":@"foo"} parameters:@[
+                                             [[WFSSchema alloc] initWithTypeName:@"segment" attributes:nil parameters:@[
+                                              [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[@"first"]]
+                                             ]]
+                                            ]];
+        
+        WSTTestContext *context = [[WSTTestContext alloc] init];
+        
+        WFSSegmentedControl *segmentedControl = (WFSSegmentedControl *)[segmentedControlSchema createObjectWithContext:context error:&error];
+        WSTAssert(error);
+        WSTAssert(!segmentedControl);
         
         return KIFTestStepResultSuccess;
         

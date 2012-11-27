@@ -10,6 +10,7 @@
 #import "WFSSchema+WFSGroupedParameters.h"
 #import "WFSMessage.h"
 #import <objc/runtime.h>
+#import <UIKit/UIAccessibility.h>
 
 static char * const WFSSchematisingSchemaKey = "schema";
 static char * const WFSSchematisingContextKey = "context";
@@ -74,7 +75,29 @@ static char * const WFSSchematisingNameKey = "name";
 
 + (NSDictionary *)bitmaskSchemaParameters
 {
-    return @{};
+    return @{
+        
+        @"accessibilityTraits" : @{
+        
+            @"button"                   : @(UIAccessibilityTraitButton),
+            @"link"                     : @(UIAccessibilityTraitLink),
+            @"searchField"              : @(UIAccessibilityTraitSearchField),
+            @"image"                    : @(UIAccessibilityTraitImage),
+            @"selected"                 : @(UIAccessibilityTraitSelected),
+            @"playsSound"               : @(UIAccessibilityTraitPlaysSound),
+            @"keyboardKey"              : @(UIAccessibilityTraitKeyboardKey),
+            @"staticText"               : @(UIAccessibilityTraitStaticText),
+            @"summaryElement"           : @(UIAccessibilityTraitSummaryElement),
+            @"notEnabled"               : @(UIAccessibilityTraitNotEnabled),
+            @"updatesFrequently"        : @(UIAccessibilityTraitUpdatesFrequently),
+            @"startsMediaSession"       : @(UIAccessibilityTraitStartsMediaSession),
+            @"adjustable"               : @(UIAccessibilityTraitAdjustable),
+            @"allowsDirectInteraction"  : @(UIAccessibilityTraitAllowsDirectInteraction),
+            @"causesPageTurn"           : @(UIAccessibilityTraitCausesPageTurn)
+    
+        }
+    
+    };
 }
 
 + (NSArray *)lazilyCreatedSchemaParameters
@@ -84,7 +107,14 @@ static char * const WFSSchematisingNameKey = "name";
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return @{};
+    return @{
+    
+            @"accessibilityLabel"  : [NSString class],
+            @"accessibilityHint"   : [NSString class],
+            @"accessibilityValue"  : @[ [NSString class], [NSValue class] ],
+            @"accessibilityTraits" : @[ [NSString class], [NSNumber class] ]
+    
+    };
 }
 
 + (NSArray *)defaultSchemaParameters
@@ -129,6 +159,11 @@ static char * const WFSSchematisingNameKey = "name";
 {
     if ([self validateValue:&value forKeyPath:name error:outError])
     {
+        if ([@[@"accessibilityLabel", @"accessibilityHint", @"accessibilityValue", @"accessibilityTraits"] containsObject:name])
+        {
+            self.isAccessibilityElement = YES;
+        }
+        
         [self setValue:value forKeyPath:name];
         return YES;
     }

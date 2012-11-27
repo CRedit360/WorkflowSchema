@@ -12,7 +12,5 @@
 @interface WFSBarButtonItem : UIBarButtonItem <WFSSchematising>
 
 @property (nonatomic, strong) id message;
-@property (nonatomic, copy) NSString *accessibilityLabel;
-@property (nonatomic, copy) NSString *accessibilityHint;
 
 @end

@@ -180,8 +180,10 @@
                         <navigationItem>
                             <rightBarButtonItem>
                                 <barButtonItem>
-                                    <image>first</image>
-                                    <accessibilityLabel>Right</accessibilityLabel>
+                                    <image>
+                                        <name>first</name>
+                                        <accessibilityLabel>Right</accessibilityLabel>
+                                    </image>
                                     <message>showRightAlert</message>
                                 </barButtonItem>
                             </rightBarButtonItem>

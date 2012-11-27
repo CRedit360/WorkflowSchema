@@ -17,6 +17,12 @@
     self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
+        if (self.accessibilityLabel.length == 0)
+        {
+            if (outError) *outError = WFSError(@"Sliders must have an accessibilityLabel");
+            return nil;
+        }
+        
         [self addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return self;
@@ -30,11 +36,6 @@
 + (NSArray *)defaultSchemaParameters
 {
     return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [WFSCondition class], @"validations" ]];
-}
-
-+ (NSArray *)mandatorySchemaParameters
-{
-    return [[super mandatorySchemaParameters] arrayByAddingObject:@"accessibilityLabel"];
 }
 
 + (NSDictionary *)schemaParameterTypes

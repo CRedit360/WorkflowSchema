@@ -17,9 +17,9 @@
     self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
-        if (([self titleForState:UIControlStateNormal].length == 0) && (self.accessibilityLabel.length == 0))
+        if (self.accessibilityLabel.length == 0)
         {
-            if (outError) *outError = WFSError(@"Buttons must have a title or an accessibilityLabel");
+            if (outError) *outError = WFSError(@"Buttons must have a title or an accessibility label");
             return nil;
         }
         

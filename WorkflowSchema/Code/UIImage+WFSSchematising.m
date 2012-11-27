@@ -17,7 +17,7 @@
     NSDictionary *groupedParameters = [schema groupedParametersWithContext:context error:outError];
     if (!groupedParameters) return nil;
     
-    NSString *imageName = groupedParameters[@"imageName"];
+    NSString *imageName = groupedParameters[@"name"];
     if (!imageName)
     {
         if (outError) *outError = WFSError(@"Images require a name");
@@ -27,7 +27,10 @@
     self = [[self class] imageNamed:imageName];
     if (self)
     {
-        WFS_SCHEMATISING_PROPERTY_INITITIALISATION;
+        // The default is the image name, which isn't good enough.
+        self.accessibilityLabel = nil;
+        
+        WFS_SCHEMATISING_INITIALISATION;
     }
     else
     {
@@ -39,17 +42,23 @@
 
 + (NSArray *)mandatorySchemaParameters
 {
-    return [[super mandatorySchemaParameters] arrayByPrependingObject:@"imageName" ];
+    return [[super mandatorySchemaParameters] arrayByPrependingObject:@"name" ];
 }
 
 + (NSArray *)defaultSchemaParameters
 {
-    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [NSString class], @"imageName"] ];
+    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [NSString class], @"name"] ];
 }
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"imageName" : [NSString class] }];
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{ @"name" : [NSString class] }];
+}
+
+- (BOOL)setSchemaParameterWithName:(NSString *)name value:(id)value context:(WFSContext *)context error:(NSError **)outError
+{
+    if ([name isEqualToString:@"name"]) return YES;
+    return [super setSchemaParameterWithName:name value:value context:context error:outError];
 }
 
 @end

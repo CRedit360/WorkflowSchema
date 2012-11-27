@@ -16,6 +16,12 @@
     self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
+        if ((self.title.length == 0) && (self.image.accessibilityLabel.length == 0))
+        {
+            if (outError) *outError = WFSError(@"Segments must have a title or an accessibilityLabel");
+            return nil;
+        }
+        
         _enabled = YES;
     }
     return self;

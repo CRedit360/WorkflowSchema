@@ -27,9 +27,7 @@
         return nil;
     }
     
-    NSString *accessibilityLabel = groupedParameters[@"accessibilityLabel"];
-    
-    if (image && !accessibilityLabel)
+    if (image && !image.accessibilityLabel)
     {
         if (outError) *outError = WFSError(@"Bar button image items must have an accessibility label");
         return nil;
@@ -60,14 +58,6 @@
     if (self)
     {
         WFS_SCHEMATISING_INITIALISATION
-        
-        if (self.accessibilityLabel)
-        {
-            UIView *view = [self valueForKey:@"view"];
-            view.accessibilityLabel = self.accessibilityLabel;
-            view.accessibilityHint = self.accessibilityHint;
-        }
-        
     }
     return self;
 }

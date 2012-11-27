@@ -143,14 +143,18 @@
                                              ]],
                                             [[WFSSchemaParameter alloc] initWithName:@"rightBarButtonItems" value:@[
                                                  [[WFSSchema alloc] initWithTypeName:@"barButtonItem" attributes:nil parameters:@[
-                                                      [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[@"first"]],
+                                                      [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[
+                                                           [[WFSSchemaParameter alloc] initWithName:@"name" value:@"first"],
+                                                           [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"Right 1"]
+                                                      ]],
                                                       [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectRightNavigationButton1" ]],
-                                                      [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"Right 1"]
                                                   ]],
                                                  [[WFSSchema alloc] initWithTypeName:@"barButtonItem" attributes:nil parameters:@[
-                                                      [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[@"second"]],
+                                                      [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[
+                                                           [[WFSSchemaParameter alloc] initWithName:@"name" value:@"second"],
+                                                           [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"Right 2"]
+                                                      ]],
                                                       [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didSelectRightNavigationButton2" ]],
-                                                      [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"Right 2"]
                                                   ]]
                                              ]],
                                         ]],

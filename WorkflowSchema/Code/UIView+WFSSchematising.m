@@ -24,11 +24,7 @@
     NSDictionary *schemaParameterTypes = [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
             @"gestures"            : [UIGestureRecognizer class],
-            @"hidden"              : @[ [NSString class], [NSValue class] ],
-            @"accessibilityLabel"  : [NSString class],
-            @"accessibilityHint"   : [NSString class],
-            @"accessibilityValue"  : @[ [NSString class], [NSValue class] ],
-            @"accessibilityTraits" : @[ [NSString class], [NSNumber class] ]
+            @"hidden"              : @[ [NSString class], [NSValue class] ]
 
     }];
     
@@ -64,33 +60,6 @@
 + (NSArray *)arraySchemaParameters
 {
     return [[super arraySchemaParameters] arrayByPrependingObject:@"gestures"];
-}
-
-+ (NSDictionary *)bitmaskSchemaParameters
-{
-    return [[super bitmaskSchemaParameters] dictionaryByAddingEntriesFromDictionary:@{
-    
-            @"accessibilityTraits" : @{
-            
-                    @"button"                   : @(UIAccessibilityTraitButton),
-                    @"link"                     : @(UIAccessibilityTraitLink),
-                    @"searchField"              : @(UIAccessibilityTraitSearchField),
-                    @"image"                    : @(UIAccessibilityTraitImage),
-                    @"selected"                 : @(UIAccessibilityTraitSelected),
-                    @"playsSound"               : @(UIAccessibilityTraitPlaysSound),
-                    @"keyboardKey"              : @(UIAccessibilityTraitKeyboardKey),
-                    @"staticText"               : @(UIAccessibilityTraitStaticText),
-                    @"summaryElement"           : @(UIAccessibilityTraitSummaryElement),
-                    @"notEnabled"               : @(UIAccessibilityTraitNotEnabled),
-                    @"updatesFrequently"        : @(UIAccessibilityTraitUpdatesFrequently),
-                    @"startsMediaSession"       : @(UIAccessibilityTraitStartsMediaSession),
-                    @"adjustable"               : @(UIAccessibilityTraitAdjustable),
-                    @"allowsDirectInteraction"  : @(UIAccessibilityTraitAllowsDirectInteraction),
-                    @"causesPageTurn"           : @(UIAccessibilityTraitCausesPageTurn)
-            
-            }
-            
-    }];
 }
 
 + (NSDictionary *)enumeratedSchemaParameters
@@ -192,11 +161,6 @@
             return YES;
         }
         return NO;
-    }
-    else if ([@[@"accessibilityLabel", @"accessibilityHint", @"accessibilityValue", @"accessibilityTraits"] containsObject:name])
-    {
-        self.isAccessibilityElement = YES;
-        return [super setSchemaParameterWithName:name value:value context:context error:outError];
     }
     else if ([name isEqualToString:@"autocapitalizationType"])
     {
