@@ -12,12 +12,19 @@
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
-            
+    NSDictionary *schemaParameterTypes = [super schemaParameterTypes];
+    
+    if ([self instancesRespondToSelector:@selector(setInputView:)] && [self instancesRespondToSelector:@selector(setInputAccessoryView:)])
+    {
+        schemaParameterTypes = [schemaParameterTypes dictionaryByAddingEntriesFromDictionary:@{
+                                
             @"inputView"          : [UIView class],
             @"inputAccessoryView" : [UIView class],
-            
-    }];
+        
+        }];
+    }
+    
+    return schemaParameterTypes;
 }
 
 @end
