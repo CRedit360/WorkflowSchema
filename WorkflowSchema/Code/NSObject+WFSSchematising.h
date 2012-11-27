@@ -47,6 +47,11 @@ typedef BOOL(^WFSParameterCallback)(NSString *name, id value, NSError **outError
 + (NSDictionary *)schemaParameterTypes;
 
 /*
+ *  If YES, then the accessibility parameters will be included in the schemaParameterTypes.
+ */
++ (BOOL)includeAccessibilitySchemaParameters;
+
+/*
  *  An array specifying the default parameter name for each type of value.  The contents are also arrays,
  *  with the first member being the type and the second being the parameter name.  For example:
  *

@@ -19,6 +19,11 @@
     ]];
 }
 
++ (BOOL)includeAccessibilitySchemaParameters
+{
+    return YES;
+}
+
 + (NSDictionary *)schemaParameterTypes
 {
     NSDictionary *schemaParameterTypes = [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{

@@ -73,6 +73,38 @@
     return scenario;
 }
 
++ (id)scenarioUnitTestCreateButtonWithImage
+{
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test button creation with image"];
+    
+    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
+        
+        NSError *error = nil;
+        
+        WFSSchema *buttonSchema = [[WFSSchema alloc] initWithTypeName:@"button" attributes:nil parameters:@[
+                                       [[WFSSchema alloc] initWithTypeName:@"image" attributes:nil parameters:@[
+                                            [[WFSSchemaParameter alloc] initWithName:@"name" value:@"first"],
+                                            [[WFSSchemaParameter alloc] initWithName:@"accessibilityLabel" value:@"Test"]
+                                       ]],
+                                       [[WFSSchema alloc] initWithTypeName:@"message" attributes:nil parameters:@[ @"didTap" ]]
+                                  ]];
+        
+        WSTTestContext *context = [[WSTTestContext alloc] init];
+        
+        WFSButton *button = (WFSButton *)[buttonSchema createObjectWithContext:context error:&error];
+        WSTFailOnError(error);
+        WSTAssertEqualImages(button.currentImage, [UIImage imageNamed:@"first"]);
+        WSTAssert([button.accessibilityLabel isEqual:@"Test"]);
+        
+        [button sendActionsForControlEvents:UIControlEventTouchUpInside];
+        WSTAssert([[[context.messages lastObject] name] isEqual:@"didTap"]);
+        
+        return KIFTestStepResultSuccess;
+        
+    }]];
+    
+    return scenario;
+}
 
 + (id)scenarioUnitTestCreateButtonWithAccessibilityLabel
 {

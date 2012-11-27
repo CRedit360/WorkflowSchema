@@ -40,6 +40,11 @@
     return self;
 }
 
++ (BOOL)includeAccessibilitySchemaParameters
+{
+    return YES;
+}
+
 + (NSArray *)mandatorySchemaParameters
 {
     return [[super mandatorySchemaParameters] arrayByPrependingObject:@"name" ];

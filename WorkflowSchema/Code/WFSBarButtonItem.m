@@ -80,8 +80,6 @@
             @"title" : [NSString class],
             @"style" : @[ [NSString class], [NSNumber class] ],
             @"systemItem" : @[ [NSString class], [NSNumber class] ],
-            @"accessibilityLabel" : [NSString class],
-            @"accessibilityHint" : [NSString class],
             @"message" : @[ [WFSMessage class], [NSString class] ]
     
     }];

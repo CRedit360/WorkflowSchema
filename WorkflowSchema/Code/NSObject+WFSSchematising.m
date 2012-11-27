@@ -73,31 +73,43 @@ static char * const WFSSchematisingNameKey = "name";
     return @{};
 }
 
++ (BOOL)includeAccessibilitySchemaParameters
+{
+    return NO;
+}
+
 + (NSDictionary *)bitmaskSchemaParameters
 {
-    return @{
+    if ([self includeAccessibilitySchemaParameters])
+    {
+        return @{
+            
+            @"accessibilityTraits" : @{
+            
+                @"button"                   : @(UIAccessibilityTraitButton),
+                @"link"                     : @(UIAccessibilityTraitLink),
+                @"searchField"              : @(UIAccessibilityTraitSearchField),
+                @"image"                    : @(UIAccessibilityTraitImage),
+                @"selected"                 : @(UIAccessibilityTraitSelected),
+                @"playsSound"               : @(UIAccessibilityTraitPlaysSound),
+                @"keyboardKey"              : @(UIAccessibilityTraitKeyboardKey),
+                @"staticText"               : @(UIAccessibilityTraitStaticText),
+                @"summaryElement"           : @(UIAccessibilityTraitSummaryElement),
+                @"notEnabled"               : @(UIAccessibilityTraitNotEnabled),
+                @"updatesFrequently"        : @(UIAccessibilityTraitUpdatesFrequently),
+                @"startsMediaSession"       : @(UIAccessibilityTraitStartsMediaSession),
+                @"adjustable"               : @(UIAccessibilityTraitAdjustable),
+                @"allowsDirectInteraction"  : @(UIAccessibilityTraitAllowsDirectInteraction),
+                @"causesPageTurn"           : @(UIAccessibilityTraitCausesPageTurn)
         
-        @"accessibilityTraits" : @{
+            }
         
-            @"button"                   : @(UIAccessibilityTraitButton),
-            @"link"                     : @(UIAccessibilityTraitLink),
-            @"searchField"              : @(UIAccessibilityTraitSearchField),
-            @"image"                    : @(UIAccessibilityTraitImage),
-            @"selected"                 : @(UIAccessibilityTraitSelected),
-            @"playsSound"               : @(UIAccessibilityTraitPlaysSound),
-            @"keyboardKey"              : @(UIAccessibilityTraitKeyboardKey),
-            @"staticText"               : @(UIAccessibilityTraitStaticText),
-            @"summaryElement"           : @(UIAccessibilityTraitSummaryElement),
-            @"notEnabled"               : @(UIAccessibilityTraitNotEnabled),
-            @"updatesFrequently"        : @(UIAccessibilityTraitUpdatesFrequently),
-            @"startsMediaSession"       : @(UIAccessibilityTraitStartsMediaSession),
-            @"adjustable"               : @(UIAccessibilityTraitAdjustable),
-            @"allowsDirectInteraction"  : @(UIAccessibilityTraitAllowsDirectInteraction),
-            @"causesPageTurn"           : @(UIAccessibilityTraitCausesPageTurn)
-    
-        }
-    
-    };
+        };
+    }
+    else
+    {
+        return @{};
+    }
 }
 
 + (NSArray *)lazilyCreatedSchemaParameters
@@ -107,14 +119,21 @@ static char * const WFSSchematisingNameKey = "name";
 
 + (NSDictionary *)schemaParameterTypes
 {
-    return @{
-    
-            @"accessibilityLabel"  : [NSString class],
-            @"accessibilityHint"   : [NSString class],
-            @"accessibilityValue"  : @[ [NSString class], [NSValue class] ],
-            @"accessibilityTraits" : @[ [NSString class], [NSNumber class] ]
-    
-    };
+    if ([self includeAccessibilitySchemaParameters])
+    {
+        return @{
+        
+                @"accessibilityLabel"  : [NSString class],
+                @"accessibilityHint"   : [NSString class],
+                @"accessibilityValue"  : @[ [NSString class], [NSValue class] ],
+                @"accessibilityTraits" : @[ [NSString class], [NSNumber class] ]
+        
+        };
+    }
+    else
+    {
+        return @{};
+    }
 }
 
 + (NSArray *)defaultSchemaParameters
