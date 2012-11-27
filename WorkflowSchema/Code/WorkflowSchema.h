@@ -60,6 +60,7 @@
 #import "WFSHideViewsAction.h"
 #import "WFSUpdateViewsAction.h"
 #import "WFSStoreValueAction.h"
+#import "WFSEndEditingAction.h"
 
 #import "WFSFormTrigger.h"
 #import "WFSFormInput.h"
