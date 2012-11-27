@@ -23,6 +23,13 @@
             return nil;
         }
         
+        // set the value again, in case it was set before the min/max
+        NSNumber *value = [self schemaParameterWithName:@"value" context:context error:outError];
+        if (value)
+        {
+            self.value = [value integerValue];
+        }
+        
         [self addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return self;
@@ -59,9 +66,13 @@
 
 - (void)valueChanged:(id)sender
 {
-    WFSMutableContext *context = [self.workflowContext mutableCopy];
-    context.actionSender = sender;
-    [self sendMessageFromParameterWithName:@"message" context:context];
+    [self.formInputDelegate formInputDidEndEditing:self];
+    if (self.message)
+    {
+        WFSMutableContext *context = [self.workflowContext mutableCopy];
+        context.actionSender = sender;
+        [self sendMessageFromParameterWithName:@"message" context:context];
+    }
 }
 
 @end

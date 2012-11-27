@@ -16,6 +16,7 @@
 
 #import "WFSButton.h"
 #import "WFSContainerView.h"
+#import "WFSDatePicker.h"
 #import "WFSImageView.h"
 #import "WFSLabel.h"
 #import "WFSNavigationBar.h"

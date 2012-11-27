@@ -56,6 +56,12 @@
 		F65BE0651642DF5700D6F569 /* WFSHideViewsAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F65BE0631642DF5700D6F569 /* WFSHideViewsAction.m */; };
 		F6697C49163EF4530098B3A7 /* WFSSwipeGestureRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = F6697C47163EF4530098B3A7 /* WFSSwipeGestureRecognizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6697C4A163EF4530098B3A7 /* WFSSwipeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F6697C48163EF4530098B3A7 /* WFSSwipeGestureRecognizer.m */; };
+		F6759F421665011B003607D9 /* UIResponder+WFSSchematising.h in Headers */ = {isa = PBXBuildFile; fileRef = F6759F401665011B003607D9 /* UIResponder+WFSSchematising.h */; };
+		F6759F431665011B003607D9 /* UIResponder+WFSSchematising.m in Sources */ = {isa = PBXBuildFile; fileRef = F6759F411665011B003607D9 /* UIResponder+WFSSchematising.m */; };
+		F6759F471665020E003607D9 /* WFSDatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = F6759F451665020E003607D9 /* WFSDatePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6759F481665020E003607D9 /* WFSDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F6759F461665020E003607D9 /* WFSDatePicker.m */; };
+		F6759F4C16650374003607D9 /* NSDate+WFSSchematising.h in Headers */ = {isa = PBXBuildFile; fileRef = F6759F4A16650374003607D9 /* NSDate+WFSSchematising.h */; };
+		F6759F4D16650374003607D9 /* NSDate+WFSSchematising.m in Sources */ = {isa = PBXBuildFile; fileRef = F6759F4B16650374003607D9 /* NSDate+WFSSchematising.m */; };
 		F67D4DAF1664C2A000C9D111 /* WFSNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DAD1664C2A000C9D111 /* WFSNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F67D4DB01664C2A000C9D111 /* WFSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DAE1664C2A000C9D111 /* WFSNavigationBar.m */; };
 		F67D4DB41664C51300C9D111 /* UINavigationItem+WFSSchematising.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DB21664C51300C9D111 /* UINavigationItem+WFSSchematising.h */; };
@@ -226,6 +232,12 @@
 		F65BE0631642DF5700D6F569 /* WFSHideViewsAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSHideViewsAction.m; sourceTree = "<group>"; };
 		F6697C47163EF4530098B3A7 /* WFSSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSSwipeGestureRecognizer.h; sourceTree = "<group>"; };
 		F6697C48163EF4530098B3A7 /* WFSSwipeGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSSwipeGestureRecognizer.m; sourceTree = "<group>"; };
+		F6759F401665011B003607D9 /* UIResponder+WFSSchematising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+WFSSchematising.h"; sourceTree = "<group>"; };
+		F6759F411665011B003607D9 /* UIResponder+WFSSchematising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+WFSSchematising.m"; sourceTree = "<group>"; };
+		F6759F451665020E003607D9 /* WFSDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSDatePicker.h; sourceTree = "<group>"; };
+		F6759F461665020E003607D9 /* WFSDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSDatePicker.m; sourceTree = "<group>"; };
+		F6759F4A16650374003607D9 /* NSDate+WFSSchematising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WFSSchematising.h"; sourceTree = "<group>"; };
+		F6759F4B16650374003607D9 /* NSDate+WFSSchematising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WFSSchematising.m"; sourceTree = "<group>"; };
 		F67D4DAD1664C2A000C9D111 /* WFSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSNavigationBar.h; sourceTree = "<group>"; };
 		F67D4DAE1664C2A000C9D111 /* WFSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSNavigationBar.m; sourceTree = "<group>"; };
 		F67D4DB21664C51300C9D111 /* UINavigationItem+WFSSchematising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+WFSSchematising.h"; sourceTree = "<group>"; };
@@ -444,6 +456,8 @@
 			children = (
 				F6C0EBCF163A8DB200271964 /* NSArray+WorkflowSchema.h */,
 				F6C0EBD0163A8DB200271964 /* NSArray+WorkflowSchema.m */,
+				F6759F4A16650374003607D9 /* NSDate+WFSSchematising.h */,
+				F6759F4B16650374003607D9 /* NSDate+WFSSchematising.m */,
 				F6C0EBD1163A8DB200271964 /* NSDictionary+WorkflowSchema.h */,
 				F6C0EBD2163A8DB200271964 /* NSDictionary+WorkflowSchema.m */,
 				F68389A9165E66D1005455EC /* NSNull+WorkflowSchema.h */,
@@ -458,6 +472,10 @@
 				F6C0EBD6163A8DB200271964 /* NSString+WFSSchematising.m */,
 				F6C0EBD7163A8DB200271964 /* UIImage+WFSSchematising.h */,
 				F6C0EBD8163A8DB200271964 /* UIImage+WFSSchematising.m */,
+				F67D4DB21664C51300C9D111 /* UINavigationItem+WFSSchematising.h */,
+				F67D4DB31664C51300C9D111 /* UINavigationItem+WFSSchematising.m */,
+				F6759F401665011B003607D9 /* UIResponder+WFSSchematising.h */,
+				F6759F411665011B003607D9 /* UIResponder+WFSSchematising.m */,
 				F62234D2163ED94C00C90A71 /* UIView+WFSSchematising.h */,
 				F62234D3163ED94C00C90A71 /* UIView+WFSSchematising.m */,
 				F651FE331643D62A0085962C /* UIView+WorkflowSchema.h */,
@@ -466,8 +484,6 @@
 				F62234C9163ED39700C90A71 /* UIViewController+WFSSchematising.m */,
 				F68795EF165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h */,
 				F68795F0165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m */,
-				F67D4DB21664C51300C9D111 /* UINavigationItem+WFSSchematising.h */,
-				F67D4DB31664C51300C9D111 /* UINavigationItem+WFSSchematising.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -577,26 +593,28 @@
 		F6E797B71632B26E006F59F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F67D4DC11664C93200C9D111 /* Segmented control */,
 				F62234CD163ED66C00C90A71 /* Gestures */,
+				F67D4DC11664C93200C9D111 /* Segmented control */,
 				F6E797251632B0E1006F59F2 /* WFSButton.h */,
 				F6E797261632B0E1006F59F2 /* WFSButton.m */,
 				F6E797291632B0E1006F59F2 /* WFSContainerView.h */,
 				F6E7972A1632B0E1006F59F2 /* WFSContainerView.m */,
+				F6759F451665020E003607D9 /* WFSDatePicker.h */,
+				F6759F461665020E003607D9 /* WFSDatePicker.m */,
 				F60405B4163304580026F708 /* WFSImageView.h */,
 				F60405B5163304580026F708 /* WFSImageView.m */,
 				F6E797381632B0E1006F59F2 /* WFSLabel.h */,
 				F6E797391632B0E1006F59F2 /* WFSLabel.m */,
-				F6E797621632B0E1006F59F2 /* WFSTextField.h */,
-				F6E797631632B0E1006F59F2 /* WFSTextField.m */,
-				F64C7F8416555BE800D248C0 /* WFSSearchBar.h */,
-				F64C7F8516555BE800D248C0 /* WFSSearchBar.m */,
-				F68389EE165E776A005455EC /* WFSToolbar.h */,
-				F68389EF165E776B005455EC /* WFSToolbar.m */,
-				D6B5E0DD1663F191000E409B /* WFSSlider.h */,
-				D6B5E0DE1663F191000E409B /* WFSSlider.m */,
 				F67D4DAD1664C2A000C9D111 /* WFSNavigationBar.h */,
 				F67D4DAE1664C2A000C9D111 /* WFSNavigationBar.m */,
+				F64C7F8416555BE800D248C0 /* WFSSearchBar.h */,
+				F64C7F8516555BE800D248C0 /* WFSSearchBar.m */,
+				D6B5E0DD1663F191000E409B /* WFSSlider.h */,
+				D6B5E0DE1663F191000E409B /* WFSSlider.m */,
+				F6E797621632B0E1006F59F2 /* WFSTextField.h */,
+				F6E797631632B0E1006F59F2 /* WFSTextField.m */,
+				F68389EE165E776A005455EC /* WFSToolbar.h */,
+				F68389EF165E776B005455EC /* WFSToolbar.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -791,6 +809,9 @@
 				F67D4DB81664C58000C9D111 /* WFSNavigationItem.h in Headers */,
 				F67D4DBF1664C8B800C9D111 /* WFSSegmentedControl.h in Headers */,
 				F67D4DC41664C94300C9D111 /* WFSSegment.h in Headers */,
+				F6759F421665011B003607D9 /* UIResponder+WFSSchematising.h in Headers */,
+				F6759F471665020E003607D9 /* WFSDatePicker.h in Headers */,
+				F6759F4C16650374003607D9 /* NSDate+WFSSchematising.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -981,6 +1002,9 @@
 				F67D4DB91664C58000C9D111 /* WFSNavigationItem.m in Sources */,
 				F67D4DC01664C8B800C9D111 /* WFSSegmentedControl.m in Sources */,
 				F67D4DC51664C94300C9D111 /* WFSSegment.m in Sources */,
+				F6759F431665011B003607D9 /* UIResponder+WFSSchematising.m in Sources */,
+				F6759F481665020E003607D9 /* WFSDatePicker.m in Sources */,
+				F6759F4D16650374003607D9 /* NSDate+WFSSchematising.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

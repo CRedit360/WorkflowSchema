@@ -26,6 +26,7 @@
 		F61749CE1653EB8B005B9090 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749CB1653EB8B005B9090 /* Default@2x.png */; };
 		F61749D11653F316005B9090 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749CF1653F316005B9090 /* Icon.png */; };
 		F61749D21653F316005B9090 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749D01653F316005B9090 /* Icon@2x.png */; };
+		F61C347F16651F3800B31811 /* KIFTestScenario+WSTDatePickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F61C347E16651F3800B31811 /* KIFTestScenario+WSTDatePickerTests.m */; };
 		F6223445163E758A00C90A71 /* KIFTestScenario+WSTFormControllerUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6223444163E758A00C90A71 /* KIFTestScenario+WSTFormControllerUnitTests.m */; };
 		F6223448163E7A4700C90A71 /* WSTTestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F6223447163E7A4700C90A71 /* WSTTestContext.m */; };
 		F622344B163E97F600C90A71 /* KIFTestScenario+WSTAlertViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F622344A163E97F600C90A71 /* KIFTestScenario+WSTAlertViewTests.m */; };
@@ -66,6 +67,7 @@
 		F651F628165247660056ECB7 /* tab_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F651F61A165247660056ECB7 /* tab_tests.xml */; };
 		F651F629165247660056ECB7 /* table_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F651F61B165247660056ECB7 /* table_tests.xml */; };
 		F655CF69165A2ACD004410C9 /* searching_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F655CF68165A2ACD004410C9 /* searching_tests.xml */; };
+		F6759F5016650AD1003607D9 /* KIFTestScenario+WSTDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6759F4F16650AD1003607D9 /* KIFTestScenario+WSTDateTests.m */; };
 		F67D4DBC1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DBB1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.m */; };
 		F67D4DC81664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DC71664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.m */; };
 		F68389D0165E6F8A005455EC /* updating_views_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F68389CF165E6F8A005455EC /* updating_views_tests.xml */; };
@@ -126,6 +128,8 @@
 		F61749CB1653EB8B005B9090 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F61749CF1653F316005B9090 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		F61749D01653F316005B9090 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		F61C347D16651F3800B31811 /* KIFTestScenario+WSTDatePickerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTDatePickerTests.h"; sourceTree = "<group>"; };
+		F61C347E16651F3800B31811 /* KIFTestScenario+WSTDatePickerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTDatePickerTests.m"; sourceTree = "<group>"; };
 		F6223443163E758A00C90A71 /* KIFTestScenario+WSTFormControllerUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTFormControllerUnitTests.h"; sourceTree = "<group>"; };
 		F6223444163E758A00C90A71 /* KIFTestScenario+WSTFormControllerUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTFormControllerUnitTests.m"; sourceTree = "<group>"; };
 		F6223446163E7A4700C90A71 /* WSTTestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSTTestContext.h; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 		F651F61A165247660056ECB7 /* tab_tests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = tab_tests.xml; sourceTree = "<group>"; };
 		F651F61B165247660056ECB7 /* table_tests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = table_tests.xml; sourceTree = "<group>"; };
 		F655CF68165A2ACD004410C9 /* searching_tests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = searching_tests.xml; sourceTree = "<group>"; };
+		F6759F4E16650AD1003607D9 /* KIFTestScenario+WSTDateTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTDateTests.h"; sourceTree = "<group>"; };
+		F6759F4F16650AD1003607D9 /* KIFTestScenario+WSTDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTDateTests.m"; sourceTree = "<group>"; };
 		F67D4DBA1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTNavigationBarTests.h"; sourceTree = "<group>"; };
 		F67D4DBB1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTNavigationBarTests.m"; sourceTree = "<group>"; };
 		F67D4DC61664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTSegmentedControlTests.h"; sourceTree = "<group>"; };
@@ -344,6 +350,10 @@
 				F68795CE165A84B200F495A1 /* KIFTestScenario+WSTConditionalActionTests.m */,
 				F642C0FE163AE52A00CFAA80 /* KIFTestScenario+WSTContainerUnitTests.h */,
 				F642C0FF163AE52A00CFAA80 /* KIFTestScenario+WSTContainerUnitTests.m */,
+				F61C347D16651F3800B31811 /* KIFTestScenario+WSTDatePickerTests.h */,
+				F61C347E16651F3800B31811 /* KIFTestScenario+WSTDatePickerTests.m */,
+				F6759F4E16650AD1003607D9 /* KIFTestScenario+WSTDateTests.h */,
+				F6759F4F16650AD1003607D9 /* KIFTestScenario+WSTDateTests.m */,
 				F6AEB074163FE8A700831297 /* KIFTestScenario+WSTDocumentationTests.h */,
 				F6AEB075163FE8A700831297 /* KIFTestScenario+WSTDocumentationTests.m */,
 				F6223443163E758A00C90A71 /* KIFTestScenario+WSTFormControllerUnitTests.h */,
@@ -611,6 +621,8 @@
 				D6B5E0EB1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m in Sources */,
 				F67D4DBC1664C76500C9D111 /* KIFTestScenario+WSTNavigationBarTests.m in Sources */,
 				F67D4DC81664D33C00C9D111 /* KIFTestScenario+WSTSegmentedControlTests.m in Sources */,
+				F6759F5016650AD1003607D9 /* KIFTestScenario+WSTDateTests.m in Sources */,
+				F61C347F16651F3800B31811 /* KIFTestScenario+WSTDatePickerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

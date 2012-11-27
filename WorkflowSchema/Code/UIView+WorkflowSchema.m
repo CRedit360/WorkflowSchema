@@ -11,6 +11,19 @@
 
 @implementation UIView (WorkflowSchema)
 
+- (UIResponder *)findFirstResponder
+{
+    if (self.isFirstResponder) return self;
+    
+    for (UIView *view in self.subviews)
+    {
+        UIResponder *responder = [view findFirstResponder];
+        if (responder) return responder;
+    }
+    
+    return nil;
+}
+
 - (NSArray *)subviewsWithWorkflowNames:(NSArray *)names
 {
     NSMutableArray *subviews = [NSMutableArray array];

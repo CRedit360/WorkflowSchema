@@ -10,6 +10,7 @@
 
 @interface UIView (WorkflowSchema)
 
+- (UIResponder *)findFirstResponder;
 - (NSArray *)subviewsWithWorkflowNames:(NSArray *)names;
 
 @end

@@ -34,6 +34,8 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[NSNumber class] forTypeName:@"number"];
     [self registerClass:[NSNumber class] forTypeName:@"bool"];
     [self registerClass:[UIImage class] forTypeName:@"image"];
+    [self registerClass:[NSDate class] forTypeName:@"date"];
+    [self registerClass:[NSNull class] forTypeName:@"null"];
     
     [self registerClass:[WFSMessage class] forTypeName:@"message"];
     
@@ -45,6 +47,7 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     
     [self registerClass:[WFSButton class] forTypeName:@"button"];
     [self registerClass:[WFSContainerView class] forTypeName:@"container"];
+    [self registerClass:[WFSDatePicker class] forTypeName:@"datePicker"];
     [self registerClass:[WFSImageView class] forTypeName:@"imageView"];
     [self registerClass:[WFSLabel class] forTypeName:@"label"];
     [self registerClass:[WFSNavigationBar class] forTypeName:@"navigationBar"];

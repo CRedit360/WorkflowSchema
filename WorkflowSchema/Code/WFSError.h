@@ -25,7 +25,7 @@ extern NSString * const WFSErrorDescriptionKey;
 
 #define WFSError(X, args...) [WFSError errorWithInfo:@{ \
 WFSErrorSelectorKey:NSStringFromSelector(_cmd), \
-WFSErrorClassKey:NSStringFromClass([self class]), \
+WFSErrorClassKey:(self ? NSStringFromClass([self class]) : [NSNull null]), \
 WFSErrorFileNameKey:[[NSString stringWithUTF8String:__FILE__] lastPathComponent], \
 WFSErrorLineNumberKey:[NSNumber numberWithInt:__LINE__], \
 WFSErrorCallStackKey:[NSThread callStackSymbols], \
