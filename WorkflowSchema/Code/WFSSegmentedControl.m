@@ -57,10 +57,11 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
+            @"apportionsSegmentWidthsByContent" : @[ [NSString class], [NSNumber class] ],
+            @"momentary"                        : @[ [NSString class], [NSNumber class] ],
             @"segments"                         : [WFSSegment class],
             @"segmentedControlStyle"            : @[ [NSString class], [NSNumber class] ],
-            @"momentary"                        : @[ [NSString class], [NSNumber class] ],
-            @"apportionsSegmentWidthsByContent" : @[ [NSString class], [NSNumber class] ],
+            @"selectedSegmentIndex"             : @[ [NSString class], [NSNumber class] ]
                         
     }];
 }
