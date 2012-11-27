@@ -9,7 +9,6 @@
 #import "UIViewController+WFSSchematising.h"
 #import "WFSBarButtonItem.h"
 #import "WFSNavigationItem.h"
-#import "WFSNavigationItemHelper.h"
 #import "WFSTabBarItem.h"
 #import "WFSSendMessageAction.h"
 
@@ -77,8 +76,8 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 {
     if ([name isEqualToString:@"navigationItem"])
     {
-        WFSNavigationItemHelper *navigationItemHelper = [[WFSNavigationItemHelper alloc] initWithNavigationItem:self.navigationItem];
-        return [navigationItemHelper setupNavigationItemForSchema:value context:context value:value error:outError];
+        WFSSchema *schema = value;
+        return [self.navigationItem setParametersForSchema:schema context:context error:outError];
     }
     
     return [super setSchemaParameterWithName:name value:value context:context error:outError];

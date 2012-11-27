@@ -83,7 +83,6 @@ NSString * WFSSearchBarScopeKey = @"scope";
             @"showsCancelButton"        : @[ [NSString class], [NSNumber class] ],
             @"showsSearchResultsButton" : @[ [NSString class], [NSNumber class] ],
             @"text"                     : [NSString class],
-            @"translucent"              : @[ [NSString class], [NSNumber class] ],
             @"validations"              : [WFSCondition class],
             
             @"searchMessage"            : @[ [WFSMessage class], [NSString class] ],

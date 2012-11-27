@@ -32,11 +32,12 @@
 
     }];
     
-    if ([self instancesRespondToSelector:@selector(setBarStyle:)])
+    if ([self instancesRespondToSelector:@selector(setBarStyle:)] && [self instancesRespondToSelector:@selector(setTranslucent:)])
     {
         schemaParameterTypes = [schemaParameterTypes dictionaryByAddingEntriesFromDictionary:@{
                                 
-            @"barStyle" : @[ [NSString class], [NSValue class] ]
+            @"barStyle"    : @[ [NSString class], [NSValue class] ],
+            @"translucent" : @[ [NSString class], [NSNumber class] ]
                                 
         }];
     }

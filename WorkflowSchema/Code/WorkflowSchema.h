@@ -18,6 +18,7 @@
 #import "WFSContainerView.h"
 #import "WFSImageView.h"
 #import "WFSLabel.h"
+#import "WFSNavigationBar.h"
 #import "WFSSearchBar.h"
 #import "WFSSlider.h"
 #import "WFSTextField.h"
