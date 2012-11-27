@@ -18,9 +18,11 @@
 
 - (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
-    self = [super initWithSchema:schema context:context error:outError];
+    self = [super initWithItems:@[]];
     if (self)
     {
+        WFS_SCHEMATISING_INITIALISATION;
+        
         [self addTarget:self action:@selector(changed:) forControlEvents:UIControlEventValueChanged];
     }
     return self;
