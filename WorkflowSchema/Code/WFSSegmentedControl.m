@@ -7,6 +7,7 @@
 //
 
 #import "WFSSegmentedControl.h"
+#import "WFSSchema+WFSGroupedParameters.h"
 
 @interface WFSSegmentedControl ()
 
@@ -22,6 +23,14 @@
     if (self)
     {
         WFS_SCHEMATISING_INITIALISATION;
+        
+        // set the selected index again, in case it was set before the segments
+        NSDictionary *groupedParameters = [schema groupedParametersWithContext:context error:outError];
+        NSNumber *selectedSegmentIndex = groupedParameters[@"selectedSegmentIndex"];
+        if (selectedSegmentIndex)
+        {
+            self.selectedSegmentIndex = [selectedSegmentIndex integerValue];
+        }
         
         [self addTarget:self action:@selector(changed:) forControlEvents:UIControlEventValueChanged];
     }
