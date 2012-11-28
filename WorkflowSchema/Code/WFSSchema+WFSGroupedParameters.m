@@ -14,8 +14,7 @@
 
 @interface WFSSchema ()
 
-@property (nonatomic, strong) NSDictionary *groupedParameters;
-@property (nonatomic, strong) WFSContext *groupedParametersContext;
+@property (nonatomic, strong) NSCache *groupedParametersCache;
 
 @end
 
@@ -62,13 +61,12 @@
 
 - (NSDictionary *)groupedParametersWithContext:(WFSContext *)context error:(NSError **)outError
 {
-    if ([context isEqual:self.groupedParametersContext ])
+    if (!self.groupedParametersCache) self.groupedParametersCache = [[NSCache alloc] init];
+    
+    NSDictionary *cachedParameters = [self.groupedParametersCache objectForKey:context];
+    if ([cachedParameters isKindOfClass:[NSDictionary class]])
     {
-        if (self.groupedParameters) return self.groupedParameters;
-    }
-    else
-    {
-        self.groupedParameters = nil;
+        return cachedParameters;
     }
     
     NSError *error = nil;
@@ -181,9 +179,7 @@
     if (outError) *outError = error;
     if (error) return nil;
     
-    self.groupedParameters = groupedParameters;
-    self.groupedParametersContext = context;
-    
+    [self.groupedParametersCache setObject:groupedParameters forKey:context];
     return groupedParameters;
 }
 

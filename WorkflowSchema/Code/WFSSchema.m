@@ -20,8 +20,7 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
 @property (nonatomic, copy, readwrite) NSString *typeName;
 @property (nonatomic, strong, readwrite) NSArray *parameters;
 
-@property (nonatomic, strong) NSDictionary *groupedParameters;
-@property (nonatomic, strong) WFSContext *groupedParametersContext;
+@property (nonatomic, strong) NSCache *groupedParametersCache;
 
 @end
 
