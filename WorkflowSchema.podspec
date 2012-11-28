@@ -11,6 +11,11 @@ Pod::Spec.new do |s|
   
   s.preferred_dependency = 'Core'
   
+  s.subspec 'All' do |ss|
+    ss.dependency 'WorkflowSchema/Core'
+    ss.dependency 'WorkflowSchema/DTCoreText'
+  end
+  
   s.subspec 'Core' do |ss|
     ss.source_files = 'WorkflowSchema/Code'
   end
