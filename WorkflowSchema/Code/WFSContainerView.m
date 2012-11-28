@@ -11,6 +11,7 @@
 
 @interface WFSContainerView ()
 
+@property (nonatomic, strong, readonly) UIImageView *backgroundImageView;
 @property (nonatomic, strong, readonly) UIScrollView *contentScrollView;
 @property (nonatomic, strong, readwrite) NSArray *contentViews;
 @property (nonatomic, assign, readwrite) WFSContainerViewLayout layout;
@@ -24,6 +25,11 @@
     self = [super init];
     if (self)
     {
+        _desiredSize = CGSizeZero;
+        
+        _backgroundImageView = [[UIImageView alloc] init];
+        [self addSubview:_backgroundImageView];
+        
         _contentViews = [NSArray array];
         _contentEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
         _contentPadding = 8;
@@ -123,14 +129,12 @@
     self.contentViews = [self.contentViews arrayByAddingObject:view];
 }
 
-- (CGSize)sizeForWidth:(CGFloat)width performLayout:(BOOL)performLayout
+- (CGSize)sizeForSize:(CGSize)size performLayout:(BOOL)performLayout
 {
     switch (self.layout)
     {
         case WFSContainerViewCenterLayout:
         {
-            CGRect layoutRect = UIEdgeInsetsInsetRect(self.bounds, self.contentEdgeInsets);
-
             for (UIView *view in self.contentViews)
             {
                 if (performLayout)
@@ -140,30 +144,40 @@
                 }
             }
             
-            return layoutRect.size;
+            return self.bounds.size;
         }
             
         case WFSContainerViewFillLayout:
         {
             CGRect layoutRect = UIEdgeInsetsInsetRect(self.bounds, self.contentEdgeInsets);
+            CGSize fillSize = layoutRect.size;
             
             for (UIView *view in self.contentViews)
             {
-                if (performLayout)
+                CGSize size = [view sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+                if (size.width > fillSize.width) fillSize.width = size.width;
+                if (size.height > fillSize.height) fillSize.height = size.height;
+            }
+            
+            layoutRect.size = fillSize;
+            
+            if (performLayout)
+            {
+                for (UIView *view in self.contentViews)
                 {
-                    [view sizeToFit];
                     view.frame = layoutRect;
                 }
             }
             
-            return layoutRect.size;
+            return CGSizeMake(self.contentEdgeInsets.left + layoutRect.size.width + self.contentEdgeInsets.right,
+                              self.contentEdgeInsets.top + layoutRect.size.height + self.contentEdgeInsets.bottom);
         }
             
         default:
         {
             CGFloat top = self.contentEdgeInsets.top;
             CGFloat left = self.contentEdgeInsets.left;
-            CGFloat contentWidth = width - (self.contentEdgeInsets.left + self.contentEdgeInsets.right);
+            CGFloat contentWidth = size.width - (self.contentEdgeInsets.left + self.contentEdgeInsets.right);
             
             for (UIView *view in self.contentViews)
             {
@@ -174,20 +188,24 @@
                 if (!view.hidden) top += size.height + self.contentPadding;
             }
             
-            return CGSizeMake(width, top + self.contentEdgeInsets.bottom - self.contentPadding);
+            return CGSizeMake(size.width, top + self.contentEdgeInsets.bottom - self.contentPadding);
         }
     }
 }
 
 - (void)layoutSubviews
 {
+    self.backgroundImageView.frame = self.bounds;
     self.contentScrollView.frame = self.bounds;
-    self.contentScrollView.contentSize = [self sizeForWidth:self.bounds.size.width performLayout:YES];
+    self.contentScrollView.contentSize = [self sizeForSize:self.bounds.size performLayout:YES];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-    return [self sizeForWidth:size.width performLayout:NO];
+    if ((self.desiredSize.width == 0) || (self.desiredSize.height == 0)) size = [self sizeForSize:size performLayout:NO];
+    if (self.desiredSize.width > 0) size.width = self.desiredSize.width;
+    if (self.desiredSize.height > 0) size.height = self.desiredSize.height;
+    return size;
 }
 
 - (void)hierarchyChanged:(NSNotification *)notification
@@ -197,6 +215,16 @@
     {
         [self layoutSubviews];
     }
+}
+
+- (UIImage *)backgroundImage
+{
+    return self.backgroundImageView.image;
+}
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    self.backgroundImageView.image = backgroundImage;
 }
 
 @end

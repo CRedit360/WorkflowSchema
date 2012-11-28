@@ -30,6 +30,8 @@
 		F61C34C61665254000B31811 /* WFSEndEditingAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F61C34C41665254000B31811 /* WFSEndEditingAction.m */; };
 		F61C34D51665310900B31811 /* WFSFormAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = F61C34D31665310900B31811 /* WFSFormAccessoryView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F61C34D61665310900B31811 /* WFSFormAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = F61C34D41665310900B31811 /* WFSFormAccessoryView.m */; };
+		F61C34D91666153300B31811 /* WFSTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = F61C34D71666153300B31811 /* WFSTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F61C34DA1666153300B31811 /* WFSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F61C34D81666153300B31811 /* WFSTextView.m */; };
 		F62234B6163EC2CD00C90A71 /* WFSMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F62234B4163EC2CD00C90A71 /* WFSMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F62234B7163EC2CD00C90A71 /* WFSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F62234B5163EC2CD00C90A71 /* WFSMessage.m */; };
 		F62234CA163ED39700C90A71 /* UIViewController+WFSSchematising.h in Headers */ = {isa = PBXBuildFile; fileRef = F62234C8163ED39700C90A71 /* UIViewController+WFSSchematising.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -210,6 +212,8 @@
 		F61C34C41665254000B31811 /* WFSEndEditingAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSEndEditingAction.m; sourceTree = "<group>"; };
 		F61C34D31665310900B31811 /* WFSFormAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSFormAccessoryView.h; sourceTree = "<group>"; };
 		F61C34D41665310900B31811 /* WFSFormAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSFormAccessoryView.m; sourceTree = "<group>"; };
+		F61C34D71666153300B31811 /* WFSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSTextView.h; sourceTree = "<group>"; };
+		F61C34D81666153300B31811 /* WFSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSTextView.m; sourceTree = "<group>"; };
 		F62234B4163EC2CD00C90A71 /* WFSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSMessage.h; sourceTree = "<group>"; };
 		F62234B5163EC2CD00C90A71 /* WFSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSMessage.m; sourceTree = "<group>"; };
 		F62234C8163ED39700C90A71 /* UIViewController+WFSSchematising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WFSSchematising.h"; sourceTree = "<group>"; };
@@ -625,6 +629,8 @@
 				F6E797631632B0E1006F59F2 /* WFSTextField.m */,
 				F68389EE165E776A005455EC /* WFSToolbar.h */,
 				F68389EF165E776B005455EC /* WFSToolbar.m */,
+				F61C34D71666153300B31811 /* WFSTextView.h */,
+				F61C34D81666153300B31811 /* WFSTextView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -826,6 +832,7 @@
 				F6759F4C16650374003607D9 /* NSDate+WFSSchematising.h in Headers */,
 				F61C34C51665254000B31811 /* WFSEndEditingAction.h in Headers */,
 				F61C34D51665310900B31811 /* WFSFormAccessoryView.h in Headers */,
+				F61C34D91666153300B31811 /* WFSTextView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,6 +1028,7 @@
 				F6759F4D16650374003607D9 /* NSDate+WFSSchematising.m in Sources */,
 				F61C34C61665254000B31811 /* WFSEndEditingAction.m in Sources */,
 				F61C34D61665310900B31811 /* WFSFormAccessoryView.m in Sources */,
+				F61C34DA1666153300B31811 /* WFSTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

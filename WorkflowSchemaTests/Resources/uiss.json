@@ -13,7 +13,7 @@
     },
             
     "WFSTextField" : {
-        "backgroundImage" : [["text_field_bg", 8, 8, 21, 8]],
+        "backgroundImage" : [["text_field_bg", 11, 8, 18, 8]],
     },
     
     "WFSButton" : {
@@ -42,9 +42,13 @@
         }
     },
     
-    "WFSContainerView" : {
-        "WFSContainerView" : {
-            "contentEdgeInsets" : [[0, 0, 0, 0]]
-        }
+    "WFSContainerView.inner" : {
+        "contentEdgeInsets" : [[0, 0, 0, 0]]
+    },
+    
+    "WFSContainerView.textView" : {
+        "backgroundImage" : [["text_field_bg", 11, 8, 18, 8]],
+        "contentEdgeInsets" : [[8, 0, 8, 0]],
+        "desiredSize" : [[0, 88]]
     }
 }

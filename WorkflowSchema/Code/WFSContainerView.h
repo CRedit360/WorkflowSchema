@@ -10,9 +10,9 @@
 #import "WFSSchematising.h"
 
 typedef enum {
-    WFSContainerViewVerticalLayout = 0,
-    WFSContainerViewCenterLayout,
-    WFSContainerViewFillLayout
+    WFSContainerViewVerticalLayout = 0, // Lay out one after another, vertically, at preferred size for width, separated by contentPadding
+    WFSContainerViewCenterLayout,       // Size all to fit and show in center
+    WFSContainerViewFillLayout          // Fill the available space. If there is not enough room for one, expand all to right or bottom.
 } WFSContainerViewLayout;
 
 @interface WFSContainerView : UIView <WFSSchematising>
@@ -25,7 +25,7 @@ typedef enum {
 
 @property (nonatomic, assign) UIEdgeInsets contentEdgeInsets UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat contentPadding UI_APPEARANCE_SELECTOR;
-
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) CGSize desiredSize UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIImage *backgroundImage UI_APPEARANCE_SELECTOR;
 
 @end

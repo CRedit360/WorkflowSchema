@@ -59,14 +59,7 @@
     else if ([value isKindOfClass:[NSString class]])
     {
         NSString *valueString = value;
-        NSString *format = groupedParameters[@"format"];
-        NSString *template = groupedParameters[@"template"];
-        
-        if (template && !format)
-        {
-            format = [NSDateFormatter dateFormatFromTemplate:template options:0 locale:schema.locale];
-        }
-        
+        NSString *format = groupedParameters[@"format"];        
         self = [NSDate dateWithString:valueString format:format locale:schema.locale error:outError];
     }
     
@@ -88,8 +81,7 @@
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
             @"value"    : @[ [NSDate class], [NSNumber class], [NSString class] ],
-            @"format"   : [NSString class],
-            @"template" : [NSString class]
+            @"format"   : [NSString class]
             
     }];
 }

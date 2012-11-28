@@ -14,10 +14,12 @@
                     <doesMatchRegularExpression>.</doesMatchRegularExpression>
                 </textField>
                 <label>Fruit</label>
-                <textField name="input3">
-                    <placeholder>Enter a fruit</placeholder>
-                    <doesMatchRegularExpression>.</doesMatchRegularExpression>
-                </textField>
+                <container class="textView">
+                    <textView name="input3">
+                        <accessibilityLabel>Enter a fruit</accessibilityLabel>
+                        <doesMatchRegularExpression>.</doesMatchRegularExpression>
+                    </textView>
+                </container>
                 <button>
                     <title>Submit</title>
                     <message>submit</message>

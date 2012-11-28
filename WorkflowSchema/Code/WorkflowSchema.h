@@ -24,6 +24,7 @@
 #import "WFSSegmentedControl.h"
 #import "WFSSlider.h"
 #import "WFSTextField.h"
+#import "WFSTextView.h"
 #import "WFSToolbar.h"
 
 #import "WFSTapGestureRecognizer.h"

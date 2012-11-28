@@ -9,7 +9,7 @@
                         <accessibilityLabel>thing1</accessibilityLabel>
                     </textField>
                     
-                    <container name="things1A">
+                    <container name="things1A" class="inner">
                         <label>Subthing A1</label>
                         <textField name="subthingA1">
                             <accessibilityLabel>subthingA1</accessibilityLabel>
@@ -20,7 +20,7 @@
                         </textField>
                     </container>
                     
-                    <container name="things1B">
+                    <container name="things1B" class="inner">
                         <label>Subthing B1</label>
                         <textField name="subthingB1">
                             <accessibilityLabel>subthingB1</accessibilityLabel>

@@ -52,14 +52,42 @@
     return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [WFSCondition class], @"validations" ]];
 }
 
++ (NSDictionary *)enumeratedSchemaParameters
+{
+    NSDictionary *textFieldViewModes = @{
+    
+            @"never"         : @(UITextFieldViewModeNever),
+            @"whileEditing"  : @(UITextFieldViewModeWhileEditing),
+            @"unlessEditing" : @(UITextFieldViewModeUnlessEditing),
+            @"always"        : @(UITextFieldViewModeAlways)
+    
+    };
+    
+    return [[super enumeratedSchemaParameters] dictionaryByAddingEntriesFromDictionary:@{
+    
+            @"clearButtonMode" : textFieldViewModes,
+            @"leftViewMode"    : textFieldViewModes,
+            @"rightViewMode"   : textFieldViewModes
+            
+    }];
+}
+
 + (NSDictionary *)schemaParameterTypes
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
-    
-    @"placeholder" : [NSString class],
-    @"text" : [NSString class],
-    @"validations" : [WFSCondition class]
-    
+            
+            @"adjustsFontSizeToFitWidth" : @[ [NSString class], [NSNumber class] ],
+            @"clearsOnBeginEditing"      : @[ [NSString class], [NSNumber class] ],
+            @"placeholder"               : [NSString class],
+            @"text"                      : [NSString class],
+            @"validations"               : [WFSCondition class],
+            
+            @"clearButtonMode"           : @[ [NSString class], [NSNumber class] ],
+            @"leftView"                  : [UIView class],
+            @"leftViewMode"              : @[ [NSString class], [NSNumber class] ],
+            @"rightView"                 : [UIView class],
+            @"rightViewMode"             : @[ [NSString class], [NSNumber class] ],
+            
     }];
 }
 

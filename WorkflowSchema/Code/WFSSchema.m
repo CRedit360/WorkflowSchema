@@ -55,9 +55,10 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[WFSSegmentedControl class] forTypeName:@"segmentedControl"];
     [self registerClass:[WFSSegment class] forTypeName:@"segment"];
     [self registerClass:[WFSSlider class] forTypeName:@"slider"];
-    [self registerClass:[WFSTextField class] forTypeName:@"textField"];
-    [self registerClass:[WFSToolbar class] forTypeName:@"toolbar"];
     [self registerClass:[WFSTableCell class] forTypeName:@"tableCell"];
+    [self registerClass:[WFSTextField class] forTypeName:@"textField"];
+    [self registerClass:[WFSTextView class] forTypeName:@"textView"];
+    [self registerClass:[WFSToolbar class] forTypeName:@"toolbar"];
     
     [self registerClass:[WFSTapGestureRecognizer class] forTypeName:@"tapGesture"];
     [self registerClass:[WFSLongPressGestureRecognizer class] forTypeName:@"longPressGesture"];
@@ -90,7 +91,6 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[WFSComparisonCondition class] forTypeName:@"isGreaterThan"];
     [self registerClass:[WFSEqualityCondition class] forTypeName:@"isEqual"];
     [self registerClass:[WFSMultipleCondition class] forTypeName:@"multipleConditions"];
-    [self registerClass:[WFSEqualityCondition class] forTypeName:@"isEqual"];
     [self registerClass:[WFSPresenceCondition class] forTypeName:@"isPresent"];
     [self registerClass:[WFSRegularExpressionCondition class] forTypeName:@"doesMatchRegularExpression"];
     

@@ -68,6 +68,9 @@
     @try
     {
         schema = [[[WFSXMLParser alloc] initWithContentsOfURL:xmlURL] parse:&error];
+        
+        // New classes may have been registered, so we need to reconfigure UISS.
+        [UISS configureWithDefaultJSONFile];
     }
     @catch (NSException *exception)
     {
@@ -83,9 +86,6 @@
 {
     WFSSchema *schema = [self loadSchemaWithFile:fileName];
     WFSContext *context = [WFSContext contextWithDelegate:self];
-    
-    // New classes may have been registered, so we need to reconfigure UISS.
-    [UISS configureWithDefaultJSONFile];
     
     NSError *error;
     UIViewController *controller = (UIViewController *)[schema createObjectWithContext:context error:&error];
