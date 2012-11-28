@@ -25,7 +25,6 @@
 		F60405D216330CAA0026F708 /* WFSPopControllerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F60405D016330CAA0026F708 /* WFSPopControllerAction.m */; };
 		F61749731653D78E005B9090 /* WorkflowSchema-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = F61749711653D78E005B9090 /* WorkflowSchema-Prefix.pch */; };
 		F61749781653D798005B9090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F61749741653D798005B9090 /* InfoPlist.strings */; };
-		F61749791653D798005B9090 /* WorkflowSchema.strings in Resources */ = {isa = PBXBuildFile; fileRef = F61749761653D798005B9090 /* WorkflowSchema.strings */; };
 		F61C34C51665254000B31811 /* WFSEndEditingAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F61C34C31665254000B31811 /* WFSEndEditingAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F61C34C61665254000B31811 /* WFSEndEditingAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F61C34C41665254000B31811 /* WFSEndEditingAction.m */; };
 		F61C34D51665310900B31811 /* WFSFormAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = F61C34D31665310900B31811 /* WFSFormAccessoryView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,9 +69,9 @@
 		F6759F4D16650374003607D9 /* NSDate+WFSSchematising.m in Sources */ = {isa = PBXBuildFile; fileRef = F6759F4B16650374003607D9 /* NSDate+WFSSchematising.m */; };
 		F67D4DAF1664C2A000C9D111 /* WFSNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DAD1664C2A000C9D111 /* WFSNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F67D4DB01664C2A000C9D111 /* WFSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DAE1664C2A000C9D111 /* WFSNavigationBar.m */; };
-		F67D4DB41664C51300C9D111 /* UINavigationItem+WFSSchematising.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DB21664C51300C9D111 /* UINavigationItem+WFSSchematising.h */; };
+		F67D4DB41664C51300C9D111 /* UINavigationItem+WFSSchematising.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DB21664C51300C9D111 /* UINavigationItem+WFSSchematising.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F67D4DB51664C51300C9D111 /* UINavigationItem+WFSSchematising.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DB31664C51300C9D111 /* UINavigationItem+WFSSchematising.m */; };
-		F67D4DB81664C58000C9D111 /* WFSNavigationItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DB61664C58000C9D111 /* WFSNavigationItem.h */; };
+		F67D4DB81664C58000C9D111 /* WFSNavigationItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DB61664C58000C9D111 /* WFSNavigationItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F67D4DB91664C58000C9D111 /* WFSNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DB71664C58000C9D111 /* WFSNavigationItem.m */; };
 		F67D4DBF1664C8B800C9D111 /* WFSSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = F67D4DBD1664C8B800C9D111 /* WFSSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F67D4DC01664C8B800C9D111 /* WFSSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F67D4DBE1664C8B800C9D111 /* WFSSegmentedControl.m */; };
@@ -205,7 +204,6 @@
 		F61749701653D78E005B9090 /* WorkflowSchema-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WorkflowSchema-Info.plist"; sourceTree = "<group>"; };
 		F61749711653D78E005B9090 /* WorkflowSchema-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkflowSchema-Prefix.pch"; sourceTree = "<group>"; };
 		F61749751653D798005B9090 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F61749771653D798005B9090 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WorkflowSchema.strings; sourceTree = "<group>"; };
 		F61749D31653F536005B9090 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F61749D51653F6DC005B9090 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F61C34C31665254000B31811 /* WFSEndEditingAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSEndEditingAction.h; sourceTree = "<group>"; };
@@ -551,7 +549,6 @@
 				F61749D51653F6DC005B9090 /* README.md */,
 				F61749D31653F536005B9090 /* LICENSE */,
 				F61749741653D798005B9090 /* InfoPlist.strings */,
-				F61749761653D798005B9090 /* WorkflowSchema.strings */,
 				F61749701653D78E005B9090 /* WorkflowSchema-Info.plist */,
 				F61749711653D78E005B9090 /* WorkflowSchema-Prefix.pch */,
 			);
@@ -893,7 +890,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F61749781653D798005B9090 /* InfoPlist.strings in Resources */,
-				F61749791653D798005B9090 /* WorkflowSchema.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,14 +1037,6 @@
 				F61749751653D798005B9090 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F61749761653D798005B9090 /* WorkflowSchema.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F61749771653D798005B9090 /* en */,
-			);
-			name = WorkflowSchema.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

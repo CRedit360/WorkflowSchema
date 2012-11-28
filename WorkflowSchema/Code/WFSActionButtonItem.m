@@ -62,7 +62,7 @@
     {
         if (self.title.length == 0)
         {
-            self.title = WFSLocalizedString(@"WFSCancelButtonItem.title", @"OK");
+            self.title = @"OK";
         }
     }
     return self;

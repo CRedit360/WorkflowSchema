@@ -1,0 +1,3 @@
+[submodule "WorkflowSchema/Modules/WorkflowSchema+DTCoreText/DTCoreText"]
+	path = WorkflowSchema/Modules/WorkflowSchema+DTCoreText/DTCoreText
+	url = git://github.com/Cocoanetics/DTCoreText.git

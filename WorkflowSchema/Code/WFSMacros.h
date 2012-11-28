@@ -6,5 +6,4 @@
 //  Copyright (c) 2012 CRedit360. All rights reserved.
 //
 
-#define WFSLocalizedString(K, V) [[NSBundle bundleForClass:[self class]] localizedStringForKey:K value:V table:@"WorkflowSchema"]
 #define WFSCastOrNil(X, C) ([X isKindOfClass:[C class]] ? (C *)X : nil)
