@@ -16,7 +16,7 @@ NSString * const WFSFormSubmitMessageName = @"submit";
 NSString * const WFSFormDidSubmitActionName = @"didSubmit";
 NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
 
-@interface WFSFormController () <WFSSchemaDelegate, WFSFormInputDelegate>
+@interface WFSFormController () <WFSSchemaDelegate>
 
 @property (nonatomic, strong) WFSSchema *viewSchema;
 @property (nonatomic, strong) WFSContext *viewContext;
@@ -65,6 +65,7 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
             @[ [UIView class], @"view" ],
             @[ [UIViewController class], @"view" ],
             @[ [WFSFormTrigger class], @"triggers" ],
+            @[ [WFSFormAccessoryView class], @"formAccessoryView" ]
     
     ]];
 }
@@ -73,8 +74,9 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"view"          : @[ [UIView class], [UIViewController class] ],
-            @"triggers"      : [WFSFormTrigger class]
+            @"view"              : @[ [UIView class], [UIViewController class] ],
+            @"triggers"          : [WFSFormTrigger class],
+            @"formAccessoryView" : [WFSFormAccessoryView class]
     
     }];
 }
@@ -233,6 +235,18 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
     
     [self.formView endEditing:YES];
     return [self performActionName:WFSFormDidSubmitActionName context:context];
+}
+
+- (void)formInputWillBeginEditing:(id<WFSFormInput>)formInput
+{
+    if ([formInput isKindOfClass:[UIResponder class]] && [formInput respondsToSelector:@selector(setInputAccessoryView:)])
+    {
+        id responder = formInput;
+        if (![responder inputAccessoryView])
+        {
+            [responder setInputAccessoryView:self.formAccessoryView];
+        }
+    }
 }
 
 - (BOOL)formInputShouldReturn:(id<WFSFormInput>)formInput

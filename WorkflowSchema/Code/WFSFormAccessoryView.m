@@ -9,6 +9,7 @@
 #import "WFSFormAccessoryView.h"
 #import "WFSMacros.h"
 #import "WFSFormInput.h"
+#import "WFSViewsAction.h"
 #import "UIView+WorkflowSchema.h"
 
 @interface WFSFormAccessoryView ()
@@ -38,9 +39,23 @@
         self.doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
         
         self.items = @[ prevNextItem, spaceItem, self.doneButtonItem ];
+        self.barStyle = UIBarStyleBlack;
+        self.translucent = YES;
+        
+        [self sizeToFit];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtons) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtons) name:UITextFieldTextDidBeginEditingNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtons) name:UITextViewTextDidBeginEditingNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtons) name:WFSViewsActionDidChangeHierarchyNotification object:nil];
     }
     
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIResponder<WFSFormInput> *)findFormInput
@@ -53,18 +68,16 @@
     return nil;
 }
 
-- (void)layoutSubviews
+
+- (void)updateButtons
 {
     UIResponder<WFSFormInput> *formInput = [self findFormInput];
     
     BOOL canFocusPreviousInput = [formInput.formInputDelegate canFocusPreviousInput:formInput];
     [self.prevNextControl setEnabled:canFocusPreviousInput forSegmentAtIndex:0];
     
-    bool canFocusNextInput = [formInput.formInputDelegate canFocusPreviousInput:formInput];
+    bool canFocusNextInput = [formInput.formInputDelegate canFocusNextInput:formInput];
     [self.prevNextControl setEnabled:canFocusNextInput forSegmentAtIndex:1];
-    
-    [self sizeToFit];
-    [super layoutSubviews];
 }
 
 - (void)prevNextControlTapped:(id)sender
@@ -88,12 +101,7 @@
 
 - (void)doneButtonTapped:(id)sender
 {
-    UIResponder<WFSFormInput> *formInput = [self findFormInput];
-    
-    if ([formInput.formInputDelegate formInputShouldReturn:formInput])
-    {
-        [self.window endEditing:YES];
-    }
+    [[[[UIApplication sharedApplication] delegate] window] endEditing:NO];
 }
 
 @end

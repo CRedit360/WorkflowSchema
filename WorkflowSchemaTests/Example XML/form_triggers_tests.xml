@@ -42,6 +42,9 @@
                     </button>
                 </container>
                 
+                <formAccessoryView>
+                </formAccessoryView>
+                
                 <triggers>
                     <trigger>
                         <doesMatchRegularExpression>

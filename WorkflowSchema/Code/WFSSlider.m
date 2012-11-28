@@ -30,7 +30,9 @@
             self.value = [value integerValue];
         }
         
+        [self addTarget:self action:@selector(touchDown:) forControlEvents:UIControlEventTouchDown];
         [self addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+        [self addTarget:self action:@selector(touchUp:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -64,7 +66,22 @@
     return @(self.value);
 }
 
+- (void)touchDown:(id)sender
+{
+    [self.formInputDelegate formInputWillBeginEditing:self];
+}
+
 - (void)valueChanged:(id)sender
+{
+    if (self.continuous && self.message)
+    {
+        WFSMutableContext *context = [self.workflowContext mutableCopy];
+        context.actionSender = sender;
+        [self sendMessageFromParameterWithName:@"message" context:context];
+    }
+}
+
+- (void)touchUp:(id)sender
 {
     [self.formInputDelegate formInputDidEndEditing:self];
     if (self.message)

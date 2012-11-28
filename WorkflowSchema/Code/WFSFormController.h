@@ -10,6 +10,7 @@
 #import "WFSAction.h"
 #import "WFSFormView.h"
 #import "WFSFormInput.h"
+#import "WFSFormAccessoryView.h"
 
 // some messages are special-cased for forms
 extern NSString * const WFSFormSubmitMessageName;
@@ -18,9 +19,10 @@ extern NSString * const WFSFormSubmitMessageName;
 extern NSString * const WFSFormDidSubmitActionName;
 extern NSString * const WFSFormDidNotSubmitActionName;
 
-@interface WFSFormController : UIViewController <WFSSchematising, WFSContextDelegate>
+@interface WFSFormController : UIViewController <WFSSchematising, WFSContextDelegate, WFSFormInputDelegate>
 
 @property (nonatomic, strong) NSArray *triggers;
+@property (nonatomic, strong) WFSFormAccessoryView *formAccessoryView;
 
 @property (nonatomic, strong, readonly) WFSFormView *formView;
 

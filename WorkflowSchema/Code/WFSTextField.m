@@ -94,6 +94,12 @@
 
 @implementation WFSTextFieldDelegate
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [[(WFSTextField *)textField formInputDelegate] formInputWillBeginEditing:(WFSTextField *)textField];
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     return [[(WFSTextField *)textField formInputDelegate] formInputShouldReturn:(WFSTextField *)textField];

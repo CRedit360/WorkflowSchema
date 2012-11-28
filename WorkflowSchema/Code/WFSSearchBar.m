@@ -216,6 +216,13 @@ NSString * WFSSearchBarScopeKey = @"scope";
     }
 }
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    WFSSearchBar *workflowSearchBar = (WFSSearchBar *)searchBar;
+    [[workflowSearchBar formInputDelegate] formInputWillBeginEditing:workflowSearchBar];
+    return YES;
+}
+
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     WFSSearchBar *workflowSearchBar = (WFSSearchBar *)searchBar;

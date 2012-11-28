@@ -23,13 +23,14 @@
 
 @protocol WFSFormInputDelegate <NSObject>
 
+- (void)formInputWillBeginEditing:(id<WFSFormInput>)formInput;
+- (BOOL)formInputShouldReturn:(id<WFSFormInput>)formInput;
+- (void)formInputDidEndEditing:(id<WFSFormInput>)formInput;
+
 - (BOOL)canFocusPreviousInput:(id<WFSFormInput>)formInput;
 - (BOOL)focusPreviousInput:(id<WFSFormInput>)formInput;
 
 - (BOOL)canFocusNextInput:(id<WFSFormInput>)formInput;
 - (BOOL)focusNextInput:(id<WFSFormInput>)formInput;
-
-- (BOOL)formInputShouldReturn:(id<WFSFormInput>)formInput;
-- (void)formInputDidEndEditing:(id<WFSFormInput>)formInput;
 
 @end

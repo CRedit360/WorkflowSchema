@@ -241,7 +241,8 @@
     [scenario addStep:[KIFTestStep stepToWaitForAbsenceOfViewWithAccessibilityLabel:@"subthingB2"]];
     
     // Trigger the first trigger
-    [scenario addStep:[KIFTestStep stepToEnterText:@"\bA\n" intoViewWithAccessibilityLabel:@"thing1" traits:UIAccessibilityTraitNone expectedResult:@"A"]];
+    [scenario addStep:[KIFTestStep stepToEnterText:@"\bA" intoViewWithAccessibilityLabel:@"thing1" traits:UIAccessibilityTraitNone expectedResult:@"A"]];
+    [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Next"]];
     
     // check that the first set of subviews was shown, but the second remains hidden
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"subthingA1"]];
@@ -250,7 +251,8 @@
     [scenario addStep:[KIFTestStep stepToWaitForAbsenceOfViewWithAccessibilityLabel:@"subthingB2"]];
     
     // Trigger the second trigger
-    [scenario addStep:[KIFTestStep stepToEnterText:@"\bB\n" intoViewWithAccessibilityLabel:@"thing1" traits:UIAccessibilityTraitNone expectedResult:@"B"]];
+    [scenario addStep:[KIFTestStep stepToEnterText:@"\bB" intoViewWithAccessibilityLabel:@"thing1" traits:UIAccessibilityTraitNone expectedResult:@"B"]];
+    [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Next"]];
     
     // check that the first set of subviews was hidden, and the second was shown
     [scenario addStep:[KIFTestStep stepToWaitForAbsenceOfViewWithAccessibilityLabel:@"subthingA1"]];
@@ -259,7 +261,8 @@
     [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"subthingB2"]];
     
     // De-trigger them both
-    [scenario addStep:[KIFTestStep stepToEnterText:@"\b\n" intoViewWithAccessibilityLabel:@"thing1" traits:UIAccessibilityTraitNone expectedResult:@""]];
+    [scenario addStep:[KIFTestStep stepToEnterText:@"\b" intoViewWithAccessibilityLabel:@"thing1" traits:UIAccessibilityTraitNone expectedResult:@""]];
+    [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Next"]];
     
     // check that the hidden subviews are hidden
     [scenario addStep:[KIFTestStep stepToWaitForAbsenceOfViewWithAccessibilityLabel:@"subthingA1"]];

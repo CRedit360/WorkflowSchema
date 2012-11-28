@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WFSSchematising.h"
 
-@interface WFSFormAccessoryView : UIToolbar
+@interface WFSFormAccessoryView : UIToolbar <WFSSchematising>
 
 @property (nonatomic, strong) NSString *previousButtonTitle;
 @property (nonatomic, strong) NSString *nextButtonTitle;
