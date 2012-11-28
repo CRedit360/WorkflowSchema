@@ -28,6 +28,8 @@
 		F61749791653D798005B9090 /* WorkflowSchema.strings in Resources */ = {isa = PBXBuildFile; fileRef = F61749761653D798005B9090 /* WorkflowSchema.strings */; };
 		F61C34C51665254000B31811 /* WFSEndEditingAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F61C34C31665254000B31811 /* WFSEndEditingAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F61C34C61665254000B31811 /* WFSEndEditingAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F61C34C41665254000B31811 /* WFSEndEditingAction.m */; };
+		F61C34D51665310900B31811 /* WFSFormAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = F61C34D31665310900B31811 /* WFSFormAccessoryView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F61C34D61665310900B31811 /* WFSFormAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = F61C34D41665310900B31811 /* WFSFormAccessoryView.m */; };
 		F62234B6163EC2CD00C90A71 /* WFSMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F62234B4163EC2CD00C90A71 /* WFSMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F62234B7163EC2CD00C90A71 /* WFSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F62234B5163EC2CD00C90A71 /* WFSMessage.m */; };
 		F62234CA163ED39700C90A71 /* UIViewController+WFSSchematising.h in Headers */ = {isa = PBXBuildFile; fileRef = F62234C8163ED39700C90A71 /* UIViewController+WFSSchematising.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -206,6 +208,8 @@
 		F61749D51653F6DC005B9090 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F61C34C31665254000B31811 /* WFSEndEditingAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSEndEditingAction.h; sourceTree = "<group>"; };
 		F61C34C41665254000B31811 /* WFSEndEditingAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSEndEditingAction.m; sourceTree = "<group>"; };
+		F61C34D31665310900B31811 /* WFSFormAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSFormAccessoryView.h; sourceTree = "<group>"; };
+		F61C34D41665310900B31811 /* WFSFormAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSFormAccessoryView.m; sourceTree = "<group>"; };
 		F62234B4163EC2CD00C90A71 /* WFSMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSMessage.h; sourceTree = "<group>"; };
 		F62234B5163EC2CD00C90A71 /* WFSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSMessage.m; sourceTree = "<group>"; };
 		F62234C8163ED39700C90A71 /* UIViewController+WFSSchematising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WFSSchematising.h"; sourceTree = "<group>"; };
@@ -671,6 +675,8 @@
 				F6E797351632B0E1006F59F2 /* WFSFormView.m */,
 				F65BE04D1642C99700D6F569 /* WFSFormTrigger.h */,
 				F65BE04E1642C99700D6F569 /* WFSFormTrigger.m */,
+				F61C34D31665310900B31811 /* WFSFormAccessoryView.h */,
+				F61C34D41665310900B31811 /* WFSFormAccessoryView.m */,
 			);
 			name = Form;
 			sourceTree = "<group>";
@@ -819,6 +825,7 @@
 				F6759F471665020E003607D9 /* WFSDatePicker.h in Headers */,
 				F6759F4C16650374003607D9 /* NSDate+WFSSchematising.h in Headers */,
 				F61C34C51665254000B31811 /* WFSEndEditingAction.h in Headers */,
+				F61C34D51665310900B31811 /* WFSFormAccessoryView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,6 +1020,7 @@
 				F6759F481665020E003607D9 /* WFSDatePicker.m in Sources */,
 				F6759F4D16650374003607D9 /* NSDate+WFSSchematising.m in Sources */,
 				F61C34C61665254000B31811 /* WFSEndEditingAction.m in Sources */,
+				F61C34D61665310900B31811 /* WFSFormAccessoryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

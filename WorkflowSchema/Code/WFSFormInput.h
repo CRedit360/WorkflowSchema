@@ -21,14 +21,13 @@
 
 @end
 
-@protocol WFSResponsiveInput <WFSFormInput>
-
-- (BOOL)canBecomeFirstResponder;
-- (BOOL)becomeFirstResponder;
-
-@end
-
 @protocol WFSFormInputDelegate <NSObject>
+
+- (BOOL)canFocusPreviousInput:(id<WFSFormInput>)formInput;
+- (BOOL)focusPreviousInput:(id<WFSFormInput>)formInput;
+
+- (BOOL)canFocusNextInput:(id<WFSFormInput>)formInput;
+- (BOOL)focusNextInput:(id<WFSFormInput>)formInput;
 
 - (BOOL)formInputShouldReturn:(id<WFSFormInput>)formInput;
 - (void)formInputDidEndEditing:(id<WFSFormInput>)formInput;

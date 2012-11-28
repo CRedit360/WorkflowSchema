@@ -64,6 +64,7 @@
 
 #import "WFSFormTrigger.h"
 #import "WFSFormInput.h"
+#import "WFSFormAccessoryView.h"
 
 #import "WFSActionButtonItem.h"
 #import "WFSBarButtonItem.h"

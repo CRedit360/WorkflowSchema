@@ -11,7 +11,7 @@
 #import "WFSFormInput.h"
 #import "UIView+WorkflowSchema.h"
 
-@interface WFSTextField : UITextField <WFSSchematising, WFSResponsiveInput>
+@interface WFSTextField : UITextField <WFSSchematising, WFSFormInput>
 
 @property (nonatomic, strong, readonly) id formValue;
 @property (nonatomic, strong) NSArray *validations;

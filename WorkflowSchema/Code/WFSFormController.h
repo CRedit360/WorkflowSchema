@@ -9,6 +9,7 @@
 #import "WFSSchematising.h"
 #import "WFSAction.h"
 #import "WFSFormView.h"
+#import "WFSFormInput.h"
 
 // some messages are special-cased for forms
 extern NSString * const WFSFormSubmitMessageName;

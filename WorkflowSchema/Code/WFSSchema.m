@@ -80,6 +80,7 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[WFSStoreValueAction class] forTypeName:@"storeValue"];
     [self registerClass:[WFSEndEditingAction class] forTypeName:@"endEditing"];
     
+    [self registerClass:[WFSFormAccessoryView class] forTypeName:@"formAccessoryView"];
     [self registerClass:[WFSFormTrigger class] forTypeName:@"trigger"];
     
     [self registerClass:[WFSNegatedCondition class] forTypeName:@"not"];

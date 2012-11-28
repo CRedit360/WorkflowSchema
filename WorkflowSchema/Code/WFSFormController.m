@@ -5,7 +5,6 @@
 // 
 
 #import "WFSFormController.h"
-#import "WFSFormInput.h"
 #import "WFSTextField.h"
 #import "WFSCondition.h"
 #import "WFSFormTrigger.h"
@@ -162,7 +161,7 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
             }
         }
         
-        if ([object conformsToProtocol:@protocol(WFSResponsiveInput)])
+        if ([object isKindOfClass:[UIResponder class]])
         {
             self.responsiveInputs = [self.responsiveInputs arrayByAddingObject:object];
         }
@@ -219,9 +218,9 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
     {
         if (![self validateFormInput:formInput context:context])
         {
-            if ([formInput conformsToProtocol:@protocol(WFSResponsiveInput)])
+            if ([formInput isKindOfClass:[UIResponder class]])
             {
-                id<WFSResponsiveInput> responsiveInput = (id<WFSResponsiveInput>)formInput;
+                UIResponder *responsiveInput = formInput;
                 if ([responsiveInput canBecomeFirstResponder])
                 {
                     [responsiveInput becomeFirstResponder];
@@ -238,22 +237,111 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
 
 - (BOOL)formInputShouldReturn:(id<WFSFormInput>)formInput
 {
+    if ([self canFocusNextInput:formInput])
+    {
+        return [self focusNextInput:formInput];
+    }
+    else
+    {
+        WFSResult *result = [self submitForm];
+        return result.isSuccess;
+    }
+}
+
+- (void)formInputDidEndEditing:(id<WFSFormInput>)formInput
+{
+    [self runTriggers];
+}
+
+- (BOOL)canFocusPreviousInput:(id<WFSFormInput>)currentInput
+{
+    if ([self.responsiveInputs containsObject:currentInput])
+    {
+        NSInteger index = [self.responsiveInputs indexOfObject:currentInput];
+        for (NSInteger i = index-1; i >= 0; i--)
+        {
+            UIResponder *input = self.responsiveInputs[i];
+            if ([input canBecomeFirstResponder])
+            {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)focusPreviousInput:(id<WFSFormInput>)currentInput
+{
     WFSContext *context = [self contextForPerformingActions:self.workflowContext];
     [self runTriggersInContext:context];
     
-    if (![self validateFormInput:formInput context:context])
+    if (![self validateFormInput:currentInput context:context])
     {
         return NO;
     }
     
-    if ([self.responsiveInputs containsObject:formInput])
+    if ([self.responsiveInputs containsObject:currentInput])
     {
-        id<WFSResponsiveInput> nextInput = nil;
+        UIResponder *previousInput = nil;
         
-        NSInteger index = [self.responsiveInputs indexOfObject:formInput];
+        NSInteger index = [self.responsiveInputs indexOfObject:currentInput];
+        for (NSInteger i = index-1; i >= 0; i--)
+        {
+            UIResponder *input = self.responsiveInputs[i];
+            if ([input canBecomeFirstResponder])
+            {
+                previousInput = input;
+                break;
+            }
+        }
+        
+        if (previousInput)
+        {
+            [previousInput becomeFirstResponder];
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)canFocusNextInput:(id<WFSFormInput>)currentInput
+{
+    if ([self.responsiveInputs containsObject:currentInput])
+    {
+        NSInteger index = [self.responsiveInputs indexOfObject:currentInput];
         for (NSInteger i = index+1; i < self.responsiveInputs.count; i++)
         {
-            id<WFSResponsiveInput> input = self.responsiveInputs[i];
+            UIResponder *input = self.responsiveInputs[i];
+            if ([input canBecomeFirstResponder])
+            {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)focusNextInput:(id<WFSFormInput>)currentInput
+{
+    WFSContext *context = [self contextForPerformingActions:self.workflowContext];
+    [self runTriggersInContext:context];
+    
+    if (![self validateFormInput:currentInput context:context])
+    {
+        return NO;
+    }
+    
+    if ([self.responsiveInputs containsObject:currentInput])
+    {
+        UIResponder *nextInput = nil;
+        
+        NSInteger index = [self.responsiveInputs indexOfObject:currentInput];
+        for (NSInteger i = index+1; i < self.responsiveInputs.count; i++)
+        {
+            UIResponder *input = self.responsiveInputs[i];
             if ([input canBecomeFirstResponder])
             {
                 nextInput = input;
@@ -264,19 +352,11 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
         if (nextInput)
         {
             [nextInput becomeFirstResponder];
-        }
-        else
-        {
-            [self submitForm];
+            return YES;
         }
     }
     
-    return YES;
-}
-
-- (void)formInputDidEndEditing:(id<WFSFormInput>)formInput
-{
-    [self runTriggers];
+    return NO;
 }
 
 - (void)runTriggers
