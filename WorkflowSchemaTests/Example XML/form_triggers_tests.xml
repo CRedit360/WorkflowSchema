@@ -43,6 +43,8 @@
                 </container>
                 
                 <formAccessoryView>
+                    <nextButtonTitle>Next</nextButtonTitle>
+                    <previousButtonTitle>Previous</previousButtonTitle>
                 </formAccessoryView>
                 
                 <triggers>

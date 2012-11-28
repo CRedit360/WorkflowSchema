@@ -26,10 +26,8 @@
     self = [super initWithSchema:schema context:context error:outError];
     if (self)
     {
-        if (!self.previousButtonTitle) self.previousButtonTitle = WFSLocalizedString(@"WFSFormAccessoryView.previousButtonTitle", @"Prev");
-        if (!self.nextButtonTitle) self.nextButtonTitle = WFSLocalizedString(@"WFSFormAccessoryView.nextButtonTitle", @"Next");
-        
         self.prevNextControl = [[UISegmentedControl alloc] initWithItems:@[ self.previousButtonTitle, self.nextButtonTitle ]];
+        self.prevNextControl.apportionsSegmentWidthsByContent = YES;
         self.prevNextControl.segmentedControlStyle = UISegmentedControlStyleBar;
         self.prevNextControl.momentary = YES;
         [self.prevNextControl addTarget:self action:@selector(prevNextControlTapped:) forControlEvents:UIControlEventValueChanged];
@@ -56,6 +54,21 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
++ (NSArray *)mandatorySchemaParameters
+{
+    return [[super mandatorySchemaParameters] arrayByAddingObjectsFromArray:@[ @"nextButtonTitle", @"previousButtonTitle" ]];
+}
+
++ (NSDictionary *)schemaParameterTypes
+{
+    return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
+            
+            @"nextButtonTitle"     : [NSString class],
+            @"previousButtonTitle" : [NSString class]
+            
+    }];
 }
 
 - (UIResponder<WFSFormInput> *)findFormInput
