@@ -145,6 +145,11 @@ NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
     }
 }
 
+- (void)parser:(NSXMLParser *)parser foundCDATA:(NSData *)CDATABlock
+{
+    NSString *string = [[NSString alloc] initWithData:CDATABlock encoding:NSUTF8StringEncoding];
+    [self parser:parser foundCharacters:string];
+}
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
