@@ -1,16 +1,19 @@
 
 PODS:
+- DTCoreText (1.0.2)
 - KIF (0.0.2)
 - MBProgressHUD (0.5)
 - UISS (1.0.0)
 
 DEPENDENCIES:
+- DTCoreText (~> 1.0)
 - KIF (defined in Podfile)
 - MBProgressHUD (~> 0.5)
 - UISS (~> 1.0)
 
 SPEC CHECKSUMS:
+  DTCoreText: 4f2b9d62554c62dd7cd412c9f50ece1e70a548b9
   MBProgressHUD: b23ee11c42253d6d804e8e0bfabdc334e8b2571f
   UISS: 591b2eec5cbbc13ea1698a2879a3d314dc23e43e
 
-COCOAPODS: 0.15.1
+COCOAPODS: 0.16.0

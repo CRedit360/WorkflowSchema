@@ -42,7 +42,6 @@
 		F62D73E016353F8400359F70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F62D73DF16353F8400359F70 /* main.m */; };
 		F62D73E416353F8400359F70 /* WSTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F62D73E316353F8400359F70 /* WSTAppDelegate.m */; };
 		F631B91B166653F600550970 /* WorkflowSchema+DTCoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F631B8E11666528F00550970 /* WorkflowSchema+DTCoreText.framework */; };
-		F634AAD3166656B3001D640E /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F634AAD2166656B3001D640E /* libDTCoreText.a */; };
 		F634AAD5166657A0001D640E /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634AAD4166657A0001D640E /* ImageIO.framework */; };
 		F634AAD7166657A4001D640E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F634AAD6166657A4001D640E /* QuartzCore.framework */; };
 		F634AAD9166657A9001D640E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F634AAD8166657A9001D640E /* libxml2.dylib */; };
@@ -180,7 +179,6 @@
 		F62D73E216353F8400359F70 /* WSTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSTAppDelegate.h; sourceTree = "<group>"; };
 		F62D73E316353F8400359F70 /* WSTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSTAppDelegate.m; sourceTree = "<group>"; };
 		F631B8D91666528F00550970 /* WorkflowSchema+DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "WorkflowSchema+DTCoreText.xcodeproj"; path = "../WorkflowSchema/Modules/WorkflowSchema+DTCoreText/WorkflowSchema+DTCoreText.xcodeproj"; sourceTree = "<group>"; };
-		F634AAD2166656B3001D640E /* libDTCoreText.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDTCoreText.a; path = "../WorkflowSchema/Modules/WorkflowSchema+DTCoreText/DTCoreText/build/Release-iphoneos/libDTCoreText.a"; sourceTree = "<group>"; };
 		F634AAD4166657A0001D640E /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		F634AAD6166657A4001D640E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F634AAD8166657A9001D640E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -269,7 +267,6 @@
 				F634AAD9166657A9001D640E /* libxml2.dylib in Frameworks */,
 				F634AAD7166657A4001D640E /* QuartzCore.framework in Frameworks */,
 				F634AAD5166657A0001D640E /* ImageIO.framework in Frameworks */,
-				F634AAD3166656B3001D640E /* libDTCoreText.a in Frameworks */,
 				F631B91B166653F600550970 /* WorkflowSchema+DTCoreText.framework in Frameworks */,
 				F61749A41653D94B005B9090 /* WorkflowSchema.framework in Frameworks */,
 				F62D73D416353F8400359F70 /* UIKit.framework in Frameworks */,
@@ -335,7 +332,6 @@
 		F62D73D216353F8400359F70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F634AAD2166656B3001D640E /* libDTCoreText.a */,
 				94EF6E20A7EA44FBAC7308B0 /* libPods.a */,
 				F634AAD8166657A9001D640E /* libxml2.dylib */,
 				F62D73D716353F8400359F70 /* CoreGraphics.framework */,
@@ -787,10 +783,6 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WorkflowSchemaTests-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"${PODS_HEADERS_SEARCH_PATHS}",
-					"\"$(SRCROOT)/../WorkflowSchema/Modules/WorkflowSchema+DTCoreText/DTCoreText/Core/\"/**",
-				);
 				INFOPLIST_FILE = "WorkflowSchemaTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -804,11 +796,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WorkflowSchemaTests-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"${PODS_HEADERS_SEARCH_PATHS}",
-					"\"$(SRCROOT)/../WorkflowSchema/Modules/WorkflowSchema+DTCoreText/DTCoreText/Core/\"/**",
-				);
-				INFOPLIST_FILE = "WorkflowSchemaTests-Info.list";
+				INFOPLIST_FILE = "WorkflowSchemaTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
