@@ -13,6 +13,7 @@
 
 + (void)load
 {
+    [self registerClass:[NSAttributedString class] forTypeName:@"attributedString"];
     [self registerClass:[DTAttributedTextView class] forTypeName:@"attributedTextView"];
 }
 

@@ -18,6 +18,8 @@
 		F634AADE1666581A001D640E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F631B8CB166651F900550970 /* Foundation.framework */; };
 		F634AAE416665974001D640E /* WFSSchema+DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = F634AAE216665974001D640E /* WFSSchema+DTCoreText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F634AAE516665974001D640E /* WFSSchema+DTCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = F634AAE316665974001D640E /* WFSSchema+DTCoreText.m */; };
+		F661E9CE16668EA0008BAC92 /* NSAttributedString+WFSSchematising.h in Headers */ = {isa = PBXBuildFile; fileRef = F661E9CC16668EA0008BAC92 /* NSAttributedString+WFSSchematising.h */; };
+		F661E9CF16668EA0008BAC92 /* NSAttributedString+WFSSchematising.m in Sources */ = {isa = PBXBuildFile; fileRef = F661E9CD16668EA0008BAC92 /* NSAttributedString+WFSSchematising.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,8 @@
 		F634AAD016665674001D640E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F634AAE216665974001D640E /* WFSSchema+DTCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WFSSchema+DTCoreText.h"; sourceTree = "<group>"; };
 		F634AAE316665974001D640E /* WFSSchema+DTCoreText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WFSSchema+DTCoreText.m"; sourceTree = "<group>"; };
+		F661E9CC16668EA0008BAC92 /* NSAttributedString+WFSSchematising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+WFSSchematising.h"; sourceTree = "<group>"; };
+		F661E9CD16668EA0008BAC92 /* NSAttributedString+WFSSchematising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+WFSSchematising.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				F631B91E1666542A00550970 /* WorkflowSchema+DTCoreText.h */,
-				F634AAE216665974001D640E /* WFSSchema+DTCoreText.h */,
-				F634AAE316665974001D640E /* WFSSchema+DTCoreText.m */,
+				F661E9C316668E83008BAC92 /* Data */,
 				F631B9101666536E00550970 /* Views */,
 				F631B8CE166651F900550970 /* Supporting Files */,
 			);
@@ -212,6 +215,17 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		F661E9C316668E83008BAC92 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F634AAE216665974001D640E /* WFSSchema+DTCoreText.h */,
+				F634AAE316665974001D640E /* WFSSchema+DTCoreText.m */,
+				F661E9CC16668EA0008BAC92 /* NSAttributedString+WFSSchematising.h */,
+				F661E9CD16668EA0008BAC92 /* NSAttributedString+WFSSchematising.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -222,6 +236,7 @@
 				F631B91F1666542A00550970 /* WorkflowSchema+DTCoreText.h in Headers */,
 				F631B9221666545A00550970 /* DTAttributedTextView+WFSSchematising.h in Headers */,
 				F634AAE416665974001D640E /* WFSSchema+DTCoreText.h in Headers */,
+				F661E9CE16668EA0008BAC92 /* NSAttributedString+WFSSchematising.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +421,7 @@
 			files = (
 				F631B9231666545A00550970 /* DTAttributedTextView+WFSSchematising.m in Sources */,
 				F634AAE516665974001D640E /* WFSSchema+DTCoreText.m in Sources */,
+				F661E9CF16668EA0008BAC92 /* NSAttributedString+WFSSchematising.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

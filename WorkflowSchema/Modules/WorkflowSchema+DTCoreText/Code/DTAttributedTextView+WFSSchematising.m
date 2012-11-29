@@ -10,7 +10,7 @@
 
 @implementation DTAttributedTextView (WFSSchematising)
 
-- (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError *__autoreleasing *)outError
+- (id)initWithSchema:(WFSSchema *)schema context:(WFSContext *)context error:(NSError **)outError
 {
     self = [super initWithSchema:schema context:context error:outError];
     if (self)

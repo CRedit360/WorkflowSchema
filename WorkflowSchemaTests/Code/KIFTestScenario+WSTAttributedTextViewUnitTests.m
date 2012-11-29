@@ -15,9 +15,9 @@
 
 @implementation KIFTestScenario (WSTAttributedTextViewUnitTests)
 
-+ (id)scenarioUnitTestCreateLabelWithHTML
++ (id)scenarioUnitTestCreateAttributedTextViewWithImplicitHTML
 {
-    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test attributed text view creation with html"];
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test attributed text view creation with implicit html"];
     
     [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
         
@@ -26,6 +26,38 @@
         NSData *htmlData = [html dataUsingEncoding:NSUTF8StringEncoding];
         
         WFSSchema *attributedTextViewSchema = [[WFSSchema alloc] initWithTypeName:@"attributedTextView" attributes:nil parameters:@[html]];
+        
+        WSTTestContext *context = [[WSTTestContext alloc] init];
+        
+        DTAttributedTextView *attributedTextView = (DTAttributedTextView *)[attributedTextViewSchema createObjectWithContext:context error:&error];
+        WSTFailOnError(error);
+        WSTAssert([attributedTextView isKindOfClass:[DTAttributedTextView class]]);
+        
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTMLData:htmlData documentAttributes:nil];
+        
+        // Test that the descriptions are equal, since NSAttributedString equality is "problematic"
+        WSTAssert([[attributedTextView.attributedString description] isEqual:[attributedString description]]);
+        
+        return KIFTestStepResultSuccess;
+        
+    }]];
+    
+    return scenario;
+}
+
++ (id)scenarioUnitTestCreateAttributedTextViewWithExplicitHTML
+{
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test attributed text view creation with explicit html"];
+    
+    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
+        
+        NSError *error = nil;
+        NSString *html = @"This <i>is</i> some <b>rich</b> text &amp; that was an entity";
+        NSData *htmlData = [html dataUsingEncoding:NSUTF8StringEncoding];
+        
+        WFSSchema *attributedTextViewSchema = [[WFSSchema alloc] initWithTypeName:@"attributedTextView" attributes:nil parameters:@[
+                                                [[WFSSchema alloc] initWithTypeName:@"attributedString" attributes:nil parameters:@[html]]
+                                              ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
         
