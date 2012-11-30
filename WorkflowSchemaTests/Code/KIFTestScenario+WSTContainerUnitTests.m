@@ -147,8 +147,11 @@
         WSTTestContext *context = [[WSTTestContext alloc] init];
         
         WFSContainerView *container = (WFSContainerView *)[textFieldSchema createObjectWithContext:context error:&error];
-        WSTAssert(container == nil);
-        WSTAssert(error != nil);
+        WSTFailOnError(error);
+        WSTAssert([container isKindOfClass:[WFSContainerView class]]);
+        WSTAssert(container.layout == WFSContainerViewVerticalLayout);
+        
+        WSTAssert(container.contentViews.count == 0);
         
         return KIFTestStepResultSuccess;
         

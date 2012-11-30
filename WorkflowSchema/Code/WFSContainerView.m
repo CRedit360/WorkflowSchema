@@ -48,11 +48,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-+ (NSArray *)mandatorySchemaParameters
-{
-    return [[super mandatorySchemaParameters] arrayByPrependingObject:@"views"];
-}
-
 + (NSArray *)arraySchemaParameters
 {
     return [[super arraySchemaParameters] arrayByPrependingObject:@"views"];
