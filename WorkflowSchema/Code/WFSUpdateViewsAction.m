@@ -30,6 +30,56 @@
     }];
 }
 
+// TODO: move this logic, and as much of WFSSchema+WFSGroupedParameters as necessary, into
+// NSObject+WFSSchematising
+- (BOOL)canSetValue:(id)value parameterName:(NSString *)name view:(UIView *)view
+{
+    NSArray *classes = [[[[view class] schemaParameterTypes] objectForKey:name] flattenedArray];
+    BOOL isArrayParameter = [[[view class] arraySchemaParameters] containsObject:name];
+    
+    bool didFindClass = NO;
+    if (isArrayParameter)
+    {
+        if ([value isKindOfClass:[NSArray class]])
+        {
+            didFindClass = YES;
+            
+            for (id subValue in value)
+            {
+                BOOL didFindSubClass = NO;
+                
+                for (Class class in classes)
+                {
+                    if ([value isKindOfClass:class])
+                    {
+                        didFindSubClass = YES;
+                        break;
+                    }
+                }
+                
+                if (!didFindSubClass)
+                {
+                    didFindClass = NO;
+                    break;
+                }
+            }
+        }
+    }
+    else
+    {
+        for (Class class in classes)
+        {
+            if ([value isKindOfClass:class])
+            {
+                didFindClass = YES;
+                break;
+            }
+        }
+    }
+    
+    return didFindClass;
+}
+
 - (WFSResult *)performActionForController:(UIViewController *)controller context:(WFSContext *)context
 {
     NSError *error = nil;
@@ -45,19 +95,7 @@
     UIView *viewWithoutParameter = nil;
     for (UIView *view in views)
     {
-        NSArray *classes = [[[[view class] schemaParameterTypes] objectForKey:self.parameterName] flattenedArray];
-        
-        bool didFindClass = NO;
-        for (Class class in classes)
-        {
-            if ([[value class] isSubclassOfClass:class])
-            {
-                didFindClass = YES;
-                break;
-            }
-        }
-        
-        if (!didFindClass)
+        if (![self canSetValue:value parameterName:self.parameterName view:view])
         {
             viewWithoutParameter = view;
             break;
