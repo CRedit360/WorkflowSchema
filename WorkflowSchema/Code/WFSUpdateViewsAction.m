@@ -30,8 +30,6 @@
     }];
 }
 
-// TODO: move this logic, and as much of WFSSchema+WFSGroupedParameters as necessary, into
-// NSObject+WFSSchematising
 - (BOOL)canSetValue:(id)value parameterName:(NSString *)name view:(UIView *)view
 {
     NSArray *classes = [[[[view class] schemaParameterTypes] objectForKey:name] flattenedArray];
@@ -44,7 +42,7 @@
         {
             didFindClass = YES;
             
-            for (id subValue in value)
+            for (id subValue in [value flattenedArray])
             {
                 BOOL didFindSubClass = NO;
                 
@@ -110,7 +108,10 @@
     
     for (UIView *view in views)
     {
-        [view setSchemaParameterWithName:self.parameterName value:value context:context error:&error];
+        id valueToSet = value;
+        if ([[[view class] arraySchemaParameters] containsObject:self.parameterName]) valueToSet = [value flattenedArray];
+        
+        [view setSchemaParameterWithName:self.parameterName value:valueToSet context:context error:&error];
         if (error)
         {
             [context sendWorkflowError:error];
