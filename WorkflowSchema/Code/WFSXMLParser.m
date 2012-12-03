@@ -119,27 +119,34 @@ NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
         }
     }
     
+    WFSSchema *schema = nil;
+    
     if (schemaClass)
     {
-        WFSSchema *schema = nil;
-        
         NSString *parameterKeyPath = attributeDict[@"keyPath"];
         if (parameterKeyPath)
         {
             WFSParserLog(@"Found proxied parameter %@ for %@", parameterKeyPath, elementName);
             schema = [[WFSParameterProxy alloc] initWithTypeName:elementName attributes:attributeDict];
         }
-        else
+        else if ([schemaClass isSchematisableClass])
         {
-            WFSParserLog(@"Found class %@ for %@", schemaClass, elementName);
+            WFSParserLog(@"Found schematisable class %@ for %@", schemaClass, elementName);
             schema = [[WFSMutableSchema alloc] initWithTypeName:elementName attributes:attributeDict];
         }
-                
+        else
+        {
+            WFSParserLog(@"Found abstract class %@ for %@", schemaClass, elementName);
+        }
+    }
+    
+    if (schema)
+    {
         [self.parseStack addObject:schema];
     }
     else
     {
-        WFSParserLog(@"Class %@ not valid for %@", schemaClass, elementName);
+        WFSParserLog(@"Class %@ not schematisable; treating %@ as parameter", schemaClass, elementName);
         WFSSchemaParameter *parameter = [[WFSSchemaParameter alloc] initWithName:elementName];
         [self.parseStack addObject:parameter];
     }
@@ -221,7 +228,7 @@ NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
         {
             self.resultSchema = element;
         }
-        else [self raiseException:@"Document ended but result is not a schema"];
+        else [self raiseException:@"Element ended but no valid parent or result is not a schema"];
     }
     else [self raiseException:@"Tag ended but no current element"];
 }

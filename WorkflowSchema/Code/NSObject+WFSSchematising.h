@@ -41,6 +41,13 @@ typedef BOOL(^WFSParameterCallback)(NSString *name, id value, NSError **outError
 @property (nonatomic, copy) NSString *workflowName;
 
 /*
+ *  If YES, then registering this class allows objects of this class to be created as part
+ *  of a workflow schema.  If NO, then the class will be treated as abstract and only available
+ *  for use in parameter proxies.
+ */
++ (BOOL)isSchematisableClass;
+
+/*
  *  A dictionary specifying all possible parameter names for the object as its keys, with the values
  *  being a class or array of classes which specify the allowed types of value for the parameter.
  */

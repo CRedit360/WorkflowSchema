@@ -19,6 +19,24 @@
 
 #define Sort(X) [X sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]
 
++ (NSArray *)registeredTypesDescendingFromClass:(Class)baseClass
+{
+    NSMutableArray *types = [NSMutableArray array];
+    NSDictionary *registeredClasses = [self registeredClasses];
+    
+    for (NSString *typeName in Sort(registeredClasses.allKeys))
+    {
+        Class registeredClass = registeredClasses[typeName];
+        
+        if ([registeredClass isSubclassOfClass:baseClass])
+        {
+            [types addObject:registeredClass];
+        }
+    }
+    
+    return types;
+}
+
 + (NSArray *)registeredTypeNamesDescendingFromClass:(Class)baseClass
 {
     NSMutableArray *typeNames = [NSMutableArray array];
@@ -27,7 +45,7 @@
     for (NSString *typeName in Sort(registeredClasses.allKeys))
     {
         Class registeredClass = registeredClasses[typeName];
-
+        
         if ([registeredClass isSubclassOfClass:baseClass])
         {
             [typeNames addObject:typeName];
@@ -229,7 +247,10 @@
         Class objectType = registeredClasses[objectTypeName];
         BOOL objectMixed = [self objectTypeCanContainText:objectType];
         
-        [xmlSchemaDefinition appendFormat:@"<!-- %@ maps to %@ -->\n", objectTypeName, objectType];
+        NSString *className = NSStringFromClass(objectType);
+        if (![objectType isSchematisableClass]) className = [NSString stringWithFormat:@"%@ (abstract)", className];
+        
+        [xmlSchemaDefinition appendFormat:@"<!-- %@ maps to %@ -->\n", objectTypeName, className];
         if ([emittedClasses containsObject:objectType])
         {
             [xmlSchemaDefinition appendFormat:@"<!-- %@ was already emitted -->\n\n", objectType];
@@ -239,10 +260,13 @@
         
         [xmlSchemaDefinition appendFormat:@"<xsd:complexType name=\"%@\" %@>\n", objectType, (objectMixed ? @"mixed=\"true\"" : @"")];
         
-        NSDictionary *parameters = [objectType schemaParameterTypes];
+        NSArray *descendantTypes = [self registeredTypesDescendingFromClass:objectType];
+        NSDictionary *parameters = @{ @"default" : descendantTypes, @"template" : descendantTypes };
         
-        // Parameter proxies can also contain default or template
-        parameters = [parameters dictionaryByAddingEntriesFromDictionary:@{ @"default" : objectType, @"template" : objectType }];
+        if ([objectType isSchematisableClass])
+        {
+            parameters = [parameters dictionaryByAddingEntriesFromDictionary:[objectType schemaParameterTypes]];
+        }
         
         if (parameters.count > 0)
         {
@@ -251,15 +275,23 @@
             for (NSString *parameterName in Sort(parameters.allKeys))
             {
                 [xmlSchemaDefinition appendFormat:@"    <xsd:group ref=\"%@.%@\" />\n", objectType, parameterName];
-            }        
-
+            }
+            
             [xmlSchemaDefinition appendString:@"  </xsd:choice>\n"];
         }
         
-        [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"name\" type=\"xsd:string\" />\n"];
-        [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"locale\" type=\"xsd:string\" />\n"];
-        [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"class\" type=\"xsd:string\" />\n"];
-        [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"keyPath\" type=\"xsd:string\" />\n"];
+        if ([objectType isSchematisableClass])
+        {
+            [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"keyPath\" type=\"xsd:string\" />\n"];
+            [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"name\" type=\"xsd:string\" />\n"];
+            [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"locale\" type=\"xsd:string\" />\n"];
+            [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"class\" type=\"xsd:string\" />\n"];
+        }
+        else
+        {
+            [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"keyPath\" type=\"xsd:string\" use=\"required\" />\n"];
+        }
+        
         [xmlSchemaDefinition appendString:@"</xsd:complexType>\n\n"];
         
         for (NSString *parameterName in Sort(parameters.allKeys))

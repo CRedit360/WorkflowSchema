@@ -58,6 +58,11 @@ static char * const WFSSchematisingNameKey = "name";
     return self;
 }
 
++ (BOOL)isSchematisableClass
+{
+    return (self != [NSObject class]);
+}
+
 + (NSArray *)mandatorySchemaParameters
 {
     return @[];

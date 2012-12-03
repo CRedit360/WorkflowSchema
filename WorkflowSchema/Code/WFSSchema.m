@@ -29,6 +29,9 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
 + (void)initialize
 {
     [self registerClass:[NSObject class] forTypeName:@"object"];
+    [self registerClass:[UIView class] forTypeName:@"view"];
+    [self registerClass:[UIViewController class] forTypeName:@"viewController"];
+    
     [self registerClass:[NSString class] forTypeName:@"string"];
     [self registerClass:[NSNumber class] forTypeName:@"number"];
     [self registerClass:[NSNumber class] forTypeName:@"bool"];

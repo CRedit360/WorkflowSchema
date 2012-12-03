@@ -10,6 +10,11 @@
 
 @implementation UIView (WFSSchematising)
 
++ (BOOL)isSchematisableClass
+{
+    return (self != [UIView class]);
+}
+
 + (NSArray *)defaultSchemaParameters
 {
     return [[super defaultSchemaParameters] arrayByPrependingObjectsFromArray:@[

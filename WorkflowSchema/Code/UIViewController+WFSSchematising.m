@@ -20,6 +20,11 @@ static char * const WFSUIViewControllerSchematisingStoredValuesKey = "storedValu
 
 @implementation UIViewController (WFSSchematising)
 
++ (BOOL)isSchematisableClass
+{
+    return (self != [UIViewController class]);
+}
+
 + (NSArray *)lazilyCreatedSchemaParameters
 {
     return [[super lazilyCreatedSchemaParameters] arrayByPrependingObject:@"navigationItem"];
