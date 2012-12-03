@@ -23,6 +23,7 @@
 #import "WFSSearchBar.h"
 #import "WFSSegmentedControl.h"
 #import "WFSSlider.h"
+#import "WFSSwitch.h"
 #import "WFSTextField.h"
 #import "WFSTextView.h"
 #import "WFSToolbar.h"
