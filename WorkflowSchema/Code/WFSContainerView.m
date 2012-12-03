@@ -32,9 +32,11 @@
         
         _contentViews = [NSArray array];
         _contentEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
-        _contentPadding = 8;
+        _contentPadding = CGSizeMake(8, 8);
         _contentScrollView = [[UIScrollView alloc] init];
         [self addSubview:_contentScrollView];
+        
+        _numberOfColumns = 1;
         
         WFS_SCHEMATISING_INITIALISATION
         
@@ -67,8 +69,10 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"views" : @[ [UIView class], [UIViewController class] ],
-            @"layout" : @[ [NSString class], [NSNumber class] ]
+            @"views"                : @[ [UIView class], [UIViewController class] ],
+            @"layout"               : @[ [NSString class], [NSNumber class] ],
+            @"numberOfColumns"      : @[ [NSString class], [NSNumber class] ],
+            @"rightAlignLastColumn" : @[ [NSString class], [NSNumber class] ]
             
     }];
 }
@@ -126,6 +130,9 @@
 
 - (CGSize)sizeForSize:(CGSize)size performLayout:(BOOL)performLayout
 {
+    CGRect bounds = CGRectZero;
+    bounds.size = size;
+    
     switch (self.layout)
     {
         case WFSContainerViewCenterLayout:
@@ -139,12 +146,12 @@
                 }
             }
             
-            return self.bounds.size;
+            return size;
         }
             
         case WFSContainerViewFillLayout:
         {
-            CGRect layoutRect = UIEdgeInsetsInsetRect(self.bounds, self.contentEdgeInsets);
+            CGRect layoutRect = UIEdgeInsetsInsetRect(bounds, self.contentEdgeInsets);
             CGSize fillSize = layoutRect.size;
             
             for (UIView *view in self.contentViews)
@@ -167,23 +174,109 @@
             return CGSizeMake(self.contentEdgeInsets.left + layoutRect.size.width + self.contentEdgeInsets.right,
                               self.contentEdgeInsets.top + layoutRect.size.height + self.contentEdgeInsets.bottom);
         }
-            
+
         default:
         {
-            CGFloat top = self.contentEdgeInsets.top;
-            CGFloat left = self.contentEdgeInsets.left;
-            CGFloat contentWidth = size.width - (self.contentEdgeInsets.left + self.contentEdgeInsets.right);
+            CGRect layoutRect = UIEdgeInsetsInsetRect(bounds, self.contentEdgeInsets);
             
-            for (UIView *view in self.contentViews)
+            NSUInteger numberOfColumns = MAX(1, self.numberOfColumns);
+            NSMutableArray *columns = [NSMutableArray arrayWithCapacity:numberOfColumns];
+            for (int c = 0; c < numberOfColumns; c++) [columns addObject:[NSMutableArray array]];
+            
+            NSUInteger numberOfRows = ((self.contentViews.count - 1) / self.numberOfColumns) + 1;
+            NSMutableArray *rows = [NSMutableArray arrayWithCapacity:numberOfRows];
+            for (int r = 0; r < numberOfRows; r++) [rows addObject:[NSMutableArray array]];
+            
+            for (int i = 0; i < self.contentViews.count; i++)
             {
-                CGSize size = [view sizeThatFits:CGSizeMake(contentWidth, CGFLOAT_MAX)];
-                if (view.hidden) size.height = 0;
-                size.width = contentWidth;
-                if (performLayout) { view.frame = CGRectMake(left, top, size.width, size.height); }
-                if (!view.hidden) top += size.height + self.contentPadding;
+                int c = i % self.numberOfColumns;
+                int r = i / self.numberOfColumns;
+                
+                UIView *view = self.contentViews[i];
+                [columns[c] addObject:view];
+                [rows[r] addObject:view];
             }
             
-            return CGSizeMake(size.width, top + self.contentEdgeInsets.bottom - self.contentPadding);
+            // Step 1: work out the column widths.
+            
+            CGFloat remainingWidth = layoutRect.size.width;
+            CGFloat totalColumnWidth = 0;
+            
+            NSMutableArray *columnWidths = [NSMutableArray arrayWithCapacity:self.numberOfColumns];
+            
+            if (numberOfColumns > 0)
+            {
+                for (int c = 0; c < numberOfColumns; c++)
+                {
+                    CGFloat columnWidth = 0;
+                    CGFloat availableWidth = CGFLOAT_MAX;
+                    
+                    // If there's room, try to fit the last column into the available space.
+                    if ((c == self.numberOfColumns - 1) && (remainingWidth >= 44))
+                    {
+                        columnWidth = remainingWidth;
+                        availableWidth = remainingWidth;
+                    }
+                    
+                    for (UIView *view in columns[c])
+                    {
+                        if (!view.hidden)
+                        {
+                            CGSize viewSize = [view sizeThatFits:CGSizeMake(availableWidth, CGFLOAT_MAX)];
+                            columnWidth = MAX(columnWidth, viewSize.width);
+                        }
+                    }
+                                    
+                    remainingWidth -= columnWidth + self.contentPadding.width;
+                    totalColumnWidth += columnWidth + self.contentPadding.width;
+                    [columnWidths addObject:@(columnWidth)];
+                }
+            }
+            else
+            {
+                [columnWidths addObject:@(remainingWidth)];
+            }
+            
+            // Step 2: work out the row heights
+            
+            CGFloat top = layoutRect.origin.y;
+            
+            for (int r = 0; r < numberOfRows; r++)
+            {
+                CGFloat rowHeight = 0;
+                CGFloat left = layoutRect.origin.x;
+                
+                for (int c = 0; c < [rows[r] count]; c++)
+                {
+                    UIView *view = rows[r][c];
+                    CGFloat columnWidth = [columnWidths[c] floatValue];
+                    
+                    CGSize viewSize = [view sizeThatFits:CGSizeMake(columnWidth, CGFLOAT_MAX)];
+                    if (view.hidden) viewSize.height = 0;
+                    if (performLayout)
+                    {
+                        CGRect frame = CGRectMake(left, top, viewSize.width, viewSize.height);
+                        
+                        if (self.rightAlignLastColumn && (r == numberOfRows - 1) && (columnWidth > viewSize.width))
+                        {
+                            frame.origin.x += (columnWidth - viewSize.width);
+                        }
+                        else
+                        {
+                            frame.size.width = columnWidth;
+                        }
+                        
+                        view.frame = frame;
+                    }
+                    
+                    rowHeight = MAX(rowHeight, viewSize.height);
+                    left += columnWidth + self.contentPadding.width;
+                }
+                
+                if (rowHeight > 0) top += rowHeight + self.contentPadding.height;
+            }
+            
+            return CGSizeMake(self.contentEdgeInsets.left + totalColumnWidth + self.contentEdgeInsets.right - self.contentPadding.width, top + self.contentEdgeInsets.bottom - self.contentPadding.height);
         }
     }
 }

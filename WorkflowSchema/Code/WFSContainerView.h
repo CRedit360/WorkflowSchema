@@ -11,6 +11,7 @@
 
 typedef enum {
     WFSContainerViewVerticalLayout = 0, // Lay out one after another, vertically, at preferred size for width, separated by contentPadding
+                                        // If numberOfColumns is greater than one, lay out in rows. Columns are sized to widest member.
     WFSContainerViewCenterLayout,       // Size all to fit and show in center
     WFSContainerViewFillLayout          // Fill the available space. If there is not enough room for one, expand all to right or bottom.
 } WFSContainerViewLayout;
@@ -24,8 +25,11 @@ typedef enum {
 @property (nonatomic, assign, readonly) WFSContainerViewLayout layout;
 
 @property (nonatomic, assign) UIEdgeInsets contentEdgeInsets UI_APPEARANCE_SELECTOR;
-@property (nonatomic, assign) CGFloat contentPadding UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) CGSize contentPadding UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGSize desiredSize UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIImage *backgroundImage UI_APPEARANCE_SELECTOR;
+
+@property (nonatomic, assign) NSUInteger numberOfColumns;
+@property (nonatomic, assign) BOOL rightAlignLastColumn;
 
 @end
