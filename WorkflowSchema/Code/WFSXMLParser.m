@@ -8,6 +8,7 @@
 
 #import "WFSXMLParser.h"
 #import "WFSSchema.h"
+#import "WFSSchema+WFSGroupedParameters.h"
 #import "WFSParameterProxy.h"
 #import "WFSConditionalSchema.h"
 #import "WFSSchemaParameter.h"
@@ -102,7 +103,7 @@ NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
         {
             BOOL classIsValidInCurrentSchema = NO;
             
-            for (NSArray *defaultPair in [(Class)currentSchema.schemaClass defaultSchemaParameters])
+            for (NSArray *defaultPair in [(Class)[currentSchema classForGroupedParameters] defaultSchemaParameters])
             {
                 Class possibleClass = defaultPair[0];
 

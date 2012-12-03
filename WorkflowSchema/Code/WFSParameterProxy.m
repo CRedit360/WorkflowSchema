@@ -91,8 +91,14 @@
             object = [object flattenedArray];
             NSMutableArray *subObjects = [NSMutableArray array];
             
-            for (NSDictionary *parameters in object)
+            for (__strong NSDictionary *parameters in object)
             {
+                NSString *valueName = self.attributes[@"valueName"];
+                if (valueName)
+                {
+                    parameters = @{ valueName : parameters };
+                }
+                
                 if ([parameters isKindOfClass:[NSDictionary class]])
                 {
                     WFSMutableContext *subContext = [context mutableCopy];

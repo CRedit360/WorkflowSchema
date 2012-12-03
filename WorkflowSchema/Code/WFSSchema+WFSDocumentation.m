@@ -170,7 +170,7 @@
         
         NSString *declaration = [self elementDeclarationForPossibleChildren:possibleObjectChildren.allObjects];
         [documentTypeDescription appendFormat:@"<!ELEMENT %@ %@ >\n", objectTypeName, (declaration.length > 0) ? [NSString stringWithFormat:@"(%@)*", declaration] : @"EMPTY"];
-        [documentTypeDescription appendFormat:@"<!ATTLIST %@\nname CDATA #IMPLIED\nconditional CDATA #IMPLIED\nclass CDATA #IMPLIED\nkeyPath CDATA #IMPLIED\n>\n\n", objectTypeName];
+        [documentTypeDescription appendFormat:@"<!ATTLIST %@\nname CDATA #IMPLIED\nconditional CDATA #IMPLIED\nclass CDATA #IMPLIED\nkeyPath CDATA #IMPLIED\nvalueName CDATA #IMPLIED\n>\n\n", objectTypeName];
     }
     
     [documentTypeDescription appendString:@"<!-- PARAMETER ELEMENTS -->\n\n"];
@@ -294,6 +294,7 @@
         if ([objectType isSchematisableClass])
         {
             [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"keyPath\" type=\"xsd:string\" />\n"];
+            [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"valueName\" type=\"xsd:string\" />\n"];
             [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"name\" type=\"xsd:string\" />\n"];
             [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"conditional\" type=\"xsd:string\" />\n"];
             [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"class\" type=\"xsd:string\" />\n"];
@@ -301,6 +302,7 @@
         else
         {
             [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"keyPath\" type=\"xsd:string\" use=\"required\" />\n"];
+            [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"valueName\" type=\"xsd:string\" />\n"];
         }
         
         [xmlSchemaDefinition appendString:@"</xsd:complexType>\n\n"];
