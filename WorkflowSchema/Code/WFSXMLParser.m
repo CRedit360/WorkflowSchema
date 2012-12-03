@@ -9,6 +9,7 @@
 #import "WFSXMLParser.h"
 #import "WFSSchema.h"
 #import "WFSParameterProxy.h"
+#import "WFSConditionalSchema.h"
 #import "WFSSchemaParameter.h"
 #import "WFSSchematising.h"
 
@@ -124,10 +125,17 @@ NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
     if (schemaClass)
     {
         NSString *parameterKeyPath = attributeDict[@"keyPath"];
+        BOOL conditional = [attributeDict[@"conditional"] boolValue];
+        
         if (parameterKeyPath)
         {
             WFSParserLog(@"Found proxied parameter %@ for %@", parameterKeyPath, elementName);
             schema = [[WFSParameterProxy alloc] initWithTypeName:elementName attributes:attributeDict];
+        }
+        else if (conditional)
+        {
+            WFSParserLog(@"Found conditional schema for %@", elementName);
+            schema = [[WFSConditionalSchema alloc] initWithTypeName:elementName attributes:attributeDict];
         }
         else if ([schemaClass isSchematisableClass])
         {

@@ -11,6 +11,8 @@
 		D6B5E0E41663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B5E0E31663F4B5000E409B /* KIFTestScenario+WSTSliderTests.m */; };
 		D6B5E0EB1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B5E0EA1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m */; };
 		F603E94A166CB79D002B35A0 /* KIFTestScenario+WSTSwitchUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F603E949166CB79D002B35A0 /* KIFTestScenario+WSTSwitchUnitTests.m */; };
+		F608BEE2166CE6BF0034AEB2 /* KIFTestScenario+WSTConditionalSchemaUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F608BEE1166CE6BF0034AEB2 /* KIFTestScenario+WSTConditionalSchemaUnitTests.m */; };
+		F608BEE4166CEB210034AEB2 /* conditional_tests.xml in Resources */ = {isa = PBXBuildFile; fileRef = F608BEE3166CEB210034AEB2 /* conditional_tests.xml */; };
 		F617498D1653D90A005B9090 /* button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749841653D90A005B9090 /* button_bg.png */; };
 		F617498E1653D90A005B9090 /* button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749851653D90A005B9090 /* button_bg@2x.png */; };
 		F617498F1653D90A005B9090 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = F61749861653D90A005B9090 /* first.png */; };
@@ -135,6 +137,9 @@
 		F603E948166CB79D002B35A0 /* KIFTestScenario+WSTSwitchUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTSwitchUnitTests.h"; sourceTree = "<group>"; };
 		F603E949166CB79D002B35A0 /* KIFTestScenario+WSTSwitchUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTSwitchUnitTests.m"; sourceTree = "<group>"; };
 		F6057C3916396112002496F7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F608BEE0166CE6BF0034AEB2 /* KIFTestScenario+WSTConditionalSchemaUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+WSTConditionalSchemaUnitTests.h"; sourceTree = "<group>"; };
+		F608BEE1166CE6BF0034AEB2 /* KIFTestScenario+WSTConditionalSchemaUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+WSTConditionalSchemaUnitTests.m"; sourceTree = "<group>"; };
+		F608BEE3166CEB210034AEB2 /* conditional_tests.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = conditional_tests.xml; sourceTree = "<group>"; };
 		F61749841653D90A005B9090 /* button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bg.png; sourceTree = "<group>"; };
 		F61749851653D90A005B9090 /* button_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_bg@2x.png"; sourceTree = "<group>"; };
 		F61749861653D90A005B9090 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
@@ -405,6 +410,8 @@
 				D6B5E0EA1663FBEE000E409B /* KIFTestScenario+WSTComparisonConditionTests.m */,
 				F68795CD165A84B200F495A1 /* KIFTestScenario+WSTConditionalActionTests.h */,
 				F68795CE165A84B200F495A1 /* KIFTestScenario+WSTConditionalActionTests.m */,
+				F608BEE0166CE6BF0034AEB2 /* KIFTestScenario+WSTConditionalSchemaUnitTests.h */,
+				F608BEE1166CE6BF0034AEB2 /* KIFTestScenario+WSTConditionalSchemaUnitTests.m */,
 				F642C0FE163AE52A00CFAA80 /* KIFTestScenario+WSTContainerUnitTests.h */,
 				F642C0FF163AE52A00CFAA80 /* KIFTestScenario+WSTContainerUnitTests.m */,
 				F61C347D16651F3800B31811 /* KIFTestScenario+WSTDatePickerTests.h */,
@@ -445,6 +452,8 @@
 				F6F3CFE816637B7E00C7B4AB /* KIFTestScenario+WSTStoreValueActionTests.m */,
 				F686EAEE165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.h */,
 				F686EAEF165D3C3E00A24DA8 /* KIFTestScenario+WSTStringTests.m */,
+				F603E948166CB79D002B35A0 /* KIFTestScenario+WSTSwitchUnitTests.h */,
+				F603E949166CB79D002B35A0 /* KIFTestScenario+WSTSwitchUnitTests.m */,
 				F62234AE163EBEF800C90A71 /* KIFTestScenario+WSTTabControllerTests.h */,
 				F62234AF163EBEF900C90A71 /* KIFTestScenario+WSTTabControllerTests.m */,
 				F642C10E163AEB4200CFAA80 /* KIFTestScenario+WSTTableControllerUnitTests.h */,
@@ -459,8 +468,6 @@
 				F6E7062516411CE100E131BC /* KIFTestScenario+WSTViewSharedPropertyTests.m */,
 				F6AEB071163FE00900831297 /* KIFTestScenario+WSTXMLParserTests.h */,
 				F6AEB072163FE00900831297 /* KIFTestScenario+WSTXMLParserTests.m */,
-				F603E948166CB79D002B35A0 /* KIFTestScenario+WSTSwitchUnitTests.h */,
-				F603E949166CB79D002B35A0 /* KIFTestScenario+WSTSwitchUnitTests.m */,
 			);
 			name = "Unit tests";
 			sourceTree = "<group>";
@@ -496,6 +503,7 @@
 		F651F60D165247650056ECB7 /* Example XML */ = {
 			isa = PBXGroup;
 			children = (
+				F608BEE3166CEB210034AEB2 /* conditional_tests.xml */,
 				F651F60E165247660056ECB7 /* form_tests_1.xml */,
 				F651F60F165247660056ECB7 /* form_tests_2.xml */,
 				F651F610165247660056ECB7 /* form_tests_3.xml */,
@@ -631,6 +639,7 @@
 				F686EAF3165D3FAF00A24DA8 /* Localizable.strings in Resources */,
 				F686EAF4165D3FAF00A24DA8 /* Test.strings in Resources */,
 				F68389D0165E6F8A005455EC /* updating_views_tests.xml in Resources */,
+				F608BEE4166CEB210034AEB2 /* conditional_tests.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +708,7 @@
 				F61C34DD1666236E00B31811 /* KIFTestScenario+WSTTextViewUnitTests.m in Sources */,
 				F634AAE816665A04001D640E /* KIFTestScenario+WSTAttributedTextViewUnitTests.m in Sources */,
 				F603E94A166CB79D002B35A0 /* KIFTestScenario+WSTSwitchUnitTests.m in Sources */,
+				F608BEE2166CE6BF0034AEB2 /* KIFTestScenario+WSTConditionalSchemaUnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -654,4 +654,19 @@
     return scenario;
 }
 
++ (id)scenarioFunctionalTestConditionalSchemata
+{
+    KIFTestScenario *scenario = [self scenarioWithDescription:@"Test that conditional schemata work"];
+    [scenario addStep:[KIFTestStep stepToSetupWindowWithWorkflow:@"conditional_tests.xml"]];
+    
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"One is 1."]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Two is 2."]];
+    [scenario addStep:[KIFTestStep stepToWaitForAbsenceOfViewWithAccessibilityLabel:@"Two is not 2."]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Three is not C."]];
+    [scenario addStep:[KIFTestStep stepToWaitForAbsenceOfViewWithAccessibilityLabel:@"Four is D."]];
+    [scenario addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Four is not D."]];
+    
+    return scenario;
+}
+
 @end

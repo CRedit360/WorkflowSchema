@@ -1,0 +1,72 @@
+<workflow>
+    <navigation>
+        <screen>
+            <container>
+                <layout>fill</layout>
+                <label>Loading...</label>
+            </container>
+            <multipleActions name="viewDidLoad">
+                <storeValue>
+                    <value>1</value>
+                    <name>one</name>
+                </storeValue>
+                <storeValue>
+                    <value>2</value>
+                    <name>two</name>
+                </storeValue>
+                <storeValue>
+                    <value>3</value>
+                    <name>three</name>
+                </storeValue>
+                <pushController>
+                    <screen>
+                        <container>
+                            <label conditional="yes">
+                                <isEqual>
+                                    <value>1</value>
+                                    <otherValue><object keyPath="one" /></otherValue>
+                                </isEqual>
+                                <successValue>
+                                    <label>One is 1.</label>
+                                </successValue>
+                            </label>
+                            <label conditional="yes">
+                                <isEqual>
+                                    <value>2</value>
+                                    <otherValue><object keyPath="two" /></otherValue>
+                                </isEqual>
+                                <successValue>
+                                    <label>Two is 2.</label>
+                                </successValue>
+                                <failureValue>
+                                    <label>Two is not 2.</label>
+                                </failureValue>
+                            </label>
+                            <label conditional="yes">
+                                <isEqual>
+                                    <value>C</value>
+                                    <otherValue><object keyPath="three" /></otherValue>
+                                </isEqual>
+                                <failureValue>
+                                    <label>Three is not C.</label>
+                                </failureValue>
+                            </label>
+                            <label conditional="yes">
+                                <isEqual>
+                                    <value>D</value>
+                                    <otherValue><object keyPath="four" /></otherValue>
+                                </isEqual>
+                                <successValue>
+                                    <label>Four is D.</label>
+                                </successValue>
+                                <failureValue>
+                                    <label>Four is not D.</label>
+                                </failureValue>
+                            </label>
+                        </container>
+                    </screen>
+                </pushController>
+            </multipleActions>
+        </screen>
+    </navigation>
+</workflow>

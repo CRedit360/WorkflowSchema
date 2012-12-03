@@ -11,6 +11,7 @@
 #import "WFSSchema.h"
 #import "WFSSchema+WFSDocumentation.h"
 #import "WFSSchemaParameter.h"
+#import "WFSConditionalSchema.h"
 #import "WFSParameterProxy.h"
 #import "WFSSchematising.h"
 

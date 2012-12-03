@@ -25,6 +25,8 @@
 		F60405CE16330C7E0026F708 /* WFSDismissControllerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F60405CC16330C7D0026F708 /* WFSDismissControllerAction.m */; };
 		F60405D116330CAA0026F708 /* WFSPopControllerAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F60405CF16330CA90026F708 /* WFSPopControllerAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F60405D216330CAA0026F708 /* WFSPopControllerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F60405D016330CAA0026F708 /* WFSPopControllerAction.m */; };
+		F608BEDD166CE45F0034AEB2 /* WFSConditionalSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = F608BEDB166CE45F0034AEB2 /* WFSConditionalSchema.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F608BEDE166CE45F0034AEB2 /* WFSConditionalSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = F608BEDC166CE45F0034AEB2 /* WFSConditionalSchema.m */; };
 		F61749731653D78E005B9090 /* WorkflowSchema-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = F61749711653D78E005B9090 /* WorkflowSchema-Prefix.pch */; };
 		F61749781653D798005B9090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F61749741653D798005B9090 /* InfoPlist.strings */; };
 		F61C34C51665254000B31811 /* WFSEndEditingAction.h in Headers */ = {isa = PBXBuildFile; fileRef = F61C34C31665254000B31811 /* WFSEndEditingAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -205,6 +207,8 @@
 		F60405CC16330C7D0026F708 /* WFSDismissControllerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSDismissControllerAction.m; sourceTree = "<group>"; };
 		F60405CF16330CA90026F708 /* WFSPopControllerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSPopControllerAction.h; sourceTree = "<group>"; };
 		F60405D016330CAA0026F708 /* WFSPopControllerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSPopControllerAction.m; sourceTree = "<group>"; };
+		F608BEDB166CE45F0034AEB2 /* WFSConditionalSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSConditionalSchema.h; sourceTree = "<group>"; };
+		F608BEDC166CE45F0034AEB2 /* WFSConditionalSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSConditionalSchema.m; sourceTree = "<group>"; };
 		F61749701653D78E005B9090 /* WorkflowSchema-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WorkflowSchema-Info.plist"; sourceTree = "<group>"; };
 		F61749711653D78E005B9090 /* WorkflowSchema-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkflowSchema-Prefix.pch"; sourceTree = "<group>"; };
 		F61749751653D798005B9090 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -562,6 +566,8 @@
 		F6E7971B1632B0D2006F59F2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				F608BEDB166CE45F0034AEB2 /* WFSConditionalSchema.h */,
+				F608BEDC166CE45F0034AEB2 /* WFSConditionalSchema.m */,
 				F6E7972B1632B0E1006F59F2 /* WFSContext.h */,
 				F6E7972C1632B0E1006F59F2 /* WFSContext.m */,
 				F6E7972F1632B0E1006F59F2 /* WFSError.h */,
@@ -837,6 +843,7 @@
 				F61C34D51665310900B31811 /* WFSFormAccessoryView.h in Headers */,
 				F61C34D91666153300B31811 /* WFSTextView.h in Headers */,
 				F603E945166CB539002B35A0 /* WFSSwitch.h in Headers */,
+				F608BEDD166CE45F0034AEB2 /* WFSConditionalSchema.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,6 +1040,7 @@
 				F61C34D61665310900B31811 /* WFSFormAccessoryView.m in Sources */,
 				F61C34DA1666153300B31811 /* WFSTextView.m in Sources */,
 				F603E946166CB539002B35A0 /* WFSSwitch.m in Sources */,
+				F608BEDE166CE45F0034AEB2 /* WFSConditionalSchema.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

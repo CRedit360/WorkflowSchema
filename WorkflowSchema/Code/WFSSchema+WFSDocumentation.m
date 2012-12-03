@@ -8,6 +8,7 @@
 
 #import "WFSSchema+WFSDocumentation.h"
 #import "NSObject+WFSSchematising.h"
+#import "WFSCondition.h"
 
 @interface WFSSchema ()
 
@@ -83,8 +84,9 @@
 
 + (NSString *)elementDeclarationForPossibleChildren:(NSArray *)children
 {
-    // Parameter proxies can have defaults and templates
-    children = [children arrayByAddingObjectsFromArray:@[ @"default", @"template" ]];
+    // Parameter proxies can have defaults and templates. Conditional schemata can have success or failure values and conditions.
+    children = [children arrayByAddingObjectsFromArray:@[ @"default", @"template", @"successValue", @"failureValue", @"condition" ]];
+    children = [children arrayByAddingObjectsFromArray:[self registeredTypeNamesDescendingFromClass:[WFSCondition class]]];
     
     NSString *declaration = [Sort(children) componentsJoinedByString:@"|"];
     
@@ -168,7 +170,7 @@
         
         NSString *declaration = [self elementDeclarationForPossibleChildren:possibleObjectChildren.allObjects];
         [documentTypeDescription appendFormat:@"<!ELEMENT %@ %@ >\n", objectTypeName, (declaration.length > 0) ? [NSString stringWithFormat:@"(%@)*", declaration] : @"EMPTY"];
-        [documentTypeDescription appendFormat:@"<!ATTLIST %@\nname CDATA #IMPLIED\nlocale CDATA #IMPLIED\nclass CDATA #IMPLIED\nkeyPath CDATA #IMPLIED\n>\n\n", objectTypeName];
+        [documentTypeDescription appendFormat:@"<!ATTLIST %@\nname CDATA #IMPLIED\nconditional CDATA #IMPLIED\nclass CDATA #IMPLIED\nkeyPath CDATA #IMPLIED\n>\n\n", objectTypeName];
     }
     
     [documentTypeDescription appendString:@"<!-- PARAMETER ELEMENTS -->\n\n"];
@@ -187,6 +189,8 @@
     NSString *parameterProxyDeclaration = [self elementDeclarationForPossibleChildren:registeredClasses.allKeys];
     [documentTypeDescription appendFormat:@"<!ELEMENT default (%@)* >\n", parameterProxyDeclaration];
     [documentTypeDescription appendFormat:@"<!ELEMENT template (%@)* >\n", parameterProxyDeclaration];
+    [documentTypeDescription appendFormat:@"<!ELEMENT successValue (%@)* >\n", parameterProxyDeclaration];
+    [documentTypeDescription appendFormat:@"<!ELEMENT failureValue (%@)* >\n", parameterProxyDeclaration];
     
     return documentTypeDescription;
 }
@@ -261,7 +265,14 @@
         [xmlSchemaDefinition appendFormat:@"<xsd:complexType name=\"%@\" %@>\n", objectType, (objectMixed ? @"mixed=\"true\"" : @"")];
         
         NSArray *descendantTypes = [self registeredTypesDescendingFromClass:objectType];
-        NSDictionary *parameters = @{ @"default" : descendantTypes, @"template" : descendantTypes };
+        NSArray *conditionTypes = [self registeredTypesDescendingFromClass:[WFSCondition class]];
+        NSDictionary *parameters = @{
+                @"default" : descendantTypes,
+                @"template" : descendantTypes,
+                @"successValue" : descendantTypes,
+                @"failureValue" : descendantTypes,
+                @"condition" : conditionTypes
+        };
         
         if ([objectType isSchematisableClass])
         {
@@ -284,7 +295,7 @@
         {
             [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"keyPath\" type=\"xsd:string\" />\n"];
             [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"name\" type=\"xsd:string\" />\n"];
-            [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"locale\" type=\"xsd:string\" />\n"];
+            [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"conditional\" type=\"xsd:string\" />\n"];
             [xmlSchemaDefinition appendString:@"  <xsd:attribute name=\"class\" type=\"xsd:string\" />\n"];
         }
         else
@@ -316,6 +327,12 @@
                 {
                     [defaultTypeNames addObject:defaultTypeName];
                 }
+            }
+            
+            // Conditions are default for conditionalSchema
+            for (NSString *defaultTypeName in [self registeredTypeNamesDescendingFromClass:[WFSCondition class]])
+            {
+                [defaultTypeNames addObject:defaultTypeName];
             }
             
             for (NSString *defaultTypeName in Sort(defaultTypeNames.allObjects))

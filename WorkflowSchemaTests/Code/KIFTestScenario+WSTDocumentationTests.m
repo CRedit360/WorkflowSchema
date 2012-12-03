@@ -17,7 +17,7 @@
 
 + (id)scenarioUnitTestDTD
 {
-    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that we can create a valid DTD and that it validates the example XML"];
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that we can create a valid DTD and that it validates the example XML (This may take some time)"];
     
     [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
         
@@ -49,7 +49,7 @@
 
 + (id)scenarioUnitTestXSD
 {
-    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that we can create a valid XSD and that it validates the example XML"];
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that we can create a valid XSD and that it validates the example XML (This may take some time)"];
     
     [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
         
