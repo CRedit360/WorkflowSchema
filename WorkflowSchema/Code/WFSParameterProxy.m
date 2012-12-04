@@ -106,7 +106,7 @@
                     
                     id subObject = [self createProxiedObject:template context:subContext error:&error];
                     
-                    if (object && ![subObject isKindOfClass:self.schemaClass])
+                    if (subObject && ![subObject isKindOfClass:self.schemaClass])
                     {
                         if (!error) error = WFSError(@"Proxied parameter %@ of class %@ did not match schema class %@", self.parameterKeyPath, [subObject class], self.schemaClass);
                     }
