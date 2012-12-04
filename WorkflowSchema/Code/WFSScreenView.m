@@ -54,6 +54,7 @@
     {
         [_toolbar removeFromSuperview];
         _toolbar = toolbar;
+        _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
         if (_toolbar) [self addSubview:_toolbar];
     }
 }

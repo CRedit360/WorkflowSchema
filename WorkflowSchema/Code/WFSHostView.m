@@ -49,6 +49,7 @@
             self = nil;
         }
 
+        _hostedView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hierarchyChanged:) name:WFSViewsActionDidChangeHierarchyNotification object:nil];
     }
     
