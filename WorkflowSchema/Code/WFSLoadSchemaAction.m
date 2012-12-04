@@ -86,6 +86,9 @@ NSString * const WFSLoadSchemaActionSchemaKey = @"schema";
     }
     else
     {
+        // start listening to the user again
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        
         NSError *error = WFSError(@"Load schema message for path %@ was not handled", self.path);
         [context sendWorkflowError:error];
         return [WFSResult failureResultWithContext:context];

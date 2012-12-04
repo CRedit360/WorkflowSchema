@@ -10,12 +10,6 @@
 #import "WFSLoadSchemaAction.h"
 #import "WFSParameterProxy.h"
 
-@interface WFSControllerAction ()
-
-@property (nonatomic, strong) id controller;
-
-@end
-
 @implementation WFSControllerAction
 
 + (NSArray *)lazilyCreatedSchemaParameters

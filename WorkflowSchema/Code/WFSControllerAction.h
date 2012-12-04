@@ -10,6 +10,8 @@
 
 @interface WFSControllerAction : WFSAction
 
+@property (nonatomic, strong) id controller;
+
 - (WFSResult *)showController:(UIViewController *)controller forController:(UIViewController *)controller context:(WFSContext *)context;
 
 @end
