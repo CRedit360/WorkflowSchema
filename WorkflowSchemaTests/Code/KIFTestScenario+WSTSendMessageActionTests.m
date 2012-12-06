@@ -418,7 +418,7 @@
         controller.workflowContext = controllerContext;
         
         WSTTestContext *performanceContext = [[WSTTestContext alloc] init];
-        performanceContext.parameters = @{ @"test0" : @"value0", @"test1" : @"value1" };
+        performanceContext.userInfo = @{ @"test0" : @"value0", @"test1" : @"value1" };
         performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
         
         WFSResult *result = [sendMessageAction performActionForController:controller context:performanceContext];
@@ -431,7 +431,7 @@
         
         WFSMessage *firstMessage = controllerContext.messages[0];
         WSTAssert([firstMessage.name isEqualToString:@"test name"]);
-        WSTAssert([firstMessage.context.parameters isEqual:expectedParameters]);
+        WSTAssert([firstMessage.context.userInfo isEqual:expectedParameters]);
         WSTAssert(firstMessage.destinationType == WFSMessageDestinationDelegate);
         WSTAssert(firstMessage.destinationName == nil);
         

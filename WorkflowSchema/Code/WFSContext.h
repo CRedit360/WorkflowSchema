@@ -23,7 +23,7 @@ extern NSString * const WFSContextException;
 + (WFSContext *)contextWithDelegate:(id<WFSContextDelegate>)delegate;
 - (id)initWithDelegate:(id<WFSContextDelegate>)delegate;
 
-@property (nonatomic, strong, readonly) NSDictionary *parameters;
+@property (nonatomic, strong, readonly) NSDictionary *userInfo;
 
 @property (nonatomic, weak, readonly) id actionSender; // A view or bar item to be used by actions when e.g. showing action sheets
 
@@ -39,7 +39,7 @@ extern NSString * const WFSContextException;
 
 @interface WFSMutableContext : WFSContext
 
-@property (nonatomic, strong, readwrite) NSDictionary *parameters;
+@property (nonatomic, strong, readwrite) NSDictionary *userInfo;
 
 @property (nonatomic, weak, readwrite) id actionSender;
 @property (nonatomic, weak, readwrite) UIViewController *containerController;

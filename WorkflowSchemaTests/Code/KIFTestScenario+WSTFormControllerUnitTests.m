@@ -195,11 +195,11 @@
         WSTAssert([WSTTestAction lastTestAction] == testAction);
         
         WFSMessage *message = [context.messages lastObject];
-        WSTAssert([message.context.parameters[@"thing1"] isEqual:@"value1"]);
-        WSTAssert([message.context.parameters[@"thing2"] isEqual:@"value2"]);
+        WSTAssert([message.context.userInfo[@"thing1"] isEqual:@"value1"]);
+        WSTAssert([message.context.userInfo[@"thing2"] isEqual:@"value2"]);
         
         NSArray *expectedThirdValue = @[ @"value3a", @"value3b", @"value3c" ];
-        WSTAssert([message.context.parameters[@"thing3"] isEqual:expectedThirdValue]);
+        WSTAssert([message.context.userInfo[@"thing3"] isEqual:expectedThirdValue]);
         
         return KIFTestStepResultSuccess;
         
@@ -282,7 +282,7 @@
         
         WFSMessage *firstMessage = [context.messages lastObject];
         WSTAssert([firstMessage.name isEqualToString:@"forwardedDidNotSubmit"]);
-        WSTAssert([firstMessage.context.parameters[@"failureMessage"] isEqualToString:@"Please enter a username"]);
+        WSTAssert([firstMessage.context.userInfo[@"failureMessage"] isEqualToString:@"Please enter a username"]);
         
         usernameField.text = @"myusername";
         
@@ -291,7 +291,7 @@
         
         WFSMessage *secondMessage = [context.messages lastObject];
         WSTAssert([secondMessage.name isEqualToString:@"forwardedDidNotSubmit"]);
-        WSTAssert([secondMessage.context.parameters[@"failureMessage"] isEqualToString:@"Please enter a password"]);
+        WSTAssert([secondMessage.context.userInfo[@"failureMessage"] isEqualToString:@"Please enter a password"]);
         
         passwordField.text = @"mypassword";
         
@@ -300,7 +300,7 @@
         
         WFSMessage *thirdMessage = [context.messages lastObject];
         WSTAssert([thirdMessage.name isEqualToString:@"forwardedDidNotSubmit"]);
-        WSTAssert(thirdMessage.context.parameters[@"failureMessage"] == nil);
+        WSTAssert(thirdMessage.context.userInfo[@"failureMessage"] == nil);
         
         confirmField.text = @"mypassword";
         

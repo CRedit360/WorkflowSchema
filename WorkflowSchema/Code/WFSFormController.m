@@ -185,7 +185,7 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
     }
     
     WFSMutableContext *subContext = [super contextForPerformingActions:context];
-    subContext.parameters = [subContext.parameters dictionaryByAddingEntriesFromDictionary:formValues];
+    subContext.userInfo = [subContext.userInfo dictionaryByAddingEntriesFromDictionary:formValues];
     return subContext;
 }
 
@@ -201,7 +201,7 @@ NSString * const WFSFormDidNotSubmitActionName = @"didNotSubmit";
         {
             if (condition.failureMessage)
             {
-                conditionContext.parameters = [conditionContext.parameters dictionaryByAddingEntriesFromDictionary:@{ @"failureMessage" : condition.failureMessage }];
+                conditionContext.userInfo = [conditionContext.userInfo dictionaryByAddingEntriesFromDictionary:@{ @"failureMessage" : condition.failureMessage }];
             }
             
             [self performActionName:WFSFormDidNotSubmitActionName context:conditionContext];

@@ -125,7 +125,7 @@ NSString * WFSSearchBarScopeKey = @"scope";
 - (WFSMutableContext *)contextWithTextAndScope:(WFSContext *)context
 {
     WFSMutableContext *subContext = [super contextForSchemaParameters:context];
-    NSMutableDictionary *parameters = [subContext.parameters mutableCopy];
+    NSMutableDictionary *parameters = [subContext.userInfo mutableCopy];
     
     if (self.text)
     {
@@ -146,7 +146,7 @@ NSString * WFSSearchBarScopeKey = @"scope";
         }
     }
     
-    subContext.parameters = parameters;
+    subContext.userInfo = parameters;
     return subContext;
 }
 

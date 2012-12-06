@@ -80,7 +80,7 @@
     
     @try
     {
-        object = [context.parameters valueForKeyPath:self.parameterKeyPath];
+        object = [context.userInfo valueForKeyPath:self.parameterKeyPath];
         NSDictionary *groupedParameters = [self groupedParametersWithContext:context error:&error];
         
         WFSSchema *template = groupedParameters[@"template"];
@@ -102,7 +102,7 @@
                 if ([parameters isKindOfClass:[NSDictionary class]])
                 {
                     WFSMutableContext *subContext = [context mutableCopy];
-                    subContext.parameters = parameters;
+                    subContext.userInfo = parameters;
                     
                     id subObject = [self createProxiedObject:template context:subContext error:&error];
                     

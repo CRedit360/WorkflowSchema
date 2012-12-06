@@ -29,7 +29,7 @@
                                  ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
-        context.parameters = @{ @"testKey" : @"Test text" };
+        context.userInfo = @{ @"testKey" : @"Test text" };
         
         WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
@@ -57,7 +57,7 @@
                                  ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
-        context.parameters = @{  };
+        context.userInfo = @{  };
         
         WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
@@ -86,7 +86,7 @@
                                  ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
-        context.parameters = @{ @"testKey2" : @"Test text" };
+        context.userInfo = @{ @"testKey2" : @"Test text" };
         
         WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
@@ -117,7 +117,7 @@
                                  ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
-        context.parameters = @{ @"testKey2" : @"Test text" };
+        context.userInfo = @{ @"testKey2" : @"Test text" };
         
         WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
@@ -146,7 +146,7 @@
                                  ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
-        context.parameters = @{ @"testKey1" : @"Test text", @"testKey2" : @"More test text" };
+        context.userInfo = @{ @"testKey1" : @"Test text", @"testKey2" : @"More test text" };
         
         WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
         WSTAssert(error);
@@ -176,7 +176,7 @@
                                  ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
-        context.parameters = @{ @"testKey" : @"Test text" };
+        context.userInfo = @{ @"testKey" : @"Test text" };
         
         WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
@@ -206,7 +206,7 @@
                                  ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
-        context.parameters = @{ @"notTheTestKey" : @"Test text" };
+        context.userInfo = @{ @"notTheTestKey" : @"Test text" };
         
         WFSLabel *label = (WFSLabel *)[labelSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);
@@ -244,7 +244,7 @@
                                      ]];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
-        context.parameters = @{ @"outerTestKey" : @[ @{ @"innerTestKey" : @"test1" }, @{ @"innerTestKey" : @"test2" }, @{ @"innerTestKey" : @"test3" } ] };
+        context.userInfo = @{ @"outerTestKey" : @[ @{ @"innerTestKey" : @"test1" }, @{ @"innerTestKey" : @"test2" }, @{ @"innerTestKey" : @"test3" } ] };
         
         WFSContainerView *container = (WFSContainerView *)[containerSchema createObjectWithContext:context error:&error];
         WSTFailOnError(error);

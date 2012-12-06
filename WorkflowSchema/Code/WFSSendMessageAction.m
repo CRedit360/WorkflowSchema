@@ -63,12 +63,12 @@
         
         for (NSString *name in self.valueNames)
         {
-            id value = context.parameters[name];
+            id value = context.userInfo[name];
             if (value) parameters[name] = value;
             else parameters[name] = [NSNull null];
         }
         
-        restrictedContext.parameters = parameters;
+        restrictedContext.userInfo = parameters;
         context = restrictedContext;
     }
     

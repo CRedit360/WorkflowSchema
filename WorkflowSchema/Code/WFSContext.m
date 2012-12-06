@@ -13,7 +13,7 @@ NSString * const WFSContextException = @"WFSContextException";
 
 @interface WFSContext ()
 
-@property (nonatomic, strong, readwrite) NSDictionary *parameters;
+@property (nonatomic, strong, readwrite) NSDictionary *userInfo;
 
 @property (nonatomic, weak, readwrite) id actionSender;
 @property (nonatomic, weak, readwrite) UIViewController *containerController;
@@ -35,7 +35,7 @@ NSString * const WFSContextException = @"WFSContextException";
     self = [super init];
     if (self)
     {
-        _parameters = @{};
+        _userInfo = @{};
     }
     return self;
 }
@@ -47,7 +47,7 @@ NSString * const WFSContextException = @"WFSContextException";
     {
         if (!delegate) [NSException raise:WFSContextException format:@"WFSContext must have a delegate"];
         _contextDelegate = delegate;
-        _parameters = @{};
+        _userInfo = @{};
     }
     return self;
 }
@@ -75,7 +75,7 @@ NSString * const WFSContextException = @"WFSContextException";
 {
     WFSMutableContext *otherContext = [[WFSMutableContext allocWithZone:zone] init];
     
-    otherContext.parameters = self.parameters;
+    otherContext.userInfo = self.userInfo;
     otherContext.actionSender = self.actionSender;
     otherContext.containerController = self.containerController;
     otherContext.contextDelegate = self.contextDelegate;
@@ -89,7 +89,7 @@ NSString * const WFSContextException = @"WFSContextException";
     WFSContext *otherContext = (WFSContext *)object;
     if (![otherContext isKindOfClass:[WFSContext class]]) return NO;
     
-    return [otherContext.parameters isEqual:self.parameters] &&
+    return [otherContext.userInfo isEqual:self.userInfo] &&
             otherContext.actionSender == self.actionSender &&
             otherContext.containerController == self.containerController &&
             otherContext.contextDelegate == self.contextDelegate &&

@@ -123,13 +123,13 @@
         
         WFSResult *response = [WFSResult failureResultWithContext:message.context];
         
-        NSString *path = message.context.parameters[WFSLoadSchemaActionPathKey];
+        NSString *path = message.context.userInfo[WFSLoadSchemaActionPathKey];
         WFSSchema *schema = [self loadSchemaWithFile:path];
         
         if (schema)
         {
             WFSMutableContext *resultContext = [message.context mutableCopy];
-            resultContext.parameters = @{ WFSLoadSchemaActionSchemaKey : schema };
+            resultContext.userInfo = @{ WFSLoadSchemaActionSchemaKey : schema };
             response = [WFSResult successResultWithContext:resultContext];
         }
         
@@ -143,7 +143,7 @@
         if ([data isKindOfClass:[NSDictionary class]])
         {
             WFSMutableContext *resultContext = [message.context mutableCopy];
-            resultContext.parameters = data;
+            resultContext.userInfo = data;
             WFSResult *response = [WFSResult successResultWithContext:resultContext];
             [message respondWithResult:response];
             return YES;

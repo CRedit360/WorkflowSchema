@@ -54,7 +54,7 @@
     }
     else
     {
-        value = context.parameters;
+        value = context.userInfo;
     }
     
     if (!value) value = [NSNull null];
@@ -65,7 +65,7 @@
     
     // *also* store it in the current context
     WFSMutableContext *responseContext = [context mutableCopy];
-    responseContext.parameters = [context.parameters dictionaryByAddingEntriesFromDictionary:valuesToStore];
+    responseContext.userInfo = [context.userInfo dictionaryByAddingEntriesFromDictionary:valuesToStore];
     
     return [WFSResult successResultWithContext:responseContext];
 }
