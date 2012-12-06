@@ -59,16 +59,16 @@
     if (self.valueNames)
     {
         WFSMutableContext *restrictedContext = [context mutableCopy];
-        NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:self.valueNames.count];
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:self.valueNames.count];
         
         for (NSString *name in self.valueNames)
         {
             id value = context.userInfo[name];
-            if (value) parameters[name] = value;
-            else parameters[name] = [NSNull null];
+            if (value) userInfo[name] = value;
+            else userInfo[name] = [NSNull null];
         }
         
-        restrictedContext.userInfo = parameters;
+        restrictedContext.userInfo = userInfo;
         context = restrictedContext;
     }
     

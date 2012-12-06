@@ -427,11 +427,11 @@
         WSTAssert(performanceContext.messages.count == 0);
         WSTAssert(controllerContext.messages.count == 1);
         
-        NSDictionary *expectedParameters = @{ @"test1" : @"value1", @"test2" : [NSNull null] };
+        NSDictionary *expectedUserInfo = @{ @"test1" : @"value1", @"test2" : [NSNull null] };
         
         WFSMessage *firstMessage = controllerContext.messages[0];
         WSTAssert([firstMessage.name isEqualToString:@"test name"]);
-        WSTAssert([firstMessage.context.userInfo isEqual:expectedParameters]);
+        WSTAssert([firstMessage.context.userInfo isEqual:expectedUserInfo]);
         WSTAssert(firstMessage.destinationType == WFSMessageDestinationDelegate);
         WSTAssert(firstMessage.destinationName == nil);
         

@@ -91,18 +91,18 @@
             object = [object flattenedArray];
             NSMutableArray *subObjects = [NSMutableArray array];
             
-            for (__strong NSDictionary *parameters in object)
+            for (__strong NSDictionary *userInfo in object)
             {
                 NSString *valueName = self.attributes[@"valueName"];
                 if (valueName)
                 {
-                    parameters = @{ valueName : parameters };
+                    userInfo = @{ valueName : userInfo };
                 }
                 
-                if ([parameters isKindOfClass:[NSDictionary class]])
+                if ([userInfo isKindOfClass:[NSDictionary class]])
                 {
                     WFSMutableContext *subContext = [context mutableCopy];
-                    subContext.userInfo = parameters;
+                    subContext.userInfo = userInfo;
                     
                     id subObject = [self createProxiedObject:template context:subContext error:&error];
                     
@@ -116,7 +116,7 @@
                 }
                 else
                 {
-                    error = WFSError(@"Proxied parameter %@ contained illegal value of class %@", self.parameterKeyPath, [parameters class]);
+                    error = WFSError(@"Proxied parameter %@ contained illegal value of class %@", self.parameterKeyPath, [userInfo class]);
                     break;
                 }
             }

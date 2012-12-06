@@ -43,17 +43,17 @@
         UIViewController *controller = [[UIViewController alloc] init];
         controller.workflowContext = controllerContext;
         
-        NSDictionary *inputParameters = @{ @"key1" : @"value1", @"key2" : @"value2" };
+        NSDictionary *inputUserInfo = @{ @"key1" : @"value1", @"key2" : @"value2" };
         
         WSTTestContext *performanceContext = [[WSTTestContext alloc] init];
-        performanceContext.userInfo = inputParameters;
+        performanceContext.userInfo = inputUserInfo;
         performanceContext.messageResult = [WFSResult successResultWithContext:performanceContext];
         
         WFSResult *result = [storeValueAction performActionForController:controller context:performanceContext];
         WSTAssert(result.isSuccess);
         
-        WSTAssert([result.context.userInfo[@"test"] isEqual:inputParameters]);
-        WSTAssert([controller.storedValues[@"test"] isEqual:inputParameters]);
+        WSTAssert([result.context.userInfo[@"test"] isEqual:inputUserInfo]);
+        WSTAssert([controller.storedValues[@"test"] isEqual:inputUserInfo]);
         
         return KIFTestStepResultSuccess;
         

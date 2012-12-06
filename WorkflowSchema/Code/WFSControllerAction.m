@@ -41,9 +41,9 @@
         WFSSchema *schema = context.userInfo[WFSLoadSchemaActionSchemaKey];
         
         WFSMutableContext *controllerContext = [context mutableCopy];
-        NSMutableDictionary *parameters = [context.userInfo mutableCopy];
-        [parameters removeObjectForKey:WFSLoadSchemaActionSchemaKey];
-        controllerContext.userInfo = parameters;
+        NSMutableDictionary *userInfo = [context.userInfo mutableCopy];
+        [userInfo removeObjectForKey:WFSLoadSchemaActionSchemaKey];
+        controllerContext.userInfo = userInfo;
         
         controllerToShow = (UIViewController *)[schema createObjectWithContext:controllerContext error:&error];
     }

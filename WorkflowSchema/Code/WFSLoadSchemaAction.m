@@ -50,9 +50,9 @@ NSString * const WFSLoadSchemaActionSchemaKey = @"schema";
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     WFSMutableContext *loadContext = [context mutableCopy];
-    NSMutableDictionary *parameters = [context.userInfo mutableCopy];
-    parameters[WFSLoadSchemaActionPathKey] = self.path;
-    loadContext.userInfo = parameters;
+    NSMutableDictionary *userInfo = [context.userInfo mutableCopy];
+    userInfo[WFSLoadSchemaActionPathKey] = self.path;
+    loadContext.userInfo = userInfo;
     
     // tell the workflow delegate to load the schema at the given path
     WFSMessage *message = [WFSMessage messageWithName:WFSLoadSchemaActionMessageName destinationType:WFSMessageDestinationRootDelegate destinationName:nil context:loadContext responseHandler:^(WFSResult *result) {
