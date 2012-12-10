@@ -76,11 +76,12 @@
 {
     return [[super schemaParameterTypes] dictionaryByAddingEntriesFromDictionary:@{
             
-            @"image" : [UIImage class],
-            @"title" : [NSString class],
-            @"style" : @[ [NSString class], [NSNumber class] ],
+            @"enabled"    : @[ [NSString class], [NSNumber class] ],
+            @"image"      : [UIImage class],
+            @"title"      : [NSString class],
+            @"style"      : @[ [NSString class], [NSNumber class] ],
             @"systemItem" : @[ [NSString class], [NSNumber class] ],
-            @"message" : @[ [WFSMessage class], [NSString class] ]
+            @"message"    : @[ [WFSMessage class], [NSString class] ]
     
     }];
 }
