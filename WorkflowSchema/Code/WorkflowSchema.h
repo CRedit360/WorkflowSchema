@@ -45,6 +45,7 @@
 #import "WFSEqualityCondition.h"
 #import "WFSMultipleCondition.h"
 #import "WFSPresenceCondition.h"
+#import "WFSTruthinessCondition.h"
 #import "WFSRegularExpressionCondition.h"
 
 #import "WFSAction.h"

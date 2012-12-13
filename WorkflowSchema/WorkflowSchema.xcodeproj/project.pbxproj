@@ -95,6 +95,8 @@
 		F68795D4165A8C6E00F495A1 /* WFSPresenceCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */; };
 		F68795F1165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795EF165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68795F2165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795F0165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m */; };
+		F6B59297167A34EB007A51C3 /* WFSTruthinessCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B59295167A34EB007A51C3 /* WFSTruthinessCondition.h */; };
+		F6B59298167A34EB007A51C3 /* WFSTruthinessCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B59296167A34EB007A51C3 /* WFSTruthinessCondition.m */; };
 		F6BEBDF91653F95D004412B4 /* WFSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEBDF81653F95D004412B4 /* WFSMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6C0EBD9163A8DB200271964 /* NSArray+WorkflowSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C0EBCF163A8DB200271964 /* NSArray+WorkflowSchema.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6C0EBDA163A8DB200271964 /* NSArray+WorkflowSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C0EBD0163A8DB200271964 /* NSArray+WorkflowSchema.m */; };
@@ -281,6 +283,8 @@
 		F68795EF165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WorkflowSchema.h"; sourceTree = "<group>"; };
 		F68795F0165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WorkflowSchema.m"; sourceTree = "<group>"; };
 		F68DF1931655071900489EA2 /* WorkflowSchema.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = WorkflowSchema.podspec; path = ../WorkflowSchema.podspec; sourceTree = "<group>"; };
+		F6B59295167A34EB007A51C3 /* WFSTruthinessCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSTruthinessCondition.h; sourceTree = "<group>"; };
+		F6B59296167A34EB007A51C3 /* WFSTruthinessCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSTruthinessCondition.m; sourceTree = "<group>"; };
 		F6BEBDF81653F95D004412B4 /* WFSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSMacros.h; sourceTree = "<group>"; };
 		F6C0EBCF163A8DB200271964 /* NSArray+WorkflowSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+WorkflowSchema.h"; sourceTree = "<group>"; };
 		F6C0EBD0163A8DB200271964 /* NSArray+WorkflowSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+WorkflowSchema.m"; sourceTree = "<group>"; };
@@ -676,6 +680,8 @@
 				F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */,
 				F6E797401632B0E1006F59F2 /* WFSRegularExpressionCondition.h */,
 				F6E797411632B0E1006F59F2 /* WFSRegularExpressionCondition.m */,
+				F6B59295167A34EB007A51C3 /* WFSTruthinessCondition.h */,
+				F6B59296167A34EB007A51C3 /* WFSTruthinessCondition.m */,
 			);
 			name = Conditions;
 			sourceTree = "<group>";
@@ -844,6 +850,7 @@
 				F61C34D91666153300B31811 /* WFSTextView.h in Headers */,
 				F603E945166CB539002B35A0 /* WFSSwitch.h in Headers */,
 				F608BEDD166CE45F0034AEB2 /* WFSConditionalSchema.h in Headers */,
+				F6B59297167A34EB007A51C3 /* WFSTruthinessCondition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,6 +1048,7 @@
 				F61C34DA1666153300B31811 /* WFSTextView.m in Sources */,
 				F603E946166CB539002B35A0 /* WFSSwitch.m in Sources */,
 				F608BEDE166CE45F0034AEB2 /* WFSConditionalSchema.m in Sources */,
+				F6B59298167A34EB007A51C3 /* WFSTruthinessCondition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

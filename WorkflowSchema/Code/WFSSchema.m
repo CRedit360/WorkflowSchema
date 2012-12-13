@@ -96,6 +96,7 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     [self registerClass:[WFSMultipleCondition class] forTypeName:@"multipleConditions"];
     [self registerClass:[WFSPresenceCondition class] forTypeName:@"isPresent"];
     [self registerClass:[WFSRegularExpressionCondition class] forTypeName:@"doesMatchRegularExpression"];
+    [self registerClass:[WFSTruthinessCondition class] forTypeName:@"isTrue"];
     
     [self registerClass:[WFSActionButtonItem class] forTypeName:@"actionButtonItem"];
     [self registerClass:[WFSCancelButtonItem class] forTypeName:@"cancelButtonItem"];
