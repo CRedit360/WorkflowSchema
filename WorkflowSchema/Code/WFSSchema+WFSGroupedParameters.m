@@ -179,7 +179,9 @@
     if (outError) *outError = error;
     if (error) return nil;
     
-    [self.groupedParametersCache setObject:groupedParameters forKey:context];
+    // We take a copy of the context to avoid a race condition when deallocing.
+    [self.groupedParametersCache setObject:groupedParameters forKey:[context copy]];
+    
     return groupedParameters;
 }
 
