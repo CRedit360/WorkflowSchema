@@ -7,10 +7,7 @@
 //
 
 #import "WFSShowAlertAction.h"
-
-@interface WFSShowAlertAction ()
-
-@end
+#import <objc/runtime.h>
 
 @implementation WFSShowAlertAction
 
@@ -79,6 +76,7 @@
     }
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+    objc_setAssociatedObject(alertView, _cmd, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     for (WFSActionButtonItem *item in self.otherButtonItems)
     {

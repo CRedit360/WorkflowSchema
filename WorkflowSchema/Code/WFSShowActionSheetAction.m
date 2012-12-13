@@ -7,10 +7,7 @@
 //
 
 #import "WFSShowActionSheetAction.h"
-
-@interface WFSShowActionSheetAction ()
-
-@end
+#import <objc/runtime.h>
 
 @implementation WFSShowActionSheetAction
 
@@ -77,6 +74,7 @@
     }
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    objc_setAssociatedObject(actionSheet, _cmd, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     if (self.destructiveButtonItem)
     {
