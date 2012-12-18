@@ -21,8 +21,8 @@
 
 @property (nonatomic, readonly) Class<WFSSchematising> schemaClass;
 
-@property (nonatomic, retain, readonly) NSLocale *locale;
-@property (nonatomic, readonly) NSString *localeIdentifier;
+@property (nonatomic, retain) NSLocale *locale;
+
 @property (nonatomic, readonly) NSString *styleName;
 @property (nonatomic, readonly) NSString *workflowName;
 

@@ -144,17 +144,16 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     return [self registeredClasses][typeName];
 }
 
-- (NSString *)localeIdentifier
-{
-    NSString *localeIdentifier = self.attributes[@"locale"];
-    // We assume that the schema was written by the same people as the app, so their language is the default.
-    if (!localeIdentifier) localeIdentifier = [[NSBundle mainBundle] objectForInfoDictionaryKey:CFBridgingRelease(kCFBundleDevelopmentRegionKey)];
-    return localeIdentifier;
-}
-
 - (NSLocale *)locale
 {
-    return [[NSLocale alloc] initWithLocaleIdentifier:self.localeIdentifier];
+    if (_locale) return _locale;
+    
+    // We assume that the schema was written by the same people as the app, so their language is the default.
+    NSString *localeIdentifier = [[NSBundle mainBundle] objectForInfoDictionaryKey:CFBridgingRelease(kCFBundleDevelopmentRegionKey)];
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:localeIdentifier];
+    if (locale) return locale;
+    
+    return [NSLocale systemLocale];
 }
 
 - (NSString *)styleName

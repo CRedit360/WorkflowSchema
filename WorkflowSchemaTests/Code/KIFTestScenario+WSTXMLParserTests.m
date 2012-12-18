@@ -319,4 +319,26 @@
     return scenario;
 }
 
++ (id)scenarioUnitTestParseWithLang
+{
+    KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that the parser turns a screen tag into a WFSScreenController schema"];
+    
+    [scenario addStep:[KIFTestStep stepWithDescription:scenario.description executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **outError) {
+        
+        NSError *error = nil;
+        
+        NSString *screenXML = [NSString stringWithFormat:@"<workflow lang=\"fr\">%@</workflow>", WSTValidScreenXML];
+        WFSSchema *screenSchema = [[[WFSXMLParser alloc] initWithString:screenXML] parse:&error];
+        WSTFailOnError(error);
+        WSTAssert(screenSchema.schemaClass == [WFSScreenController class]);
+        
+        WSTAssert([screenSchema.locale.localeIdentifier isEqualToString:@"fr"])
+        
+        return KIFTestStepResultSuccess;
+        
+    }]];
+    
+    return scenario;
+}
+
 @end

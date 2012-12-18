@@ -23,6 +23,7 @@ NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
 
 @property (nonatomic, strong) NSXMLParser *parser;
 @property (nonatomic, strong) NSString *documentType;
+@property (nonatomic, strong) NSLocale *documentLocale;
 @property (nonatomic, strong) NSMutableArray *parseStack;
 
 @property (nonatomic, strong) NSError *resultError;
@@ -83,6 +84,12 @@ NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
     self.resultError = conditionError;
 }
 
+- (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
+{
+    WFSParserLog(@"Parser validation error: %@", [validationError localizedDescription]);
+    self.resultError = validationError;
+}
+
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if (!self.documentType)
@@ -90,7 +97,16 @@ NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
         WFSParserLog(@"Found document type %@", elementName);
         if (self.parseStack.count > 0) [self raiseException:@"Stack non-empty at start"];
         if (self.resultSchema || self.resultError) [self raiseException:@"Attempted to reuse parser"];
+        
         self.documentType = elementName;
+        
+        NSString *lang = attributeDict[@"lang"];
+        if ([lang isKindOfClass:[NSString class]])
+        {
+            self.documentLocale = [[NSLocale alloc] initWithLocaleIdentifier:lang];
+            if (!self.documentLocale) [self raiseException:@"Invalid locale identifier %@", lang];
+        }
+        
         return;
     }
     
@@ -151,6 +167,7 @@ NSString * const WFSXMLParserStackKey = @"WFSXMLParserStackKey";
     
     if (schema)
     {
+        schema.locale = self.documentLocale;
         [self.parseStack addObject:schema];
     }
     else

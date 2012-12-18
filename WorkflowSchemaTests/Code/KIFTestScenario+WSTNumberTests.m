@@ -68,7 +68,9 @@
         
         NSError *error = nil;
         
-        WFSSchema *numberSchema = [[WFSSchema alloc] initWithTypeName:@"number" attributes:@{@"locale":@"fr"} parameters:@[ @"-2,25" ]];
+        WFSSchema *numberSchema = [[WFSSchema alloc] initWithTypeName:@"number" attributes:nil parameters:@[ @"-2,25" ]];
+        
+        numberSchema.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr"];
         
         WSTTestContext *context = [[WSTTestContext alloc] init];
         

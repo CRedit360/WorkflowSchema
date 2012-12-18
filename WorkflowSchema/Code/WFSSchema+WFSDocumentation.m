@@ -107,8 +107,9 @@
     }
     NSString *declaration = [self elementDeclarationForPossibleChildren:possibleWorkflowChildren.allObjects];
     [documentTypeDescription appendString:@"<!-- DOCUMENT ROOT -->\n"];
-    [documentTypeDescription appendFormat:@"<!ELEMENT workflow (%@) >\n\n", declaration];
-    
+    [documentTypeDescription appendFormat:@"<!ELEMENT workflow (%@) >\n", declaration];
+    [documentTypeDescription appendString:@"<!ATTLIST workflow\nlang CDATA #IMPLIED\n>\n\n"];
+
     [documentTypeDescription appendString:@"<!-- OBJECT ELEMENTS -->\n\n"];
     
     NSDictionary *registeredClasses = [self registeredClasses];
@@ -241,6 +242,7 @@
         [xmlSchemaDefinition appendFormat:@"      <xsd:element name=\"%@\" type=\"%@\" />\n", controllerTypeName, controllerType];
     }
     [xmlSchemaDefinition appendString:@"    </xsd:choice>\n"];
+    [xmlSchemaDefinition appendString:@"    <xsd:attribute name=\"lang\" type=\"xsd:string\" />\n"];
     [xmlSchemaDefinition appendString:@"  </xsd:complexType>\n"];
     [xmlSchemaDefinition appendString:@"</xsd:element>\n\n"];
     
