@@ -122,7 +122,8 @@
             @"selectable"              : @[ [NSString class], [NSNumber class] ],
             @"image"                   : [UIImage class],
             @"message"                 : @[ [WFSMessage class], [NSString class] ],
-            @"detailDisclosureMessage" : @[ [WFSMessage class], [NSString class] ]
+            @"detailDisclosureMessage" : @[ [WFSMessage class], [NSString class] ],
+            @"indentationLevel"        : @[ [NSString class], [NSNumber class] ]
     
     }];
 }
