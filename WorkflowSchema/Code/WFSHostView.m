@@ -46,7 +46,7 @@
         else if (schema)
         {
             if (!error) error = WFSError(@"Hosted element of type %@ is not a view or view controller", [_hostedElement class]);
-            self = nil;
+            return nil;
         }
 
         _hostedView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
