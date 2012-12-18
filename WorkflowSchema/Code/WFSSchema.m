@@ -144,6 +144,11 @@ NSString * const WFSSchemaInvalidExceptionSchemaKey = @"schema";
     return [self registeredClasses][typeName];
 }
 
++ (NSArray *)registeredTypeNames
+{
+    return [[self registeredClasses] allKeys];
+}
+
 - (NSLocale *)locale
 {
     if (_locale) return _locale;

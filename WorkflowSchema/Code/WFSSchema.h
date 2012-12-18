@@ -28,6 +28,8 @@
 
 + (void)registerClass:(Class<WFSSchematising>)schemaClass forTypeName:(NSString *)typeName;
 + (Class<WFSSchematising>)registeredClassForTypeName:(NSString *)typeName;
++ (NSArray *)registeredTypeNames;
+
 - (id<WFSSchematising>)createObjectWithContext:(WFSContext *)context error:(NSError **)outError;
 
 @end
