@@ -12,6 +12,11 @@
 
 @property (nonatomic, strong) WFSToolbar *toolbar;
 
+@property (nonatomic, assign) UIInterfaceOrientation interfaceOrientation;
+@property (nonatomic, strong) UIImage *backgroundImage UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIImage *portraitBackgroundImage UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIImage *landscapeBackgroundImage UI_APPEARANCE_SELECTOR;
+
 @end
 
 

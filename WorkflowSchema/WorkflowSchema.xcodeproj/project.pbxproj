@@ -95,7 +95,7 @@
 		F68795D4165A8C6E00F495A1 /* WFSPresenceCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795D2165A8C6E00F495A1 /* WFSPresenceCondition.m */; };
 		F68795F1165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = F68795EF165B9A4A00F495A1 /* UIViewController+WorkflowSchema.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F68795F2165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = F68795F0165B9A4A00F495A1 /* UIViewController+WorkflowSchema.m */; };
-		F6B59297167A34EB007A51C3 /* WFSTruthinessCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B59295167A34EB007A51C3 /* WFSTruthinessCondition.h */; };
+		F6B59297167A34EB007A51C3 /* WFSTruthinessCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B59295167A34EB007A51C3 /* WFSTruthinessCondition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6B59298167A34EB007A51C3 /* WFSTruthinessCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B59296167A34EB007A51C3 /* WFSTruthinessCondition.m */; };
 		F6BEBDF91653F95D004412B4 /* WFSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEBDF81653F95D004412B4 /* WFSMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6C0EBD9163A8DB200271964 /* NSArray+WorkflowSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = F6C0EBCF163A8DB200271964 /* NSArray+WorkflowSchema.h */; settings = {ATTRIBUTES = (Public, ); }; };

@@ -81,6 +81,8 @@
     if (screenView)
     {
         screenView.toolbar = self.toolbar;
+        screenView.interfaceOrientation = self.interfaceOrientation;
+        
         self.view = screenView;
     }
     else
@@ -89,6 +91,13 @@
         [self.workflowContext sendWorkflowError:error];
         [super loadView];
     }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [UIView animateWithDuration:duration animations:^{
+        self.screenView.interfaceOrientation = toInterfaceOrientation;
+    }];
 }
 
 #pragma mark - Actions
