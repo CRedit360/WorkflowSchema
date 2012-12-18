@@ -10,6 +10,11 @@
 
 @implementation WFSTruthinessCondition
 
++ (NSArray *)defaultSchemaParameters
+{
+    return [[super defaultSchemaParameters] arrayByPrependingObject:@[ [NSObject class], @"value" ]];
+}
+
 - (BOOL)evaluateWithValue:(id)value context:(WFSContext *)context
 {
     if ([value respondsToSelector:@selector(boolValue)])
